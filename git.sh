@@ -6,5 +6,5 @@ then
 fi
 git add .
 git commit -m $1
-git push develop
+git push origin
 git push upstream
