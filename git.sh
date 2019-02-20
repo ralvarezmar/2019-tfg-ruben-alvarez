@@ -6,7 +6,7 @@ then
 fi
 git add .
 git commit -m $1
-git push 
+git push
 if [ $2 = "-t" ]
 then
 	git push upstream
