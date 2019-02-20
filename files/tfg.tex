@@ -1,10 +1,71 @@
-\documentclass[a4paper,10pt]{article}
+\documentclass[a4paper, 12pt]{book}
+%\usepackage[T1]{fontenc}
 
+\usepackage[a4paper, left=2.5cm, right=2.5cm, top=3cm, bottom=3cm]{geometry}
+\usepackage{times}
 \usepackage[utf8]{inputenc}
-\usepackage[activeacute,spanish]{babel}
+\usepackage[spanish]{babel} % Comenta esta línea si tu memoria es en inglés
+\usepackage{url}
+%\usepackage[dvipdfm]{graphicx}
+\usepackage{graphicx}
+\usepackage{float}  %% H para posicionar figuras
+\usepackage[nottoc, notlot, notlof, notindex]{tocbibind} %% Opciones de índice
+\usepackage{latexsym}  %% Logo LaTeX
+
+\title{Memoria del Proyecto}
+\author{Rubén Álvarez Martín}
+
+\renewcommand{\baselinestretch}{1.5}  %% Interlineado
 
 \begin{document}
 
-  Prueba de Latex
+\renewcommand{\refname}{Bibliografía}  %% Renombrando
+\renewcommand{\appendixname}{Apéndice}
+% PORTADA
+\begin{titlepage}
+\begin{center}
+\begin{tabular}[c]{c c}
+%\includegraphics[bb=0 0 194 352, scale=0.25]{logo} &
+\includegraphics[scale=0.25]{img/logo_vect.png} &
+\begin{tabular}[b]{l}
+\Huge
+\textsf{UNIVERSIDAD} \\
+\Huge
+\textsf{REY JUAN CARLOS} \\
+\end{tabular}
+\\
+\end{tabular}
+
+\vspace{3cm}
+
+\Large
+INGENIERÍA TELEMÁTICA
+
+\vspace{0.4cm}
+
+\large
+Curso Académico 2019/2020
+
+\vspace{0.8cm}
+
+Trabajo Fin de Grado
+
+\vspace{2.5cm}
+
+\LARGE
+WEBSIM
+
+\vspace{4cm}
+
+\large
+Autor : Rubén Álvarez Martín \\
+Tutor : Dr. José María Cañas Plaza \\
+Co-Tutor : Santiago Carrión Vivanco
+\end{center}
+\end{titlepage}
+
+\newpage
+\mbox{}
+\thispagestyle{empty} 
 
 \end{document}
