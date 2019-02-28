@@ -5,14 +5,14 @@
 
 - Emulado el TFG de [Álvaro Paniagua](https://github.com/RoboticsURJC-students/2018-tfg-alvaro_paniagua) y puesto a funcionar se han realizado varias pruebas:
 
-  1. Primera prueba:
+  - Primera prueba:
 
-  [![Follow line en Websim](http://img.youtube.com/vi/wujvLw0Btnw/0.jpg)](http://www.youtube.com/watch?v=wujvLw0Btnw)
+    [![Follow line en Websim](http://img.youtube.com/vi/wujvLw0Btnw/0.jpg)](http://www.youtube.com/watch?v=wujvLw0Btnw)
 
 
-  2. Segunda prueba:
+  - Segunda prueba:
 
-  [![Follow line en Websim](http://img.youtube.com/vi/VSi6b0gRuaY/0.jpg)](http://www.youtube.com/watch?v=VSi6b0gRuaY)
+    [![Follow line en Websim](http://img.youtube.com/vi/VSi6b0gRuaY/0.jpg)](http://www.youtube.com/watch?v=VSi6b0gRuaY)
 
 
 ***
@@ -23,6 +23,6 @@
 
 - Creado usuario en la web oficial de kibotic y comienzo de pruebas en el entorno.
 
-  1. Primera prueba:
+  - Primera prueba:
 
-  [![Follow line con control proporcional](http://img.youtube.com/vi/SAoqs1BOnMI/0.jpg)](http://www.youtube.com/watch?v=SAoqs1BOnMI)
+    [![Follow line con control proporcional](http://img.youtube.com/vi/SAoqs1BOnMI/0.jpg)](http://www.youtube.com/watch?v=SAoqs1BOnMI)
