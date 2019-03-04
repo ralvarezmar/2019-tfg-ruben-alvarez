@@ -26,3 +26,7 @@
   - Primera prueba:
 
     [![Follow line con control proporcional](http://img.youtube.com/vi/SAoqs1BOnMI/0.jpg)](http://www.youtube.com/watch?v=SAoqs1BOnMI)
+
+  - Segunda prueba:
+
+    [![Follow line con control proporcional](http://img.youtube.com/vi/cDoKqI0Fm0A/0.jpg)](http://www.youtube.com/watch?v=cDoKqI0Fm0A)
