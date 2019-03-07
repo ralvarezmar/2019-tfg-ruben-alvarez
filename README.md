@@ -1,32 +1,41 @@
 # 2019-tfg-ruben-alvarez
 
+### Week 3
 
-### Semana 1  
+- I reordened and translate readme.
 
-- Emulado el TFG de [Álvaro Paniagua](https://github.com/RoboticsURJC-students/2018-tfg-alvaro_paniagua) y puesto a funcionar se han realizado varias pruebas:
+- I recorded video to kibotic web.
 
-  - Primera prueba:
+- I search scratch code and research about it to fix the problem with double loop.
 
-    [![Follow line en Websim](http://img.youtube.com/vi/wujvLw0Btnw/0.jpg)](http://www.youtube.com/watch?v=wujvLw0Btnw)
+***
+### Week 2
 
+- Error reported in double loop in kibotic's GitHub.
 
-  - Segunda prueba:
+- I signed up in kibotic web and I started tests in the environment:
 
-    [![Follow line en Websim](http://img.youtube.com/vi/VSi6b0gRuaY/0.jpg)](http://www.youtube.com/watch?v=VSi6b0gRuaY)
+  - First test:
 
+    [![Follow line with proportional control](http://img.youtube.com/vi/SAoqs1BOnMI/0.jpg)](http://www.youtube.com/watch?v=SAoqs1BOnMI)
+
+  - Second test:
+
+    [![Follow line with proportional control](http://img.youtube.com/vi/cDoKqI0Fm0A/0.jpg)](http://www.youtube.com/watch?v=cDoKqI0Fm0A)
 
 ***
 
-### Semana 2
+### Week 1  
 
-- Reportado fallo de doble bucle en el gitHub de kibotic.
+- Cloned [Álvaro Paniagua](https://github.com/RoboticsURJC-students/2018-tfg-alvaro_paniagua) repository and emulated. While it was working I did some test:
 
-- Creado usuario en la web oficial de kibotic y comienzo de pruebas en el entorno.
+  - First test:
 
-  - Primera prueba:
+    [![Follow line](http://img.youtube.com/vi/wujvLw0Btnw/0.jpg)](http://www.youtube.com/watch?v=wujvLw0Btnw)
 
-    [![Follow line con control proporcional](http://img.youtube.com/vi/SAoqs1BOnMI/0.jpg)](http://www.youtube.com/watch?v=SAoqs1BOnMI)
 
-  - Segunda prueba:
+  - Second test:
 
-    [![Follow line con control proporcional](http://img.youtube.com/vi/cDoKqI0Fm0A/0.jpg)](http://www.youtube.com/watch?v=cDoKqI0Fm0A)
+    [![Follow line](http://img.youtube.com/vi/VSi6b0gRuaY/0.jpg)](http://www.youtube.com/watch?v=VSi6b0gRuaY)
+
+- After the tests, I saw an error in one case with double loop.
