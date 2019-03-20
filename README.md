@@ -76,7 +76,7 @@ I choose the last way to make an example to learn how translate works:
 
 - Error reported in double loop in kibotic's GitHub.
 
-- I signed up in kibotic web and I started tests in the environment:
+- I signed up in kibotic web and I started doing tests in the environment:
 
   - First test:
 
