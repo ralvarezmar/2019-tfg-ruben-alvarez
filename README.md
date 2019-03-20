@@ -5,7 +5,7 @@
 - JavaScript to Blockly. I needed to download the JS interpreter then I have made an example to learn how translate works:
 
   - This code generate the block below:
-    ``javascript
+    ```javascript
       var Count;
 
       Count = 1;
@@ -13,7 +13,7 @@
         window.alert('Hello World!');
         Count = Count + 1;
       }
-    ``
+    ```
 
   ![alt text](https://github.com/ralvarezmar/2019-tfg-ruben-alvarez/blob/master/resources/helloWorld.png)
 
@@ -23,32 +23,34 @@
     ![alt text](https://github.com/ralvarezmar/2019-tfg-ruben-alvarez/blob/master/resources/CustomBlock.png)
 
     JSON definition:
-    ``json
-    {
-      "type": "block_test",
-      "message0": "%1 %2",
-      "args0": [
-        {
-          "type": "field_input",
-          "name": "TEXT",
-          "text": "text"
-        },
-        {
-          "type": "input_value",
-          "name": "NAME",
-          "check": "Boolean",
-          "align": "RIGHT"
-        }
-      ],
-      "output": "String",
-      "colour": 300,
-      "tooltip": "Hello",
-      "helpUrl": ""
-    }
-    ``
 
-    And JavaScript(You can choose between JavaScript, Python, PHP, Lua or Dart ) generated:
-    ``javascript
+    ```json
+    {
+        "type": "block_test",
+        "message0": "%1 %2",
+        "args0": [
+          {
+            "type": "field_input",
+            "name": "TEXT",
+            "text": "code_test"
+          },
+          {
+            "type": "input_value",
+            "name": "NAME",
+            "check": "Boolean",
+            "align": "RIGHT"
+          }
+        ],
+        "output": "String",
+        "colour": 300,
+        "tooltip": "Hello",
+        "helpUrl": ""
+    }
+    ```
+
+    And JavaScript(you can choose between JavaScript, Python, PHP, Lua or Dart ) generated:
+
+    ```javascript
       Blockly.JavaScript['block_test'] = function(block) {
       var text_text = block.getFieldValue('TEXT');
       var value_name = Blockly.JavaScript.valueToCode(block, 'NAME', Blockly.JavaScript.ORDER_ATOMIC);
@@ -57,7 +59,7 @@
       // TODO: Change ORDER_NONE to the correct strength.
       return [code, Blockly.JavaScript.ORDER_NONE];
       };
-    ``
+    ```
 
 
 ### Week 3
