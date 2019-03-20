@@ -5,7 +5,7 @@
 - JavaScript to Blockly. I needed to download the JS interpreter then I have made an example to learn how translate works:
 
   - This code generate the block below:
-    ``JavaScript
+    ``javascript
       var Count;
 
       Count = 1;
@@ -15,15 +15,15 @@
       }
     ``
 
-  ![alt text](https://raw.githubusercontent.com/ralvarezmar/resources/helloWorld.png)
+  ![alt text](https://github.com/ralvarezmar/2019-tfg-ruben-alvarez/blob/master/resources/helloWorld.png)
 
 
   - You can create custom blocks with the assistant of [Blockly Developer Tool](https://blockly-demo.appspot.com/static/demos/blockfactory/index.html).
     I made this block:
-    ![alt text](https://raw.githubusercontent.com/ralvarezmar/resources/CustomBlock.png)
+    ![alt text](https://github.com/ralvarezmar/2019-tfg-ruben-alvarez/blob/master/resources/CustomBlock.png)
 
     JSON definition:
-    ``JSON
+    ``json
     {
       "type": "block_test",
       "message0": "%1 %2",
@@ -48,7 +48,7 @@
     ``
 
     And JavaScript(You can choose between JavaScript, Python, PHP, Lua or Dart ) generated:
-    ``JavaScript
+    ``javascript
       Blockly.JavaScript['block_test'] = function(block) {
       var text_text = block.getFieldValue('TEXT');
       var value_name = Blockly.JavaScript.valueToCode(block, 'NAME', Blockly.JavaScript.ORDER_ATOMIC);
