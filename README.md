@@ -2,8 +2,8 @@
 
 ### Week 4
 
-- JavaScript to Blockly. I needed to download the [JS interpreter](https://github.com/NeilFraser/JS-Interpreter/zipball/master) following this [guide](https://developers.google.com/blockly/guides/app-integration/running-javascript) or also, used [Blockly demo](https://blockly-demo.appspot.com/static/demos/interpreter/step-execution.html).
-I choose the last way to makee an example to learn how translate works:
+- JavaScript to Blockly. To learn Blockly you can follow this [guide](https://developers.google.com/blockly/guides/app-integration/running-javascript) or also use [Blockly demo](https://blockly-demo.appspot.com/static/demos/interpreter/step-execution.html).
+I choose the last way to make an example to learn how translate works:
 
   - This code generate the block below:
     ```javascript
