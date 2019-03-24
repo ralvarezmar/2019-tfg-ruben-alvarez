@@ -2,7 +2,7 @@
 
 ### Week 4
 
-- JavaScript to Blockly. To learn Blockly you can follow this [guide](https://developers.google.com/blockly/guides/app-integration/running-javascript) or also use [Blockly demo](https://blockly-demo.appspot.com/static/demos/interpreter/step-execution.html).
+- JavaScript to Blockly. To learn Blockly you can follow this [guide](https://developers.google.com/blockly/guides/app-integration/running-javascript) or also use [blockly demo](https://blockly-demo.appspot.com/static/demos/interpreter/step-execution.html).
 I choose the last way to make an example to learn how translate works:
 
   - This code generate the block below:
@@ -63,6 +63,10 @@ I choose the last way to make an example to learn how translate works:
     ```
 
 
+    - Researching about A-FRAME:
+
+      -
+      
 ### Week 3
 
 - I reordened and translate readme.
