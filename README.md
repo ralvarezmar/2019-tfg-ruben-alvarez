@@ -63,11 +63,11 @@ I choose the last way to make an example to learn how translate works:
     ```
 
 
-  - Researching about A-FRAME:
+- Researching about A-FRAME:
 
-      - Added sky and some textures to kibotics map:
+    - Added sky and some textures to kibotics map:
 
-      ![alt text](https://github.com/ralvarezmar/2019-tfg-ruben-alvarez/blob/master/resources/test_aframe.png)
+    ![alt text](https://github.com/ralvarezmar/2019-tfg-ruben-alvarez/blob/master/resources/prueba_aframe.png)
 
 
 ### Week 3
