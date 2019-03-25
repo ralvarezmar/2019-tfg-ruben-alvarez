@@ -82,7 +82,7 @@ I choose the latter to make an example to learn how translate works:
     ![alt text](/resources/tree2_aframe.png)
 
 
-
+***
 
 ### Week 3
 
