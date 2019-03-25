@@ -16,12 +16,12 @@ I choose the latter to make an example to learn how translate works:
       }
     ```
 
-    ![alt text](/blob/master/resources/helloWorld.png)
+    ![alt text](/resources/helloWorld.png)
 
 
   - You can create custom blocks with the assistant of [Blockly Developer Tool](https://blockly-demo.appspot.com/static/demos/blockfactory/index.html).
     I made this block:
-    ![alt text](/blob/master/resources/CustomBlock.png)
+    ![alt text](/resources/CustomBlock.png)
 
     JSON definition:
 
@@ -71,7 +71,7 @@ I choose the latter to make an example to learn how translate works:
       <a-sky color="#6EBAA7"></a-sky>
       <a-cylinder color="green" height="10" open-ended="true"></a-cylinder>
     ```
-    ![alt text](/blob/master/resources/prueba_aframe.png)
+    ![alt text](/resources/prueba_aframe.png)
 
     - Added some models 3d from [free3d.com](https://free3d.com/):
     ```javascript
@@ -79,7 +79,7 @@ I choose the latter to make an example to learn how translate works:
       <a-entity id="a-tree" collada-model="#tree" rotation="0 0 0" position="2.75 0.01 -2.27">
     ```
 
-    ![alt text](/blob/master/resources/tree2_aframe.png)
+    ![alt text](/resources/tree2_aframe.png)
 
 
 
