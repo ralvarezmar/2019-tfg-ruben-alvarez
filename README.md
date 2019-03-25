@@ -3,9 +3,9 @@
 ### Week 4
 
 - JavaScript to Blockly. To learn Blockly you can follow this [guide](https://developers.google.com/blockly/guides/app-integration/running-javascript) or also use [blockly demo](https://blockly-demo.appspot.com/static/demos/interpreter/step-execution.html).
-I choose the last way to make an example to learn how translate works:
+I choose the latter to make an example to learn how translate works:
 
-  - This code generate the block below:
+  - This code generates the block below:
     ```javascript
       var Count;
 
@@ -16,12 +16,12 @@ I choose the last way to make an example to learn how translate works:
       }
     ```
 
-    ![alt text](https://github.com/ralvarezmar/2019-tfg-ruben-alvarez/blob/master/resources/helloWorld.png)
+    ![alt text](/blob/master/resources/helloWorld.png)
 
 
   - You can create custom blocks with the assistant of [Blockly Developer Tool](https://blockly-demo.appspot.com/static/demos/blockfactory/index.html).
     I made this block:
-    ![alt text](https://github.com/ralvarezmar/2019-tfg-ruben-alvarez/blob/master/resources/CustomBlock.png)
+    ![alt text](/blob/master/resources/CustomBlock.png)
 
     JSON definition:
 
@@ -66,8 +66,22 @@ I choose the last way to make an example to learn how translate works:
 - Researching about A-FRAME:
 
     - Added sky and some textures to kibotics map:
+    ```javascript
+      <a-plane id="myplane"  position="2.75 0.01 -2.27" rotation="-90 0 0" width="5" height="5" color="#007a00"></a-plane>
+      <a-sky color="#6EBAA7"></a-sky>
+      <a-cylinder color="green" height="10" open-ended="true"></a-cylinder>
+    ```
+    ![alt text](/blob/master/resources/prueba_aframe.png)
 
-    ![alt text](https://github.com/ralvarezmar/2019-tfg-ruben-alvarez/blob/master/resources/prueba_aframe.png)
+    - Added some models 3d from [free3d.com](https://free3d.com/):
+    ```javascript
+      <a-asset-item id="tree" src="assets/models/CartoonTree.dae"></a-asset-item>
+      <a-entity id="a-tree" collada-model="#tree" rotation="0 0 0" position="2.75 0.01 -2.27">
+    ```
+
+    ![alt text](/blob/master/resources/tree2_aframe.png)
+
+
 
 
 ### Week 3
@@ -97,7 +111,7 @@ I choose the last way to make an example to learn how translate works:
 
 ### Week 1  
 
-- Cloned [Álvaro Paniagua](https://github.com/RoboticsURJC-students/2018-tfg-alvaro_paniagua) repository and emulated. While it was working I did some test:
+- Cloned [Álvaro Paniagua](https://github.com/RoboticsURJC-students/2018-tfg-alvaro_paniagua) repository and emulated it. While it was working I did some test:
 
   - First test:
 
