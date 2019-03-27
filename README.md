@@ -1,5 +1,13 @@
 # 2019-tfg-ruben-alvarez
 
+
+
+### Week 5
+- First approximation to new scenario for Kibotics:
+  ![alt text](/resources/grass.png)
+  ![alt text](/resources/captura_prueba.png)
+
+
 ### Week 4
 
 - JavaScript to Blockly. To learn Blockly you can follow this [guide](https://developers.google.com/blockly/guides/app-integration/running-javascript) or also use [blockly demo](https://blockly-demo.appspot.com/static/demos/interpreter/step-execution.html).
