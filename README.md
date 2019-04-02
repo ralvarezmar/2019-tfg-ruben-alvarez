@@ -6,7 +6,18 @@
 - First approximation to new scenario for Kibotics:
   ![alt text](/resources/grass.png)
   ![alt text](/resources/captura_prueba.png)
+  New values to PiBot's position: rotation="0 50 0" position="15 0 25"
 
+
+- Second approximation to new scenario:
+
+  ![alt text](/resources/Interlagos.png)
+
+  ![alt text](/resources/grass2.0.png)
+
+  Steps are removed in this video because the execution was being slowed:
+
+  [![Testing new scenario](http://img.youtube.com/vi/tsGsZakuxmM/0.jpg)](http://www.youtube.com/watch?v=tsGsZakuxmM)
 
 ### Week 4
 
