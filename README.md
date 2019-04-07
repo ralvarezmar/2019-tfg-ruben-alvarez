@@ -19,6 +19,9 @@
 
   [![Testing new scenario](http://img.youtube.com/vi/tsGsZakuxmM/0.jpg)](http://www.youtube.com/watch?v=tsGsZakuxmM)
 
+- Researching about PiBot's architecture.
+
+***
 ### Week 4
 
 - JavaScript to Blockly. To learn Blockly you can follow this [guide](https://developers.google.com/blockly/guides/app-integration/running-javascript) or also use [blockly demo](https://blockly-demo.appspot.com/static/demos/interpreter/step-execution.html).
@@ -102,7 +105,6 @@ I choose the latter to make an example to learn how translate works:
 
 
 ***
-
 ### Week 3
 
 - I reordened and translate readme.
@@ -110,6 +112,7 @@ I choose the latter to make an example to learn how translate works:
 - I recorded video to kibotic web.
 
 - I search scratch code and research about it to fix the problem with double loop.
+
 
 ***
 ### Week 2
@@ -126,8 +129,8 @@ I choose the latter to make an example to learn how translate works:
 
     [![Follow line with proportional control](http://img.youtube.com/vi/cDoKqI0Fm0A/0.jpg)](http://www.youtube.com/watch?v=cDoKqI0Fm0A)
 
-***
 
+***
 ### Week 1  
 
 - Cloned [Álvaro Paniagua](https://github.com/RoboticsURJC-students/2018-tfg-alvaro_paniagua) repository and emulated it. While it was working I did some test:
