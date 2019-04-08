@@ -21,6 +21,9 @@
 
 - Researching about PiBot's architecture.
 
+- I did some test in Kibotics web with the new circuit: 
+    [![New circuit in Kibotics](http://img.youtube.com/vi/UKADenDxmd0/0.jpg)](http://www.youtube.com/watch?v=UKADenDxmd0)
+
 ***
 ### Week 4
 
