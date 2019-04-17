@@ -3,10 +3,18 @@
 ### Week 6
 
 - WebSim repository emulated in local for testing.
+  Repository cloned and fixed for local execution. Just needed execute in a shell:
+
+   > nodejs server.js
+
+  Open your web browser and write this URL:
+
+
+    > localhost:8000/Scratch/index.html
+
 
 - Drone integrated in another scenario without circuit:
   ![alt text](/resources/WebsimDrone.png)
-
 
 
 ***
@@ -30,6 +38,7 @@
 - Researching about PiBot's architecture.
 
 - I did some test in Kibotics web with the new circuit:
+
     [![New circuit in Kibotics](http://img.youtube.com/vi/UKADenDxmd0/0.jpg)](http://www.youtube.com/watch?v=UKADenDxmd0)
 
 ***
