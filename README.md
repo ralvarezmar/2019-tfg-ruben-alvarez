@@ -1,7 +1,15 @@
 # 2019-tfg-ruben-alvarez
 
+### Week 6
+
+- WebSim repository emulated in local for testing.
+
+- Drone integrated in another scenario without circuit:
+  ![alt text](/resources/WebsimDrone.png)
 
 
+
+***
 ### Week 5
 - First approximation to new scenario for Kibotics:
   ![alt text](/resources/grass.png)
@@ -21,7 +29,7 @@
 
 - Researching about PiBot's architecture.
 
-- I did some test in Kibotics web with the new circuit: 
+- I did some test in Kibotics web with the new circuit:
     [![New circuit in Kibotics](http://img.youtube.com/vi/UKADenDxmd0/0.jpg)](http://www.youtube.com/watch?v=UKADenDxmd0)
 
 ***
