@@ -3,7 +3,7 @@
 ### Week 6
 
 - WebSim repository emulated in local for testing.
-  Repository cloned and fixed for local execution. Just needed execute in a shell:
+  Repository cloned and fixed for local execution. You just needed execute in a shell:
 
    > nodejs server.js
 
@@ -15,6 +15,12 @@
 
 - Drone integrated in another scenario without circuit:
   ![alt text](/resources/WebsimDrone.png)
+
+- Move up and take off blocks are being created:
+  ![alt text](/resources/ascensionBlockly.png)
+  
+  ![alt text](/resources/despegarBlockly.png)
+
 
 
 ***
