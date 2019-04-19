@@ -521,7 +521,6 @@ export default class RobotI
     }
 
 
-
     retroceder(velocidadLineal){
       if (velocidadLineal > 0){
         return this.setV(-velocidadLineal);
@@ -554,8 +553,16 @@ export default class RobotI
       return this.getImage();
     }
 
-    aumentarAltura(velocidadSubida){
-      return this.setZ(velocidadSubida);
+    velocidadSubida(velocidadSubida){
+      return this.setZ(Math.abs(velocidadSubida));
+    }
+
+    velocidadBajada(velocidadBajada){
+      if (velocidadBajada > 0){
+        return this.setZ(-velocidadBajada);
+      }else{
+        return this.setZ(velocidadBajada);
+      }
     }
 
     despegar(){

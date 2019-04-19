@@ -16,11 +16,20 @@
 - Drone integrated in another scenario without circuit:
   ![alt text](/resources/WebsimDrone.png)
 
-- Move up and take off blocks are being created:
+
+- Move up and take off blocks had being created:
+
   ![alt text](/resources/ascensionBlockly.png)
-  
+
   ![alt text](/resources/despegarBlockly.png)
 
+  To add this blocks is necessary put this lines in _/Scratch/editor.js_:
+
+  ```javascript
+  import initMoveUpBlock from './js/customBlocks/moveUpBlock.js'
+  import initTakeOffBlock from './js/customBlocks/takeOffBlock.js'
+  import initMoveDownBlock from './js/customBlocks/moveDownBlock.js'
+  ```
 
 
 ***

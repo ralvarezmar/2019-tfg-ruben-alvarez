@@ -11,8 +11,8 @@
 
         <!-- Bootstrap 3.3.7 from local -->
         <script src='/static/js/jquery-3.2.1.min.js'></script>
-        <script src='/static/js/bootstrap.min.js'></script> 
-        
+        <script src='/static/js/bootstrap.min.js'></script>
+
         <!-- Boostrap from CDN -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
@@ -28,7 +28,7 @@
         <link rel="stylesheet" type="text/css" href='/static/css/animate.css'>
 
         <!--Font Awesome -->
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/> 
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
     </head>
 
 
@@ -40,21 +40,21 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
-                </button>    
+                </button>
             </div>
             <div class="navbar-collapse collapse">
-                 
+
                     <ul class="nav navbar-nav navbar-center">
                         <!--<li></span><a href="/reload_simulation/Test Websim">Reiniciar</a></li> -->
                         <li><a id="ButtonSwitch" href="#" type="button" value=" Ver Teoría" onclick="switchVisible();"><span id="theoryIcon" class="glyphicon glyphicon-console"></span> Ver Código</a></li>
                         <li><a id="goToMainPage" href="#" data-toggle="modal" data-target="#modal_exit_simulation" style="margin-left: 10px"><span class="glyphicon glyphicon-off"></span> Salir del Ejercicio</a></li>
-                        
-                        
-                    </ul>
-                
-                
 
-                
+
+                    </ul>
+
+
+
+
                     <ul class="nav navbar-nav navbar-right">
                         <li><a id="version">Versión 1.4.0</a></li>
                         <li><a id="twitter" href="https://twitter.com/kiboticsorg" target="_blank"><i class="fa fa-twitter"></i></a></li>
@@ -76,15 +76,15 @@
                                             </div>
                                         </div>
                                     </div>
-                                
-                                    
+
+
                                     <div class="divider"></div>
                                     <li><a id="logout_section" href="/logout">Cerrar Sesión</a></li>
                                 </li>
                             </ul>
                         </li>
                     </ul>
-                
+
             </div>
         </nav>
 
@@ -149,11 +149,11 @@
 
 
         <!-- Sección para incluir en todas las páginas mensajes de error o de succcess -->
-        
+
 
 
         <!-- Animación de carga de la aplicación -->
-        <div id="loader"> 
+        <div id="loader">
             <div id="icon_loader" class="col-xs-offset-4 col-xs-4 col-sm-offset-5 col-sm-2">
             </div>
             <script>
@@ -177,19 +177,19 @@
             </script>
         </div>
 
-        
+
 
   <script type="text/javascript">
 
-    
+
       window.wsUri = "wss://kibotics.org/_ws_/" + "?user=ralvarezmar&client_ip=2.138.58.166&simulation_type=websim&exercise=test_websim";
-    
+
 
     window.socket = ""
     window.userCode = '<xml xmlns="http://www.w3.org/1999/xhtml"><variables><variable type="" id="1$KO!zx`GQ.w$)M[ab?^">mainInterval</variable><variable type="" id="*181WUoy@D.)*qEN,ego">linea</variable><variable type="" id="5=@3:A2+Z+GM:]G;|O(e">myRobot</variable><variable type="" id="|+91p##rz+RvP33dC`vM">error</variable></variables><block type="variables_set" id="MVROnZ:)Uj]RI|AiO~wm" x="159" y="134"><field name="VAR" id="1$KO!zx`GQ.w$)M[ab?^" variabletype="">mainInterval</field><value name="VALUE"><block type="set_interval" id="F#Mj~|Wa9n)LN`Jt*l#I"><statement name="TEXT"><block type="variables_set" id="E;/l)S[SPB!{$(m;+Q%d"><field name="VAR" id="*181WUoy@D.)*qEN,ego" variabletype="">linea</field><value name="VALUE"><block type="get_objcolor" id="^OjP:ZZl*mO1}toaHo=4"><field name="ROBOTVAR" id="5=@3:A2+Z+GM:]G;|O(e" variabletype="">myRobot</field><field name="OPTIONS">X</field><field name="COLOUR">white</field></block></value><next><block type="logs" id="/F@CD`U-85_$8sbM:dsR"><value name="TO_LOG"><block type="variables_get" id="8xyEg:5BG).v{2E;l0%L"><field name="VAR" id="*181WUoy@D.)*qEN,ego" variabletype="">linea</field></block></value><next><block type="variables_set" id="1=U.Z#$bux0:e5XI-|pn"><field name="VAR" id="|+91p##rz+RvP33dC`vM" variabletype="">error</field><value name="VALUE"><block type="math_arithmetic" id="KJ3[O07O$fOifB1oW]*A"><field name="OP">MINUS</field><value name="A"><block type="math_number" id="k?TqI+E}N?Xv4E]PjT;0"><field name="NUM">70</field></block></value><value name="B"><block type="variables_get" id="}ab+`{T6n`tkIsmD_G#u"><field name="VAR" id="*181WUoy@D.)*qEN,ego" variabletype="">linea</field></block></value></block></value><next><block type="controls_if" id=";k66+LRY8T5DV`wu?;p4"><value name="IF0"><block type="logic_compare" id="0S)`SMHZfZTe+rVbB()Y"><field name="OP">LT</field><value name="A"><block type="variables_get" id="F%H2CT4?,#07Up}K#j(S"><field name="VAR" id="|+91p##rz+RvP33dC`vM" variabletype="">error</field></block></value><value name="B"><block type="math_number" id=";2`)V$fM2yG5Dy=^AI:D"><field name="NUM">0</field></block></value></block></value><statement name="DO0"><block type="turn_right" id="$pIs7FfSUJwOi=b0w`z5"><field name="NAME" id="5=@3:A2+Z+GM:]G;|O(e" variabletype="">myRobot</field><value name="ROBOTVAR"><block type="math_arithmetic" id="%TvIScP-j`xB!.x2xkc2"><field name="OP">MULTIPLY</field><value name="A"><block type="variables_get" id="=~z9{[hB;zXp/SmB43WY"><field name="VAR" id="|+91p##rz+RvP33dC`vM" variabletype="">error</field></block></value><value name="B"><block type="math_number" id="QOs4,b0WiLMK/tcifvG?"><field name="NUM">-0.009</field></block></value></block></value><next><block type="move_forward" id="gN3VDx#/MZeY?:PKQw~P"><field name="NAME" id="5=@3:A2+Z+GM:]G;|O(e" variabletype="">myRobot</field><value name="ROBOTVAR"><block type="math_arithmetic" id="W!33=!ZL~TY0{=gD~WNv"><field name="OP">MINUS</field><value name="A"><block type="math_number" id="0WDS|K,($uqy?xbeX25i"><field name="NUM">2</field></block></value><value name="B"><block type="math_arithmetic" id="(l}=3l$`3dlH(9y[PVz!"><field name="OP">MULTIPLY</field><value name="A"><block type="variables_get" id="K%D_AwPJ$ssB/V%uBI4E"><field name="VAR" id="|+91p##rz+RvP33dC`vM" variabletype="">error</field></block></value><value name="B"><block type="math_number" id="4`Q;C[Zo35}#KxRuMQ59"><field name="NUM">-0.018</field></block></value></block></value></block></value></block></next></block></statement><next><block type="controls_if" id="kb!*0?sDHbuC@+6q0o.n"><value name="IF0"><block type="logic_compare" id="K?sw~9M1ubXsdYfqp-aU"><field name="OP">GT</field><value name="A"><block type="variables_get" id="0-e_Lj?E^9ZdG#hwnSz%"><field name="VAR" id="|+91p##rz+RvP33dC`vM" variabletype="">error</field></block></value><value name="B"><block type="math_number" id="bsMD:pwj~B$JwGI9w6z:"><field name="NUM">0</field></block></value></block></value><statement name="DO0"><block type="turn_left" id="lA;DXvxR*[c6R,Z}M^nX"><field name="NAME" id="5=@3:A2+Z+GM:]G;|O(e" variabletype="">myRobot</field><value name="ROBOTVAR"><block type="math_arithmetic" id="x=i0P,uC^RI($sg8I3ac"><field name="OP">MULTIPLY</field><value name="A"><block type="variables_get" id="t+`ua9;XAo@u:2n40}1g"><field name="VAR" id="|+91p##rz+RvP33dC`vM" variabletype="">error</field></block></value><value name="B"><block type="math_number" id="0!Dx60~,dphFca[Po}+j"><field name="NUM">0.009</field></block></value></block></value><next><block type="move_forward" id="Y_/2$60aPc@nFcdMb:bX"><field name="NAME" id="5=@3:A2+Z+GM:]G;|O(e" variabletype="">myRobot</field><value name="ROBOTVAR"><block type="math_arithmetic" id="aJUy`MQjWo%~!GkYeq?c"><field name="OP">MINUS</field><value name="A"><block type="math_number" id="-mpv?GDZ_u@Eda8ALXmr"><field name="NUM">2</field></block></value><value name="B"><block type="math_arithmetic" id="Q;Lhfld05g5;Lkp~*nkN"><field name="OP">MULTIPLY</field><value name="A"><block type="variables_get" id="2|*G3{ay?V1f1sC^PHc%"><field name="VAR" id="|+91p##rz+RvP33dC`vM" variabletype="">error</field></block></value><value name="B"><block type="math_number" id="REH7bW2TH:j!h,cUl;8i"><field name="NUM">0.018</field></block></value></block></value></block></value></block></next></block></statement></block></next></block></next></block></next></block></next></block></statement></block></value></block></xml>'
 
   </script>
- 
+
   <link rel="stylesheet" type="text/css" href='css/main.css'>
   <script src='build/websim.bundle.js'></script>
   <script src='build/editor.bundle.js'></script>
@@ -204,7 +204,7 @@
 
   <style>
     .navbar {
-      margin-bottom: 0px; 
+      margin-bottom: 0px;
     }
   </style>
 
@@ -227,7 +227,7 @@
     </a-entity>
     </a-entity>
     <a-entity id="positionSensor"></a-entity>
-    
+
     <a-plane static-body position="0 0 0"
             rotation="-90 0 0"
             width="100"
@@ -244,17 +244,17 @@
     <a-entity id="primaryCamera" position="31.89 6.75 22.38" rotation="-30.37 48.13 -2.29">
         <a-camera look-controls wasd-controls></a-camera>
     </a-entity>
-    
+
 </a-scene>
   </div>
-      
+
   <div id="right-container" class="col-xs-4 col-md-5" style="padding:0px 0px 0px 0px; height: calc(100vh - 72px)">
-    <div id="buttons" style="background-color:#d3dae5">  
+    <div id="buttons" style="background-color:#d3dae5">
         <button onclick id="runbtn"><span class="glyphicon glyphicon-play"></span> Ejecutar</button></button>
         <button onclick id="cambtn"><span class="glyphicon glyphicon-facetime-video"></span> Cámara</button></button>
-        
+
           <button onclick id="saveCode" disabled><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
-        
+
     </div>
     <div id="blockly-div">
     <xml id="toolbox" style="display: none">
@@ -369,6 +369,9 @@
           <block type="getLinearSpeed"></block>
           <block type="getAngularSpeed"></block>
           <block type="getLateralSpeed"></block>
+          <block type="move_down"></block>
+          <block type="move_up"></block>
+          <block type="take_off"></block>
           <block type="turn_left"></block>
           <block type="turn_right"></block>
           <block type="set_lateral"></block>
@@ -394,7 +397,7 @@
           <block type="get_position"></block>
         </category>
       </category>
-    </xml> 
+    </xml>
   </div>
   <div id="cameras" style="display:inline-flex;">
     <div id="cameraOpenCV" style="margin-left: 5px; margin-right: 15px;">
@@ -410,9 +413,8 @@
 
 
 
-        
+
     </body>
 
-    
-</html>
 
+</html>

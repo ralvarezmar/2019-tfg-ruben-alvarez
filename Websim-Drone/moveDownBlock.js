@@ -1,8 +1,8 @@
 
-export default function initMoveUpBlock(){
-  var moveUpBlock = {
-    "type": "move_up",
-    "message0": "Move up %1 at speed %2",
+export default function initMoveDownBlock(){
+  var moveDownBlock = {
+    "type": "move_down",
+    "message0": "Move down %1 at speed %2",
     "args0": [
       {
         "type": "field_variable",
@@ -18,17 +18,17 @@ export default function initMoveUpBlock(){
     "previousStatement": null,
     "nextStatement": null,
     "colour": "%{BKY_MATH_HUE}",
-    "tooltip": "Sets speed up for the robot.",
+    "tooltip": "Sets speed down for the robot.",
     "helpUrl": ""
   }
 
-  Blockly.Blocks['move_up'] = {
+  Blockly.Blocks['move_down'] = {
     init: function() {
-      this.jsonInit(moveUpBlock);
+      this.jsonInit(moveDownBlock);
     }
   };
 
-  Blockly.JavaScript['move_up'] = function(block) {
+  Blockly.JavaScript['move_down'] = function(block) {
     var variable_name = Blockly.JavaScript.variableDB_.getName(block.getFieldValue('NAME'), Blockly.Variables.NAME_TYPE);
     var value_robotvar = Blockly.JavaScript.valueToCode(block, 'ROBOTVAR', Blockly.JavaScript.ORDER_ATOMIC);
 
@@ -36,11 +36,11 @@ export default function initMoveUpBlock(){
     return code;
   };
 
-  Blockly.Python['move_up'] = function(block) {
+  Blockly.Python['move_down'] = function(block) {
     var variable_name = Blockly.Python.variableDB_.getName(block.getFieldValue('NAME'), Blockly.Variables.NAME_TYPE);
     var value_robotvar = Blockly.Python.valueToCode(block, 'ROBOTVAR', Blockly.Python.ORDER_ATOMIC);
 
-    var code = variable_name + '.velocidadSubida(' + value_robotvar + ')\r\n';
+    var code = variable_name + '.velocidadBajada(' + value_robotvar + ')\r\n';
     return code;
   };
 }
