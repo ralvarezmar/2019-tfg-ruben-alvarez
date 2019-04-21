@@ -1,15 +1,22 @@
 
-export default function takeOffBlock(){
+export default function initTakeOffBlock(){
   var takeOffBlock = {
-    "type": "take_off",
-    "message0": "Despegar",
-    "inputsInline": false,
-    "previousStatement": null,
-    "nextStatement": "String",
-    "colour": "%{BKY_MATH_HUE}",
-    "tooltip": "Despega el drone",
-    "helpUrl": "Despega el drone"
-  }
+  "type": "take_off",
+  "message0": "%1 Despegar",
+  "args0": [
+    {
+      "type": "field_variable",
+      "name": "NAME",
+      "variable": "MyRobot"
+    }
+  ],
+  "inputsInline": false,
+  "previousStatement": null,
+  "nextStatement": "String",
+  "colour": "%{BKY_MATH_HUE}",
+  "tooltip": "Despega el drone",
+  "helpUrl": "Despega el drone"
+}
 
   Blockly.Blocks['take_off'] = {
     init: function() {
@@ -21,7 +28,7 @@ export default function takeOffBlock(){
     var variable_name = Blockly.JavaScript.variableDB_.getName(block.getFieldValue('NAME'), Blockly.Variables.NAME_TYPE);
     var value_robotvar = Blockly.JavaScript.valueToCode(block, 'ROBOTVAR', Blockly.JavaScript.ORDER_ATOMIC);
 
-    var code = variable_name + '.takeOff(); \n';
+    var code = variable_name + '.despegar(); \n';
     return code;
   };
 

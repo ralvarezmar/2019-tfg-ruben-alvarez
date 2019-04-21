@@ -21,6 +21,8 @@
 
   ![alt text](/resources/ascensionBlockly.png)
 
+  ![alt text](/resources/descensoBlockly.png)
+
   ![alt text](/resources/despegarBlockly.png)
 
   To add this blocks is necessary put this lines in _/Scratch/editor.js_:
@@ -29,6 +31,13 @@
   import initMoveUpBlock from './js/customBlocks/moveUpBlock.js'
   import initTakeOffBlock from './js/customBlocks/takeOffBlock.js'
   import initMoveDownBlock from './js/customBlocks/moveDownBlock.js'
+  ```
+  And this lines in _configureCustomBlocks()_:
+
+  ```javascript
+  initTakeOffBlock();
+  initMoveUpBlock();
+  initMoveDownBlock();
   ```
 
 
