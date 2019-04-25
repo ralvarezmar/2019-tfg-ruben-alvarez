@@ -565,10 +565,17 @@ export default class RobotI
       }
     }
 
+    aterrizar(){
+      this.velocity.z=-1;
+      this.velocity.y=0;
+      this.velocity.x=0;
+      sleep(1000);
+      this.velocity.z=0;
+    }
+
     despegar(){
-      for(var i = 0; i < 100; i++){
-        this.velocity.z=0.5;
-      }
+      this.velocity.z=2;
+      sleep(2000)
       this.velocity.z=0;
     }
 }

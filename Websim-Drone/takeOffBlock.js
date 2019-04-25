@@ -2,7 +2,7 @@
 export default function initTakeOffBlock(){
   var takeOffBlock = {
   "type": "take_off",
-  "message0": "%1 Despegar",
+  "message0": "Despegar %1",
   "args0": [
     {
       "type": "field_variable",

@@ -1,5 +1,12 @@
 # 2019-tfg-ruben-alvarez
 
+### Week 7
+
+- Created land blockly.
+
+
+
+***
 ### Week 6
 
 - WebSim repository emulated in local for testing.
@@ -17,7 +24,7 @@
   ![alt text](/resources/WebsimDrone.png)
 
 
-- Move up and take off blocks had being created:
+- Move up, move down and take off blocks had being created:
 
   ![alt text](/resources/ascensionBlockly.png)
 
