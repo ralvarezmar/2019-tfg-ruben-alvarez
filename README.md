@@ -2,7 +2,11 @@
 
 ### Week 7
 
-- Created land blockly.
+- Created land blockly:
+  ![alt text](/resources/aterrizarBlockly.png)
+
+- Created configuration file.
+
 
 
 

@@ -10,12 +10,11 @@ export default function initLandBlock(){
       "variable": "MyRobot"
     }
   ],
-  "inputsInline": false,
   "previousStatement": null,
   "nextStatement": "String",
   "colour": "%{BKY_MATH_HUE}",
-  "tooltip": "Despega el drone",
-  "helpUrl": "Despega el drone"
+  "tooltip": "Aterriza el drone",
+  "helpUrl": "Aterriza el drone"
 }
 
   Blockly.Blocks['land'] = {

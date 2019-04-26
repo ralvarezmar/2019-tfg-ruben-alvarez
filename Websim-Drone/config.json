@@ -1,0 +1,7 @@
+{
+  "robot": "../assets/models/pibot.gltf",
+  "ground": "../assets/textures/escenarioDrone.png",
+  "sky": "../assets/textures/sky.png",
+  "objects":{      
+  }
+}
