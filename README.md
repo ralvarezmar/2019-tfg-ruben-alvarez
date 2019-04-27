@@ -3,11 +3,14 @@
 ### Week 7
 
 - Created land blockly:
+
   ![alt text](/resources/aterrizarBlockly.png)
 
 - Created configuration file.
 
+- Created html for control drone:
 
+  ![alt text](/resources/control.png)
 
 
 ***
