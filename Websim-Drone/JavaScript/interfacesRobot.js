@@ -77,10 +77,6 @@ export default class RobotI
         this.setV(v);
         this.setW(w);
     }
-    setZ(z){
-      this.velocity.z=z;
-    }
-
     getV(){
         return this.velocity.x;
     }
@@ -90,12 +86,6 @@ export default class RobotI
     getL(){
         return this.velocity.y;
     }
-
-    getZ(){
-      return this.velocity.z;
-    }
-
-
     setVelocity(body){
       /*
         This code run continiously, setting the speed of the robot every 40ms
@@ -521,7 +511,6 @@ export default class RobotI
       return this.setV(Math.abs(velocidadLineal));
     }
 
-
     retroceder(velocidadLineal){
       if (velocidadLineal > 0){
         return this.setV(-velocidadLineal);
@@ -554,31 +543,6 @@ export default class RobotI
       return this.getImage();
     }
 
-    velocidadSubida(velocidadSubida){
-      return this.setZ(Math.abs(velocidadSubida));
-    }
-
-    velocidadBajada(velocidadBajada){
-      if (velocidadBajada > 0){
-        return this.setZ(-velocidadBajada);
-      }else{
-        return this.setZ(velocidadBajada);
-      }
-    }
-
-    aterrizar(){
-      this.velocity.z=-1;
-      this.velocity.y=0;
-      this.velocity.x=0;
-      sleep(1000);
-      this.velocity.z=0;
-    }
-
-    despegar(){
-      this.velocity.z=2;
-      sleep(2000)
-      this.velocity.z=0;
-    }
 }
 
 function updatePosition(rotation, velocity, robotPos){
