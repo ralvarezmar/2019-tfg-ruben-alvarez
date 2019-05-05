@@ -12,11 +12,6 @@ export default class RobotI
           'y': 0,
           'z': 0
         }
-        this.initialRotation = {
-          'x': 0,
-          'y': 0,
-          'z': 0
-        }
         this.storeInitialPosition(this.robot.getAttribute('position'));
         this.activeRays = false;
         this.raycastersArray = [];
@@ -32,7 +27,7 @@ export default class RobotI
           white: {low: [230, 230, 230, 0], high: [255, 255, 255, 255]}
         };
         this.velocity = {x:0, y:0, z:0, ax:0, ay:0, az:0};
-        this.motorsStarter(this.robot);
+        this.motorsStarter(this.robot)
         this.startCamera();
         this.startRaycasters(defaultDistanceDetection, defaultNumOfRays);
     }
@@ -40,6 +35,7 @@ export default class RobotI
       /*
         This function starts motors passing the robot
       */
+
       console.log("LOG ---------------- Setting up motors.")
       this.setVelocity(robot);
     }
@@ -101,24 +97,35 @@ export default class RobotI
       return this.velocity.z;
     }
 
-
     setVelocity(body){
       /*
-        This code run continiously, setting the speed of the robot every 40ms
+        This code run continiously, setting the speed of the robot every 30ms
         This function will not be callable, use setV, setW or setL
       */
 
       if(body != undefined){
         this.robot = body;
       }
-
       let rotation = this.getRotation();
 
-      let newpos = updatePosition(rotation, this.velocity, this.robot.body.position);
+      let newpos = this.updatePosition(rotation, this.velocity, this.robot.body.position);
 
       this.robot.body.position.set(newpos.x, newpos.y, newpos.z);
       this.robot.body.angularVelocity.set(this.velocity.ax, this.velocity.ay, this.velocity.az);
       this.timeoutMotors = setTimeout(this.setVelocity.bind(this), 30);
+    }
+
+    updatePosition(rotation, velocity, robotPos){
+      /*
+        This function calculates the new position of the robot.
+      */
+      let x = velocity.x/10 * Math.cos(rotation.y * Math.PI/180);
+      let z = velocity.x/10 * Math.sin(rotation.y * Math.PI/180);
+
+      robotPos.x += x;
+      robotPos.z -= z;
+
+      return robotPos;
     }
 
     getCameraDescription()
@@ -127,6 +134,19 @@ export default class RobotI
     */
     {
         return {width: this.canvas2d.width, height: this.canvas2d.height};
+    }
+
+    clearAll()
+    /*
+      Resets all states of the robot.
+    */
+    {
+        clearTimeout(this.timeoutCamera); // Clear camera timeouts (stops camera)
+        clearTimeout(this.timeoutMotors); // Clear motors timeouts (stops motors)
+        clearInterval(this.followLineInterval); // Clears followLine intervals
+        this.velocity = {x:0, y:0, z:0, ax:0, ay:0, az:0};
+        this.setVelocity();
+        this.robot.body.position.set(0, 0, 0);
     }
 
     getImageDescription()
@@ -449,13 +469,13 @@ export default class RobotI
       }
     }
 
-    followLine(lowval, highval, speed, interval = 100)
+    followLine(lowval, highval, speed)
     /*
       This function is a simple implementation of follow line algorithm, the robot filters an object with
       a given color and follows it.
     */
     {
-      var data = this.getObjectColorRGB(lowval, highval); // Filters image
+        var data = this.getObjectColorRGB(lowval, highval); // Filters image
 
         this.setV(speed);
 
@@ -514,64 +534,6 @@ export default class RobotI
       }
       return outputVal;
     }
-    /*
-      SPANISH API: This methods calls the same method in english
-
-    */
-
-    leerIRSigueLineas(){
-      return this.readIR();
-    }
-
-    avanzar(velocidadLineal){
-      return this.setV(Math.abs(velocidadLineal));
-    }
-
-
-    retroceder(velocidadLineal){
-      if (velocidadLineal > 0){
-        return this.setV(-velocidadLineal);
-      }else{
-        return this.setV(velocidadLineal);
-      }
-    }
-
-    girarIzquierda(velocidadGiro){
-      return this.setW(velocidadGiro);
-    }
-
-    girarDerecha(velocidadGiro){
-      return this.setW(-velocidadGiro);
-    }
-
-    parar(){
-      return this.move(0,0);
-    }
-
-    leerUltrasonido(){
-      return this.getDistance();
-    }
-
-    dameObjeto(filtroBajo, filtroAlto){
-      return this.getObjectColorRGB(filtroBajo, filtroAlto);
-    }
-
-    dameImagen(){
-      return this.getImage();
-    }
-
-    velocidadSubida(velocidadSubida){
-      return this.setZ(Math.abs(velocidadSubida));
-    }
-
-    velocidadBajada(velocidadBajada){
-      if (velocidadBajada > 0){
-        return this.setZ(-velocidadBajada);
-      }else{
-        return this.setZ(velocidadBajada);
-      }
-    }
-
     aterrizar(){
       this.velocity.z=-1;
       this.velocity.y=0;
@@ -585,17 +547,4 @@ export default class RobotI
       sleep(2000)
       this.velocity.z=0;
     }
-}
-
-function updatePosition(rotation, velocity, robotPos){
-  /*
-    This function calculates the new position of the robot.
-  */
-  let x = velocity.x/10 * Math.cos(rotation.y * Math.PI/180);
-  let z = velocity.x/10 * Math.sin(rotation.y * Math.PI/180);
-
-  robotPos.x += x;
-  robotPos.z -= z;
-
-  return robotPos;
 }

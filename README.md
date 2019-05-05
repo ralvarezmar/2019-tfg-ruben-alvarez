@@ -1,5 +1,18 @@
 # 2019-tfg-ruben-alvarez
 
+### Week 8
+
+
+- Research about Webpack and how build the project.
+
+
+- New blocks implemented in kibotics environment:
+
+  ![alt text](/resources/kibotics_newblocks.png)
+
+
+
+***
 ### Week 7
 
 - Created land blockly:

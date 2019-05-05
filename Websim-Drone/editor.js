@@ -21,8 +21,9 @@ import initStopBlock from './js/customBlocks/stopBlock.js'
 import initTurnLeftBlock from './js/customBlocks/turnLeftBlock.js'
 import initTurnRightBlock from './js/customBlocks/turnRightBlock.js'
 import initWaitBlock from './js/customBlocks/waitBlock.js'
-import initMoveUpBlock from './js/customBlocks/moveUpBlock.js'
 import initTakeOffBlock from './js/customBlocks/takeOffBlock.js'
+import initLandBlock from './js/customBlocks/landBlock.js'
+import initMoveUpBlock from './js/customBlocks/moveUpBlock.js'
 import initMoveDownBlock from './js/customBlocks/moveDownBlock.js'
 
 import $ from 'jquery';
@@ -108,6 +109,7 @@ function configureCustomBlocks(){
   initWaitBlock();
   initSetLateralSpeedBlock();
   initTakeOffBlock();
-  initMoveUpBlock();
+  initLandBlock();
   initMoveDownBlock();
+  initMoveUpBlock();
 }

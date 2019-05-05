@@ -2,7 +2,7 @@
 export default function initLandBlock(){
   var landBlock = {
   "type": "land",
-  "message0": "Despegar %1",
+  "message0": "Land %1",
   "args0": [
     {
       "type": "field_variable",
