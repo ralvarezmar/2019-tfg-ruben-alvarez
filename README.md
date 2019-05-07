@@ -10,6 +10,7 @@
 
   ![alt text](/resources/kibotics_newblocks.png)
 
+- Make [json file](/WebSim-Drone/config.json) to config the website and [javascript necessary](/WebSim-Drone/JavaScript/config.js) to implement it.
 
 
 ***

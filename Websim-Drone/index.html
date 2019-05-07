@@ -1,420 +1,236 @@
- <!-- Cargamos los archivos estaticos -->
- <!-- Cargamos el módulo de Internacionalización -->
-
-<!DOCTYPE HTML>
-<html lang="es-ES">
-    <head>
-        <meta http-equiv="Content-type" content="text/html" charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" type="image/png" href='/static/img/kibotics_favicon.png' sizes="16x16">
-        <title>Kibotics</title>
-
-        <!-- Bootstrap 3.3.7 from local -->
-        <script src='/static/js/jquery-3.2.1.min.js'></script>
-        <script src='/static/js/bootstrap.min.js'></script>
-
-        <!-- Boostrap from CDN -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
-
-        <!-- Roboto Typography -->
-        <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
-
-        <!-- Hoja de Estilo principal de la Aplicación (Main Styles) -->
-        <link rel="stylesheet" type="text/css" href='/static/css/style.css'>
-        <link rel="stylesheet" type="text/css" href='/static/css/navbar.css'>
-
-        <!-- Aniamte CSS -->
-        <link rel="stylesheet" type="text/css" href='/static/css/animate.css'>
-
-        <!--Font Awesome -->
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
-    </head>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>WebSim - Alvaro Paniagua Tena</title>
+    <script type="text/javascript">
 
 
-    <body class="background">
-        <!-- NAVBAR -->
-        <nav class="navbar" role="navigation">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                </button>
-            </div>
-            <div class="navbar-collapse collapse">
-
-                    <ul class="nav navbar-nav navbar-center">
-                        <!--<li></span><a href="/reload_simulation/Test Websim">Reiniciar</a></li> -->
-                        <li><a id="ButtonSwitch" href="#" type="button" value=" Ver Teoría" onclick="switchVisible();"><span id="theoryIcon" class="glyphicon glyphicon-console"></span> Ver Código</a></li>
-                        <li><a id="goToMainPage" href="#" data-toggle="modal" data-target="#modal_exit_simulation" style="margin-left: 10px"><span class="glyphicon glyphicon-off"></span> Salir del Ejercicio</a></li>
+        window.wsUri = "wss://kibotics.org/_ws_/" + "?user=ralvarezmar&client_ip=2.138.58.166&simulation_type=websim&exercise=test_websim";
 
 
-                    </ul>
+      window.socket = ""
+      window.userCode = '<xml xmlns="http://www.w3.org/1999/xhtml"><variables><variable type="" id="1$KO!zx`GQ.w$)M[ab?^">mainInterval</variable><variable type="" id="*181WUoy@D.)*qEN,ego">linea</variable><variable type="" id="5=@3:A2+Z+GM:]G;|O(e">myRobot</variable><variable type="" id="|+91p##rz+RvP33dC`vM">error</variable></variables><block type="variables_set" id="MVROnZ:)Uj]RI|AiO~wm" x="159" y="134"><field name="VAR" id="1$KO!zx`GQ.w$)M[ab?^" variabletype="">mainInterval</field><value name="VALUE"><block type="set_interval" id="F#Mj~|Wa9n)LN`Jt*l#I"><statement name="TEXT"><block type="variables_set" id="E;/l)S[SPB!{$(m;+Q%d"><field name="VAR" id="*181WUoy@D.)*qEN,ego" variabletype="">linea</field><value name="VALUE"><block type="get_objcolor" id="^OjP:ZZl*mO1}toaHo=4"><field name="ROBOTVAR" id="5=@3:A2+Z+GM:]G;|O(e" variabletype="">myRobot</field><field name="OPTIONS">X</field><field name="COLOUR">white</field></block></value><next><block type="logs" id="/F@CD`U-85_$8sbM:dsR"><value name="TO_LOG"><block type="variables_get" id="8xyEg:5BG).v{2E;l0%L"><field name="VAR" id="*181WUoy@D.)*qEN,ego" variabletype="">linea</field></block></value><next><block type="variables_set" id="1=U.Z#$bux0:e5XI-|pn"><field name="VAR" id="|+91p##rz+RvP33dC`vM" variabletype="">error</field><value name="VALUE"><block type="math_arithmetic" id="KJ3[O07O$fOifB1oW]*A"><field name="OP">MINUS</field><value name="A"><block type="math_number" id="k?TqI+E}N?Xv4E]PjT;0"><field name="NUM">70</field></block></value><value name="B"><block type="variables_get" id="}ab+`{T6n`tkIsmD_G#u"><field name="VAR" id="*181WUoy@D.)*qEN,ego" variabletype="">linea</field></block></value></block></value><next><block type="controls_if" id=";k66+LRY8T5DV`wu?;p4"><value name="IF0"><block type="logic_compare" id="0S)`SMHZfZTe+rVbB()Y"><field name="OP">LT</field><value name="A"><block type="variables_get" id="F%H2CT4?,#07Up}K#j(S"><field name="VAR" id="|+91p##rz+RvP33dC`vM" variabletype="">error</field></block></value><value name="B"><block type="math_number" id=";2`)V$fM2yG5Dy=^AI:D"><field name="NUM">0</field></block></value></block></value><statement name="DO0"><block type="turn_right" id="$pIs7FfSUJwOi=b0w`z5"><field name="NAME" id="5=@3:A2+Z+GM:]G;|O(e" variabletype="">myRobot</field><value name="ROBOTVAR"><block type="math_arithmetic" id="%TvIScP-j`xB!.x2xkc2"><field name="OP">MULTIPLY</field><value name="A"><block type="variables_get" id="=~z9{[hB;zXp/SmB43WY"><field name="VAR" id="|+91p##rz+RvP33dC`vM" variabletype="">error</field></block></value><value name="B"><block type="math_number" id="QOs4,b0WiLMK/tcifvG?"><field name="NUM">-0.009</field></block></value></block></value><next><block type="move_forward" id="gN3VDx#/MZeY?:PKQw~P"><field name="NAME" id="5=@3:A2+Z+GM:]G;|O(e" variabletype="">myRobot</field><value name="ROBOTVAR"><block type="math_arithmetic" id="W!33=!ZL~TY0{=gD~WNv"><field name="OP">MINUS</field><value name="A"><block type="math_number" id="0WDS|K,($uqy?xbeX25i"><field name="NUM">2</field></block></value><value name="B"><block type="math_arithmetic" id="(l}=3l$`3dlH(9y[PVz!"><field name="OP">MULTIPLY</field><value name="A"><block type="variables_get" id="K%D_AwPJ$ssB/V%uBI4E"><field name="VAR" id="|+91p##rz+RvP33dC`vM" variabletype="">error</field></block></value><value name="B"><block type="math_number" id="4`Q;C[Zo35}#KxRuMQ59"><field name="NUM">-0.018</field></block></value></block></value></block></value></block></next></block></statement><next><block type="controls_if" id="kb!*0?sDHbuC@+6q0o.n"><value name="IF0"><block type="logic_compare" id="K?sw~9M1ubXsdYfqp-aU"><field name="OP">GT</field><value name="A"><block type="variables_get" id="0-e_Lj?E^9ZdG#hwnSz%"><field name="VAR" id="|+91p##rz+RvP33dC`vM" variabletype="">error</field></block></value><value name="B"><block type="math_number" id="bsMD:pwj~B$JwGI9w6z:"><field name="NUM">0</field></block></value></block></value><statement name="DO0"><block type="turn_left" id="lA;DXvxR*[c6R,Z}M^nX"><field name="NAME" id="5=@3:A2+Z+GM:]G;|O(e" variabletype="">myRobot</field><value name="ROBOTVAR"><block type="math_arithmetic" id="x=i0P,uC^RI($sg8I3ac"><field name="OP">MULTIPLY</field><value name="A"><block type="variables_get" id="t+`ua9;XAo@u:2n40}1g"><field name="VAR" id="|+91p##rz+RvP33dC`vM" variabletype="">error</field></block></value><value name="B"><block type="math_number" id="0!Dx60~,dphFca[Po}+j"><field name="NUM">0.009</field></block></value></block></value><next><block type="move_forward" id="Y_/2$60aPc@nFcdMb:bX"><field name="NAME" id="5=@3:A2+Z+GM:]G;|O(e" variabletype="">myRobot</field><value name="ROBOTVAR"><block type="math_arithmetic" id="aJUy`MQjWo%~!GkYeq?c"><field name="OP">MINUS</field><value name="A"><block type="math_number" id="-mpv?GDZ_u@Eda8ALXmr"><field name="NUM">2</field></block></value><value name="B"><block type="math_arithmetic" id="Q;Lhfld05g5;Lkp~*nkN"><field name="OP">MULTIPLY</field><value name="A"><block type="variables_get" id="2|*G3{ay?V1f1sC^PHc%"><field name="VAR" id="|+91p##rz+RvP33dC`vM" variabletype="">error</field></block></value><value name="B"><block type="math_number" id="REH7bW2TH:j!h,cUl;8i"><field name="NUM">0.018</field></block></value></block></value></block></value></block></next></block></statement></block></next></block></next></block></next></block></next></block></statement></block></value></block></xml>'
+
+    </script>
+    <meta charset="utf-8" />
+    <!-- Physics for A-Frame VR -->
+    <link rel="stylesheet" type="text/css" href="css/main.css"></link>
+    <script src="build/websim.bundle.js" ></script>
+    <script src="build/editor.bundle.js" ></script>
+    <script src="google-blockly/blockly_compressed.js"></script>
+    <script src="google-blockly/blocks_compressed.js"></script>
+    <script src="google-blockly/msg/js/es.js"></script>
+    <script src="google-blockly/core/css.js"></script>
+    <script src="google-blockly/core/block_render_svg.js"></script>
+    <script src="google-blockly/javascript_compressed.js"></script>
+    <script src="google-blockly/python_compressed.js"></script>
+  </head>
+  <body>
+    <nav id="navbar">
+      <a href="/"><img src="../assets/resources/jderobot.svg" style="width:70px; height:70px; margin-top: 6px;" /></a>
+      <div id="nav-button-container">
+        <!--<button onclick id="generator" style="display:;">XML</button>-->
+        <button onclick id="injectCode">Inyectar XML</button>
+        <button onclick id="saveCode">Guardar código</button>
+        <button onclick id="blocklyToPython">Descarga Local</button>
+        <button onclick id="runbtn"><img src="../assets/resources/play-icon.png" /></button>
+        <button onclick id="cambtn"><img src="../assets/resources/play-camera-icon.png" /></button>
+      </div>
+    </nav>
+    <div id="container">
+      <div id="myIFrame">
+        <a-scene id="scene" background="color: gray;" stats embedded physics="debug: true" inspector="url: https://aframe.io/releases/0.4.0/aframe-inspector.min.js">
+          <a-assets>
+            <img id="ground"/>
+            <img id="sky"/>
+          </a-assets>
+          <!-- Pibot, which body is the asset item with ID = model-pibot -->
+          <a-entity dynamic-body="mass: 50;" id="a-pibot">
+            <a-entity id="secondaryCamera" position="0 0 0" rotation="-20 -90 0">
+              <!-- Create a second third-person camera which cant be controlled, the Pibot camera -->
+              <a-camera position="0 0.03 -0.01" spectator="canvas:#spectatorDiv;" active="false" wasd-controls-enabled="false" look-controls-enabled="false"></a-camera>
+            </a-entity>
+          </a-entity>
+          <a-entity id="positionSensor"></a-entity>
+          <!-- Scenario -->
+          <a-sky src="#sky"></a-sky>
+          <a-plane static-body position="0 0 0"
+                   rotation="-90 0 0"
+                   width="100"
+                   height="100"
+                   repeat="1 1"
+                   src="#ground">
+          </a-plane>
+
+          <!-- Illumination -->
+          <a-light type="ambient" color="white"></a-light>
+
+          <a-entity id="primaryCamera" position="12 15 25" rotation="-75 0 0">
+            <a-camera fov="100"></a-camera>
+          </a-entity>
+
+        </a-scene>
+        <script type="text/javascript" src="opencv/opencv3.3.1.js" ></script>
+        <script src="js/config.js"></script>
+      </div>
+      <div id="scriptContainer"></div>
+      <div id="right-container">
+        <div id="blockly-div">
+        <xml id="toolbox" style="display: none">
+          <category name="Variables" custom="VARIABLE"></category>
+          <category name="Text" colour="%{BKY_MATH_HUE}">
+            <block type="text"></block>
+          </category>
+          <category name="Logic" colour="%{BKY_LOGIC_HUE}">
+            <category name="If">
+              <block type="controls_if"></block>
+            </category>
+            <category name="Boolean" colour="%{BKY_LOGIC_HUE}">
+              <block type="logic_compare"></block>
+              <block type="logic_operation"></block>
+              <block type="logic_negate"></block>
+              <block type="logic_boolean"></block>
+              <block type="logic_null"></block>
+              <block type="logic_ternary"></block>
+            </category>
+          </category>
+          <category name="Loops" colour="%{BKY_LOOPS_HUE}">
+            <block type="controls_repeat_ext">
+              <value name="TIMES">
+                <block type="math_number">
+                  <field name="NUM">10</field>
+                </block>
+              </value>
+            </block>
+            <block type="controls_whileUntil"></block>
+            <block type="controls_for">
+              <field name="VAR">i</field>
+              <value name="FROM">
+                <block type="math_number">
+                  <field name="NUM">1</field>
+                </block>
+              </value>
+              <value name="TO">
+                <block type="math_number">
+                  <field name="NUM">10</field>
+                </block>
+              </value>
+              <value name="BY">
+                <block type="math_number">
+                  <field name="NUM">1</field>
+                </block>
+              </value>
+            </block>
+            <block type="controls_forEach"></block>
+            <block type="controls_flow_statements"></block>
+          </category>
+          <category name="Math" colour="%{BKY_MATH_HUE}">
+            <block type="math_number">
+              <field name="NUM">123</field>
+            </block>
+            <block type="math_arithmetic"></block>
+            <block type="math_single"></block>
+            <block type="math_trig"></block>
+            <block type="math_constant"></block>
+            <block type="math_number_property"></block>
+            <block type="math_round"></block>
+            <block type="math_on_list"></block>
+            <block type="math_modulo"></block>
+            <block type="math_constrain">
+              <value name="LOW">
+                <block type="math_number">
+                  <field name="NUM">1</field>
+                </block>
+              </value>
+              <value name="HIGH">
+                <block type="math_number">
+                  <field name="NUM">100</field>
+                </block>
+              </value>
+            </block>
+            <block type="math_random_int">
+              <value name="FROM">
+                <block type="math_number">
+                  <field name="NUM">1</field>
+                </block>
+              </value>
+              <value name="TO">
+                <block type="math_number">
+                  <field name="NUM">100</field>
+                </block>
+              </value>
+            </block>
+            <block type="math_random_float"></block>
+          </category>
+          <category name="Lists" colour="%{BKY_LISTS_HUE}">
+            <block type="lists_create_empty"></block>
+            <block type="lists_create_with"></block>
+            <block type="lists_repeat">
+              <value name="NUM">
+                <block type="math_number">
+                  <field name="NUM">5</field>
+                </block>
+              </value>
+            </block>
+            <block type="lists_length"></block>
+            <block type="lists_isEmpty"></block>
+            <block type="lists_indexOf"></block>
+            <block type="lists_getIndex"></block>
+            <block type="lists_setIndex"></block>
+          </category>
+          <category name="Functions" custom="PROCEDURE" colour="%{BKY_PROCEDURES_HUE}">
+          </category>
+          <category name="RobotAPI">
+            <category name="Motors" colour='%{BKY_MATH_HUE}'>
+              <block type="move_forward"></block>
+              <block type="move_backward"></block>
+              <block type="move_combined"></block>
+              <block type="getLinearSpeed"></block>
+              <block type="getAngularSpeed"></block>
+              <block type="getLateralSpeed"></block>
+              <block type="turn_left"></block>
+              <block type="turn_right"></block>
+              <block type="set_lateral"></block>
+              <block type="stop_robot"></block>
+              <block type="take_off"></block>
+              <block type="land"></block>
+              <block type="move_up"></block>
+              <block type="move_down"></block>
 
 
-
-
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a id="version">Versión 1.4.0</a></li>
-                        <li><a id="twitter" href="https://twitter.com/kiboticsorg" target="_blank"><i class="fa fa-twitter"></i></a></li>
-                        <li><a id="youtube" href="https://www.youtube.com/channel/UCVH_ODFODyRUidhtR0IIZnw" target="_blank"><i class="fa fa-youtube"></i></a></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">ralvarezmar <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <div class="info_user navbar-content">
-                                        <div class="row-navbar">
-                                            <div class="col-md-12 text-center" style="margin-top:5px">
-                                                <p data-letters="RÁ">ralvarezmar</p>
-                                                <div class="divider"></div>
-                                            </div>
-                                            <div class="col-md-12 text-center">
-                                                <span>Rubén Álvarez Martín</span></br>
-                                                <span id="email" class="text-center small">r.alvarezmar@gmail.com</span>
-                                                <div class="divider"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="divider"></div>
-                                    <li><a id="logout_section" href="/logout">Cerrar Sesión</a></li>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-
-            </div>
-        </nav>
-
-
-        <!-- EXITED BUTTON -->
-        <div class="modal fade text-center" id="modal_exit_simulation" role="dialog">
-            <div class="modal-dialog">
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">×</button>
-                        <h4 class="modal-title">¿Has guardado los cambios?</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row" style="padding-top: 10px">
-                            <ul>
-                                <h5 class="text-center">¿Estás seguro de que quieres salir de la simulación? Se perderán los cambios que no hayan sido guardados</h5>
-
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <a id="btn-exit_simulation" type="button" href="/exit_simulation" class="btn btn-raised btn-success">Sí, he guardado. Salir.</a>
-                        <a type="button" class="btn btn-danger" data-dismiss="modal">No, aún no he guardado, volver.</a>
-                    </div>
-                    <script>
-                        $(document).ready(function() {
-                            $('#btn-exit_simulation').click(function() {
-                                socket.close()
-                                $('#modal_exit_simulation').modal('toggle');
-                                $('#loader').removeClass('loaded')
-                            });
-                        });
-                    </script>
-                </div>
-            </div>
+            </category>
+            <category name="Camera" colour='%{BKY_LISTS_HUE}'>
+              <block type="get_image"></block>
+              <block type="get_objcolor"></block>
+              <block type="read_ir"></block>
+            </category>
+            <category name="Tools" colour=%{BKY_LOOPS_HUE}>
+              <block type="set_interval"></block>
+              <block type="set_timeout"></block>
+              <block type="logs"></block>
+              <block type="imgto_canvas"></block>
+              <block type="wait_block"></block>
+            </category>
+            <category name="Sensors" colour="%{BKY_VARIABLES_DYNAMIC_HUE}">
+              <block type="get_distance"></block>
+              <block type="get_distances"></block>
+              <block type="get_position"></block>
+            </category>
+          </category>
+        </xml>
+      </div>
+        <div id="cameras" style="display:inline-flex;">
+          <div id="cameraOpenCV" style="margin-left: 5px; margin-right: 15px;">
+            <p>OpenCV image</p>
+            <canvas id="outputCanvas" style="width:150px; height:100px; display: none" ></canvas>
+          </div>
+          <div id="robotCam">
+            <p>Robot Camera</p>
+            <div id="spectatorDiv" style="width: 150px; height: 100px;"></div>
+          </div>
         </div>
-
-        <!-- KILL SIMULATIONS BUTTON -->
-        <div class="modal fade text-center" id="modal_kill_simulations" role="dialog">
-            <div class="modal-dialog">
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Terminar todas las simulaciones</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row" style="padding-top: 10px">
-                            <ul>
-                                <h5 class="text-center">Todas las simulaciones activas terminarán. ¿Estás seguro?</h5>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <a type="button" href="/kill_user_simulations" class="btn btn-success">Sí, terminar todas las simulaciones</a>
-                        <a type="button" class="btn btn-danger" data-dismiss="modal">No, volver atrás</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-        <!-- Sección para incluir en todas las páginas mensajes de error o de succcess -->
-
-
-
-        <!-- Animación de carga de la aplicación -->
-        <div id="loader">
-            <div id="icon_loader" class="col-xs-offset-4 col-xs-4 col-sm-offset-5 col-sm-2">
-            </div>
-            <script>
-                function RepeatAnimationLoader(){
-                    $('#logo').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
-                        logo = document.getElementById("logo")
-                        if(logo.className =="img-responsive animated"){
-                            logo.className ="img-responsive animated"
-
-                        }else{
-                            logo.className ="img-responsive animated"
-                            RepeatAnimationLoader()
-                        }
-                    });
-                }
-                RepeatAnimationLoader()
-                $(document).ready(function(){
-                    document.getElementById("loader").className = "loaded"
-                    //document.getElementById("loader")
-                });
-            </script>
-        </div>
-
-
-
-  <script type="text/javascript">
-
-
-      window.wsUri = "wss://kibotics.org/_ws_/" + "?user=ralvarezmar&client_ip=2.138.58.166&simulation_type=websim&exercise=test_websim";
-
-
-    window.socket = ""
-    window.userCode = '<xml xmlns="http://www.w3.org/1999/xhtml"><variables><variable type="" id="1$KO!zx`GQ.w$)M[ab?^">mainInterval</variable><variable type="" id="*181WUoy@D.)*qEN,ego">linea</variable><variable type="" id="5=@3:A2+Z+GM:]G;|O(e">myRobot</variable><variable type="" id="|+91p##rz+RvP33dC`vM">error</variable></variables><block type="variables_set" id="MVROnZ:)Uj]RI|AiO~wm" x="159" y="134"><field name="VAR" id="1$KO!zx`GQ.w$)M[ab?^" variabletype="">mainInterval</field><value name="VALUE"><block type="set_interval" id="F#Mj~|Wa9n)LN`Jt*l#I"><statement name="TEXT"><block type="variables_set" id="E;/l)S[SPB!{$(m;+Q%d"><field name="VAR" id="*181WUoy@D.)*qEN,ego" variabletype="">linea</field><value name="VALUE"><block type="get_objcolor" id="^OjP:ZZl*mO1}toaHo=4"><field name="ROBOTVAR" id="5=@3:A2+Z+GM:]G;|O(e" variabletype="">myRobot</field><field name="OPTIONS">X</field><field name="COLOUR">white</field></block></value><next><block type="logs" id="/F@CD`U-85_$8sbM:dsR"><value name="TO_LOG"><block type="variables_get" id="8xyEg:5BG).v{2E;l0%L"><field name="VAR" id="*181WUoy@D.)*qEN,ego" variabletype="">linea</field></block></value><next><block type="variables_set" id="1=U.Z#$bux0:e5XI-|pn"><field name="VAR" id="|+91p##rz+RvP33dC`vM" variabletype="">error</field><value name="VALUE"><block type="math_arithmetic" id="KJ3[O07O$fOifB1oW]*A"><field name="OP">MINUS</field><value name="A"><block type="math_number" id="k?TqI+E}N?Xv4E]PjT;0"><field name="NUM">70</field></block></value><value name="B"><block type="variables_get" id="}ab+`{T6n`tkIsmD_G#u"><field name="VAR" id="*181WUoy@D.)*qEN,ego" variabletype="">linea</field></block></value></block></value><next><block type="controls_if" id=";k66+LRY8T5DV`wu?;p4"><value name="IF0"><block type="logic_compare" id="0S)`SMHZfZTe+rVbB()Y"><field name="OP">LT</field><value name="A"><block type="variables_get" id="F%H2CT4?,#07Up}K#j(S"><field name="VAR" id="|+91p##rz+RvP33dC`vM" variabletype="">error</field></block></value><value name="B"><block type="math_number" id=";2`)V$fM2yG5Dy=^AI:D"><field name="NUM">0</field></block></value></block></value><statement name="DO0"><block type="turn_right" id="$pIs7FfSUJwOi=b0w`z5"><field name="NAME" id="5=@3:A2+Z+GM:]G;|O(e" variabletype="">myRobot</field><value name="ROBOTVAR"><block type="math_arithmetic" id="%TvIScP-j`xB!.x2xkc2"><field name="OP">MULTIPLY</field><value name="A"><block type="variables_get" id="=~z9{[hB;zXp/SmB43WY"><field name="VAR" id="|+91p##rz+RvP33dC`vM" variabletype="">error</field></block></value><value name="B"><block type="math_number" id="QOs4,b0WiLMK/tcifvG?"><field name="NUM">-0.009</field></block></value></block></value><next><block type="move_forward" id="gN3VDx#/MZeY?:PKQw~P"><field name="NAME" id="5=@3:A2+Z+GM:]G;|O(e" variabletype="">myRobot</field><value name="ROBOTVAR"><block type="math_arithmetic" id="W!33=!ZL~TY0{=gD~WNv"><field name="OP">MINUS</field><value name="A"><block type="math_number" id="0WDS|K,($uqy?xbeX25i"><field name="NUM">2</field></block></value><value name="B"><block type="math_arithmetic" id="(l}=3l$`3dlH(9y[PVz!"><field name="OP">MULTIPLY</field><value name="A"><block type="variables_get" id="K%D_AwPJ$ssB/V%uBI4E"><field name="VAR" id="|+91p##rz+RvP33dC`vM" variabletype="">error</field></block></value><value name="B"><block type="math_number" id="4`Q;C[Zo35}#KxRuMQ59"><field name="NUM">-0.018</field></block></value></block></value></block></value></block></next></block></statement><next><block type="controls_if" id="kb!*0?sDHbuC@+6q0o.n"><value name="IF0"><block type="logic_compare" id="K?sw~9M1ubXsdYfqp-aU"><field name="OP">GT</field><value name="A"><block type="variables_get" id="0-e_Lj?E^9ZdG#hwnSz%"><field name="VAR" id="|+91p##rz+RvP33dC`vM" variabletype="">error</field></block></value><value name="B"><block type="math_number" id="bsMD:pwj~B$JwGI9w6z:"><field name="NUM">0</field></block></value></block></value><statement name="DO0"><block type="turn_left" id="lA;DXvxR*[c6R,Z}M^nX"><field name="NAME" id="5=@3:A2+Z+GM:]G;|O(e" variabletype="">myRobot</field><value name="ROBOTVAR"><block type="math_arithmetic" id="x=i0P,uC^RI($sg8I3ac"><field name="OP">MULTIPLY</field><value name="A"><block type="variables_get" id="t+`ua9;XAo@u:2n40}1g"><field name="VAR" id="|+91p##rz+RvP33dC`vM" variabletype="">error</field></block></value><value name="B"><block type="math_number" id="0!Dx60~,dphFca[Po}+j"><field name="NUM">0.009</field></block></value></block></value><next><block type="move_forward" id="Y_/2$60aPc@nFcdMb:bX"><field name="NAME" id="5=@3:A2+Z+GM:]G;|O(e" variabletype="">myRobot</field><value name="ROBOTVAR"><block type="math_arithmetic" id="aJUy`MQjWo%~!GkYeq?c"><field name="OP">MINUS</field><value name="A"><block type="math_number" id="-mpv?GDZ_u@Eda8ALXmr"><field name="NUM">2</field></block></value><value name="B"><block type="math_arithmetic" id="Q;Lhfld05g5;Lkp~*nkN"><field name="OP">MULTIPLY</field><value name="A"><block type="variables_get" id="2|*G3{ay?V1f1sC^PHc%"><field name="VAR" id="|+91p##rz+RvP33dC`vM" variabletype="">error</field></block></value><value name="B"><block type="math_number" id="REH7bW2TH:j!h,cUl;8i"><field name="NUM">0.018</field></block></value></block></value></block></value></block></next></block></statement></block></next></block></next></block></next></block></next></block></statement></block></value></block></xml>'
-
-  </script>
-
-  <link rel="stylesheet" type="text/css" href='css/main.css'>
-  <script src='build/websim.bundle.js'></script>
-  <script src='build/editor.bundle.js'></script>
-  <script src='google-blockly/blockly_compressed.js'></script>
-  <script src='google-blockly/blocks_compressed.js'></script>
-  <script src='google-blockly/msg/js/es.js'></script>
-  <script src='google-blockly/core/css.js'></script>
-  <script src='google-blockly/core/block_render_svg.js'></script>
-  <script src='google-blockly/javascript_compressed.js'></script>
-  <script src='google-blockly/python_compressed.js'></script>
-  <script type="text/javascript" src='opencv/opencv3.3.1.js'></script>
-
-  <style>
-    .navbar {
-      margin-bottom: 0px;
-    }
-  </style>
-
-  <div id="myIFrame" class="col-xs-8 col-md-7" style="padding:0px 0px 0px 0px; height: calc(100vh - 72px)">
-       <!-- Cargamos los archivos estaticos -->
-
-<a-scene id="scene" background="color: gray;" stats="false" embedded physics="debug:false" inspector="url: https://aframe.io/releases/0.4.0/aframe-inspector.min.js">
-    <a-assets>
-    <a-asset-item id="model-pibot" src='../assets/models/jrobotFgltf.gltf'></a-asset-item>
-    <img id="ground" src='../assets/textures/escenarioDrone.png' />
-    <img id="sky" src="../assets/textures/sky.png" />
-
-    </a-assets>
-    <!-- Pibot, which body is the asset item with ID = model-pibot -->
-    <a-entity dynamic-body="mass: 10;" id="a-pibot" gltf-model="#model-pibot" scale="0.5 0.5 0.5" rotation="0 50 0" position="12 5 25">
-
-    <a-entity id="secondaryCamera" position="0 0 0" rotation="-20 -90 0">
-        <!-- Create a second third-person camera which cant be controlled, the Pibot camera -->
-        <a-camera position="0 0.03 -0.01" spectator="canvas:#spectatorDiv;" active="false" wasd-controls-enabled="false" look-controls-enabled="false"></a-camera>
-    </a-entity>
-    </a-entity>
-    <a-entity id="positionSensor"></a-entity>
-
-    <a-plane static-body position="0 0 0"
-            rotation="-90 0 0"
-            width="100"
-            height="100"
-            repeat="1 1"
-            src="#ground">
-    </a-plane>
-    <a-sky src="#sky"></a-sky>
-
-    <!-- Illumination -->
-    <a-light type="ambient" color="white"></a-light>
-    <!--<a-light type="point" intensity="1" position="-2 2 4"></a-light>-->
-
-    <a-entity id="primaryCamera" position="31.89 6.75 22.38" rotation="-30.37 48.13 -2.29">
-        <a-camera look-controls wasd-controls></a-camera>
-    </a-entity>
-
-</a-scene>
-  </div>
-
-  <div id="right-container" class="col-xs-4 col-md-5" style="padding:0px 0px 0px 0px; height: calc(100vh - 72px)">
-    <div id="buttons" style="background-color:#d3dae5">
-        <button onclick id="runbtn"><span class="glyphicon glyphicon-play"></span> Ejecutar</button></button>
-        <button onclick id="cambtn"><span class="glyphicon glyphicon-facetime-video"></span> Cámara</button></button>
-
-          <button onclick id="saveCode" disabled><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
-
+      </div>
     </div>
-    <div id="blockly-div">
-    <xml id="toolbox" style="display: none">
-      <category name="Variables" custom="VARIABLE"></category>
-      <category name="Text" colour="%{BKY_MATH_HUE}">
-        <block type="text"></block>
-      </category>
-      <category name="Logic" colour="%{BKY_LOGIC_HUE}">
-        <category name="If">
-          <block type="controls_if"></block>
-        </category>
-        <category name="Boolean" colour="%{BKY_LOGIC_HUE}">
-          <block type="logic_compare"></block>
-          <block type="logic_operation"></block>
-          <block type="logic_negate"></block>
-          <block type="logic_boolean"></block>
-          <block type="logic_null"></block>
-          <block type="logic_ternary"></block>
-        </category>
-      </category>
-      <category name="Loops" colour="%{BKY_LOOPS_HUE}">
-        <block type="controls_repeat_ext">
-          <value name="TIMES">
-            <block type="math_number">
-              <field name="NUM">10</field>
-            </block>
-          </value>
-        </block>
-        <block type="controls_whileUntil"></block>
-        <block type="controls_for">
-          <field name="VAR">i</field>
-          <value name="FROM">
-            <block type="math_number">
-              <field name="NUM">1</field>
-            </block>
-          </value>
-          <value name="TO">
-            <block type="math_number">
-              <field name="NUM">10</field>
-            </block>
-          </value>
-          <value name="BY">
-            <block type="math_number">
-              <field name="NUM">1</field>
-            </block>
-          </value>
-        </block>
-        <block type="controls_forEach"></block>
-        <block type="controls_flow_statements"></block>
-      </category>
-      <category name="Math" colour="%{BKY_MATH_HUE}">
-        <block type="math_number">
-          <field name="NUM">123</field>
-        </block>
-        <block type="math_arithmetic"></block>
-        <block type="math_single"></block>
-        <block type="math_trig"></block>
-        <block type="math_constant"></block>
-        <block type="math_number_property"></block>
-        <block type="math_round"></block>
-        <block type="math_on_list"></block>
-        <block type="math_modulo"></block>
-        <block type="math_constrain">
-          <value name="LOW">
-            <block type="math_number">
-              <field name="NUM">1</field>
-            </block>
-          </value>
-          <value name="HIGH">
-            <block type="math_number">
-              <field name="NUM">100</field>
-            </block>
-          </value>
-        </block>
-        <block type="math_random_int">
-          <value name="FROM">
-            <block type="math_number">
-              <field name="NUM">1</field>
-            </block>
-          </value>
-          <value name="TO">
-            <block type="math_number">
-              <field name="NUM">100</field>
-            </block>
-          </value>
-        </block>
-        <block type="math_random_float"></block>
-      </category>
-      <category name="Lists" colour="%{BKY_LISTS_HUE}">
-        <block type="lists_create_empty"></block>
-        <block type="lists_create_with"></block>
-        <block type="lists_repeat">
-          <value name="NUM">
-            <block type="math_number">
-              <field name="NUM">5</field>
-            </block>
-          </value>
-        </block>
-        <block type="lists_length"></block>
-        <block type="lists_isEmpty"></block>
-        <block type="lists_indexOf"></block>
-        <block type="lists_getIndex"></block>
-        <block type="lists_setIndex"></block>
-      </category>
-      <category name="Functions" custom="PROCEDURE" colour="%{BKY_PROCEDURES_HUE}">
-      </category>
-      <category name="RobotAPI">
-        <category name="Motors" colour='%{BKY_MATH_HUE}'>
-          <block type="move_forward"></block>
-          <block type="move_backward"></block>
-          <block type="move_combined"></block>
-          <block type="getLinearSpeed"></block>
-          <block type="getAngularSpeed"></block>
-          <block type="getLateralSpeed"></block>
-          <block type="move_down"></block>
-          <block type="move_up"></block>
-          <block type="take_off"></block>
-          <block type="turn_left"></block>
-          <block type="turn_right"></block>
-          <block type="set_lateral"></block>
-          <block type="stop_robot"></block>
-        </category>
-        <category name="Camera" colour='%{BKY_LISTS_HUE}'>
-          <block type="get_image"></block>
-          <block type="get_objcolor"></block>
-          <block type="read_ir"></block>
-        </category>
-        <category name="Tools" colour=%{BKY_LOOPS_HUE}>
-          <block type="set_interval"></block>
-          <block type="set_timeout"></block>
-          <block type="logs"></block>
-          <block type="imgto_canvas"></block>
-          <block type="wait_block"></block>
-        </category>
-        <category name="Sensors" colour="%{BKY_VARIABLES_DYNAMIC_HUE}">
-          <!--<block type="start_rays"></block>-->
-          <!--<block type="stop_rays"></block>-->
-          <block type="get_distance"></block>
-          <block type="get_distances"></block>
-          <block type="get_position"></block>
-        </category>
-      </category>
-    </xml>
-  </div>
-  <div id="cameras" style="display:inline-flex;">
-    <div id="cameraOpenCV" style="margin-left: 5px; margin-right: 15px;">
-      <p>OpenCV image</p>
-      <canvas id="outputCanvas" style="width:150px; height:100px; display: none" ></canvas>
-    </div>
-    <div id="robotCam">
-      <p>Robot Camera</p>
-      <div id="spectatorDiv" style="width: 150px; height: 100px;"></div>
-    </div>
-  </div>
 
-
-
-
-
-    </body>
-
-
+  </body>
 </html>
