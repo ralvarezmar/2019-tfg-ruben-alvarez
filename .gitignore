@@ -4,3 +4,4 @@
 *.gz
 *.toc
 *.lof
+node_modules
