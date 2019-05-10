@@ -2,7 +2,6 @@
 
 ### Week 8
 
-
 - Research about Webpack and how build the project.
 
 
@@ -10,8 +9,11 @@
 
   ![alt text](/resources/kibotics_newblocks.png)
 
-- Make [json file](/WebSim-Drone/config.json) to config the website and [javascript necessary](/WebSim-Drone/JavaScript/config.js) to implement it.
+- I made [json file](/WebSim-Drone/config.json) to config the website and [javascript necessary](/WebSim-Drone/JavaScript/config.js) to implement it.
 
+- Teleoperator implemented in kibotics environment(javascript functions remains to be done and improve css):
+
+  ![alt text](/resources/teleoperator.png)
 
 ***
 ### Week 7

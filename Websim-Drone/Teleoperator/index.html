@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>WebSim - Rubén Álvarez Martín</title>
+
+    <meta charset="utf-8" />
+    <!-- Physics for A-Frame VR -->
+    <link rel="stylesheet" type="text/css" href="css/main.css"></link>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="build/websim.bundle.js" ></script>
+    <script src="build/editor.bundle.js" ></script>
+    <script src="google-blockly/msg/js/es.js"></script>
+    <script src="google-blockly/core/css.js"></script>
+    <script src="google-blockly/core/block_render_svg.js"></script>
+    <script src="google-blockly/javascript_compressed.js"></script>
+    <script src="google-blockly/python_compressed.js"></script>
+  </head>
+  <body>
+    <nav id="navbar">
+      <a href="/"><img src="../assets/resources/jderobot.svg" style="width:70px; height:70px; margin-top: 6px;" /></a>
+      <div id="nav-button-container">
+        <!--<button onclick id="generator" style="display:;">XML</button>-->
+        <button onclick id="cambtn"><img src="../assets/resources/play-camera-icon.png" /></button>
+      </div>
+    </nav>
+    <div id="container">
+      <div id="myIFrame">
+        <a-scene id="scene" background="color: gray;" stats embedded physics="debug: true" inspector="url: https://aframe.io/releases/0.4.0/aframe-inspector.min.js">
+          <a-assets>
+            <img id="ground"/>
+            <img id="sky"/>
+          </a-assets>
+          <!-- Pibot, which body is the asset item with ID = model-pibot -->
+          <a-entity dynamic-body="mass: 50;" id="a-pibot">
+            <a-entity id="secondaryCamera" position="0 0 0" rotation="-20 -90 0">
+              <!-- Create a second third-person camera which cant be controlled, the Pibot camera -->
+              <a-camera position="0 0.03 -0.01" spectator="canvas:#spectatorDiv;" active="false" wasd-controls-enabled="false" look-controls-enabled="false"></a-camera>
+            </a-entity>
+          </a-entity>
+          <a-entity id="positionSensor"></a-entity>
+          <!-- Scenario -->
+          <a-sky src="#sky"></a-sky>
+          <a-plane static-body position="0 0 0"
+                   rotation="-90 0 0"
+                   width="100"
+                   height="100"
+                   repeat="1 1"
+                   src="#ground">
+          </a-plane>
+
+          <!-- Illumination -->
+          <a-light type="ambient" color="white"></a-light>
+
+          <a-entity id="primaryCamera" position="12 15 25" spectator="canvas:#spectatorDiv;" rotation="-30 0 0">
+            <a-camera fov="100"></a-camera>
+          </a-entity>
+
+        </a-scene>
+        <script type="text/javascript" src="opencv/opencv3.3.1.js" ></script>
+        <script src="js/config.js"></script>
+      </div>
+      <div id="scriptContainer"></div>
+      <div id="right-container" opacity="0.5"></div>
+
+        <div id="cameras" style="display:inline-flex;">
+          <div id="cameraOpenCV" style="margin-left: 5px; margin-right: 15px;">
+            <p>OpenCV image</p>
+            <canvas id="outputCanvas" style="width:150px; height:100px; display: none" ></canvas>
+          </div>
+          <div id="robotCam">
+            <p>Robot Camera</p>
+            <div id="spectatorDiv" style="width: 150px; height: 100px;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      $(document).ready(function(){
+         $('#right-container').load("teleoperator.html");
+      });
+    </script>
+  </body>
+</html>
