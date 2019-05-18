@@ -1,5 +1,13 @@
 # 2019-tfg-ruben-alvarez
 
+### Week 9
+
+- Emulated new environment in local.
+
+- Solved configuration files issue.
+
+
+
 ### Week 8
 
 - Research about Webpack and how build the project.
