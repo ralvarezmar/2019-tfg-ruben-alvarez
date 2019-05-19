@@ -6,6 +6,9 @@
 
 - Solved configuration files issue.
 
+- Doing PiBot teleoperator. Errors with functions
+
+- Problems with height in tello drone.
 
 
 ### Week 8
