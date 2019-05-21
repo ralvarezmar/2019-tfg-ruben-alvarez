@@ -10,6 +10,8 @@
 
 - Problems with height in tello drone.
 
+- Done functions to Tello Drone. It can take off and move, but there are problems with the physics.
+
 
 ### Week 8
 

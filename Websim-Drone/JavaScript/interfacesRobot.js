@@ -7,16 +7,8 @@ export default class RobotI
 
         this.myRobotID = robotId;
         this.robot = document.getElementById(robotId);
-        this.initialPosition = {
-          'x': 0,
-          'y': 0,
-          'z': 0
-        }
-        this.initialRotation = {
-          'x': 0,
-          'y': 0,
-          'z': 0
-        }
+        this.initialPosition = { 'x': 0, 'y': 0, 'z': 0 };
+        this.initialRotation = {x: 0, y: 0, z: 0 };
         this.storeInitialPosition(this.robot.getAttribute('position'));
         this.activeRays = false;
         this.raycastersArray = [];
@@ -32,16 +24,17 @@ export default class RobotI
           white: {low: [230, 230, 230, 0], high: [255, 255, 255, 255]}
         };
         this.velocity = {x:0, y:0, z:0, ax:0, ay:0, az:0};
-        this.motorsStarter(this.robot);
+        this.motorsStarter()
         this.startCamera();
         this.startRaycasters(defaultDistanceDetection, defaultNumOfRays);
     }
-    motorsStarter(robot){
+    motorsStarter(){
       /*
-        This function starts motors passing the robot
+        This function starts motors
       */
+
       console.log("LOG ---------------- Setting up motors.")
-      this.setVelocity(robot);
+      this.setVelocity();
     }
 
     getRotation(){
@@ -52,10 +45,10 @@ export default class RobotI
     }
 
     resetRobot(){
-      this.setV(0);
-      this.setW(0);
-      this.setL(0);
-      this.robot.body.position.set(this.initialPosition.x, this.initialPosition.y, this.initialPosition.z)
+      this.velocity = {x:0, y:0, z:0, ax:0, ay:0, az:0};
+      this.robot.body.position.set(this.robot.body.initPosition.x, this.robot.body.initPosition.y, this.robot.body.initPosition.z);
+      this.robot.body.quaternion.set(this.robot.body.initQuaternion.x, this.robot.body.initQuaternion.y, this.robot.body.initQuaternion.z, this.robot.body.initQuaternion.w)
+
     }
 
     storeInitialPosition(positionObject){
@@ -73,10 +66,6 @@ export default class RobotI
     setL(l){
         this.velocity.y = l;
     }
-    setZ(h){
-      this.velocity.z = h;
-    }
-
     move(v, w, h){
         this.setV(v);
         this.setW(w);
@@ -86,7 +75,6 @@ export default class RobotI
     setZ(z){
       this.velocity.z=z;
     }
-
     getV(){
         return this.velocity.x;
     }
@@ -96,29 +84,38 @@ export default class RobotI
     getL(){
         return this.velocity.y;
     }
-
     getZ(){
       return this.velocity.z;
     }
-
-
-    setVelocity(body){
+    setVelocity(){
       /*
-        This code run continiously, setting the speed of the robot every 40ms
+        This code run continiously, setting the speed of the robot every 30ms
         This function will not be callable, use setV, setW or setL
       */
-
-      if(body != undefined){
-        this.robot = body;
-      }
-
       let rotation = this.getRotation();
 
-      let newpos = updatePosition(rotation, this.velocity, this.robot.body.position);
+
+      let newpos = this.updatePosition(rotation, this.velocity, this.robot.body.position);
 
       this.robot.body.position.set(newpos.x, newpos.y, newpos.z);
+      console.log("nueva posicion: " + newpos);
       this.robot.body.angularVelocity.set(this.velocity.ax, this.velocity.ay, this.velocity.az);
       this.timeoutMotors = setTimeout(this.setVelocity.bind(this), 30);
+    }
+
+    updatePosition(rotation, velocity, robotPos){
+      /*
+        This function calculates the new position of the robot.
+      */
+      let x = velocity.x/10 * Math.cos(rotation.y * Math.PI/180);
+      let z = velocity.x/10 * Math.sin(rotation.y * Math.PI/180);
+      let y = (velocity.z);
+
+      robotPos.x += x;
+      robotPos.z -= z;
+      robotPos.y += y;
+
+      return robotPos;
     }
 
     getCameraDescription()
@@ -212,7 +209,6 @@ export default class RobotI
         this.setListener();
       }else{
         this.stopRaycasters();
-        this.startRaycasters(distance, numOfRaycasters);
       }
     }
 
@@ -251,6 +247,7 @@ export default class RobotI
         emptyEntity.removeChild(emptyEntity.firstChild);
       }
       this.activeRays = false;
+      console.log("LOG ---------> Stopping sound sensors");
     }
 
     setListener()
@@ -374,7 +371,6 @@ export default class RobotI
       var image = this.getImage();
       var colorCodes = this.getColorCode(colorAsString);
       var binImg = new cv.Mat();
-      var lines = new cv.Mat();
       var M = cv.Mat.ones(5, 5, cv.CV_8U);
       var anchor = new cv.Point(-1, -1);
       var lowThresh = new cv.Mat(image.rows,image.cols, image.type(), colorCodes[0]);
@@ -410,7 +406,6 @@ export default class RobotI
     {
       var image = this.getImage();
       var binImg = new cv.Mat();
-      var lines = new cv.Mat();
       var M = cv.Mat.ones(5, 5, cv.CV_8U);
       var anchor = new cv.Point(-1, -1);
       var lowThresh = new cv.Mat(image.rows,image.cols, image.type(), lowval);
@@ -449,13 +444,13 @@ export default class RobotI
       }
     }
 
-    followLine(lowval, highval, speed, interval = 100)
+    followLine(lowval, highval, speed)
     /*
       This function is a simple implementation of follow line algorithm, the robot filters an object with
       a given color and follows it.
     */
     {
-      var data = this.getObjectColorRGB(lowval, highval); // Filters image
+        var data = this.getObjectColorRGB(lowval, highval); // Filters image
 
         this.setV(speed);
 
@@ -479,7 +474,6 @@ export default class RobotI
       var outputVal = 3;
       var image = this.getImage();
       var binImg = new cv.Mat();
-      var lines = new cv.Mat();
       var colorCodes = this.getColorCode(reqColor);
       var contours = new cv.MatVector();
       var hierarchy = new cv.Mat();
@@ -514,6 +508,7 @@ export default class RobotI
       }
       return outputVal;
     }
+
     /*
       SPANISH API: This methods calls the same method in english
 
@@ -526,7 +521,6 @@ export default class RobotI
     avanzar(velocidadLineal){
       return this.setV(Math.abs(velocidadLineal));
     }
-
 
     retroceder(velocidadLineal){
       if (velocidadLineal > 0){
@@ -544,6 +538,36 @@ export default class RobotI
       return this.setW(-velocidadGiro);
     }
 
+    subir(velocidadSubida){
+      return this.setZ(Math.abs(velocidadSubida));
+    }
+
+    bajar(velocidadBajada){
+      if (velocidadBajada > 0){
+        return this.setZ(-velocidadBajada);
+      }else{
+        return this.setZ(velocidadBajada);
+      }
+    }
+
+    aterrizar(){
+      var position = this.getPosition();
+      while(position.y>3){
+        position = this.getPosition();
+        return  this.velocity = {x:0, y:0, z:-1, ax:0, ay:0, az:0};
+      }
+      return this.velocity.z=0;
+    }
+
+    despegar(){
+      var position = this.getPosition();
+      while(position.y<6){
+        position = this.getPosition();
+        return this.velocity.z=2;
+      }
+      return this.velocity.z=0;
+    }
+
     parar(){
       return this.move(0,0);
     }
@@ -559,43 +583,4 @@ export default class RobotI
     dameImagen(){
       return this.getImage();
     }
-
-    velocidadSubida(velocidadSubida){
-      return this.setZ(Math.abs(velocidadSubida));
-    }
-
-    velocidadBajada(velocidadBajada){
-      if (velocidadBajada > 0){
-        return this.setZ(-velocidadBajada);
-      }else{
-        return this.setZ(velocidadBajada);
-      }
-    }
-
-    aterrizar(){
-      this.velocity.z=-1;
-      this.velocity.y=0;
-      this.velocity.x=0;
-      sleep(1000);
-      this.velocity.z=0;
-    }
-
-    despegar(){
-      this.velocity.z=2;
-      sleep(2000)
-      this.velocity.z=0;
-    }
-}
-
-function updatePosition(rotation, velocity, robotPos){
-  /*
-    This function calculates the new position of the robot.
-  */
-  let x = velocity.x/10 * Math.cos(rotation.y * Math.PI/180);
-  let z = velocity.x/10 * Math.sin(rotation.y * Math.PI/180);
-
-  robotPos.x += x;
-  robotPos.z -= z;
-
-  return robotPos;
 }
