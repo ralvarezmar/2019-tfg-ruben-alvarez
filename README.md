@@ -6,7 +6,7 @@
 
 - Solved configuration files issue.
 
-- Doing PiBot teleoperator. Errors with functions
+- Doing PiBot teleoperator. Errors with functions and robot instantiation.
 
 - Problems with height in tello drone.
 
