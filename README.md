@@ -1,5 +1,14 @@
 # 2019-tfg-ruben-alvarez
 
+
+### Week 10
+
+- Testing take off in websim:
+
+
+[![Take off drone](http://img.youtube.com/vi/OmDJN33UdYo/0.jpg)](https://youtu.be/OmDJN33UdYo)
+
+
 ### Week 9
 
 - Emulated new environment in local.
