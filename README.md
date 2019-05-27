@@ -1,5 +1,13 @@
 # 2019-tfg-ruben-alvarez
 
+### Week 11
+
+
+- New drone model for solve lateral move.
+
+- Teleoperator for pibot.
+
+
 
 ### Week 10
 

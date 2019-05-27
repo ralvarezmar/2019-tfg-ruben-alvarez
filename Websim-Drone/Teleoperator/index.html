@@ -6,40 +6,36 @@
     <!-- Physics for A-Frame VR -->
     <link rel="stylesheet" type="text/css" href="css/main.css"></link>
     <link rel="stylesheet" href="css/teleoperator.css" >
-    <script src="build/websim.bundle.js" ></script>
-    <script src="build/editor.bundle.js" ></script>
-    <script src="google-blockly/blockly_compressed.js"></script>
-    <script src="google-blockly/core/css.js"></script>
-    <script src="google-blockly/core/block_render_svg.js"></script>
-    <script src="google-blockly/javascript_compressed.js"></script>
-    <script src="google-blockly/python_compressed.js"></script>
+    <script src="js/ace-editor/ace.js" type="text/javascript" charset="utf-8"></script>
+    <script src="build/websim.bundle.js"></script>
+    <script src="build/editor.bundle.js"></script>
+    <script src="../simcore/config.js"></script>
+    <script src="../simcore/interfacesRobot.js" ></script>
   </head>
   <body>
     <nav id="navbar">
-      <a href="/"><img src="../assets/resources/jderobot.svg" style="width:70px; height:70px; margin-top: 6px;" /></a>
+      <a href="/index.html" ><img src="../assets/resources/jderobot.svg" alt="JdeRobot logo" style="width:70px; height:70px; margin-top: 6px;" /></a>
       <div id="nav-button-container">
-        <!--<button onclick id="generator" style="display:;">XML</button>-->
-        <button onclick id="cambtn"><img src="../assets/resources/play-camera-icon.png" /></button>
+        <button onclick id="cambtn"><img src="../assets/resources/play-camera-icon.png" alt="Stop button image"/></button>
       </div>
     </nav>
     <div id="container">
       <div id="myIFrame">
         <a-scene id="scene" background="color: gray;" stats embedded physics="debug: true" inspector="url: https://aframe.io/releases/0.4.0/aframe-inspector.min.js">
           <a-assets>
-            <a-asset-item id="model-pibot" src="../assets/models/jrobotFgltf.gltf"></a-asset-item>
-            <img id="ground" src="../assets/textures/interlagos.png" />
-            <img id="sky" src="../assets/textures/sky.png" />
+            <a-asset-item id="model-pibot"></a-asset-item>
+            <img id="ground" alt="Texture for the scene ground"/>
+            <img id="sky" alt="Texture for the sky of the scene"/>
           </a-assets>
           <!-- Pibot, which body is the asset item with ID = model-pibot -->
-          <a-entity dynamic-body="mass: 50;" id="a-pibot" gltf-model="#model-pibot" scale="20 20 20" rotation="0 50 0" position="12 0 25">
+          <a-entity bind="text.value: score"></a-entity>
+          <a-entity dynamic-body="mass: 50;" id="a-pibot">
             <a-entity id="secondaryCamera" position="0 0 0" rotation="-20 -90 0">
               <!-- Create a second third-person camera which cant be controlled, the Pibot camera -->
               <a-camera position="0 0.03 -0.01" spectator="canvas:#spectatorDiv;" active="false" wasd-controls-enabled="false" look-controls-enabled="false"></a-camera>
             </a-entity>
           </a-entity>
           <a-entity id="positionSensor"></a-entity>
-          <!-- Scenario -->
-          <a-sky src="#sky"></a-sky>
           <a-plane static-body position="0 0 0"
                    rotation="-90 0 0"
                    width="100"
@@ -47,20 +43,20 @@
                    repeat="1 1"
                    src="#ground">
           </a-plane>
+          <a-sky src="#sky"></a-sky>
 
           <!-- Illumination -->
           <a-light type="ambient" color="white"></a-light>
 
           <a-entity movement-controls="fly:true" position="0 0 0">
-            <a-entity id="primaryCamera" position="14 10 35" camera look-controls wasd-controls scale="10 10 10" ></a-entity>
-        </a-entity>
-
+              <a-entity id="primaryCamera" position="14 10 35" camera look-controls wasd-controls scale="10 10 10" ></a-entity>
+          </a-entity>
         </a-scene>
         <script type="text/javascript" src="js/opencv3.3.1.js" ></script>
-        <!-- Config file -->
-        <!-- <script src="../simcore/config.js"></script> -->
       </div>
+      <div id="scriptContainer"></div>
       <div id="right-container">
+        <div id="ace"></div>
         <div class="buttons">
             <div id="upArrow">
                 <input id="invisible" class="arrows" type="image" src="img/flechaArriba.png" />
@@ -72,13 +68,10 @@
                 <input id="right" class="arrows" type="image" src="img/flechaderecha.png" onClick="" />
             </div>
         </div>
-        <div id="blockly-div">
-          <xml id="toolbox" style="display: none"> </xml>
-        </div>
         <div id="cameras" style="display:inline-flex;">
-          <div id="cameraOpenCV" style="margin-left: 5px; margin-right: 15px;">
+          <div id="cameraOpenCV" style="margin-left: 5px;">
             <p>OpenCV image</p>
-            <canvas id="outputCanvas" style="width:150px; height:100px; display: none" ></canvas>
+            <canvas id="outputCanvas" ></canvas>
           </div>
           <div id="robotCam">
             <p>Robot Camera</p>
@@ -89,6 +82,8 @@
     </div>
     <script>
     $(document).ready(function() {
+      var instance = require("../simcore/interfacesRobot.js");
+      console.log(instance);
       $("#speed").click(function() {
         console.log("velocidad");
         let velocity = myRobot.getV();
@@ -111,7 +106,7 @@
         console.log("velocidad");
         let velocity = myRobot.getW();
         console.log("velocidad angular actual:" + velocity);
-        setV(velocity-0.1);
+        setV(velocity+0.1);
       });
     });
     </script>
