@@ -8,9 +8,22 @@ $(document).ready(()=>{
   $("#cambtn").click(()=>{
     toggleCameraDisplay();
   });
+  //
+  // $("#runbtn").click(()=>{
+  //   var codeString = getCode(editor);
+  //   var websimevent = new CustomEvent('code-to-run', {
+  //     'detail': {
+  //       'code': codeString
+  //     }
+  //   });
+  //   document.dispatchEvent(websimevent);
+  // });
 
-  $("#runbtn").click(()=>{
-    var codeString = getCode(editor);
+  $("#speed").click(()=>{
+    var codeString = `
+    let velocity = myRobot.getV();
+    setV(velocity+0.1);
+    `
     var websimevent = new CustomEvent('code-to-run', {
       'detail': {
         'code': codeString
@@ -26,5 +39,3 @@ $(document).ready(()=>{
     document.dispatchEvent(resetEvent);
   });
 });
-
-
