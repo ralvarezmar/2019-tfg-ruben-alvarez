@@ -5,3 +5,4 @@
 *.toc
 *.lof
 node_modules
+build
