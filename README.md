@@ -1,5 +1,15 @@
 # 2019-tfg-ruben-alvarez
 
+### Week 12
+
+- Solved camera issues in drone.
+
+- New F1 model to follow_line:
+
+![alt text](/resources/f1_model.png)
+
+
+
 ### Week 11
 
 
