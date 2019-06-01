@@ -8,12 +8,18 @@
 
 ![alt text](/resources/f1_model.png)
 
+- First approximation to drone teleoperator:
+
+
+[![Teleoperator](http://img.youtube.com/vi/yIUTEY3oK3g/0.jpg)](https://youtu.be/yIUTEY3oK3g)
+
 
 
 ### Week 11
 
 
 - New drone model for solve lateral move.
+
 
 - Teleoperator for pibot.
 
