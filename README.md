@@ -1,5 +1,6 @@
 # 2019-tfg-ruben-alvarez
 
+***
 ### Week 12
 
 - Solved camera issues in drone.
@@ -14,17 +15,17 @@
 [![Teleoperator](http://img.youtube.com/vi/yIUTEY3oK3g/0.jpg)](https://youtu.be/yIUTEY3oK3g)
 
 
-
+***
 ### Week 11
 
 
-- New drone model for solve lateral move.
+- New drone model to solve lateral move.
 
 
 - Teleoperator for pibot.
 
 
-
+***
 ### Week 10
 
 - Testing take off in websim:
@@ -32,7 +33,7 @@
 
 [![Take off drone](http://img.youtube.com/vi/OmDJN33UdYo/0.jpg)](https://youtu.be/OmDJN33UdYo)
 
-
+***
 ### Week 9
 
 - Emulated new environment in local.
@@ -43,12 +44,12 @@
 
 - Problems with height in tello drone.
 
-- Done functions to Tello Drone. It can take off and move, but there are problems with the physics.
+- Done functions to Tello Drone. It can take off and move, but there still are problems with the physics.
 
-
+***
 ### Week 8
 
-- Research about Webpack and how build the project.
+- Research about Webpack and how to build the project.
 
 
 - New blocks implemented in kibotics environment:
@@ -89,7 +90,7 @@
     > localhost:8000/Scratch/index.html
 
 
-- Drone integrated in another scenario without circuit:
+- Drone integrated in a different scenario without circuit:
   ![alt text](/resources/WebsimDrone.png)
 
 
