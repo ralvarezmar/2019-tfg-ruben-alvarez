@@ -15,8 +15,7 @@
     <script src="google-blockly/core/block_render_svg.js"></script>
     <script src="google-blockly/javascript_compressed.js"></script>
     <script src="google-blockly/python_compressed.js"></script>
-    <script src="../simcore/config.js"></script>
-
+    <script src="../simcore/config.js" robot="tello"></script>
   </head>
   <body>
     <nav id="navbar">
@@ -157,7 +156,7 @@
               <block type="get_objcolor"></block>
             </category>
             <category name="Tools" colour=%{BKY_LOOPS_HUE}>
-
+              <block type="robot_instance"></block>
               <block type="set_timeout"></block>
               <!-- <block type="logs"></block> -->
               <block type="imgto_canvas"></block>
