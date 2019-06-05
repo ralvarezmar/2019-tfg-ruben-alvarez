@@ -1,5 +1,22 @@
 # 2019-tfg-ruben-alvarez
 
+
+### Week 13
+
+
+- Teleoperator in F1:
+
+![alt text](/resources/f1_teleoperator.png)
+
+
+- Teleoperator in pibot:
+
+
+![alt text](/resources/pibot_teleoperator.png)
+
+
+
+
 ***
 ### Week 12
 
