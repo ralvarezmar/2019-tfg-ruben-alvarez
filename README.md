@@ -15,6 +15,12 @@
 ![alt text](/resources/pibot_teleoperator.png)
 
 
+- First test with tello:
+
+
+[![Tello Drone](http://img.youtube.com/vi/NvzIMZRgt-g/0.jpg)](https://youtu.be/NvzIMZRgt-g)
+
+
 
 
 ***

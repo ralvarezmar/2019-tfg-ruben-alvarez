@@ -1,11 +1,8 @@
 var localRobot = null;
-
-
 $(document).ready(()=>{
     $("#cambtn").click(()=>{
       toggleCameraDisplay();
     });
-
 
   document.addEventListener('robot-loaded', (evt)=>{
     localRobot = evt.detail;
