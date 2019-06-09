@@ -8,11 +8,16 @@
 
 ![alt text](/resources/f1_teleoperator.png)
 
+[![F1 teleoperator](http://img.youtube.com/vi/kMnb5PgVb1k/0.jpg)](https://youtu.be/kMnb5PgVb1k)
+
 
 - Teleoperator in pibot:
 
 
 ![alt text](/resources/pibot_teleoperator.png)
+
+
+[![PiBot teleoperator](http://img.youtube.com/vi/M-zUBa-ZQK0/0.jpg)](https://youtu.be/M-zUBa-ZQK0)
 
 
 - First test with tello:
@@ -31,6 +36,8 @@
 - New F1 model to follow_line:
 
 ![alt text](/resources/f1_model.png)
+
+To do this model for WebSim I took the file (.sdf) from gazebo and I transformed into .obj. After this I could get .gltf model with Blender.
 
 - First approximation to drone teleoperator:
 
