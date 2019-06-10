@@ -4,6 +4,11 @@
 ### Week 13
 
 
+- Teleoperator in drone:
+
+[![Drone teleoperator](http://img.youtube.com/vi/RGyY_aSdt8o/0.jpg)](https://youtu.be/RGyY_aSdt8o)
+
+
 - Teleoperator in F1:
 
 ![alt text](/resources/f1_teleoperator.png)
