@@ -6,12 +6,12 @@ export default function initSetLateralSpeedBlock(){
     "args0": [
       {
         "type": "field_variable",
-        "name": "ROBOT_VAR",
+        "name": "NAME",
         "variable": "myRobot"
       },
       {
         "type": "input_value",
-        "name": "VALUE",
+        "name": "ROBOTVAR",
         "check": "Number"
       }
     ],
@@ -30,11 +30,10 @@ export default function initSetLateralSpeedBlock(){
   };
 
   Blockly.JavaScript['set_lateral'] = function(block) {
-    var robotvar = Blockly.JavaScript.variableDB_.getName(block.getFieldValue('ROBOT_VAR'), Blockly.Variables.NAME_TYPE);
-    var value = Blockly.JavaScript.valueToCode(block, 'VALUE', Blockly.JavaScript.ORDER_ATOMIC);
+    var variable_name = Blockly.JavaScript.variableDB_.getName(block.getFieldValue('NAME'), Blockly.Variables.NAME_TYPE);
+    var value_robotvar = Blockly.JavaScript.valueToCode(block, 'ROBOTVAR', Blockly.JavaScript.ORDER_ATOMIC);
 
-    var code = robotvar + '.setL(' + value + '); \n';
+    var code = variable_name + '.setL(' + value_robotvar + '); \n';
     return code;
   };
-
 }
