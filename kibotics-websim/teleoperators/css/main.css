@@ -3,6 +3,7 @@ html, body{
   margin: 0px;
 }
 
+
 #navbar{
   background-color: black;
   margin: 0px;
@@ -163,8 +164,32 @@ image{
   margin: 5px;
 }
 
+#land span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+#land span:after {
+  content: '\00ab';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -15px;
+  transition: 0.5s;
+}
+
+#land:hover span {
+  padding-right: 25px;
+}
+
 .takeland{
   float: center;
+}
+#land:hover span:after {
+  opacity: 1;
+  right: 0;
 }
 
 #takeOff {
@@ -183,7 +208,30 @@ image{
   float: left;
 }
 
+#takeOff span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
 
+#takeOff span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -5px;
+  transition: 0.5s;
+}
+
+#takeOff:hover span {
+  padding-right: 20px;
+}
+
+#takeOff:hover span:after {
+  opacity: 1;
+  right: 0;
+}
 
 .buttonHeight {
   background-color: #4CAF50;
@@ -199,4 +247,18 @@ image{
 	margin: 10px 10px;
   cursor: pointer;
 	border-radius: 50%;
+}
+
+.title_teleoperator{
+  font-size: 52px;
+
+}
+
+.selector{
+    font-family: 'Roboto';
+    font-weight: bold;
+    font-size: 16px;
+    position:relative;
+    height: 100%;
+    width:100%;
 }

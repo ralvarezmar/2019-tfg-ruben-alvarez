@@ -13,11 +13,11 @@ function loadJSON(callback) {
     var config = JSON.parse(response);
     var sceneEl = document.querySelector('a-scene');
     var robot = sceneEl.querySelector('#a-pibot');
-    sceneEl.setAttribute('physics',config.physics);
     robot.setAttribute('gltf-model',config.robot.model);
     robot.setAttribute('scale',config.robot.scale);
     robot.setAttribute('position',config.robot.position);
     robot.setAttribute('rotation',config.robot.rotation);
+    sceneEl.setAttribute('physics',config.physics);
     sceneEl.querySelector('#ground').setAttribute('src',config.ground);
     sceneEl.querySelector('#sky').setAttribute('src',config.sky);
     sceneEl.querySelector('#ground').setAttribute('src',config.ground);
