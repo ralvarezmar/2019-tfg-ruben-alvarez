@@ -1,6 +1,18 @@
 # 2019-tfg-ruben-alvarez
 
 
+
+### Week 14
+
+- Done index.html teleoperator with a template:
+
+![alt text](/resources/index-teleoperator.png)
+
+
+- I have taken scenario bump and go from gazebo and convert with [Nunu Studio](https://nunustudio.org/). I have done taking .obj file and converted to .gltf
+
+
+***
 ### Week 13
 
 

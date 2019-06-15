@@ -66,10 +66,10 @@ a{
 }
 a:hover{
     border-bottom-color:transparent;
-    color:#9bf1ff!important
+    color:#9bf1ff
 }
 a:active{
-    color:#53e3fb!important
+    color:#53e3fb
 }
 strong{
     color:#fff;
@@ -189,10 +189,10 @@ header.major>p{
     -webkit-flex-wrap:wrap;
     -ms-flex-wrap:wrap;
     flex-wrap:wrap;
-    border-top:0!important
+    border-top:0
 }
 .tiles+*{
-    border-top:0!important
+    border-top:0
 }
 .tiles article{
     -moz-align-items:center;
@@ -230,7 +230,7 @@ header.major>p{
     font-size:1.75em
 }
 .tiles article h3 a:hover{
-    color:inherit!important
+    color:inherit
 }
 .tiles article:before{
     -moz-transition:opacity .5s ease;
@@ -292,7 +292,7 @@ header.major>p{
 }
 @media screen and (max-width:980px){
     .tiles article{
-        width:50%!important
+        width:50%
     }
 }
 @media screen and (max-width:736px){
