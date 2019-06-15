@@ -9,7 +9,10 @@
 ![alt text](/resources/index-teleoperator.png)
 
 
-- I have taken scenario bump and go from gazebo and convert with [Nunu Studio](https://nunustudio.org/). I have done taking .obj file and converted to .gltf
+- I have taken scenario bump and go from gazebo and convert with [Nunu Studio](https://nunustudio.org/). I have done taking .obj file and converted to .gltf :
+
+
+![alt text](/resources/bumpandgo.png)
 
 
 ***
