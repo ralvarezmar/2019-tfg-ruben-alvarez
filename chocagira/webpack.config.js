@@ -45,26 +45,6 @@ var configScratch = {
   },
   mode: 'development'
 }
-
-var configJavaScript = {
-  entry : {
-    editor: path.join(__dirname, 'JavaScript/js/editor.js')
-  },
-  resolve: {
-    extensions: ['.js']
-  },
-  module:{
-    rules: [
-      {
-        test: /\.js$/,
-        loader: 'babel-loader',
-        exclude: "/node_modules/"
-      }
-    ]
-  },
-  mode: 'development'
-}
-
 var scratchOutput = Object.assign({}, configWebsim, {
   name: "ScratchAPP",
   output: {
@@ -73,21 +53,6 @@ var scratchOutput = Object.assign({}, configWebsim, {
   }
 });
 
-var jsOutput = Object.assign({}, configWebsim, {
-  name: "JavaScriptAPP",
-  output: {
-    path: path.join(__dirname, "JavaScript/build/"),
-    filename: "[name].bundle.js"
-  }
-});
-
-var teleopOutput = Object.assign({}, configWebsim, {
-  name: "TeleopAPP",
-  output: {
-    path: path.join(__dirname, "teleoperators/build/"),
-    filename: "[name].bundle.js"
-  }
-});
 
 var scratchEditor = Object.assign({}, configScratch, {
   name: "ScratchEditor",
@@ -97,13 +62,6 @@ var scratchEditor = Object.assign({}, configScratch, {
   }
 });
 
-var jsEditor = Object.assign({}, configJavaScript, {
-  name: "JavaScriptEditor",
-  output: {
-    path: path.join(__dirname, "JavaScript/build"),
-    filename: "[name].bundle.js"
-  }
-});
 
 
-module.exports = [scratchOutput, jsOutput, teleopOutput, scratchEditor, jsEditor];
+module.exports = [scratchOutput, scratchEditor];
