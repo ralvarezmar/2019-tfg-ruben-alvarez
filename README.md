@@ -15,6 +15,11 @@
 ![alt text](/resources/bumpandgo.png)
 
 
+- Testing F1 with IR in websim:
+
+[![F1 IR](http://img.youtube.com/vi/_7Ftb8DfaCs/0.jpg)](https://youtu.be/_7Ftb8DfaCs)
+
+
 ***
 ### Week 13
 
