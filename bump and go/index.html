@@ -25,13 +25,18 @@
         <a-scene id="scene" background="color: gray;" stats embedded physics="debug: true" inspector="url: https://aframe.io/releases/0.4.0/aframe-inspector.min.js">
           <a-assets>
             <a-asset-item id="model-pibot" scale="7 7 7"></a-asset-item>
-            <a-asset-item id="room" scale: "20 20 20"></a-asset-item>
+            <a-asset-item id="room"></a-asset-item>
             <img id="ground" alt="Texture for the scene ground"/>
             <img id="sky" alt="Texture for the sky of the scene"/>
           </a-assets>
           <!-- Pibot, which body is the asset item with ID = model-pibot -->
+          <a-plane static-body position="0 0 0"
+                   rotation="-90 0 0"
+                   width="10"
+                   height="10"
+                   repeat="1 1">
+          </a-plane>
           <a-entity bind="text.value: score"></a-entity>
-          <a-entity id="room" gltf-model="../assets/models/chocagira.gltf"></a-entity>
           <a-entity dynamic-body="mass: 1" id="a-pibot">
             <a-entity id="secondaryCamera" rotation="-20 -90 0">
               <!-- Create a second third-person camera which cant be controlled, the Pibot camera -->
@@ -39,13 +44,9 @@
             </a-entity>
           </a-entity>
           <a-entity id="positionSensor"></a-entity>
-          <a-plane static-body position="0 0 0"
-                   rotation="-90 0 0"
-                   width="10"
-                   height="10"
-                   repeat="1 1">
-          </a-plane>
+
           <a-sky src="#sky"></a-sky>
+          <a-entity id="room" gltf-model="../assets/models/bumpandgo.gltf"></a-entity>
 
           <!-- Illumination -->
           <a-light type="ambient" color="white"></a-light>
