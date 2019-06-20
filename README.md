@@ -17,7 +17,7 @@
 15. [Week 1](#week1)
 
 
-### Week 15 <a name="Week 15"></a>
+### Week 15 <a name="week15"></a>
 
 - Fixed issues with gravity in tello drone. I have changed json and javascript in this way:
 
@@ -35,7 +35,7 @@ And I removed this attribute in html.
 
 
 ***
-### Week 14 <a name="Week 14"></a>
+### Week 14 <a name="week14"></a>
 
 - Done index.html teleoperator with a template:
 
@@ -54,7 +54,7 @@ And I removed this attribute in html.
 
 
 ***
-### Week 13 <a name="Week 13"></a>
+### Week 13 <a name="week13"></a>
 
 
 - Teleoperator in drone:
@@ -85,7 +85,7 @@ And I removed this attribute in html.
 
 
 ***
-### Week 12 <a name="Week 12"></a>
+### Week 12 <a name="week12"></a>
 
 - Solved camera issues in drone.
 
@@ -102,7 +102,7 @@ To do this model for WebSim I took the file (.sdf) from gazebo and I transformed
 
 
 ***
-### Week 11 <a name="Week 11"></a>
+### Week 11 <a name="week11"></a>
 
 
 - New drone model to solve lateral move.
@@ -112,7 +112,7 @@ To do this model for WebSim I took the file (.sdf) from gazebo and I transformed
 
 
 ***
-### Week 10 <a name="Week 10"></a>
+### Week 10 <a name="week10"></a>
 
 - Testing take off in websim:
 
@@ -120,7 +120,7 @@ To do this model for WebSim I took the file (.sdf) from gazebo and I transformed
 [![Take off drone](http://img.youtube.com/vi/OmDJN33UdYo/0.jpg)](https://youtu.be/OmDJN33UdYo)
 
 ***
-### Week 9 <a name="Week 9"></a>
+### Week 9 <a name="week9"></a>
 
 - Emulated new environment in local.
 
@@ -133,7 +133,7 @@ To do this model for WebSim I took the file (.sdf) from gazebo and I transformed
 - Done functions to Tello Drone. It can take off and move, but there still are problems with the physics.
 
 ***
-### Week 8 <a name="Week 8"></a>
+### Week 8 <a name="week8"></a>
 
 - Research about Webpack and how to build the project.
 
@@ -149,7 +149,7 @@ To do this model for WebSim I took the file (.sdf) from gazebo and I transformed
   ![alt text](/resources/teleoperator.png)
 
 ***
-### Week 7 <a name="Week 7"></a>
+### Week 7 <a name="week7"></a>
 
 - Created land blockly:
 
@@ -163,7 +163,7 @@ To do this model for WebSim I took the file (.sdf) from gazebo and I transformed
 
 
 ***
-### Week 6 <a name="Week 6"></a>
+### Week 6 <a name="week6"></a>
 
 - WebSim repository emulated in local for testing.
   Repository cloned and fixed for local execution. You just needed execute in a shell:
@@ -205,7 +205,7 @@ To do this model for WebSim I took the file (.sdf) from gazebo and I transformed
 
 
 ***
-### Week 5  <a name="Week 5"></a>
+### Week 5  <a name="week5"></a>
 - First approximation to new scenario for Kibotics:
   ![alt text](/resources/grass.png)
   ![alt text](/resources/captura_prueba.png)
@@ -229,7 +229,7 @@ To do this model for WebSim I took the file (.sdf) from gazebo and I transformed
     [![New circuit in Kibotics](http://img.youtube.com/vi/UKADenDxmd0/0.jpg)](http://www.youtube.com/watch?v=UKADenDxmd0)
 
 ***
-### Week 4 <a name="Week 4"></a>
+### Week 4 <a name="week4"></a>
 
 - JavaScript to Blockly. To learn Blockly you can follow this [guide](https://developers.google.com/blockly/guides/app-integration/running-javascript) or also use [blockly demo](https://blockly-demo.appspot.com/static/demos/interpreter/step-execution.html).
 I choose the latter to make an example to learn how translate works:
@@ -312,7 +312,7 @@ I choose the latter to make an example to learn how translate works:
 
 
 ***
-### Week 3 <a name="Week 3"></a>
+### Week 3 <a name="week3"></a>
 
 - I reordened and translate readme.
 
@@ -322,7 +322,7 @@ I choose the latter to make an example to learn how translate works:
 
 
 ***
-### Week 2 <a name="Week 2"></a>
+### Week 2 <a name="week2"></a>
 
 - Error reported in double loop in kibotic's GitHub.
 
@@ -338,7 +338,7 @@ I choose the latter to make an example to learn how translate works:
 
 
 ***
-### Week 1  <a name="Week 1"></a>
+### Week 1  <a name="week1"></a>
 
 - Cloned [Álvaro Paniagua](https://github.com/RoboticsURJC-students/2018-tfg-alvaro_paniagua) repository and emulated it. While it was working I did some test:
 
