@@ -72,14 +72,12 @@ mainInterval = setInterval(myAlgorithm, 33);
 
 async function myAlgorithm(){
   let laser=myRobot.readIR("white");
-  myRobot.setV(0.5);
+  myRobot.setV(1);
   console.log(laser);
   if(laser>1){
-      console.log("acelera y error mayor 0")
-      myRobot.setW(-0.2);
+      myRobot.setW(-0.35);
   }else{
-      console.log("acelera y error menor 0")
-      myRobot.setW(0.2);
+      myRobot.setW(0.35);
   }
  //myRobot.setV(0.3);
 }

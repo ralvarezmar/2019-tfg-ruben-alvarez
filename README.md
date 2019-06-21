@@ -1,20 +1,20 @@
 # 2019-tfg-ruben-alvarez
 
-1. [Week 15](#week15)
-2. [Week 14](#week14)
-3. [Week 13](#week13)
-4. [Week 12](#week12)
-5. [Week 11](#week11)
-6. [Week 10](#week10)
-7. [Week 9](#week9)
-8. [Week 8](#week8)
-9. [Week 7](#week7)
-10. [Week 6](#week6)
-11. [Week 5](#week5)
-12. [Week 4](#week4)
-13. [Week 3](#week3)
-14. [Week 2](#week2)
-15. [Week 1](#week1)
+- [Week 15](#week15)
+- [Week 14](#week14)
+- [Week 13](#week13)
+- [Week 12](#week12)
+- [Week 11](#week11)
+- [Week 10](#week10)
+- [Week 9](#week9)
+- [Week 8](#week8)
+- [Week 7](#week7)
+- [Week 6](#week6)
+- [Week 5](#week5)
+- [Week 4](#week4)
+- [Week 3](#week3)
+- [Week 2](#week2)
+- [Week 1](#week1)
 
 
 ### Week 15 <a name="week15"></a>
@@ -32,6 +32,10 @@ JSON:
 }
 ```
 And I removed this attribute in html.
+
+Done follow line IR with piBot:
+
+![alt text](/resources/siguelineasIR.png)
 
 
 ***
