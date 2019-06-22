@@ -1,5 +1,7 @@
 # 2019-tfg-ruben-alvarez
 
+
+- [Week 16](#week16)
 - [Week 15](#week15)
 - [Week 14](#week14)
 - [Week 13](#week13)
@@ -16,7 +18,70 @@
 - [Week 2](#week2)
 - [Week 1](#week1)
 
+### Week 16 <a name="week16"></a>
 
+- Change config.js to add objects in the scenario and to set third person camera robot:
+
+``json
+{
+  "robot": {
+    "model":"../assets/models/jrobotFgltf.gltf",
+    "scale": "20 20 20",
+    "position":"12 0 25",
+    "rotation": "0 320 0"
+  },
+  "gravity": -9.8,
+  "ground": "../assets/textures/escenarioLiso.png",
+  "sky": "../assets/textures/sky.png",
+  "secondaryCamera": "0 0 0",
+  "cameraRobot":"0 0.03 -0.01",
+  "objects":[{
+      "type": "a-sphere",
+      "position": "4 1 20",
+      "rotation": "0 0 0",
+      "color": "#FF0000"
+      }
+    ]
+}
+```
+
+```javascript
+  loadJSON(function(response) {
+    var config = JSON.parse(response);
+    var sceneEl = document.querySelector('a-scene');
+    var robot = sceneEl.querySelector('#a-pibot');
+    robot.setAttribute('gltf-model',config.robot.model);
+    robot.setAttribute('scale',config.robot.scale);
+    robot.setAttribute('position',config.robot.position);
+    robot.setAttribute('rotation',config.robot.rotation);
+    sceneEl.systems.physics.driver.world.gravity.y = config.gravity;
+    sceneEl.querySelector('#ground').setAttribute('src',config.ground);
+    sceneEl.querySelector('#sky').setAttribute('src',config.sky);
+    sceneEl.querySelector('#ground').setAttribute('src',config.ground);
+    sceneEl.querySelector('#secondaryCamera').setAttribute('position',config.secondaryCamera);
+    sceneEl.querySelector('#cameraRobot').setAttribute('position',config.cameraRobot);
+    if(config.objects.length>0){
+      setObjects(config.objects,sceneEl);
+  }
+});
+
+function setObjects(object,scene){
+  for (let i in object){
+    var element = document.createElement(object[i].type);
+    element.setAttribute('position',object[i].position);
+    element.setAttribute('rotation',object[i].rotation);
+    element.setAttribute('color',object[i].color);
+    scene.appendChild(element);
+  }
+}
+```
+
+- Done follow ball exercise:
+
+![alt text](/resources/follow_ball.png)
+
+
+***
 ### Week 15 <a name="week15"></a>
 
 - Fixed issues with gravity in tello drone. I have changed json and javascript in this way:
