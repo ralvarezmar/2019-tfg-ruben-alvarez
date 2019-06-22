@@ -22,7 +22,7 @@
 
 - Change config.js to add objects in the scenario and to set third person camera robot:
 
-``json
+```JSON
 {
   "robot": {
     "model":"../assets/models/jrobotFgltf.gltf",
@@ -46,6 +46,7 @@
 ```
 
 ```javascript
+
   loadJSON(function(response) {
     var config = JSON.parse(response);
     var sceneEl = document.querySelector('a-scene');
@@ -74,6 +75,7 @@ function setObjects(object,scene){
     scene.appendChild(element);
   }
 }
+
 ```
 
 - Done follow ball exercise:
