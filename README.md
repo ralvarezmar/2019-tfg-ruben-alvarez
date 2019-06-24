@@ -68,13 +68,16 @@
 
 function setObjects(object,scene){
   for (let i in object){
-    var element = document.createElement(object[i].type);
-    element.setAttribute('position',object[i].position);
-    element.setAttribute('rotation',object[i].rotation);
-    element.setAttribute('color',object[i].color);
+    let keys = Object.keys(object[i]);
+    var element = document.createElement(object[i][keys[0]]);
+    for (let j = 1; j < keys.length; j++) {
+      let attribute = object[i][keys[j]];
+      element.setAttribute(keys[j],attribute);
+    }
     scene.appendChild(element);
   }
 }
+
 
 ```
 
@@ -82,6 +85,32 @@ function setObjects(object,scene){
 
 ![alt text](/resources/follow_ball.png)
 
+- Done new scene to follow line IR:
+
+![alt text](/resources/followLineIR.png)
+
+
+- Done exercise follow line F1 vision and added in kibotic-exercises repository. I done this guide to add exercises in this repository:
+
+```
+Para añadir nuevos ejercicios es necesario incluir los siguientes ficheros:
+
+
+1. Una carpeta con un nombre lo más descriptivo posible del ejercicio.
+
+2. Dentro de este hay que añadir el fichero de configuración necesario (config.json) y un xml vacío.
+  - En caso de tener una solución del ejercicio, añadir _\_solution_ al final del nombre(ejercicio_solution.xml)
+3. Un directorio llamado img con un thumbnail.png que se usará como portada del ejercio.
+
+Ejemplo:
+
+- webserver/scratch/nombre_ejercicio
+- webserver/scratch/nombre_ejercicio/config.json
+- webserver/scratch/nombre_ejercicio/nombre_ejercicio.xml
+- webserver/scratch/nombre_ejercicio/nombre_ejercicio_solution.xml
+- webserver/scratch/nombre_ejercicio/img/thumbnail.png
+
+```
 
 ***
 ### Week 15 <a name="week15"></a>
