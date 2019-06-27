@@ -86,10 +86,9 @@ function setObjects(object,scene){
 
 ![alt text](/resources/follow_ball.png)
 
-<<<<<<< HEAD
 - Making room for bump&go exercise.
 
-=======
+
 - Done new scene to follow line IR:
 
 ![alt text](/resources/followLineIR.png)
@@ -116,7 +115,6 @@ Ejemplo:
 - webserver/scratch/nombre_ejercicio/img/thumbnail.png
 
 ```
->>>>>>> 707f9160fb32315c89ba9e6f2399c8768f555546
 
 ***
 ### Week 15 <a name="week15"></a>
