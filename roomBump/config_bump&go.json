@@ -3,32 +3,138 @@
     "model":"../assets/models/jrobotFgltf.gltf",
     "scale": "40 40 40",
     "position":"15 1 10",
-    "rotation": "0 50 0"
+    "rotation": "0 180 0"
   },
   "gravity": -9.8,
-  "ground": "../assets/textures/wood.jpg",
+  "ground": "../assets/textures/escenarioLiso.png",
   "sky": "../assets/textures/sky.png",
   "secondaryCamera": "0 0 0",
-  "cameraRobot":"0 0.03 -0.01",
+  "cameraRobot":"0 0.1 0",
   "objects":[{
       "type": "a-gltf-model",
-      "src": "../assets/models/wallBack.gltf",
+      "src": "../assets/models/room/wallBack.gltf",
       "scale": "6 6 6",
       "position": "0 0 0",
       "static-body":""
       },
       {
       "type": "a-gltf-model",
-      "src": "../assets/models/wallLeft.gltf",
+      "src": "../assets/models/room/wallLeft.gltf",
       "scale": "6 6 6",
       "position": "0 0 0",
       "static-body":""
       },
       {
       "type": "a-gltf-model",
-      "src": "../assets/models/wallRight.gltf",
+      "src": "../assets/models/room/wallRight.gltf",
       "scale": "6 6 6",
       "position": "0 0 0",
       "static-body":""
-      }]
+      },
+      {
+        "type": "a-gltf-model",
+        "src": "../assets/models/room/chair1.gltf",
+        "scale": "6 6 6",
+        "position": "0 0 0",
+        "static-body":""
+        },
+        {
+        "type": "a-gltf-model",
+        "src": "../assets/models/room/chair2.gltf",
+        "scale": "6 6 6",
+        "position": "0 0 0",
+        "static-body":""
+        },
+        {
+        "type": "a-gltf-model",
+        "src": "../assets/models/room/chair3.gltf",
+        "scale": "6 6 6",
+        "position": "0 0 0",
+        "static-body":""
+        },
+        {
+        "type": "a-gltf-model",
+        "src": "../assets/models/room/chair4.gltf",
+        "scale": "6 6 6",
+        "position": "0 0 0",
+        "static-body":""
+        },
+        {
+        "type": "a-gltf-model",
+        "src": "../assets/models/room/chair5.gltf",
+        "scale": "6 6 6",
+        "position": "0 0 0",
+        "static-body":""
+        },
+        {
+        "type": "a-gltf-model",
+        "src": "../assets/models/room/chair6.gltf",
+        "scale": "6 6 6",
+        "position": "0 0 0",
+        "static-body":""
+        },
+        {
+        "type": "a-gltf-model",
+        "src": "../assets/models/room/chair7.gltf",
+        "scale": "6 6 6",
+        "position": "0 0 0",
+        "static-body":""
+        },
+        {
+        "type": "a-gltf-model",
+        "src": "../assets/models/room/couch.gltf",
+        "scale": "6 6 6",
+        "position": "0 0 0",
+        "static-body":""
+        },
+        {
+        "type": "a-gltf-model",
+        "src": "../assets/models/room/table1.gltf",
+        "scale": "6 6 6",
+        "position": "0 0 0",
+        "static-body":""
+        },
+        {
+        "type": "a-gltf-model",
+        "src": "../assets/models/room/table2.gltf",
+        "scale": "6 6 6",
+        "position": "0 0 0",
+        "static-body":""
+        },
+        {
+        "type": "a-gltf-model",
+        "src": "../assets/models/room/table3.gltf",
+        "scale": "6 6 6",
+        "position": "0 0 0",
+        "static-body":""
+        },
+        {
+        "type": "a-gltf-model",
+        "src": "../assets/models/room/pc.gltf",
+        "scale": "6 6 6",
+        "position": "0 0 0",
+        "static-body":""
+        },
+
+        {
+        "type": "a-gltf-model",
+        "src": "../assets/models/room/wall1.gltf",
+        "scale": "6 6 6",
+        "position": "0 0 0",
+        "static-body":""
+        },
+        {
+        "type": "a-gltf-model",
+        "src": "../assets/models/room/wall2.gltf",
+        "scale": "6 6 6",
+        "position": "0 0 0",
+        "static-body":""
+        } ,
+        {
+        "type": "a-gltf-model",
+        "src": "../assets/models/room/tv.gltf",
+        "scale": "6 6 6",
+        "position": "0 0 0",
+        "static-body":""
+        }       ]
 }
