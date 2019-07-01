@@ -1,6 +1,6 @@
 # 2019-tfg-ruben-alvarez
 
-
+- [Week 17](#week17)
 - [Week 16](#week16)
 - [Week 15](#week15)
 - [Week 14](#week14)
@@ -17,6 +17,14 @@
 - [Week 3](#week3)
 - [Week 2](#week2)
 - [Week 1](#week1)
+
+
+### Week 17 <a name="week17"></a>
+
+
+- Bump & go scene completed:
+
+[![Bump&go](http://img.youtube.com/vi/5QTef73HVQo/0.jpg)](https://youtu.be/5QTef73HVQo)
 
 
 ### Week 16 <a name="week16"></a>
