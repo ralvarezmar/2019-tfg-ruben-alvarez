@@ -24,7 +24,11 @@
 
 - Bump & go scene completed:
 
-[![Bump&go](http://img.youtube.com/vi/5QTef73HVQo/0.jpg)](https://youtu.be/5QTef73HVQo)
+[![Bump & go](http://img.youtube.com/vi/5QTef73HVQo/0.jpg)](https://youtu.be/5QTef73HVQo)
+
+- Test follow ball exercise:
+
+[![Follow Ball](http://img.youtube.com/vi/u5ChxHlQqUU/0.jpg)](https://youtu.be/u5ChxHlQqUU)
 
 
 ### Week 16 <a name="week16"></a>
