@@ -30,6 +30,34 @@
 
 [![Follow Ball](http://img.youtube.com/vi/u5ChxHlQqUU/0.jpg)](https://youtu.be/u5ChxHlQqUU)
 
+- Camera following robot just adding the next lines in interfacesRobot.js and index.html:
+```JavaScript
+updatePosition(rotation, velocity, robotPos){
+  var dx = Math.cos(rotation.y * Math.PI/180);
+  var dz = Math.sin(-rotation.y * Math.PI/180);
+  var cameraX = robotPos.x-(dx*6);
+  var cameraY = robotPos.y + 4;
+  var cameraZ = robotPos.z-(dz*6);
+  document.querySelector("#cameraWrapper").object3D.position.set(cameraX,cameraY,cameraZ);
+
+
+  let x = velocity.x/10 * Math.cos(rotation.y * Math.PI/180);
+  let z = velocity.x/10 * Math.sin(-rotation.y * Math.PI/180);
+  let y = (velocity.y/10);
+  robotPos.x += x;
+  robotPos.z += z;
+  robotPos.y += y;
+  return robotPos;
+}
+```
+
+```html
+<a-entity id="cameraWrapper" movement-controls="fly:true" position="0 0 0">
+    <a-entity id="primaryCamera" camera look-controls wasd-controls scale="10 10 10" ></a-entity>
+</a-entity>
+```
+
+[![Camera Test](http://img.youtube.com/vi/Dyl3cM2piAQ/0.jpg)](https://youtu.be/Dyl3cM2piAQ)
 
 ### Week 16 <a name="week16"></a>
 
