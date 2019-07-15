@@ -1,5 +1,6 @@
 # 2019-tfg-ruben-alvarez
 
+- [Week 18](#week18)
 - [Week 17](#week17)
 - [Week 16](#week16)
 - [Week 15](#week15)
@@ -19,6 +20,13 @@
 - [Week 1](#week1)
 
 
+### Week 18 <a name="week18"></a>
+
+- It improved camera follow with a function. I had tried to add PID control.
+
+
+
+***
 ### Week 17 <a name="week17"></a>
 
 
@@ -30,7 +38,8 @@
 
 [![Follow Ball](http://img.youtube.com/vi/u5ChxHlQqUU/0.jpg)](https://youtu.be/u5ChxHlQqUU)
 
-- Camera following robot just adding the next lines in interfacesRobot.js and index.html:
+- Spectator camera now follows robot. It have done adding the next lines in interfacesRobot.js and index.html:
+
 ```JavaScript
 updatePosition(rotation, velocity, robotPos){
   var dx = Math.cos(rotation.y * Math.PI/180);
@@ -59,6 +68,7 @@ updatePosition(rotation, velocity, robotPos){
 
 [![Camera Test](http://img.youtube.com/vi/Dyl3cM2piAQ/0.jpg)](https://youtu.be/Dyl3cM2piAQ)
 
+***
 ### Week 16 <a name="week16"></a>
 
 - Change config.js to add objects in the scenario and to set third person camera robot:
