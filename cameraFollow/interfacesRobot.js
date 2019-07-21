@@ -25,6 +25,7 @@ export default class RobotI
           black: {low: [0, 0, 0, 255], high: [105,105,105 ,255]}
         };
         this.velocity = {x:0, y:0, z:0, ax:0, ay:0, az:0};
+        this.posPrev = {x:0,y:0,z:0};
         this.motorsStarter()
         this.startCamera();
         this.startRaycasters(defaultDistanceDetection, defaultNumOfRays);
@@ -93,16 +94,18 @@ export default class RobotI
       */
       let rotation = this.getRotation();
 
-
+      this.cameraPosition(rotation,this.robot.body.position,this.posPrev);
       let newpos = this.updatePosition(rotation, this.velocity, this.robot.body.position);
       this.robot.body.position.set(newpos.x, newpos.y, newpos.z);
-      this.cameraPosition(rotation,this.robot.body.position);
       // console.log("nueva posicion: " + newpos);
       this.robot.body.angularVelocity.set(this.velocity.ax, this.velocity.ay, this.velocity.az);
       this.timeoutMotors = setTimeout(this.setVelocity.bind(this), 30);
     }
 
     updatePosition(rotation, velocity, robotPos){
+      this.posPrev.x=robotPos.x;
+      this.posPrev.y=robotPos.y;
+      this.posPrev.z=robotPos.z;
       let x = velocity.x/10 * Math.cos(rotation.y * Math.PI/180);
       let z = velocity.x/10 * Math.sin(-rotation.y * Math.PI/180);
       let y = (velocity.y/10);
@@ -112,15 +115,43 @@ export default class RobotI
       return robotPos;
     }
 
-    cameraPosition(rotation,robotPos){
-      var dx = Math.cos(rotation.y * Math.PI/180);
-      var dz = Math.sin(-rotation.y * Math.PI/180);
-      var cameraX = robotPos.x-(dx*6);
-      var cameraY = robotPos.y + 4;
-      var cameraZ = robotPos.z-(dz*6);
-      document.querySelector("#cameraWrapper").object3D.position.set(cameraX,cameraY,cameraZ);
+    diferencia(p1,p2){
+      return p1-p2;
     }
 
+    puntoMayor(p1,p2){
+      if(p1>p2){
+        return this.diferencia(p1,p2);
+      }else{
+        return this.diferencia(p2,p1);
+      }
+    }
+
+    cameraPosition(rotation,robotPos,positionPrev){
+      var dx = Math.cos(rotation.y * Math.PI/180);
+      var dz = Math.sin(-rotation.y * Math.PI/180);
+      var camera = {x:robotPos.x-(dx*6),y:robotPos.y + 4,z:robotPos.z-(dz*6)};
+      // var difNow = {x:this.diferencia(robotPos.x,camera.x) ,z:this.diferencia(camera.z,robotPos.z)};
+      // var difPrev = {x:this.diferencia(positionPrev.x,camera.x), z:this.diferencia(positionPrev.z,camera.z)};
+      var difNow = {x:robotPos.x-camera.x ,z:camera.z-robotPos.z};
+      var difPrev = {x:positionPrev.x-camera.x, z:positionPrev.z-camera.z};
+
+      var modNow = Math.sqrt(Math.pow(difNow.x,2)+Math.pow(difNow.z,2));
+      var modPast = Math.sqrt(Math.pow(difPrev.x,2)+Math.pow(difPrev.z,2));
+      var ang = Math.acos(modPast/modNow);
+      // console.log(difNow,difPrev);
+      // console.log(modNow,modPast);
+      console.log("angulo: ", ang);
+      console.log("rotation robot:", rotation.y**(Math.PI/180));
+      console.log(document.querySelector("#primaryCamera").object3D.rotation);
+      if(ang==0){
+        ang = -(rotation.y/2)
+      }
+      // document.querySelector("#primaryCamera").setAttribute('rotation',{x:-30,y:(rotation.y+ang)*(180/Math.PI),z:0});
+
+      // document.querySelector("#primaryCamera").object3D.rotation.set(-0.5,-rotationCamera/2,0);
+      document.querySelector("#cameraWrapper").object3D.position.set(camera.x,camera.y,camera.z);
+    }
 
     getCameraDescription()
     /*

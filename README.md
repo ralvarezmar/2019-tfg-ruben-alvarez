@@ -24,7 +24,7 @@
 
 - It improved camera follow with a function. I had tried to add PID control.
 
-
+- Focus of camera in robot. There are problems with that. 
 
 ***
 ### Week 17 <a name="week17"></a>
