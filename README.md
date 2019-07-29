@@ -24,7 +24,36 @@
 
 - It improved camera follow with a function. I had tried to add PID control.
 
-- Focus of camera in robot. There are problems with that. 
+- Focus of camera in robot. There are problems with that.
+
+- Added button to change spectator camera:
+  - It's done adding this lines in _index.html_:
+  ```html
+    <a-entity dynamic-body="mass: 1" id="a-pibot">
+      <a-entity id="secondaryCamera" rotation="-20 -90 0" >
+        <!-- Create a second third-person camera which cant be controlled, the Pibot camera -->
+        <a-camera id="cameraRobot" spectator="canvas:#spectatorDiv;" active="false" wasd-controls-enabled="false" look-controls-enabled="false"></a-camera>
+      </a-entity>
+      <a-entity id="subjCameraWrapper" position="-0.3 0.3 0" rotation="-20 -90 0" >
+        <!-- Create a second third-person camera which cant be controlled, the Pibot camera -->
+        <a-camera id="subjCamera" active="true" wasd-controls-enabled="false" look-controls-enabled="false"></a-camera>
+      </a-entity>
+    </a-entity>
+    ```
+  - And this function in _editor-methods.js_:
+     ```js
+     export function changeSpectatorCamera(){
+       var subjCamera = document.querySelector("#subjCamera");
+       var spectatorCamera = document.querySelector("#primaryCamera");
+       var camera = subjCamera.getAttribute('camera','active');
+       if(camera.active===true){
+         spectatorCamera.setAttribute('camera', 'active', true);
+       }else{
+         subjCamera.setAttribute('camera', 'active', true);
+       }
+     }
+     ```
+   [![Camera follow](http://img.youtube.com/vi/iG9elBfjC1A/0.jpg)](https://youtu.be/iG9elBfjC1A)
 
 ***
 ### Week 17 <a name="week17"></a>
