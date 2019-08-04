@@ -29,6 +29,10 @@
 
 [![Couch collision](http://img.youtube.com/vi/7lStoxCUrxY/0.jpg)](https://youtu.be/7lStoxCUrxY)
 
+- Added new circuit for two cars in the same scene:
+
+![Monza](/resources/monza_duo.png)
+
 
 
 ### Week 18 <a name="week18"></a>

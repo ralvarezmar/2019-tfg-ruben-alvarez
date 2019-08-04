@@ -1,0 +1,22 @@
+{
+  "robot": {
+    "model":"../assets/models/F1.gltf",
+    "scale": "20 20 20",
+    "position":"10 0 23.5",
+    "rotation": "0 0 0"
+  },
+  "gravity": -9.8,
+  "ground": "../assets/textures/monza_duo.png",
+  "sky": "../assets/textures/sky.png",
+  "secondaryCamera": "0 0 0",
+  "cameraRobot":"0 0.04 -0.02",
+  "objects":[  {
+    "type": "a-gltf-model",
+    "src": "../assets/models/f1_reduced.gltf",
+    "scale": "20 20 20",
+    "rotation": "0 0 0",
+    "position": "5 0 20.5"
+    }
+
+  ]
+}
