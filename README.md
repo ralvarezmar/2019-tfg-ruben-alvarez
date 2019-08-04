@@ -33,6 +33,9 @@
 
 ![Monza](/resources/monza_duo.png)
 
+![Monza circuit](/monza_duo/monza_duo.png)
+
+
 
 
 ### Week 18 <a name="week18"></a>
