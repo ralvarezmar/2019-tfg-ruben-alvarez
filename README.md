@@ -1,5 +1,5 @@
 # 2019-tfg-ruben-alvarez
-
+- [Week 21](#week21)
 - [Week 19](#week19)
 - [Week 18](#week18)
 - [Week 17](#week17)
@@ -20,7 +20,14 @@
 - [Week 2](#week2)
 - [Week 1](#week1)
 
+### Week 21 <a name="week21"></a>
+- Testing package PhysicsJs adding dependencies in package.json:
 
+```    
+  "physicsjs": "^0.7.0",
+```
+
+***
 ### Week 19 <a name="week19"></a>
 
 - Added spectator camera in teleoperators.
@@ -35,9 +42,7 @@
 
 ![Monza circuit](/monza_duo/monza_duo.png)
 
-
-
-
+***
 ### Week 18 <a name="week18"></a>
 
 - It improved camera follow with a function. I had tried to add PID control.
