@@ -26,6 +26,13 @@
 ```    
   "physicsjs": "^0.7.0",
 ```
+- Testing adding the following attributes to physics:
+
+```
+<a-scene id="scene" background="color: gray;" physics="restitution:0;iterations:200;workerFps:200;friction:0;workerDebug:true;" stats embedded physics="debug: true" inspector="url: https://aframe.io/releases/0.4.0/aframe-inspector.min.js">
+```
+
+It doesn't work because drone shake in the air.
 
 ***
 ### Week 19 <a name="week19"></a>
