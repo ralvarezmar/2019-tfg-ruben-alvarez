@@ -32,7 +32,13 @@
 <a-scene id="scene" background="color: gray;" physics="restitution:0;iterations:200;workerFps:200;friction:0;workerDebug:true;" stats embedded physics="debug: true" inspector="url: https://aframe.io/releases/0.4.0/aframe-inspector.min.js">
 ```
 
-It doesn't work because drone shake in the air.
+It doesn't work because drone shakes in the air.
+
+
+The best result, for the time being, is putting a lower gravity and higher iterations:
+
+[![Gravity test](http://img.youtube.com/vi/9ITlf8Y_VP4/0.jpg)](https://youtu.be/9ITlf8Y_VP4)
+
 
 ***
 ### Week 19 <a name="week19"></a>
