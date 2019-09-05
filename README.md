@@ -1,4 +1,5 @@
 # 2019-tfg-ruben-alvarez
+- [Week 22](#week22)
 - [Week 21](#week21)
 - [Week 19](#week19)
 - [Week 18](#week18)
@@ -19,6 +20,17 @@
 - [Week 3](#week3)
 - [Week 2](#week2)
 - [Week 1](#week1)
+
+### Week 22 <a name="week22"></a>
+
+-  Implemented third person camera in github repository.
+
+- Added new car to competitive exercises:
+
+![Two cars](/resources/two_cars.png)
+
+- It is done donPerfecto solutions but there are issues with bump and go.
+
 
 ### Week 21 <a name="week21"></a>
 - Testing package PhysicsJs adding dependencies in package.json:
