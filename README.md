@@ -31,6 +31,19 @@
 
 - It is done donPerfecto solutions but there are issues with bump and go.
 
+- Testing gravity changing parameters:
+
+| Gravity 	| Linear Dump 	| Iterations 	| Min IPS 	| Max IPS 	| Med IPS 	| Graphics cost 	| Best result 	|
+|---------	|-------------	|------------	|---------	|---------	|---------	|---------------	|-------------	|
+|   -4    	|     0.5     	|   30000    	|   17    	|   60    	|   47    	|    32.95%     	|             	|
+|   -4    	|     0.5     	|   50000    	|   3     	|   60    	|   50    	|    38.82%     	|             	|
+|  -2.5   	|    0.95     	|  1000000   	|   3     	|   60    	|   51    	|    41.72%     	|             	|
+|  -3.5   	|     0.9     	|  1000000   	|  33     	|   60    	|   5     	|    41.5%      	|      X      	|
+
+And the best result is the next video:
+
+[![Gravity test](http://img.youtube.com/vi/y8xviKV2EVo/0.jpg)](https://youtu.be/y8xviKV2EVo)
+
 
 ### Week 21 <a name="week21"></a>
 - Testing package PhysicsJs adding dependencies in package.json:
