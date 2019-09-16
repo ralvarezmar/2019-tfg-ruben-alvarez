@@ -24,9 +24,18 @@
 
 ### Week 23 <a name="week23"></a>
 
-- Added first person view:
+- It added first person view:
 
 [![First person view](http://img.youtube.com/vi/gGdnwHFOb08/0.jpg)](https://youtu.be/gGdnwHFOb08)
+
+- Added animation to propellers. First of all making the animation in _blender_ and, after, adding the following line in index.html:
+```html
+<a-entity dynamic-body="mass: 1" id="a-pibot" animation-mixer="clip:*;timeScale:2">
+```
+
+Maybe, in the future, could be in configuration file.
+
+[![Animation](http://img.youtube.com/vi/yX-e3ysbL_M/0.jpg)](https://youtu.be/yX-e3ysbL_M)
 
 
 ***
@@ -49,7 +58,7 @@
 |  -2.5   	|    0.95     	|  1000000   	|   3     	|   60    	|   51    	|    41.72%     	|             	|
 |  -3.5   	|     0.9     	|  1000000   	|  33     	|   60    	|   5     	|    41.5%      	|      X      	|
 
-And the best result is the next video:
+And the best result is in the next video:
 
 [![Gravity test](http://img.youtube.com/vi/y8xviKV2EVo/0.jpg)](https://youtu.be/y8xviKV2EVo)
 
