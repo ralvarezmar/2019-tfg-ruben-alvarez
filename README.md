@@ -38,8 +38,7 @@ Maybe, in the future, could be in configuration file.
 [![Animation](http://img.youtube.com/vi/yX-e3ysbL_M/0.jpg)](https://youtu.be/yX-e3ysbL_M)
 
 - Animation activated by height:
-
-[![Animation](http://img.youtube.com/vi/_2jvcjfhq60/0.jpg)](https://youtu.be/_2jvcjfhq60)
+[![Animation](http://img.youtube.com/vi/aockew42f3Y/0.jpg)](https://youtu.be/aockew42f3Y)
   Changed in _interfacesRobot.js_:
   ```JavaScript
   setVelocity(){
