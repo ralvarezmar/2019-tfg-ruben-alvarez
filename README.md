@@ -37,7 +37,31 @@ Maybe, in the future, could be in configuration file.
 
 [![Animation](http://img.youtube.com/vi/yX-e3ysbL_M/0.jpg)](https://youtu.be/yX-e3ysbL_M)
 
+- Animation activated by height:
 
+[![Animation](http://img.youtube.com/vi/_2jvcjfhq60/0.jpg)](https://youtu.be/_2jvcjfhq60)
+  Changed in _interfacesRobot.js_:
+  ```JavaScript
+  setVelocity(){
+    /*
+      This code run continiously, setting the speed of the robot every 30ms
+      This function will not be callable, use setV, setW or setL
+    */
+    if(this.robot.body.position.y>1){
+      var robot = document.querySelector('#a-pibot');
+      robot.setAttribute('animation-mixer',"clip:*;timeScale:2");
+    }else{
+      var robot = document.querySelector('#a-pibot');
+      robot.setAttribute('animation-mixer',"clip:None");
+    }
+    let rotation = this.getRotation();
+    let newpos = this.updatePosition(rotation, this.velocity, this.robot.body.position);
+    this.robot.body.position.set(newpos.x, newpos.y, newpos.z);
+    // console.log("nueva posicion: " + newpos);
+    this.robot.body.angularVelocity.set(this.velocity.ax, this.velocity.ay, this.velocity.az);
+    this.timeoutMotors = setTimeout(this.setVelocity.bind(this), 30);
+  }
+  ```
 ***
 ### Week 22 <a name="week22"></a>
 
