@@ -1,4 +1,5 @@
 # 2019-tfg-ruben-alvarez
+- [Week 24](#week24)
 - [Week 23](#week23)
 - [Week 22](#week22)
 - [Week 21](#week21)
@@ -21,6 +22,13 @@
 - [Week 3](#week3)
 - [Week 2](#week2)
 - [Week 1](#week1)
+
+### Week 24 <a name="week24"></a>
+
+- Competitive exercises.
+
+- Drone follow ball
+
 
 ### Week 23 <a name="week23"></a>
 
@@ -56,7 +64,6 @@ Maybe, in the future, could be in configuration file.
     let rotation = this.getRotation();
     let newpos = this.updatePosition(rotation, this.velocity, this.robot.body.position);
     this.robot.body.position.set(newpos.x, newpos.y, newpos.z);
-    // console.log("nueva posicion: " + newpos);
     this.robot.body.angularVelocity.set(this.velocity.ax, this.velocity.ay, this.velocity.az);
     this.timeoutMotors = setTimeout(this.setVelocity.bind(this), 30);
   }
