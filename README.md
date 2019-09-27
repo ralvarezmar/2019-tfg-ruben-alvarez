@@ -25,9 +25,59 @@
 
 ### Week 24 <a name="week24"></a>
 
-- Competitive exercises.
+- Competitive exercises in this way:
 
-- Drone follow ball
+  Adding this code to _editor.js_:
+  ```JavaScript
+  var editFirst = true;
+  var editSecond = false;
+  var codeFirst = null;
+  var codeSecond = null;
+
+  $('#firstRobot').click(()=>{
+    if(editFirst==true){
+      codeFirst = editor.ui.getValue();
+    }
+    if(editSecond){
+      codeSecond = editor.ui.getValue();
+      editSecond=false;
+      if(codeFirst==null){
+        editor.ui.setValue("");
+      }else{
+        editor.ui.setValue(codeFirst);
+      }
+    }
+    editFirst= true;
+  });
+
+  $('#secondRobot').click(()=>{
+    if(editSecond==true){
+      codeSecond = editor.ui.getValue();
+    }
+    if(editFirst){
+      codeFirst = editor.ui.getValue();
+      editFirst=false;
+      if(codeSecond==null){
+        editor.ui.setValue("");
+      }else{
+        editor.ui.setValue(codeSecond);
+      }
+    }
+    editSecond= true;
+  });
+  ```
+  And adding two buttons to _index.html_:
+  ```html
+  <button onclick id="firstRobot"><img src="../assets/resources/car1.svg" alt="First robot"/></button>
+  <button onclick id="secondRobot"><img src="../assets/resources/car2.svg" alt="Second robot"/></button>
+  ```
+  [![Competitive exercise](http://img.youtube.com/vi/Vvy8oBi3TM0/0.jpg)](https://youtu.be/Vvy8oBi3TM0)
+
+
+- Drone follow ball:
+
+[![Drone follow ball exercise](http://img.youtube.com/vi/H5sX47w7Ntg/0.jpg)](https://youtu.be/H5sX47w7Ntg)
+
 
 
 ### Week 23 <a name="week23"></a>
@@ -46,7 +96,9 @@ Maybe, in the future, could be in configuration file.
 [![Animation](http://img.youtube.com/vi/yX-e3ysbL_M/0.jpg)](https://youtu.be/yX-e3ysbL_M)
 
 - Animation activated by height:
-[![Animation](http://img.youtube.com/vi/aockew42f3Y/0.jpg)](https://youtu.be/aockew42f3Y)
+
+  [![Animation](http://img.youtube.com/vi/aockew42f3Y/0.jpg)](https://youtu.be/aockew42f3Y)
+
   Changed in _interfacesRobot.js_:
   ```JavaScript
   setVelocity(){
