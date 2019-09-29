@@ -27,7 +27,19 @@
 
 ### Week 25 <a name="week25"></a>
 
-- Forest exercise
+- Forest exercise:
+
+![alt text](/resources/forest-exercise.png)
+
+
+- It is done drag bar (with issues; workspace doesn't resize):
+
+![alt text](/resources/drag-bar1.png)
+
+![alt text](/resources/drag-bar2.png)
+
+![alt text](/resources/drag-bar3.png)
+
 
 
 ***
@@ -140,12 +152,12 @@ Maybe, in the future, could be in configuration file.
 
 - Testing gravity changing parameters:
 
-| Gravity 	| Linear Dump 	| Iterations 	| Min IPS 	| Max IPS 	| Med IPS 	| Graphics cost 	| Best result 	|
-|---------	|-------------	|------------	|---------	|---------	|---------	|---------------	|-------------	|
-|   -4    	|     0.5     	|   30000    	|   17    	|   60    	|   47    	|    32.95%     	|             	|
-|   -4    	|     0.5     	|   50000    	|   3     	|   60    	|   50    	|    38.82%     	|             	|
-|  -2.5   	|    0.95     	|  1000000   	|   3     	|   60    	|   51    	|    41.72%     	|             	|
-|  -3.5   	|     0.9     	|  1000000   	|  33     	|   60    	|   5     	|    41.5%      	|      X      	|
+| Gravity   | Linear Dump   | Iterations  | Min IPS   | Max IPS   | Med IPS   | Graphics cost   | Best result   |
+|---------  |-------------  |------------ |---------  |---------  |---------  |---------------  |-------------  |
+|   -4      |     0.5       |   30000     |   17      |   60      |   47      |    32.95%       |               |
+|   -4      |     0.5       |   50000     |   3       |   60      |   50      |    38.82%       |               |
+|  -2.5     |    0.95       |  1000000    |   3       |   60      |   51      |    41.72%       |               |
+|  -3.5     |     0.9       |  1000000    |  33       |   60      |   5       |    41.5%        |      X        |
 
 And the best result is in the next video:
 
