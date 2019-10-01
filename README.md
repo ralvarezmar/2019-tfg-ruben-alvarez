@@ -1,4 +1,5 @@
 # 2019-tfg-ruben-alvarez
+- [Week 26](#week26)
 - [Week 25](#week25)
 - [Week 24](#week24)
 - [Week 23](#week23)
@@ -25,11 +26,26 @@
 - [Week 1](#week1)
 
 
+
+### Week 26 <a name="week26"></a>
+
+- If we want to tile textures: the repeat property can repeat textures. We could do in this way:
+
+  ```html
+  <a-entity geometry="primitive: plane; width: 100"
+            material="src: carpet.png; repeat: 100 20"></a-entity>
+
+  ```
+- Added mBot model.
+
+
+
+***
 ### Week 25 <a name="week25"></a>
 
 - Forest exercise:
 
-![alt text](/resources/forest-exercise.png)
+  ![alt text](/resources/forest-exercise.png)
 
 
 - It is done drag bar (with issues; workspace doesn't resize):
@@ -96,49 +112,49 @@
 
 - Drone follow ball:
 
-[![Drone follow ball exercise](http://img.youtube.com/vi/H5sX47w7Ntg/0.jpg)](https://youtu.be/H5sX47w7Ntg)
+  [![Drone follow ball exercise](http://img.youtube.com/vi/H5sX47w7Ntg/0.jpg)](https://youtu.be/H5sX47w7Ntg)
 
 ***
 ### Week 23 <a name="week23"></a>
 
 - It added first person view:
 
-[![First person view](http://img.youtube.com/vi/gGdnwHFOb08/0.jpg)](https://youtu.be/gGdnwHFOb08)
+  [![First person view](http://img.youtube.com/vi/gGdnwHFOb08/0.jpg)](https://youtu.be/gGdnwHFOb08)
 
 - Added animation to propellers. First of all making the animation in _blender_ and, after, adding the following line in index.html:
-```html
-<a-entity dynamic-body="mass: 1" id="a-pibot" animation-mixer="clip:*;timeScale:2">
-```
-
-Maybe, in the future, could be in configuration file.
-
-[![Animation](http://img.youtube.com/vi/yX-e3ysbL_M/0.jpg)](https://youtu.be/yX-e3ysbL_M)
-
-- Animation activated by height:
-
-  [![Animation](http://img.youtube.com/vi/aockew42f3Y/0.jpg)](https://youtu.be/aockew42f3Y)
-
-  Changed in _interfacesRobot.js_:
-  ```JavaScript
-  setVelocity(){
-    /*
-      This code run continiously, setting the speed of the robot every 30ms
-      This function will not be callable, use setV, setW or setL
-    */
-    if(this.robot.body.position.y>1){
-      var robot = document.querySelector('#a-pibot');
-      robot.setAttribute('animation-mixer',"clip:*;timeScale:2");
-    }else{
-      var robot = document.querySelector('#a-pibot');
-      robot.setAttribute('animation-mixer',"clip:None");
-    }
-    let rotation = this.getRotation();
-    let newpos = this.updatePosition(rotation, this.velocity, this.robot.body.position);
-    this.robot.body.position.set(newpos.x, newpos.y, newpos.z);
-    this.robot.body.angularVelocity.set(this.velocity.ax, this.velocity.ay, this.velocity.az);
-    this.timeoutMotors = setTimeout(this.setVelocity.bind(this), 30);
-  }
+  ```html
+  <a-entity dynamic-body="mass: 1" id="a-pibot" animation-mixer="clip:*;timeScale:2">
   ```
+
+  Maybe, in the future, could be in configuration file.
+
+  [![Animation](http://img.youtube.com/vi/yX-e3ysbL_M/0.jpg)](https://youtu.be/yX-e3ysbL_M)
+
+  - Animation activated by height:
+
+    [![Animation](http://img.youtube.com/vi/aockew42f3Y/0.jpg)](https://youtu.be/aockew42f3Y)
+
+    Changed in _interfacesRobot.js_:
+    ```JavaScript
+    setVelocity(){
+      /*
+        This code run continiously, setting the speed of the robot every 30ms
+        This function will not be callable, use setV, setW or setL
+      */
+      if(this.robot.body.position.y>1){
+        var robot = document.querySelector('#a-pibot');
+        robot.setAttribute('animation-mixer',"clip:*;timeScale:2");
+      }else{
+        var robot = document.querySelector('#a-pibot');
+        robot.setAttribute('animation-mixer',"clip:None");
+      }
+      let rotation = this.getRotation();
+      let newpos = this.updatePosition(rotation, this.velocity, this.robot.body.position);
+      this.robot.body.position.set(newpos.x, newpos.y, newpos.z);
+      this.robot.body.angularVelocity.set(this.velocity.ax, this.velocity.ay, this.velocity.az);
+      this.timeoutMotors = setTimeout(this.setVelocity.bind(this), 30);
+    }
+    ```
 ***
 ### Week 22 <a name="week22"></a>
 
@@ -152,36 +168,36 @@ Maybe, in the future, could be in configuration file.
 
 - Testing gravity changing parameters:
 
-| Gravity   | Linear Dump   | Iterations  | Min IPS   | Max IPS   | Med IPS   | Graphics cost   | Best result   |
-|---------  |-------------  |------------ |---------  |---------  |---------  |---------------  |-------------  |
-|   -4      |     0.5       |   30000     |   17      |   60      |   47      |    32.95%       |               |
-|   -4      |     0.5       |   50000     |   3       |   60      |   50      |    38.82%       |               |
-|  -2.5     |    0.95       |  1000000    |   3       |   60      |   51      |    41.72%       |               |
-|  -3.5     |     0.9       |  1000000    |  33       |   60      |   5       |    41.5%        |      X        |
+  | Gravity   | Linear Dump   | Iterations  | Min IPS   | Max IPS   | Med IPS   | Graphics cost   | Best result   |
+  |---------  |-------------  |------------ |---------  |---------  |---------  |---------------  |-------------  |
+  |   -4      |     0.5       |   30000     |   17      |   60      |   47      |    32.95%       |               |
+  |   -4      |     0.5       |   50000     |   3       |   60      |   50      |    38.82%       |               |
+  |  -2.5     |    0.95       |  1000000    |   3       |   60      |   51      |    41.72%       |               |
+  |  -3.5     |     0.9       |  1000000    |  33       |   60      |   5       |    41.5%        |      X        |
 
-And the best result is in the next video:
+  And the best result is in the next video:
 
-[![Gravity test](http://img.youtube.com/vi/y8xviKV2EVo/0.jpg)](https://youtu.be/y8xviKV2EVo)
+  [![Gravity test](http://img.youtube.com/vi/y8xviKV2EVo/0.jpg)](https://youtu.be/y8xviKV2EVo)
 
 
 ### Week 21 <a name="week21"></a>
 - Testing package PhysicsJs adding dependencies in package.json:
 
-```    
-  "physicsjs": "^0.7.0",
-```
+  ```    
+    "physicsjs": "^0.7.0",
+  ```
 - Testing adding the following attributes to physics:
 
-```
-<a-scene id="scene" background="color: gray;" physics="restitution:0;iterations:200;workerFps:200;friction:0;workerDebug:true;" stats embedded physics="debug: true" inspector="url: https://aframe.io/releases/0.4.0/aframe-inspector.min.js">
-```
+  ```
+  <a-scene id="scene" background="color: gray;" physics="restitution:0;iterations:200;workerFps:200;friction:0;workerDebug:true;" stats embedded physics="debug: true" inspector="url: https://aframe.io/releases/0.4.0/aframe-inspector.min.js">
+  ```
 
-It doesn't work because drone shakes in the air.
+  It doesn't work because drone shakes in the air.
 
 
-The best result, for the time being, is putting a lower gravity and higher iterations:
+  The best result, for the time being, is putting a lower gravity and higher iterations:
 
-[![Gravity test](http://img.youtube.com/vi/9ITlf8Y_VP4/0.jpg)](https://youtu.be/9ITlf8Y_VP4)
+  [![Gravity test](http://img.youtube.com/vi/9ITlf8Y_VP4/0.jpg)](https://youtu.be/9ITlf8Y_VP4)
 
 
 ***
@@ -191,13 +207,13 @@ The best result, for the time being, is putting a lower gravity and higher itera
 
 - Solved problem with the couch and no collision:
 
-[![Couch collision](http://img.youtube.com/vi/7lStoxCUrxY/0.jpg)](https://youtu.be/7lStoxCUrxY)
+  [![Couch collision](http://img.youtube.com/vi/7lStoxCUrxY/0.jpg)](https://youtu.be/7lStoxCUrxY)
 
 - Added new circuit for two cars in the same scene:
 
-![Monza](/resources/monza_duo.png)
+  ![Monza](/resources/monza_duo.png)
 
-![Monza circuit](/monza_duo/monza_duo.png)
+  ![Monza circuit](/monza_duo/monza_duo.png)
 
 ***
 ### Week 18 <a name="week18"></a>
@@ -238,7 +254,7 @@ The best result, for the time being, is putting a lower gravity and higher itera
 
 - Collision test with f1 scene:
 
-[![Collision](http://img.youtube.com/vi/L6eUdk1FEqM/0.jpg)](https://youtu.be/L6eUdk1FEqM)
+  [![Collision](http://img.youtube.com/vi/L6eUdk1FEqM/0.jpg)](https://youtu.be/L6eUdk1FEqM)
 
 
 ***
@@ -247,160 +263,157 @@ The best result, for the time being, is putting a lower gravity and higher itera
 
 - Bump & go scene completed:
 
-[![Bump & go](http://img.youtube.com/vi/5QTef73HVQo/0.jpg)](https://youtu.be/5QTef73HVQo)
+  [![Bump & go](http://img.youtube.com/vi/5QTef73HVQo/0.jpg)](https://youtu.be/5QTef73HVQo)
 
 - Test follow ball exercise:
 
-[![Follow Ball](http://img.youtube.com/vi/u5ChxHlQqUU/0.jpg)](https://youtu.be/u5ChxHlQqUU)
+  [![Follow Ball](http://img.youtube.com/vi/u5ChxHlQqUU/0.jpg)](https://youtu.be/u5ChxHlQqUU)
 
 - Spectator camera now follows robot. It have done adding the next lines in interfacesRobot.js and index.html:
 
-```JavaScript
-updatePosition(rotation, velocity, robotPos){
-  var dx = Math.cos(rotation.y * Math.PI/180);
-  var dz = Math.sin(-rotation.y * Math.PI/180);
-  var cameraX = robotPos.x-(dx*6);
-  var cameraY = robotPos.y + 4;
-  var cameraZ = robotPos.z-(dz*6);
-  document.querySelector("#cameraWrapper").object3D.position.set(cameraX,cameraY,cameraZ);
+  ```JavaScript
+  updatePosition(rotation, velocity, robotPos){
+    var dx = Math.cos(rotation.y * Math.PI/180);
+    var dz = Math.sin(-rotation.y * Math.PI/180);
+    var cameraX = robotPos.x-(dx*6);
+    var cameraY = robotPos.y + 4;
+    var cameraZ = robotPos.z-(dz*6);
+    document.querySelector("#cameraWrapper").object3D.position.set(cameraX,cameraY,cameraZ);
 
 
-  let x = velocity.x/10 * Math.cos(rotation.y * Math.PI/180);
-  let z = velocity.x/10 * Math.sin(-rotation.y * Math.PI/180);
-  let y = (velocity.y/10);
-  robotPos.x += x;
-  robotPos.z += z;
-  robotPos.y += y;
-  return robotPos;
-}
-```
+    let x = velocity.x/10 * Math.cos(rotation.y * Math.PI/180);
+    let z = velocity.x/10 * Math.sin(-rotation.y * Math.PI/180);
+    let y = (velocity.y/10);
+    robotPos.x += x;
+    robotPos.z += z;
+    robotPos.y += y;
+    return robotPos;
+  }
+  ```
 
-```html
-<a-entity id="cameraWrapper" movement-controls="fly:true" position="0 0 0">
-    <a-entity id="primaryCamera" camera look-controls wasd-controls scale="10 10 10" ></a-entity>
-</a-entity>
-```
+  ```html
+  <a-entity id="cameraWrapper" movement-controls="fly:true" position="0 0 0">
+      <a-entity id="primaryCamera" camera look-controls wasd-controls scale="10 10 10" ></a-entity>
+  </a-entity>
+  ```
 
-[![Camera Test](http://img.youtube.com/vi/Dyl3cM2piAQ/0.jpg)](https://youtu.be/Dyl3cM2piAQ)
+  [![Camera Test](http://img.youtube.com/vi/Dyl3cM2piAQ/0.jpg)](https://youtu.be/Dyl3cM2piAQ)
 
 ***
 ### Week 16 <a name="week16"></a>
 
 - Change config.js to add objects in the scenario and to set third person camera robot:
 
-```JSON
-{
-  "robot": {
-    "model":"../assets/models/jrobotFgltf.gltf",
-    "scale": "20 20 20",
-    "position":"12 0 25",
-    "rotation": "0 320 0"
-  },
-  "gravity": -9.8,
-  "ground": "../assets/textures/escenarioLiso.png",
-  "sky": "../assets/textures/sky.png",
-  "secondaryCamera": "0 0 0",
-  "cameraRobot":"0 0.03 -0.01",
-  "objects":[{
-      "type": "a-sphere",
-      "position": "4 1 20",
-      "rotation": "0 0 0",
-      "color": "#FF0000"
-      }
-    ]
-}
-```
-
-```javascript
-
-  loadJSON(function(response) {
-    var config = JSON.parse(response);
-    var sceneEl = document.querySelector('a-scene');
-    var robot = sceneEl.querySelector('#a-pibot');
-    robot.setAttribute('gltf-model',config.robot.model);
-    robot.setAttribute('scale',config.robot.scale);
-    robot.setAttribute('position',config.robot.position);
-    robot.setAttribute('rotation',config.robot.rotation);
-    sceneEl.systems.physics.driver.world.gravity.y = config.gravity;
-    sceneEl.querySelector('#ground').setAttribute('src',config.ground);
-    sceneEl.querySelector('#sky').setAttribute('src',config.sky);
-    sceneEl.querySelector('#ground').setAttribute('src',config.ground);
-    sceneEl.querySelector('#secondaryCamera').setAttribute('position',config.secondaryCamera);
-    sceneEl.querySelector('#cameraRobot').setAttribute('position',config.cameraRobot);
-    if(config.objects.length>0){
-      setObjects(config.objects,sceneEl);
+  ```JSON
+  {
+    "robot": {
+      "model":"../assets/models/jrobotFgltf.gltf",
+      "scale": "20 20 20",
+      "position":"12 0 25",
+      "rotation": "0 320 0"
+    },
+    "gravity": -9.8,
+    "ground": "../assets/textures/escenarioLiso.png",
+    "sky": "../assets/textures/sky.png",
+    "secondaryCamera": "0 0 0",
+    "cameraRobot":"0 0.03 -0.01",
+    "objects":[{
+        "type": "a-sphere",
+        "position": "4 1 20",
+        "rotation": "0 0 0",
+        "color": "#FF0000"
+        }
+      ]
   }
-});
+  ```
 
-function setObjects(object,scene){
-  for (let i in object){
-    let keys = Object.keys(object[i]);
-    var element = document.createElement(object[i][keys[0]]);
-    for (let j = 1; j < keys.length; j++) {
-      let attribute = object[i][keys[j]];
-      element.setAttribute(keys[j],attribute);
+  ```javascript
+    loadJSON(function(response) {
+      var config = JSON.parse(response);
+      var sceneEl = document.querySelector('a-scene');
+      var robot = sceneEl.querySelector('#a-pibot');
+      robot.setAttribute('gltf-model',config.robot.model);
+      robot.setAttribute('scale',config.robot.scale);
+      robot.setAttribute('position',config.robot.position);
+      robot.setAttribute('rotation',config.robot.rotation);
+      sceneEl.systems.physics.driver.world.gravity.y = config.gravity;
+      sceneEl.querySelector('#ground').setAttribute('src',config.ground);
+      sceneEl.querySelector('#sky').setAttribute('src',config.sky);
+      sceneEl.querySelector('#ground').setAttribute('src',config.ground);
+      sceneEl.querySelector('#secondaryCamera').setAttribute('position',config.secondaryCamera);
+      sceneEl.querySelector('#cameraRobot').setAttribute('position',config.cameraRobot);
+      if(config.objects.length>0){
+        setObjects(config.objects,sceneEl);
     }
-    scene.appendChild(element);
+  });
+
+  function setObjects(object,scene){
+    for (let i in object){
+      let keys = Object.keys(object[i]);
+      var element = document.createElement(object[i][keys[0]]);
+      for (let j = 1; j < keys.length; j++) {
+        let attribute = object[i][keys[j]];
+        element.setAttribute(keys[j],attribute);
+      }
+      scene.appendChild(element);
+    }
   }
-}
-
-
-```
+  ```
 
 - Done follow ball exercise:
 
-![alt text](/resources/follow_ball.png)
+  ![alt text](/resources/follow_ball.png)
 
 - Making room for bump&go exercise.
 
 
 - Done new scene to follow line IR:
 
-![alt text](/resources/followLineIR.png)
+  ![alt text](/resources/followLineIR.png)
 
 
 - Done exercise follow line F1 vision and added in kibotic-exercises repository. I done this guide to add exercises in this repository:
 
-```
-Para añadir nuevos ejercicios es necesario incluir los siguientes ficheros:
+  ```
+  Para añadir nuevos ejercicios es necesario incluir los siguientes ficheros:
 
 
-1. Una carpeta con un nombre lo más descriptivo posible del ejercicio.
+  1. Una carpeta con un nombre lo más descriptivo posible del ejercicio.
 
-2. Dentro de este hay que añadir el fichero de configuración necesario (config.json) y un xml vacío.
-  - En caso de tener una solución del ejercicio, añadir _\_solution_ al final del nombre(ejercicio_solution.xml)
-3. Un directorio llamado img con un thumbnail.png que se usará como portada del ejercio.
+  2. Dentro de este hay que añadir el fichero de configuración necesario (config.json) y un xml vacío.
+    - En caso de tener una solución del ejercicio, añadir _\_solution_ al final del nombre(ejercicio_solution.xml)
+  3. Un directorio llamado img con un thumbnail.png que se usará como portada del ejercio.
 
-Ejemplo:
+  Ejemplo:
 
-- webserver/scratch/nombre_ejercicio
-- webserver/scratch/nombre_ejercicio/config.json
-- webserver/scratch/nombre_ejercicio/nombre_ejercicio.xml
-- webserver/scratch/nombre_ejercicio/nombre_ejercicio_solution.xml
-- webserver/scratch/nombre_ejercicio/img/thumbnail.png
+  - webserver/scratch/nombre_ejercicio
+  - webserver/scratch/nombre_ejercicio/config.json
+  - webserver/scratch/nombre_ejercicio/nombre_ejercicio.xml
+  - webserver/scratch/nombre_ejercicio/nombre_ejercicio_solution.xml
+  - webserver/scratch/nombre_ejercicio/img/thumbnail.png
 
-```
+  ```
 
 ***
 ### Week 15 <a name="week15"></a>
 
 - Fixed issues with gravity in tello drone. I have changed json and javascript in this way:
 
-JS:
-```javascript
-sceneEl.systems.physics.driver.world.gravity.y = config.gravity;
-```
-JSON:
-```JSON
-{
-  "gravity": 0,
-}
-```
-And I removed this attribute in html.
+  JS:
+  ```javascript
+  sceneEl.systems.physics.driver.world.gravity.y = config.gravity;
+  ```
+  JSON:
+  ```JSON
+  {
+    "gravity": 0,
+  }
+  ```
+  And I removed this attribute in html.
 
-Done follow line IR with piBot:
+  Done follow line IR with piBot:
 
-![alt text](/resources/siguelineasIR.png)
+  ![alt text](/resources/siguelineasIR.png)
 
 
 ***
@@ -408,18 +421,18 @@ Done follow line IR with piBot:
 
 - Done index.html teleoperator with a template:
 
-![alt text](/resources/index-teleoperator.png)
+  ![alt text](/resources/index-teleoperator.png)
 
 
 - I have taken scenario bump and go from gazebo and convert with [Nunu Studio](https://nunustudio.org/). I have done taking .obj file and converted to .gltf :
 
 
-![alt text](/resources/bumpandgo.png)
+  ![alt text](/resources/bumpandgo.png)
 
 
 - Testing F1 with IR in websim:
 
-[![F1 IR](http://img.youtube.com/vi/_7Ftb8DfaCs/0.jpg)](https://youtu.be/_7Ftb8DfaCs)
+  [![F1 IR](http://img.youtube.com/vi/_7Ftb8DfaCs/0.jpg)](https://youtu.be/_7Ftb8DfaCs)
 
 
 ***
@@ -428,29 +441,29 @@ Done follow line IR with piBot:
 
 - Teleoperator in drone:
 
-[![Drone teleoperator](http://img.youtube.com/vi/RGyY_aSdt8o/0.jpg)](https://youtu.be/RGyY_aSdt8o)
+  [![Drone teleoperator](http://img.youtube.com/vi/RGyY_aSdt8o/0.jpg)](https://youtu.be/RGyY_aSdt8o)
 
 
 - Teleoperator in F1:
 
-![alt text](/resources/f1_teleoperator.png)
+  ![alt text](/resources/f1_teleoperator.png)
 
-[![F1 teleoperator](http://img.youtube.com/vi/kMnb5PgVb1k/0.jpg)](https://youtu.be/kMnb5PgVb1k)
+  [![F1 teleoperator](http://img.youtube.com/vi/kMnb5PgVb1k/0.jpg)](https://youtu.be/kMnb5PgVb1k)
 
 
 - Teleoperator in pibot:
 
 
-![alt text](/resources/pibot_teleoperator.png)
+  ![alt text](/resources/pibot_teleoperator.png)
 
 
-[![PiBot teleoperator](http://img.youtube.com/vi/M-zUBa-ZQK0/0.jpg)](https://youtu.be/M-zUBa-ZQK0)
+  [![PiBot teleoperator](http://img.youtube.com/vi/M-zUBa-ZQK0/0.jpg)](https://youtu.be/M-zUBa-ZQK0)
 
 
 - First test with tello:
 
 
-[![Tello Drone](http://img.youtube.com/vi/NvzIMZRgt-g/0.jpg)](https://youtu.be/NvzIMZRgt-g)
+  [![Tello Drone](http://img.youtube.com/vi/NvzIMZRgt-g/0.jpg)](https://youtu.be/NvzIMZRgt-g)
 
 
 ***
@@ -460,14 +473,14 @@ Done follow line IR with piBot:
 
 - New F1 model to follow_line:
 
-![alt text](/resources/f1_model.png)
+  ![alt text](/resources/f1_model.png)
 
 To do this model for WebSim I took the file (.sdf) from gazebo and I transformed into .obj. After this I could get .gltf model with Blender.
 
 - First approximation to drone teleoperator:
 
 
-[![Teleoperator](http://img.youtube.com/vi/yIUTEY3oK3g/0.jpg)](https://youtu.be/yIUTEY3oK3g)
+  [![Teleoperator](http://img.youtube.com/vi/yIUTEY3oK3g/0.jpg)](https://youtu.be/yIUTEY3oK3g)
 
 
 ***
@@ -486,7 +499,7 @@ To do this model for WebSim I took the file (.sdf) from gazebo and I transformed
 - Testing take off in websim:
 
 
-[![Take off drone](http://img.youtube.com/vi/OmDJN33UdYo/0.jpg)](https://youtu.be/OmDJN33UdYo)
+  [![Take off drone](http://img.youtube.com/vi/OmDJN33UdYo/0.jpg)](https://youtu.be/OmDJN33UdYo)
 
 ***
 ### Week 9 <a name="week9"></a>
