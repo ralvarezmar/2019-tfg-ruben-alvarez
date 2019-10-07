@@ -1,4 +1,5 @@
 # 2019-tfg-ruben-alvarez
+- [Week 27](#week27)
 - [Week 26](#week26)
 - [Week 25](#week25)
 - [Week 24](#week24)
@@ -25,6 +26,11 @@
 - [Week 2](#week2)
 - [Week 1](#week1)
 
+
+### Week 27 <a name="week27"></a>
+- It's added mBot teleoperator
+
+- To research about spectator camera issue.
 
 
 ### Week 26 <a name="week26"></a>
