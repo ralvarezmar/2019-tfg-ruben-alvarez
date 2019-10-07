@@ -44,6 +44,12 @@
   ```
 - Added mBot model.
 
+- Evaluator to competitive exercises:
+
+  [![First test evaluator](http://img.youtube.com/vi/gem-qbqP6LA/0.jpg)](https://youtu.be/gem-qbqP6LA)
+
+
+  [![Evaluator improved](http://img.youtube.com/vi/DHTbU31x-KY/0.jpg)](https://youtu.be/DHTbU31x-KY)
 
 
 ***
