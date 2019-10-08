@@ -29,10 +29,14 @@
 
 ### Week 27 <a name="week27"></a>
 - It's added mBot teleoperator
+  ![alt text](/resources/teleoperators.png)
 
-- To research about spectator camera issue.
+- To research about spectator camera issue:
+
+  [![Camera issue](http://img.youtube.com/vi/2gNLxw6E_z4/0.jpg)](https://youtu.be/2gNLxw6E_z4)
 
 
+***
 ### Week 26 <a name="week26"></a>
 
 - If we want to tile textures: the repeat property can repeat textures. We could do in this way:

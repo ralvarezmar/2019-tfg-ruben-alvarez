@@ -1,10 +1,10 @@
 \documentclass[a4paper, 12pt]{book}
-%\usepackage[T1]{fontenc}
 
 \usepackage[a4paper, left=2.5cm, right=2.5cm, top=3cm, bottom=3cm]{geometry}
 \usepackage{times}
 \usepackage[utf8]{inputenc}
 \usepackage{fancyhdr}
+\usepackage{listings}
 \usepackage[spanish]{babel} % Comenta esta línea si tu memoria es en inglés
 \usepackage{url}
 %\usepackage[dvipdfm]{graphicx}
@@ -12,6 +12,40 @@
 \usepackage{float}  %% H para posicionar figuras
 \usepackage[nottoc, notlot, notlof, notindex]{tocbibind} %% Opciones de índice
 \usepackage{latexsym}  %% Logo LaTeX
+\usepackage{color}
+\definecolor{lightgray}{rgb}{.9,.9,.9}
+\definecolor{darkgray}{rgb}{.4,.4,.4}
+\definecolor{purple}{rgb}{0.65, 0.12, 0.82}
+% JavaScript
+\lstdefinelanguage{JavaScript}{
+  keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},
+  keywordstyle=\color{blue}\bfseries,
+  ndkeywords={class, export, boolean, throw, implements, import, this},
+  ndkeywordstyle=\color{darkgray}\bfseries,
+  identifierstyle=\color{black},
+  sensitive=false,
+  comment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  commentstyle=\color{purple}\ttfamily,
+  stringstyle=\color{red}\ttfamily,
+  morestring=[b]',
+  morestring=[b]"
+}
+\lstset{
+   language=JavaScript,
+   backgroundcolor=\color{lightgray},
+   extendedchars=true,
+   basicstyle=\footnotesize\ttfamily,
+   showstringspaces=false,
+   showspaces=false,
+   numbers=left,
+   numberstyle=\footnotesize,
+   numbersep=9pt,
+   tabsize=2,
+   breaklines=true,
+   showtabs=false,
+   captionpos=b
+}
 
 \title{Memoria del Proyecto}
 \author{Rubén Álvarez Martín}
@@ -41,8 +75,7 @@
 \vspace{3cm}
 
 \Large
-INGENIERÍA TELEMÁTICA
-
+GRADO EN INGENIERÍA TELEMÁTICA
 \vspace{0.4cm}
 
 \large
@@ -55,20 +88,23 @@ Trabajo Fin de Grado
 \vspace{2.5cm}
 
 \LARGE
-WEBSIM
-
-\vspace{4cm}
+Mejoras en entorno de robótica educativa para niños \vspace{4cm}
 
 \large
 Autor : Rubén Álvarez Martín \\
 Tutor : Dr. José María Cañas Plaza \\
-Co-Tutor : Santiago Carrión Vivanco
 \end{center}
 \end{titlepage}
 
 \newpage
 \mbox{}
-\thispagestyle{empty} 
+\thispagestyle{empty}
+
+% RESUMEN %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ÍNDICES %
 
@@ -91,9 +127,43 @@ Co-Tutor : Santiago Carrión Vivanco
 \cleardoublepage
 \pagestyle{fancy}
 \setlength{\parindent}{6mm}
-\pagenumbering{arabic} % para empezar la numeración de página con números
+\pagenumbering{arabic}
 
 \chapter{Introducción}
-\label{chap:intro} % etiqueta para poder referenciar luego en el texto con ~\ref{sec:intro}
+\label{chap:intro}
+
+ \section{Tecnologías web}
+\label{sec:web}
+
+\section{Robótica}
+\label{sec:robotica}
+
+
+
+\section{Robótica educativa}
+\label{sec:educativa}
+
+
+\chapter{Objetivos}
+\label{chap:objetives}
+
+% HERRAMIENTAS %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{herramientas}
+
+\chapter{Mejoras a WebSim}
+\label{chap:mejoras}
+
+\cleardoublepage
+\begin{thebibliography}{0}
+
+    \bibitem{JavaScript}
+    \textit{Documentación JavaScript:}
+    \url{https://developer.mozilla.org/es/docs/Web/JavaScript}
+    \bibitem{A-Frame}
+    \textit{Documentación A-Frame:}
+    \url{https://aframe.io/}
+
+\end{thebibliography}
 
 \end{document}
