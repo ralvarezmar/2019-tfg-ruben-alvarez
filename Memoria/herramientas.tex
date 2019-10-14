@@ -228,26 +228,26 @@ Además del \textit{software} explicado en esta sección, existen multitud de he
 
 \subsection{Diseño}
 \label{subsec:design}
-El simulador hace uso del entorno \textit{A-Frame} y permite conectar un editor de texto o un editor de bloques para poder programar en \textit{JavaScript} o \textit{Blockly} y conectar este código con el robot simulado. También permite conectar una aplicación externa al navegador a través de comunicaciones ICE.
+El simulador hace uso del entorno \textit{A-Frame} y permite conectar un editor de texto o un editor de bloques para poder programar en \textit{JavaScript} o \textit{Blockly} y conectar este código con el robot simulado. También permite acoplar una aplicación externa al navegador a través de comunicaciones ICE.
 Las principales funcionalidades del simulador son: 
 
 \begin{itemize}
-    \item Registrar los componentes principales para constituir un robot en \textit{A-Frame}, los cuales son \textit{followBody},\textit{spectatorComponent} e \textit{intersectionHandler}. El primero se encarga de simular una cámara en el robot, el segundo a manejar eventos de intersección de los láseres y el último permite anclar distintos elementos al robot simulado. 
+    \item Registrar los componentes principales para constituir un robot en \textit{A-Frame}, los cuales son \textit{followBody},\textit{spectatorComponent} e \textit{intersectionHandler}. El primero se encarga de simular una cámara en el robot, el segundo maneja eventos de intersección de los láseres y el último permite anclar distintos elementos al robot simulado. 
     
     \item Ofrece una interfaz en \textit{JavaScript} para manejar el robot en el entorno simulado de \textit{A-Frame} llamada \textit{Hardware Abstraction Layer} (\textit{HAL API}). \textit{Websim} se encarga de enviar instrucciones al robot de manera sencilla sin necesidad de comunicarse con el motor de \textit{A-Frame}. 
     
     \item No es necesario que el usuario instancie ningún tipo de variable de la clase que contiene al objeto robot porque el simulador lo ofrece de manera directa. De esta manera el usuario puede mandar directamente instrucciones al robot simulado con el objeto \textit{myRobot} y los métodos existentes de la clase \textit{RobotI}.
     
-    \item Permite manejar la ejecución de la simulación del robot. Es decir, permite lanzar o pausar la simulación del robot e incluso reiniciar su posición para no tener que recargar la página en caso de querer probar distintos códigos con la misma simulación. Además este control del entorno otorga control sobre el uso de la variable \textit{myRobot} evitando que el valor cambie y se pierda el objeto instanciado.
+    \item Permite manejar la ejecución de la simulación del robot. Es decir, permite lanzar o pausar la ejecución del robot e incluso reiniciar su posición para no tener que recargar la página en caso de querer probar distintos códigos con la misma simulación. Además este control del entorno evita que la variable \textit{myRobot} pierda el objeto instanciado porque el usuario cambie su valor.
 \end{itemize}
 
-Gracias a estas características, el simulador hace que los usuarios puedan programar de manera sencilla ya que solo tienen que acceder a la información que ofrecen los sensores del robot y mandar ordenes sobre los actuadores del mismo. Es decir, solo  se tienen que encargar de programar la lógica del robot para resolver los ejercicios propuestos los cuales se explicarán más adelante. 
+Gracias a estas características, el simulador hace que los usuarios puedan programar de manera sencilla, ya que solo tienen que acceder a la información que ofrecen los sensores del robot y mandar órdenes sobre los actuadores del mismo. Es decir, solo  se tienen que encargar de programar la lógica del robot para resolver los ejercicios propuestos que se explicarán en próximos capítulos. 
 
 \subsection{Clase Robot}
 \label{subsec:robot}
 Para poder tener una entidad en \textit{A-Frame} que pueda ser programado por el usuario existe un clase en \textit{JavaScript} llamada \textit{RobotI}.
-El constructor de esta clase es un método obligatorio y es al primero que se llama cuando se instancia un objeto con esta clase. 
-El constructor de este objeto tiene un parámetro de entrada que es un \textit{string} el cual va a ser el identificador del robot simulado. 
+El constructor de esta clase es un método obligatorio y es al primero que se llama cuando se instancia un objeto. 
+Tiene un parámetro de entrada que es un \textit{string} con el identificador de la etiqueta \textit{HTML} en la que se encuentra el robot simulado. 
 Además de inicializar el robot, la clase contiene una serie de variables para su configuración: 
 \begin{itemize}
     \item \textit{defaultDistanceDetection}: declara la distancia máxima en la que los sensores de ultrasonido detectan un objeto.
@@ -257,7 +257,7 @@ Además de inicializar el robot, la clase contiene una serie de variables para s
     \item \textit{initialRotation}: en la inicialización del robot, obtiene del \textit{HTML} la rotación del robot y la guarda en esta variable.  
     \item \textit{activeRays}: es una variable de tipo \textit{boolean} y permite saber si los rayos del sensor de ultrasonidos están activos no.
     \item \textit{distanceArray}. Es un objeto en \textit{JavaScript} con tres variables tipo array y almacena la distancia con los objetos detectada por los sensores de ultrasonido. Las variables están diferenciadas en derecha, centro e izquierda y permite conocer donde se encuentra la ubicación del objeto detectado. 
-    \item \textit{understandedColors}: variable que permite asociar un color como tipo \textit{string} a sus valores de filtro en el espacio \textit{RGB}. Esto permite hacer más simple la detección de los objetos para los usuarios ya que con el nombre del color se puede realizar el filtro sin necesidad de tener conocimientos en visión artificial. 
+    \item \textit{understandedColors}: variable que permite asociar un color como tipo \textit{string} a sus valores de filtro en el espacio \textit{RGB}. Esto permite hacer más simple la detección de los objetos para los usuarios ya que con el nombre del color se puede realizar el filtro sin necesidad de tener conocimientos sobre visión artificial.
     \item \textit{velocity}: variable que guarda la velocidad del robot en los distintos ejes (x,y,z). En el eje X se almacena la velocidad en el plano horizontal y en el eje Z la velocidad de giro. La velocidad del eje Y será útil en el desarrollo del proyecto ya que es la que otorga velocidad de elevación. 
 \end{itemize}
 
@@ -272,7 +272,7 @@ El robot consta de sensores simulados con \textit{A-Frame}. Los drivers permiten
     
     \item Cámara: obtiene una imagen con lo que capta el robot de la escena. Para su simulación se ha creado el atributo \textit{spectator} y permite mostrar la visión del robot en primera persona. 
     
-    \item Infrarrojos: dispositivo que está compuesto de un LED infrarrojo y un fototransistor siendo capaz de detectar si el objeto con el que choca la luz emitida por el LED es una superficie blanca (la luz rebota y llega hasta el fotoreceptor) o negra (la superficie absorve toda la luz y no llega al fotoreceptor). 
+    \item Infrarrojos: dispositivo que está compuesto de un LED infrarrojo y un fototransistor siendo capaz de detectar si el objeto con el que choca la luz emitida por el LED es una superficie blanca (la luz rebota y llega hasta el fotoreceptor) o negra (la superficie absorbe toda la luz y no llega al fotoreceptor). 
     Para simular este sensor se recorta la imagen de la cámara para quedarse con los píxeles de la parte inferior (con una dimensión de 5x150px). La función del \textit{HAL API} que hace referencia a este sensor es \textit{readIR(color)} siendo el parámetro pasado a la función un color en formato de \textit{string} que toma como variable \textit{undestandedColors} para obtener los valores del filtro correspondiente. De tal manera, después del filtrado se obtiene una imagen según la posición en la que se encuentre la línea a seguir y según donde esté el centro devuelve distintos valores: \textit{0} si la línea se encuentra entre los píxeles 57 y 93 de la imagen, \textit{1} entre los píxeles 0 y 57, \textit{2} si la línea está entre 93 y 150 y \textit{3} si no detecta la línea.
     
     \item Odómetro: obtiene la posición absoluta del robot durante la ejecución del código. Para la simulación de los sensores de odometría se ha hecho uso del sistema de coordenadas y rotación de \textit{A-Frame} y se ha hecho el cálculo a través de su \textit{API} en \textit{JavaScript}. 
