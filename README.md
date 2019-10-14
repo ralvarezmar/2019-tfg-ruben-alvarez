@@ -1,4 +1,5 @@
 # 2019-tfg-ruben-alvarez
+- [Week 28](#week28)
 - [Week 27](#week27)
 - [Week 26](#week26)
 - [Week 25](#week25)
@@ -25,6 +26,13 @@
 - [Week 3](#week3)
 - [Week 2](#week2)
 - [Week 1](#week1)
+
+### Week 28 <a name="week28"></a>
+- New circuit with bridge
+  ![alt text](/resources/circuitoInfinito.png)
+
+-Test with new simAPI:
+[![](http://img.youtube.com/vi/MSqzoyE6m9M/0.jpg)](https://youtu.be/MSqzoyE6m9M)
 
 
 ### Week 27 <a name="week27"></a>
