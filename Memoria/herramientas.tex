@@ -245,7 +245,7 @@ Gracias a estas características, el simulador hace que los usuarios puedan prog
 
 \subsection{Clase Robot}
 \label{subsec:robot}
-Para poder tener una entidad en \textit{A-Frame} que pueda ser programado por el usuario existe un clase en \textit{JavaScript} llamada \textit{RobotI}.
+Para poder tener una entidad en \textit{A-Frame} que pueda ser programada por el usuario existe un clase en \textit{JavaScript} llamada \textit{RobotI}.
 El constructor de esta clase es un método obligatorio y es al primero que se llama cuando se instancia un objeto. 
 Tiene un parámetro de entrada que es un \textit{string} con el identificador de la etiqueta \textit{HTML} en la que se encuentra el robot simulado. 
 Además de inicializar el robot, la clase contiene una serie de variables para su configuración: 
@@ -315,7 +315,7 @@ Para que el robot siga las ordenes mandadas existen los siguientes métodos:
 \end{itemize}
 Después de llamar a cada uno de estos métodos, se guarda la velocidad pasada por parámetro en la variable interna llamada \textit{velocity} y, para calcular la posición en el escenario simulado con \textit{A-Frame} es necesaria la siguiente función:
 
-\begin{lstlisting}[language=javascript, caption=Función para actualizar la posición en el escenario]
+\begin{lstlisting}[language=javascript, caption=Función para actualizar la posición del robot en el escenario]
 updatePosition(rotation, velocity, robotPos){
   let x = velocity.x/10 * Math.cos(rotation.y * Math.PI/180);
   let z = velocity.x/10 * Math.sin(-rotation.y * Math.PI/180);
@@ -324,7 +324,10 @@ updatePosition(rotation, velocity, robotPos){
   return robotPos;
 }
 \end{lstlisting}
-    
+
+En esta función se establece la nueva posición relativa para el objeto. En cada iteracción se calcula y se establece nueva posición y rotación del robot. Además, gracias a la función de \textit{javaScript} llamada \textit{setTimeout},
+se establece un temporizador para actualizar la posición del robot llamando a la función \textit{updatePosition} iterativamente cada cierto periodo de tiempo. Esto permite simplificar el código ya que hace que no es necesario mandar ordenes al robot constantemente. 
+
 En la tabla \ref{tab:tablaMotores} se explican todas las funciones del \textit{HAL API} que hacen referencia a los actuadores.
 
 \begin{table}[H]
