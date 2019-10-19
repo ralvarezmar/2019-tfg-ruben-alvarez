@@ -1,19 +1,56 @@
 
 \chapter{Introducción}
 \label{chap:intro} 
-El principal objetivo del proyecto es mejorar la plataforma \textit{Websim} para disponer de más robots y ejercicios para incrementar su valor educativo dando más posibilidades de aprendizaje. 
+En este capítulo se introducen los conceptos básicos en los que se apoya este proyecto. Se explican y se ponen en contexto las tecnologías web y el estado actual de la robótica y su expansión hasta llegar al punto en el que se encuentra haciendo especial mención a la robótica educativa en la que se centra el proyecto.
    
- \section{Tecnologías web}
+\section{Tecnologías web}
 \label{sec:web}
 Las tecnologías web han ido evolucionando a los largo de la historia, pero todas se basan en un modelo cliente-servidor. Para lograr la comunicación entre cliente y servidor, se necesita un navegador por parte del cliente y un servidor web capaz de atender las solicitudes. El protocolo que es utilizado para esta comunicación se llama \textit{HTTP}.
+
 \subsection{HTTP}
 \label{subsec:http}
+\textit{HTTP} (\textit{HiperText Transfer Protocol}) es el protocolo de nivel de aplicación utilizado para transferir recursos hipermedia entre ordenadores y sigue el esquema petición-respuesta entre cliente y servidor (Figura \ref{fig:http}). En esta comunicación el cliente abre una conexión \textit{TCP} con el servidor y envía un mensaje de petición \textit{HTTP} y, por parte del servidor, responde al cliente con un mensaje \textit{HTTP} y cierra la conexión \textit{TCP}. 
+El protocolo \textit{HTTP} no mantiene estado. Es decir, el servidor trata cada petición de manera aislada y no almacena información sobre peticiones realizadas por un mismo cliente. 
+Las peticiones están definidas por el protocolo y tienen métodos concretos: 
+\begin{itemize}
+    \item GET: Solicita un recurso al servidor especificando su \textit{URL}.
+    \item HEAD: Método similar a GET con la diferencia de que únicamente solicita las cabeceras y no descarga el recurso completo.
+    \item POST: Envía datos al servidor, normalmente un recurso específico que provoca un cambio de estado. 
+    \item PUT: Actualiza información sobre un recurso del servidor. 
+    \item DELETE: Elimina en el servidor un recurso.
+\end{itemize}
 
-\subsection{Tecnologías en servidor}
-\label{subsec:tecserver}
+Aunque estos son los principales métodos, el protocolo tiene flexibilidad para ir añadiendo nuevos e incorporar funcionalidad. El número de métodos se han ido aumentando con las nuevas versiones. 
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.4]{img/http.jpeg}
+\caption{Comunicación cliente-servidor en HTTP} \label{fig:http}
+\end{figure}
+
+Aunque la versión actual del protocolo data del 2 de abril de 2019 (\textit{HTTP/2.4.38}), es en 1991 cuando se lanza la primera versión y, en el mismo año, se publica un estándar para la publicación de páginas web mediante un lenguaje de marcas de hipertexto (\textit{HTML}), que se explicará en el siguiente apartado. 
 
 \subsection{Tecnologías en cliente}
 \label{subsec:tecclient}
+Es la parte encargada de dar forma a la interfaz de usuario y de establecer la comunicación con el servidor. Una pieza importante del cliente es el navegador, ya que es el encargado de leer e interpretar la información recibida. Las más utilizadas son: 
+\begin{itemize}
+    \item \textit{HTML}: es el estándar más utilizado para el desarrollo de páginas web. Actualmente los navegadores usan la versión \textit{HTML5}. Este lenguaje indica la estructura de una página web, para editar el estilo y presentación visual hay que hacer uso de otros elementos como \textit{CSS}.
+    \item \textit{CSS}: \textit{Cascading Style Sheets} es un lenguaje de diseño gráfico para definir y crear la presentación de un documento escrito en un lenguaje de marcado. De esta forma, se permite separar información y datos (en los documentos \textit{HTML}) y todo lo relativo al diseño y presentación (en documentos \textit{CSS}). Actualmente los navegadores usan la versión \textit{CSS3}.
+    \item \textit{JavaScript}: para programar la lógica, dinamismo e interacción con el usuario es el lenguaje más común y extendido en el desarrollo de páginas. Debido a su importancia en el proyecto, se explicará más a fondo en próximos capítulos. 
+\end{itemize}
+%https://gsyc.urjc.es/jmplaza/students/tfg-web_servidor-ignacio_arranz-2017.pdf
+
+%https://gsyc.urjc.es/jmplaza/students/tfg-webtools_jderobot-roberto_perez-2019.pdf
+
+\subsection{Tecnologías en servidor}
+\label{subsec:tecserver}
+Son las encargadas de dar forma al servidor web de manera que permite el acceso a herramientas como base de datos, conexiones de red o recursos compartidos. O, dicho de otra forma, se ocupan de realizar las tareas necesarias para hacer posible crear una aplicación que visualizará el cliente. Las más utilizadas son: 
+\begin{itemize}
+    \item \textit{Node.js}: es una forma de ejecutar \textit{JavaScript} en el servidor. O, dicho de otra forma, proporciona un entorno de ejecución del lado del servidor que compila y ejecuta a gran velocidad. Esto es debido a que compila en código máquina nativo en lugar de interpretarlo o ejecutarlo.   
+    \item \textit{Django}:
+    
+    \item \textit{Spring}:
+\end{itemize}
+
 
 
 \section{Robótica}
@@ -43,12 +80,11 @@ Es a finales de la década de los 50 cuando la robótica sufre el mayor impulso 
 
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.2]{img/unimate.jpg}
+\includegraphics[width=0.4\textwidth]{img/unimate.jpg}
 \caption{Unimate, primer robot industrial} \label{fig:unimate}
 \end{figure}
 
 En los años 70 se crea el primer robot autónomo, \textit{Shakey}  (Figura \ref{fig:shakey}). Fue el primero que incorporaba inteligencia artificial y disponía de control de motores y sensores. \textit{Shakey} era capaz de recoger toda la información de su entorno, crear un mapa y diseñar el camino más corto desde su ubicación al destino. 
-
 
 \begin{figure}[H]
 \centering
@@ -60,7 +96,7 @@ En 2000 la compañía Honda lanza el robot \textit{Asimo} (Figura \ref{fig:asimo
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.5\textwidth]{img/asimo-honda.jpg}
+\includegraphics[width=0.4\textwidth]{img/asimo-honda.jpg}
 \caption{Asimo, primer robot humanoide} \label{fig:asimo}
 \end{figure}
 
@@ -68,7 +104,7 @@ Es en 2011 cuando la robótica alcanza uno de sus mayores hitos gracias al robot
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.8\textwidth]{img/curiosity.jpg}
+\includegraphics[width=0.5\textwidth]{img/curiosity.jpg}
 \caption{Autorretrato del Curiosity en Marte} \label{fig:curiosity}
 \end{figure}
 
@@ -77,7 +113,15 @@ Hoy en día no solo se ven robots en entornos industriales, si no que aparecen c
 
 \subsection{Tipos de robots}
 \label{subsec:tiposRobots}
-
+Los ámbitos en los que se encuentra la robótica son diversos. Los tipos en los que podemos dividir los tipos de robots son: 
+\begin{itemize}
+    \item Industriales
+    \item Militares
+    \item Industrial
+    \item Medicina
+    \item Robots de servicio
+    \item Entretenimiento
+\end{itemize}
 
 \section{Robótica educativa}
 \label{sec:educativa}
