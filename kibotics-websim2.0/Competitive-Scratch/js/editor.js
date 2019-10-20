@@ -45,12 +45,13 @@ var editorRobot1 = 'a-car1';
 var editorRobot2 = 'a-car2';
 
 var codeFirst = {
-  js:null,
+  js:"",
   xml:null,
   edit:true
 };
+
 var codeSecond = {
-  js:null,
+  js:"",
   xml: null,
   edit: false
 };
@@ -76,39 +77,36 @@ $(document).ready(async ()=>{
      * - Resume thread for a robot if exists and not running
      */
     console.log("EHECUTANDO...");
+
+    // if (codeFirst.edit) {
+    //     codefirst.js = editor.getCode();
+    //     editor.ui = editor.injectCode(editor.ui,codeSecond);
+    //     codeSecond.js = editor.getCode();
+    //     editor.ui = editor.injectCode(editor.ui,codeFirst);
+    // } else {
+    //     codeSecond.js = editor.getCode();
+    //     editor.ui = editor.injectCode(editor.ui,codeFirst);
+    //     codeFirst.js = editor.getCode();
+    //     editor.ui = editor.injectCode(editor.ui,codeSecond);
+    // }
     console.log(codeFirst);
     console.log(codeSecond);
-
-    if (codeFirst.edit) {
-        codefirst.js = editor.getCode();
-        editor.ui = editor.injectCode(editor.ui,codeSecond);
-        codeSecond.js = editor.getCode();
-        editor.ui = editor.injectCode(editor.ui,codeFirst);
-    } else {
-        codeSecond.js = editor.getCode();
-        editor.ui = editor.injectCode(editor.ui,codeFirst);
-        codeFirst.js = editor.getCode();
-        editor.ui = editor.injectCode(editor.ui,codeSecond);
-    }
-    console.log(c1);
-    console.log(c2);
 
     if (brains.threadExists(editorRobot1)){
       if (brains.isThreadRunning(editorRobot1)){
         brains.stopBrain(editorRobot1);
         brains.stopBrain(editorRobot2);
       }else{
-        brains.resumeBrain(editorRobot1,c1);
-        brains.resumeBrain(editorRobot2,c2);
+        brains.resumeBrain(editorRobot1,codeFirst.js);
+        brains.resumeBrain(editorRobot2,codeSecond.js);
       }
     }else{
-      brains.runScratchBrain(editorRobot1,c1);
-      brains.runScratchBrain(editorRobot2,c2);
+      brains.runScratchBrain(editorRobot1,codeFirst.js);
+      brains.runScratchBrain(editorRobot2,codeSecond.js);
     }
   });
 
   $("#saveCode").click(()=>{
-    // HAY QUE MODIFICAR EL SAVE PARA QUE PUEDA GUARDAR DOS CÓDIGOS!!!!
     editor.saveCode(editor.ui, socket); // Declare function that extracts code from editor and sends to server via connection.send
   });
 
@@ -121,35 +119,41 @@ $(document).ready(async ()=>{
   });
 
   $('#firstRobot').click(()=>{
-    console.log(codeFirst);
-    console.log(codeSecond);
     if(codeFirst.edit){
+      codeFirst.js = editor.getCode();
       codeFirst.xml = editor.storeCode(editor.ui);
     }
     if(codeSecond.edit){
+      codeSecond.js = editor.getCode();
       codeSecond.xml = editor.storeCode(editor.ui);
       codeSecond.edit =false;
       if(codeFirst.xml!=null){
+        //FALLO AL INYECTAR CÓDIGO
         editor = editor.injectCode(editor.ui, codeFirst.xml);
       }
     }
     codeSecond.edit = true;
+    console.log(codeFirst);
+    console.log(codeSecond);
   });
 
   $('#secondRobot').click(()=>{
-    console.log(codeFirst);
-    console.log(codeSecond);
     if(codeSecond.edit){
+      codeFirst.js = editor.getCode();
       codeSecond.xml = editor.storeCode(editor.ui);
     }
     if(codeFirst.edit){
+      codeFirst.js = editor.getCode();
       codeFirst.xml = editor.storeCode(editor.ui);
       codeFirst.edit=false;
       if(codeSecond.xml!=null){
+        //FALLO AL INYECTAR CÓDIGO
         editor.ui = editor.injectCode(editor.ui,codeSecond.xml);
       }
     }
     codeSecond.edit = true;
+    console.log(codeFirst);
+    console.log(codeSecond);
   });
 
   $('#simButton').click(()=>{

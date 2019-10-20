@@ -2,15 +2,18 @@
 
 \usepackage[a4paper, left=2.5cm, right=2.5cm, top=3cm, bottom=3cm]{geometry}
 \usepackage{times}
+\usepackage{caption}
+\usepackage{subcaption}
 \usepackage[utf8]{inputenc}
 \usepackage{fancyhdr}
+\setlength{\headheight}{16pt}
 \usepackage{listings}
-\usepackage[spanish]{babel} % Comenta esta línea si tu memoria es en inglés
+\usepackage[spanish]{babel} % 
 \usepackage{url}
 %\usepackage[dvipdfm]{graphicx}
 \usepackage{graphicx}
-\usepackage{float}  %% H para posicionar figuras
-\usepackage[nottoc, notlot, notlof, notindex]{tocbibind} %% Opciones de índice
+\usepackage{float}  
+\usepackage[nottoc, notlot, notlof, notindex]{tocbibind} 
 \usepackage{latexsym}  %% Logo LaTeX
 \usepackage{color}
 \usepackage{xcolor}
@@ -23,7 +26,7 @@
 \colorlet{numb}{magenta!60!black}
 
 \lstdefinelanguage{json}{
-    basicstyle=\normalfont\ttfamily,
+    basicstyle=\footnotesize\ttfamily,
     numbers=left,
     numberstyle=\scriptsize,
     stepnumber=1,
@@ -75,7 +78,7 @@
    numbers=left,
    numberstyle=\footnotesize,
    numbersep=9pt,
-   tabsize=2,
+   tabsize=1,
    breaklines=true,
    showtabs=false,
    captionpos=b
@@ -137,8 +140,6 @@ Tutor : Dr. José María Cañas Plaza \\
 % RESUMEN %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%\input{resumen}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ÍNDICES %
 
@@ -146,12 +147,12 @@ Tutor : Dr. José María Cañas Plaza \\
 \tableofcontents
 %%%% Índice de figuras
 \cleardoublepage
-%\addcontentsline{toc}{chapter}{Lista de figuras} % para que aparezca en el indice de contenidos
-%\listoffigures % indice de figuras
+\addcontentsline{toc}{chapter}{Lista de figuras} % para que aparezca en el indice de contenidos
+\listoffigures % indice de figuras
 %%%% Índice de tablas
-%\cleardoublepage
-%\addcontentsline{toc}{chapter}{Lista de tablas} % para que aparezca en el indice de contenidos
-%\listoftables % indice de tablas
+\cleardoublepage
+\addcontentsline{toc}{chapter}{Lista de tablas} % para que aparezca en el indice de contenidos
+\listoftables % indice de tablas
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -165,6 +166,10 @@ Tutor : Dr. José María Cañas Plaza \\
 
 \input{intro}
 
+
+% OBJETIVOS %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{objetivos}
 % HERRAMIENTAS %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \input{herramientas}
