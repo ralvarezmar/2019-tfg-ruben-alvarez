@@ -146,6 +146,7 @@ export class RobotI
       if (this.simulationEnabled){
         let rotation = this.getRotation();
 
+
         let newpos = this.updatePosition(rotation, this.velocity, this.robot.body.position);
 
         this.robot.body.position.set(newpos.x, newpos.y, newpos.z);
@@ -158,7 +159,6 @@ export class RobotI
       let x = velocity.x/10 * Math.cos(rotation.y * Math.PI/180);
       let z = velocity.x/10 * Math.sin(-rotation.y * Math.PI/180);
       let y = (velocity.y/10);
-
       robotPos.x += x;
       robotPos.z += z;
       robotPos.y += y;

@@ -48,7 +48,7 @@
                     "tag": "a-camera",
                     "attr": {
                         "id": "sceneCam",
-                        "position": { "x":0, "y":0, "z":0},
+                        "position": { "x":0, "y":5, "z":20},
                         "rotation": { "x":0, "y":0, "z":0},
                         "active": true,
                         "wasd-controls-enabled": true,
@@ -56,6 +56,24 @@
                     }
                 }
             ]
+        },
+        {
+            "tag": "a-gltf-model",
+            "attr": {
+                "position": { "x":1.06, "y":-0.32, "z":0.42},
+                "rotation": { "x":0, "y":6.58, "z":0},
+                "src": "../assets/models/bridge.gltf",
+                "scale": "12.46 13.88 14.98",
+                "dinamic-body":""
+            }
+        },
+        {
+            "tag": "a-box",
+            "attr": {
+                "position": { "x":15, "y":1, "z":-3},
+                "color": "#ff0000",
+                "dynamic-body":{"mass": 1}
+            }
         },
         {
             "tag": "a-robot",
@@ -92,17 +110,6 @@
                     ]
                 }
             ]
-        },
-        {
-            "tag": "a-gltf-model",
-            "attr": {
-                "position": { "x":1.06, "y":-0.32, "z":0.42},
-                "rotation": { "x":0, "y":6.58, "z":0},
-                "src": "../assets/models/bridge.gltf",
-                "scale": "12.46 13.88 14.98",
-                "class": "collidable",
-                "dinamic-body":{"mass": 1}
-            }
         },
         {
             "tag": "a-robot",
