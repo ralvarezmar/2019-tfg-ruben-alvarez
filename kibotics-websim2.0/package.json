@@ -23,6 +23,6 @@
     "aframe": "^0.9.2",
     "aframe-extras": "^6.0.0",
     "aframe-physics-system": "^3.3.0",
-    "jquery": "3.3.1"
+    "jquery": "3.4.1"
   }
 }
