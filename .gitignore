@@ -3,6 +3,9 @@
 *.log
 *.gz
 *.toc
+*.lot
+*.dvi
 *.lof
+#WebSim
 node_modules
 build
