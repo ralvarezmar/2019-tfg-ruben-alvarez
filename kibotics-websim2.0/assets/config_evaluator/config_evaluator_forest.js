@@ -1,7 +1,42 @@
+var evaluator = {};
 
-export main_function(arrayRobots){
+evaluator.main= (arrayRobots)=>{
+  createInterface();
   setInterval(progressBar,200,arrayRobots);
-  evaluator.setTime(arrayRobots[0]);
+  setTime(arrayRobots[0]);
+}
+
+function createInterface(){
+  var node = document.createElement("div");
+  node.setAttribute("class","evaluator");
+  var img1 = document.createElement("img");
+  img1.setAttribute("class","carMarker");
+  img1.setAttribute("src","../assets/resources/car1.svg")
+  node.appendChild(img1);
+  var node2 = document.createElement("div");
+  node2.setAttribute("id","car1Progress");
+  var node3 = document.createElement("div");
+  node3.setAttribute("id","a-car1bar");
+  node3.innerHTML = "0%";
+  node2.appendChild(node3);
+  node.appendChild(node2);
+  var img2 = document.createElement("img");
+  img2.setAttribute("class","carMarker");
+  img2.setAttribute("src","../assets/resources/car2.svg")
+  node.appendChild(img2);
+  var node4 = document.createElement("div");
+  node4.setAttribute("id","car2Progress");
+  var node5 = document.createElement("div");
+  node5.setAttribute("id","a-car2bar");
+  node5.innerHTML = "0%";
+  node4.appendChild(node5);
+  node.appendChild(node4);
+  var time = document.createElement("div");
+  time.setAttribute("id","time");
+  time.innerHTML="Tiempo: 00:00";
+  node.appendChild(time);
+  var myiframe= document.getElementById("myIFrame");
+  myiframe.insertBefore(node,myiframe.childNodes[0]);
 }
 
 function progressBar(arrayRobots){
@@ -56,3 +91,5 @@ function timeFormatter(time){
   }
   return formatTime;
 }
+
+module.exports = evaluator;

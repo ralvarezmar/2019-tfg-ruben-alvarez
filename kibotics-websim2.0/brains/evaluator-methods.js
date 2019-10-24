@@ -1,6 +1,6 @@
-import {config} from './config_evaluator.js'
-
 export function runEvaluator(arrayRobots,config_file){
-  import * from config_file;
-  main_function(arrayRobots);
+  if(config_file){
+    var evaluator = require("../assets/config_evaluator/"+config_file);
+    evaluator.main(arrayRobots);
+  }
 }
