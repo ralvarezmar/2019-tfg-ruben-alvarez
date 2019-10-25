@@ -7,6 +7,9 @@ evaluator.main= (arrayRobots)=>{
 }
 
 function createInterface(){
+  /**
+  *This function do a progress bar and text how much percent walked each robot
+  */
   var node = document.createElement("div");
   node.setAttribute("class","evaluator");
   var img1 = document.createElement("img");
