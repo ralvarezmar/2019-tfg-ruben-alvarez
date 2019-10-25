@@ -1,36 +1,35 @@
 \chapter{Herramientas}
 \label{chap:herramientas}
-En este capítulo se van a detallar las herramientas utilizadas en el desarrollo de este proyecto. Algunas se han elegido por facilidad de uso y otras por necesidad del entorno desarrollado.
+En este capítulo se van a detallar las herramientas y tecnologías utilizadas en el desarrollo de este proyecto principalmente en el ámbito web. Algunas se han elegido por facilidad de uso y otras por necesidad del entorno desarrollado.
 
 % JAVASCRIPT %
 \section{JavaScript}
 \label{sec:js}
 \textit{JavaScript} es un lenguaje interpretado de alto nivel que se encuentra bajo el estándar \textit{ECMAScript}\footnote{Especificación de lenguaje de programación el cual define tipos dinámicos y soporta características de programación orientada a objetos.} y está basado en otros lenguajes de programación como Java o C. 
 
-En su principio fue concebido como lenguaje para el lado cliente, implementado en un navegador web, permitiendo mejorar la interfaz de usuario y realizar páginas web dinámicas.
+En su principio fue concebido como lenguaje de aplicaciones web para el lado cliente, interpretado en un navegador web, permitiendo mejorar la interfaz de usuario y realizar páginas web dinámicas.
 
-En la actualidad, JavaScript se ha ido extendiendo hacia el lado servidor y es por ello que es el lenguaje más utilizado para desarrollo web y todos los navegadores interpretan el código integrado en las páginas web.
-\subsection{Características}
-Las siguientes características tienen en común que todas se ajustan al estándar de ECMAScript: 
+En la actualidad, \textit{JavaScript} se ha ido extendiendo hacia el lado servidor con \textit{Node.js} y es por ello que es el lenguaje más utilizado para desarrollo web y todos los navegadores interpretan el código integrado en las páginas web.
+
+Para este proyecto se ha usado \textit{ECMAScript 6} o \textit{ECMAScript 2015} y, como el proyecto se orienta a la creación de una aplicación con todo el peso en el lado del cliente, \textit{JavaScript} es el lenguaje que mejor se adapta a los requerimientos del desarrollo. De esta manera, se ha programado toda la inteligencia de la aplicación web, que corre en el navegador. 
+
+Las siguientes características son las principales de ECMAScript: 
 \begin{itemize}
     \item Es un lenguaje estructurado, tiene gran similitud con \textit{C} y comparte gran parte de su estructura (bucles, condicionales, sentencias...) a excepción del alcance de sus variables. En \textit{C} su ámbito es el bloque en el que fue definida y, en su origen, \textit{JavaScript} tenía un alcance global en las variables definidas. Es en ECMAScript 2015 cuando se añade la palabra clave \textit{let}, que incorpora compatibilidad con \textit{block scoping} (alcance de la variable en el bloque en la que es definida). 
     \item Tipado débil, por el cual el tipo de datos está asociado al valor, no a la variable. Esto significa que una variable puede ser \textit{number} o \textit{string} en distintos momentos de ejecución. 
     \item Formado en su totalidad por objetos, en los cuales los nombres de sus propiedades son claves de tipo cadena siendo \textit{objeto.a = 1} y \textit{objeto['a'] = 1} equivalentes. 
     \item Lenguaje interpretado, es por esto que no requiere un compilador ni crear un fichero binario del código; cada navegador tiene su intérprete que se encarga de ejecutarlo.
     \item Evaluación en tiempo de ejecución gracias a la función \textit{eval}, la cual evalúa un código en \textit{JavaScript} representado como una cadena de caracteres. 
-
-    
 \end{itemize}
 % A-FRAME %
 \section{A-Frame}
 \label{sec:aframe}
-A-Frame es un framework de código abierto destinado a crear experiencias de realidad virtual a partir de \textit{HTML} de forma que sea sencillo de leer y comprender. De esta manera es accesible para crear una gran comunidad. 
-
+\textit{A-Frame} es un entorno de código abierto destinado a crear experiencias de realidad virtual a partir de \textit{HTML} de forma que sea sencillo de leer y comprender. De esta manera es accesible para crear una gran comunidad. \textit{A-Frame} está en constante desarrollo, pero la versión utilizada en este proyecto es la última versión estable (\textit{v0.9.2}) y se ha utilizado este framework por la facilidad de crear escenarios tridimensionales a través de un documento \textit{HTML} y de añadir modelos sofisticados en distintos formatos.
 
 Además tiene compatibilidad con \textit{Vive}, \textit{Rift}, \textit{Windows Mixed Reality}, \textit{Daydream}, \textit{GearVR} y \textit{CardBoard} así como soporte para todos los controladores respectivos. También ofrece soporte para ordenadores de escritorio y para la mayoría de teléfonos inteligentes.
 
 \subsection{HTML y primitivas}
-\textit{A-Frame }se basa en \textit{HTML} y el \textit{DOM} usando un \textit{polyfill}\footnote{Fragmento de código en \textit{JavaScript} utilizado para proporcionar una funcionalidad moderna en navegadores antiguos.} para elementos personalizados. \textit{HTML} es un componente básico para Web y como tal, tiene una gran accesibilidad como lenguaje. Para crear una escena de realidad virtual con \textit{A-Frame} no se requiere ninguna instalación y simplemente con la creación del \textit{HTML} se puede abrir en el navegador. La mayoría de herramientas existentes(como \textit{React}, \textit{Vue.js}, \textit{d3.js} y \textit{jQuery}) funcionan en este framework. 
+\textit{A-Frame }se basa en \textit{HTML} y el \textit{DOM} usando un \textit{polyfill}\footnote{Fragmento de código en \textit{JavaScript} utilizado para proporcionar una funcionalidad moderna en navegadores antiguos.} para elementos personalizados. \textit{HTML} es un componente básico para Web y como tal, tiene una gran accesibilidad como lenguaje. Para crear una escena de realidad virtual con \textit{A-Frame} no se requiere ninguna instalación y simplemente con la creación del \textit{HTML} se puede abrir en el navegador. La mayoría de herramientas existentes (como \textit{React}, \textit{Vue.js}, \textit{d3.js} y \textit{jQuery}) funcionan en este entorno. 
 
 \textit{HTML} y \textit{DOM} son solo la capa más externa del framework, debajo se encuentra el componente \textit{three.js} en el que está basado \textit{A-Frame} gracias al cual un componente puede ser utilizado en distintas entidades. De esta manera hace posible seguir el principio de programación \textit{Don't Repeat Yourself} ya que, una vez registrada una primitiva, se puede hacer referencia al elemento todas las veces que sea necesario.  
 
@@ -66,7 +65,7 @@ A-Frame, además de disponer primitivas como las mostradas, hace posible la crea
 
 \subsection{Entidad, Componente y Sistema}
 
-    Como ya se ha comentado, A-Frame es un framework \textit{three.js} con una arquitectura de entidad-componente-sistema (\textit{ECS}). Es un patrón común en 3D y desarrollo de juegos que siguen la composición sobre el principio de herencia y jerarquía. Algunos beneficios que \textit{ECS} aporta son mayor flexibilidad al definir objetos, gran escalabilidad o eliminación de problemas de largas cadenas de herencia. Existe un \textit{API} que representa cada pieza de \textit{ECS}: 
+    Como ya se ha comentado, A-Frame es un entorno \textit{three.js} con una arquitectura de entidad-componente-sistema (\textit{ECS}). Es un patrón común en 3D y desarrollo de juegos que siguen la composición sobre el principio de herencia y jerarquía. Algunos beneficios que \textit{ECS} aporta son mayor flexibilidad al definir objetos, gran escalabilidad o eliminación de problemas de largas cadenas de herencia. Existe un \textit{API} que representa cada pieza de \textit{ECS}: 
     \begin{itemize}
     \item Una entidad se representa con la etiqueta \textit{a-entity}. 
         \begin{lstlisting}[language=HTML]
@@ -94,7 +93,7 @@ A-Frame, además de disponer primitivas como las mostradas, hace posible la crea
 % BLOCKLY %
 \section{Blockly}
 \label{sec:blockly}
-\textit{Blockly} es una librería que añade un editor de código visual a aplicaciones web y móviles. Utiliza bloques gráficos para representar conceptos complejos de código de manera más sencilla. De esta manera permite a los usuarios aplicar  principios de programación sin tener que preocuparse por la sintaxis y ayuda a iniciarse y a aprender a programar a estudiantes de temprana edad. Esta librería está diseñada por las personas que están detrás de \textit{Scratch}\footnote{\url{https://scratch.mit.edu/}} del MIT y construido sobre su base de código. 
+\textit{Blockly} es una librería que añade un editor de código visual a aplicaciones web y móviles. Utiliza bloques gráficos para representar conceptos complejos de código de manera más sencilla. De esta manera permite a los usuarios aplicar  principios de programación sin tener que preocuparse por la sintaxis y ayuda a iniciarse y a aprender a programar a estudiantes de temprana edad. Esta librería es un proyecto de \textit{Google} y está diseñada por las personas que están detrás de \textit{Scratch} del \textit{MIT} y construido sobre su base de código. Actualmente se encuentra en su versión \textit{1.20190215} y se ha utilizado para crear bloques que den funcionalidad a los robots empleados en la plataforma. 
 
 \subsection{Traductor de código}
 \textit{Blockly} es para desarrolladores y las \textit{aplicaciones Blockly} son pensadas para estudiantes. Desde la perspectiva de usuario, \textit{Blockly} es una forma visual e intuitiva de crear código y, desde la de desarrollador, es una interfaz de usuario preparada para crear un lenguaje visual que emite código y se puede exportar a otros lenguajes de programación como \textit{JavaScript}, \textit{Python}, \textit{PHP}, \textit{Lua} o \textit{Dart}. 
@@ -133,7 +132,7 @@ Como se ha explicado, \textit{Blockly} dispone de una gran cantidad de bloques p
     }
     \end{lstlisting}
 
-    \begin{lstlisting}[language=javascript, caption=Código en javascript para configurar un bloque personalizado]
+    \begin{lstlisting}[language=javascript, caption=Código en \textit{JavaScript} para configurar un bloque personalizado]
     Blockly.Blocks['block_test'] = {
       init: function() {
         this.appendValueInput("NAME")
@@ -161,8 +160,8 @@ Como se ha explicado, \textit{Blockly} dispone de una gran cantidad de bloques p
     
     Aunque los parámetros del \textit{JSON} son auto-descriptivos, es complicado generar un bloque desde cero. Es por ello que \textit{Google} facilita  una herramienta de creación de bloques, la cual se muestra en la figura \ref{fig:googleTool}. 
     En ella se puede personalizar todos los aspectos del bloque: texto, color, variables de entrada, formas de conexión con otros bloques, etc.
-    Además, permite exportar la configuración del bloque en formato \textit{JSON} o \textit{JavaScript} y muestra una función con la configuración básica para obtener el código en JavaScript(y permite seleccionar el lenguaje deseado entre los admitidos por \textit{Blockly}).
-    %% poner nombre a figura
+    Además, da la opción de exportar la configuración del bloque en formato \textit{JSON} o \textit{JavaScript} y muestra una función con la configuración básica para obtener el código en JavaScript (y permite seleccionar el lenguaje deseado entre los admitidos por \textit{Blockly}).
+    
     \begin{figure}[H]
     \centering
     \includegraphics[width=1.1\textwidth]{img/GoogleTool.png}
@@ -174,30 +173,42 @@ Como se ha explicado, \textit{Blockly} dispone de una gran cantidad de bloques p
 % GESTORES DE PAQUETES %
 \section{Gestores de paquetes}
 \label{sec:gest}
-Un gestor de paquetes es una herramienta para automatizar el proceso de instalación, actualización, configuración y eliminación de software. En este proyecto se han utilizado \textit{NPM} y \textit{Webpack} 
+Un gestor de paquetes es una herramienta para automatizar el proceso de instalación, actualización, configuración y eliminación de software. En este proyecto se han utilizado \textit{NPM} y \textit{Webpack} en sus versiones \textit{3.5.2} y \textit{4.41.2} respectivamente. Se han empleado para descargar los paquetes y dependencias para la correcta ejecución de la aplicación y para generar los \textit{bundles} correspondientes. 
+
 \subsection{NPM}
-\textit{Node Package Manager} (\textit{NPM}) es el sistema de gestión de dependencias por defecto para \textit{Node.js}, que es un entorno de ejecución para \textit{JavaScript} y permite, con la configuración de un fichero, descargar dependencias y paquetes necesarios para el correcto funcionamiento de la aplicación. Todo ello ha de estar definido en un fichero llamado \textit{package.json} que debe ser escrito en \textit{JSON}. Para usar \textit{NPM} como instalador de paquetes únicamente hay que ejecutar \textit{npm install} en el directorio en el que se encuentre el fichero \textit{package.json}. Además, gracias a este gestor, podemos configurar pequeños \textit{scripts} para ejecutar algún proceso como lanzar una aplicación después de la instalación o empaquetar la aplicación en \textit{bundles} combinándolo con \textit{Webpack}.
+\textit{Node Package Manager}\footnote{\url{https://www.npmjs.com/}} (\textit{NPM}) es el sistema de gestión de dependencias por defecto para \textit{Node.js}, que es un entorno de ejecución para \textit{JavaScript} y permite, con la configuración de un fichero, descargar dependencias y paquetes necesarios para el correcto funcionamiento de la aplicación. Todo ello ha de estar definido en un fichero llamado \textit{package.json} que debe ser escrito en \textit{JSON}. Para usar \textit{NPM} como instalador de paquetes únicamente hay que ejecutar "\textit{npm install}" en el directorio en el que se encuentre el fichero \textit{package.json}. Además, gracias a este gestor, podemos configurar pequeños \textit{scripts} para ejecutar algún proceso como lanzar una aplicación después de la instalación o empaquetar la aplicación en \textit{bundles} combinándolo con \textit{Webpack}.
+
 
 \subsection{Webpack}
-%https://webpack.js.org/
-\textit{Webpack} es un sistema de \textit{bundling} usado para empaquetar una aplicación web en su fase de producción. Se puede considerar una evolución de \textit{Grunt}\footnote{https://gruntjs.com/} y \textit{Gulp}\footnote{https://gulpjs.com/} porque permite automatizar procesos principales tales como transpilar y preprocesar código. 
+\textit{Webpack}\footnote{\url{https://webpack.js.org/}} es un sistema de \textit{bundling} usado para empaquetar una aplicación web en su fase de producción. Se puede considerar una evolución de \textit{Grunt}\footnote{\url{https://gruntjs.com/}} y \textit{Gulp}\footnote{\url{https://gulpjs.com/}} porque permite automatizar procesos principales tales como transpilar y preprocesar código. 
+
 
 % BLENDER %
 \section{Blender}
 \label{sec:blender}
+\textit{Blender} es un programa libre dedicado al diseño y animación 3D. Mediante una interfaz gráfica permite diseñar objetos, personajes y escenas en tres dimensiones con muy diversas técnicas. Cada uno de los elementos creados pueden ser animados mediante \textit{keyframing} o animación por fotogramas clave. En su origen \textit{Blender} fue distribuido como una herramienta privada explotada por un estudio de animación, pero actualmente se encuentra bajo licencia \textit{GPL}\footnote{\url{https://www.gnu.org/licenses/gpl-3.0.en.html}}. 
 
-\textit{Blender} es un programa libre dedicado al diseño y animación 3D. Mediante una interfaz gráfica permite diseñar objetos, personajes y escenas en tres dimensiones con muy diversas técnicas. Cada uno de los elementos creados pueden ser animados mediante \textit{keyframing} o animación por fotogramas clave. En su origen \textit{Blender} fue distribuido como una herramienta privada explotada por un estudio de animación, pero actualmente se encuentra bajo licencia \textit{GPL}\footnote{https://www.gnu.org/licenses/gpl-3.0.en.html}. 
+La versión utilizada en este proyecto es la \textit{2.79} y se ha empleado para la creación de modelos y escenarios para ser incluidos en el simulador \textit{WebSim}. En la imagen \ref{fig:blender} se puede ver la interfaz gráfica de \textit{Blender}. \\
+
+    
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{img/blender.jpg}
+    \caption{Interfaz gráfica de \textit{Blender}} 
+    \label{fig:blender}
+\end{figure}
 
 Entre las muchas características que ofrece \textit{Blender}, las más útiles para el desarrollo del proyecto son:
 \begin{itemize}
-    \item Modelados: es el proceso mediante el cual se crean objetos en un espacio 3D de manera digital. Están compuestos de líneas, puntos, cuadrados, triángulos, etc. 
+    \item \textbf{Modelados}: es el proceso mediante el cual se crean objetos en un espacio 3D de manera digital. Están compuestos de líneas, puntos, cuadrados, triángulos, etc. 
     
-    \item Iluminación: existen varios tipos de luz que se pueden adaptar a la escena. Es posible aplicar a cada uno de los objetos para especificar la luz recibida por cada uno de ellos además de variar aspectos como la intensidad, el color o la posición en el escenario.
+    \item \textbf{Iluminación}: existen varios tipos de luz que se pueden adaptar a la escena. Es posible aplicar a cada uno de los objetos para especificar la luz recibida por cada uno de ellos además de variar aspectos como la intensidad, el color o la posición en el escenario.
     
-    \item Tracking: permite especificar el comportamiento y características de un determinado objeto en el escenario tridimensional. 
-    \item Animaciones: cada objeto se puede animar de manera independiente. Se realiza mediante un \textit{timelapse} en la cual cada posición del \textit{timeline} es un frame en el cual se especifica cualquier tipo de característica (rotación, movimiento, cambio de color, etc).  
+    \item \textbf{Tracking}: permite especificar el comportamiento y características de un determinado objeto en el escenario tridimensional. 
     
-    \item Texturizado: son un medio para agregar o eliminar detalles a la superficie de un determinado objeto. Proyectando imágenes sobre la superficie del mallado se pueden aplicar patrones para personalizar el aspecto de la textura. 
+    \item \textbf{Animaciones}: cada objeto se puede animar de manera independiente. Se realiza mediante una secuencia de fotogramas en la cual cada instante de tiempo es un fotograma en el cual se especifica cualquier tipo de característica (rotación, movimiento, cambio de color, etc).  
+    
+    \item \textbf{Texturizado}: son un medio para agregar o eliminar detalles a la superficie de un determinado objeto. Proyectando imágenes sobre la superficie del mallado se pueden aplicar patrones para personalizar el aspecto de la textura. 
 
     Además permite exportar los modelos a los formatos más usados para \textit{A-Frame}: \textit{glTF} y \textit{COLLADA}. 
 \end{itemize}
@@ -205,11 +216,11 @@ Entre las muchas características que ofrece \textit{Blender}, las más útiles 
 \textit{COLLaborative Design Activity} (\textit{COLLADA}) es un  formato de archivo de intercambio para aplicaciones 3D interactivas. Se define como un esquema \textit{XML} para intercambiar activos digitales entre varias aplicaciones de software de gráficos. Son definidos con la extensión \textit{.dae} y pueden hacer referencia a archivos de imagen adicionales que actúan como texturas del objeto 3D. 
 
 \subsection{glTF}
-GL Transmission Format (\textit{glTF}) es una especificación basada en el estándar \textit{JSON} para transmisión y carga eficiente de escenas y modelos 3D para aplicaciones. Este formato minimiza el tamaño de los ficheros y su tiempo de ejecución necesario para desempaquetar y usarlos. Permite animación de los objetos que puede ser activada por \textit{A-Frame} vía \textit{HTML} o dinámicamente con \textit{javaScript}. 
-En la figura \ref{fig:tree} se puede ver la figura añadida a un escenario de A-Frame via \textit{HTML}:
+GL Transmission Format (\textit{glTF}) es una especificación basada en el estándar \textit{JSON} para transmisión y carga eficiente de escenas y modelos 3D para aplicaciones. Este formato minimiza el tamaño de los ficheros y su tiempo de ejecución necesario para desempaquetar y usarlos. Permite animación de los objetos, que puede ser activada por \textit{A-Frame} vía \textit{HTML} o dinámicamente con \textit{JavaScript}. 
+En la imagen \ref{fig:tree} se puede ver la figura añadida a un escenario de A-Frame vía \textit{HTML}:
 
 \begin{lstlisting}[language=html, caption=Código para añadir un modelo 3D personalizado a A-Frame]
- <a-asset-item id="tree" src="assets/models/CartoonTree.dae"></a-asset-item>
+ <a-asset-item id="tree" src="assets/models/tree.dae"></a-asset-item>
   <a-entity id="a-tree" collada-model="#tree" rotation="0 0 0" position="2.75 0.01 -2.27">
   
 \end{lstlisting}
@@ -219,16 +230,17 @@ En la figura \ref{fig:tree} se puede ver la figura añadida a un escenario de A-
 \includegraphics[width=0.8\textwidth]{img/tree_aframe.png}
 \caption{Modelo glTF añadido en un escenario de A-Frame} \label{fig:tree}
 \end{figure}
-Además del \textit{software} explicado en esta sección, existen multitud de herramientas para convertir a glTF desde formatos como \textit{OBJ}, \textit{COLLADA} o  \textit{PCD}\footnote{https://github.com/KhronosGroup/glTF}. De esta manera es posible buscar modelos 3D en librerías\footnote{https://sketchfab.com} para editarlos e incluirlos en \textit{Websim}.
+Además del \textit{software} explicado en esta sección, existen multitud de herramientas para convertir a glTF desde formatos como \textit{OBJ}, \textit{COLLADA} o  \textit{PCD}\footnote{\url{https://github.com/KhronosGroup/glTF}}. De esta manera es posible buscar modelos 3D en librerías\footnote{\url{https://sketchfab.com}} para editarlos e incluirlos en \textit{Websim}.
 
 % WEBSIM %
-\section{WebSim}
+\section{Simulador WebSim}
 
-\textit{Websim} es un simulador robótico diseñado para enseñar conceptos básicos de tecnología e iniciar a niños en robótica y programación de robots. 
+\textit{Websim} es un simulador diseñado para enseñar conceptos básicos de tecnología e iniciar a niños en robótica y programación. La versión inicial de la que parte este proyecto está desarrollada por Álvaro Paniagua Tena\footnote{\url{https://github.com/RoboticsLabURJC/2018-tfg-alvaro_paniagua}} y dada su  importancia en el desarrollo de este TFG, se describe con cierta profundidad.  
 
 \subsection{Diseño}
 \label{subsec:design}
-El simulador hace uso del entorno \textit{A-Frame} y permite conectar un editor de texto o un editor de bloques para poder programar en \textit{JavaScript} o \textit{Blockly} y conectar este código con el robot simulado. También permite acoplar una aplicación externa al navegador a través de comunicaciones ICE.
+El simulador hace uso del entorno \textit{A-Frame} y su diseño permite conectar un editor de texto o un editor de bloques para  programar en \textit{JavaScript} o \textit{Blockly} y conectar este código con el robot simulado. También permite acoplar una aplicación externa al navegador a través de comunicaciones ICE. En la imagen  \ref{fig:websim} se puede ver el diseño de \textit{WebSim}.
+
 Las principales funcionalidades del simulador son: 
 
 \begin{itemize}
@@ -243,41 +255,47 @@ Las principales funcionalidades del simulador son:
 
 Gracias a estas características, el simulador hace que los usuarios puedan programar de manera sencilla, ya que solo tienen que acceder a la información que ofrecen los sensores del robot y mandar órdenes sobre los actuadores del mismo. Es decir, solo  se tienen que encargar de programar la lógica del robot para resolver los ejercicios propuestos que se explicarán en próximos capítulos. 
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{img/interfaz-websim.png}
+    \caption{Interfaz gráfica de \textit{WebSim}} \label{fig:websim}
+\end{figure}
+
 \subsection{Clase Robot}
 \label{subsec:robot}
-Para poder tener una entidad en \textit{A-Frame} que pueda ser programada por el usuario existe un clase en \textit{JavaScript} llamada \textit{RobotI}.
+Para tener una entidad en \textit{A-Frame} que pueda ser programada por el usuario existe un clase en \textit{JavaScript} llamada \textit{RobotI}.
 El constructor de esta clase es un método obligatorio y es al primero que se llama cuando se instancia un objeto. 
-Tiene un parámetro de entrada que es un \textit{string} con el identificador de la etiqueta \textit{HTML} en la que se encuentra el robot simulado. 
+Tiene un parámetro de entrada que es una cadena de caracteres con el identificador de la etiqueta \textit{HTML} en la que se encuentra el robot simulado. 
 Además de inicializar el robot, la clase contiene una serie de variables para su configuración: 
 \begin{itemize}
-    \item \textit{defaultDistanceDetection}: declara la distancia máxima en la que los sensores de ultrasonido detectan un objeto.
-    \item \textit{defaultNumOfRays}: declara el número de rayos que se simulan para detectar objetos. Abarca un ángulo de 180 grados y, por lo tanto, cuanto mayor sea el número, más precisión habrá en la detección de objetos. 
-    \item \textit{robot}: crea la unión entre la clase y la entidad del robot simulado en \textit{A-Frame}.
-    \item \textit{initialPosition}: en la inicialización del robot, obtiene del \textit{HTML} la posición del robot y la guarda en esta variable.  
-    \item \textit{initialRotation}: en la inicialización del robot, obtiene del \textit{HTML} la rotación del robot y la guarda en esta variable.  
-    \item \textit{activeRays}: es una variable de tipo \textit{boolean} y permite saber si los rayos del sensor de ultrasonidos están activos no.
-    \item \textit{distanceArray}. Es un objeto en \textit{JavaScript} con tres variables tipo array y almacena la distancia con los objetos detectada por los sensores de ultrasonido. Las variables están diferenciadas en derecha, centro e izquierda y permite conocer donde se encuentra la ubicación del objeto detectado. 
-    \item \textit{understandedColors}: variable que permite asociar un color como tipo \textit{string} a sus valores de filtro en el espacio \textit{RGB}. Esto permite hacer más simple la detección de los objetos para los usuarios ya que con el nombre del color se puede realizar el filtro sin necesidad de tener conocimientos sobre visión artificial.
-    \item \textit{velocity}: variable que guarda la velocidad del robot en los distintos ejes (x,y,z). En el eje X se almacena la velocidad en el plano horizontal y en el eje Z la velocidad de giro. La velocidad del eje Y será útil en el desarrollo del proyecto ya que es la que otorga velocidad de elevación. 
+    \item \textit{\textbf{defaultDistanceDetection}}: declara la distancia máxima en la que los sensores de ultrasonido detectan un objeto.
+    \item \textit{\textbf{defaultNumOfRays}}: declara el número de rayos que se simulan para detectar objetos. Abarca un ángulo de 180 grados y, por lo tanto, cuanto mayor sea el número, más precisión habrá en la detección de objetos. 
+    \item \textit{\textbf{robot}}: crea la unión entre la clase y la entidad del robot simulado en \textit{A-Frame}.
+    \item \textit{\textbf{initialPosition}}: en la inicialización del robot, obtiene del \textit{HTML} la posición del robot y la guarda en esta variable.  
+    \item \textit{\textbf{initialRotation}}: en la inicialización del robot, obtiene del \textit{HTML} la rotación del robot y la guarda en esta variable.  
+    \item \textit{\textbf{activeRays}}: es una variable de tipo \textit{boolean} y permite saber si los rayos del sensor de ultrasonidos están activos no.
+    \item \textit{\textbf{distanceArray}}. Es un objeto en \textit{JavaScript} con tres variables tipo \textit{array} y almacena la distancia con los objetos detectada por los sensores de ultrasonido. Las variables están diferenciadas en derecha, centro e izquierda y permite conocer donde se encuentra la ubicación del objeto detectado. 
+    \item \textit{\textbf{understandedColors}}: variable que permite asociar un color como tipo \textit{string} a sus valores de filtro en el espacio \textit{RGB}. Esto permite hacer más simple la detección de los objetos para los usuarios ya que con el nombre del color se puede realizar el filtro sin necesidad de tener conocimientos sobre visión artificial.
+    \item \textit{\textbf{velocity}}: variable que guarda la velocidad del robot en los distintos ejes (x,y,z). En el eje X se almacena la velocidad en el plano horizontal y en el eje Z la velocidad de giro. La velocidad del eje Y será útil en el desarrollo del proyecto ya que es la que otorga velocidad de elevación. 
 \end{itemize}
 
 Además, el constructor llama a los métodos para inicializar los motores y sensores los cuales tienen sus propios métodos para su manejo. 
 
 \subsection{Drivers de sensores}
 \label{subsec:driversSensores}
-El robot consta de sensores simulados con \textit{A-Frame}. Los drivers permiten que el usuario pueda acceder a estos sensores a través del código programado y obtener su información. En este entorno disponemos de los siguientes sensores: 
+El robot consta de sensores simulados con \textit{A-Frame}. Los drivers permiten que el usuario, vía \textit{JavaScript}, pueda acceder a estos y obtener su información. En este entorno disponemos de los siguientes sensores: 
 
 \begin{itemize}
-    \item Ultrasonido o láser: permite detectar obstáculos en un radio de 180 grados en la parte frontal del robot. En \textit{A-Frame} se simula gracias al atributo \textit{raycaster} el cual permite conocer el punto de intersección entre un rayo emitido y un objeto. Para la simulación de este sensor se usan los componentes \textit{followBody} (para anclar un \textit{raycaster} al robot y que pueda seguir la posición del robot) e \textit{intersectionHandler} (que crea un manejador para controlar el evento que lanza un \textit{raycaster} cuando un objeto se interpone en el rayo que emite). Además, este componente es capaz de detectar el identificador del \textit{raycaster} y la distancia a la que es detectado.
+    \item \textbf{Ultrasonido}: permite detectar obstáculos en un radio de 180 grados en la parte frontal del robot. En \textit{A-Frame} se simula gracias al atributo \textit{raycaster} el cual permite conocer el punto de intersección entre un rayo emitido y un objeto. Para la simulación de este sensor se usan los componentes \textit{followBody} (para anclar un \textit{raycaster} al robot y que pueda seguir la posición del robot) e \textit{intersectionHandler} (que crea un manejador para controlar el evento que lanza un \textit{raycaster} cuando un objeto se interpone en el rayo que emite). Además, este componente es capaz de detectar el identificador del \textit{raycaster} y la distancia a la que es detectado.
     
-    \item Cámara: obtiene una imagen con lo que capta el robot de la escena. Para su simulación se ha creado el atributo \textit{spectator} y permite mostrar la visión del robot en primera persona. 
+    \item \textbf{Cámara}: obtiene una imagen con lo que capta el robot de la escena. Para su simulación se ha creado el atributo \textit{spectator} y permite mostrar la visión del robot en primera persona. 
     
-    \item Infrarrojos: dispositivo que está compuesto de un LED infrarrojo y un fototransistor siendo capaz de detectar si el objeto con el que choca la luz emitida por el LED es una superficie blanca (la luz rebota y llega hasta el fotoreceptor) o negra (la superficie absorbe toda la luz y no llega al fotoreceptor). 
-    Para simular este sensor se recorta la imagen de la cámara para quedarse con los píxeles de la parte inferior (con una dimensión de 5x150px). La función del \textit{HAL API} que hace referencia a este sensor es \textit{readIR(color)} siendo el parámetro pasado a la función un color en formato de \textit{string} que toma como variable \textit{undestandedColors} para obtener los valores del filtro correspondiente. De tal manera, después del filtrado se obtiene una imagen según la posición en la que se encuentre la línea a seguir y según donde esté el centro devuelve distintos valores: \textit{0} si la línea se encuentra entre los píxeles 57 y 93 de la imagen, \textit{1} entre los píxeles 0 y 57, \textit{2} si la línea está entre 93 y 150 y \textit{3} si no detecta la línea.
+    \item \textbf{Infrarrojos}: dispositivo que está compuesto de un LED infrarrojo y un fototransistor siendo capaz de detectar si el objeto con el que choca la luz emitida por el LED es una superficie blanca (la luz rebota y llega hasta el fotoreceptor) o negra (la superficie absorbe toda la luz y no llega al fotoreceptor). 
+    Para simular este sensor se emplea una cámara y se recorta la imagen obtenida para quedarse con los píxeles de la parte inferior (con una dimensión de 5x150px). La función del \textit{HAL API} que hace referencia a este sensor es \textit{readIR(color)} siendo el parámetro pasado a la función un color en formato de \textit{string} que toma como variable \textit{undestandedColors} para obtener los valores del filtro correspondiente. De tal manera, después del filtrado se obtiene una imagen según la posición en la que se encuentre la línea a seguir y según donde esté el centro devuelve distintos valores: \textit{0} si la línea se encuentra entre los píxeles 57 y 93 de la imagen, \textit{1} entre los píxeles 0 y 57, \textit{2} si la línea está entre 93 y 150 y \textit{3} si no detecta la línea.
     
-    \item Odómetro: obtiene la posición absoluta del robot durante la ejecución del código. Para la simulación de los sensores de odometría se ha hecho uso del sistema de coordenadas y rotación de \textit{A-Frame} y se ha hecho el cálculo a través de su \textit{API} en \textit{JavaScript}. 
+    \item \textbf{Odómetro}: obtiene la posición absoluta del robot durante la ejecución del código. Para la simulación de los sensores de odometría se ha hecho uso del sistema de coordenadas y rotación de \textit{A-Frame} y se ha hecho el cálculo a través de su \textit{API} en \textit{JavaScript}. 
 \end{itemize}
-
+\clearpage
 En la tabla \ref{tab:tablaSensores} se explican todas las funciones del \textit{HAL API} que hacen referencia a los sensores. 
 
 \begin{table}[H]
@@ -294,8 +312,8 @@ En la tabla \ref{tab:tablaSensores} se explican todas las funciones del \textit{
 .getRotation() & \begin{tabular}[c]{@{}c@{}}Retorna un objeto con la orientación \\ del robot en los 3 ejes\end{tabular} & \begin{tabular}[c]{@{}c@{}}\{x:number,\\ y:number,\\ z:number\}\end{tabular} &  &  \\ \cline{1-3}
 .getPosition() & Obtiene la posición del robot en la escena & \begin{tabular}[c]{@{}c@{}}\{x:number,\\ y:number,\\ z:number\}\end{tabular} &  &  \\ \cline{1-3}
 .getImage() & Devuelve la imagen de la cámara del robot & cv.Mat() &  &  \\ \cline{1-3}
-.getObjectColor(color) & \begin{tabular}[c]{@{}c@{}}Devuelve un objeto con la posición del objeto\\ \\ detectado por la cámara del color pasado por parámetro\end{tabular} & \begin{tabular}[c]{@{}c@{}}\{center:{[}x.y{]},\\ area: int\}\end{tabular} &  &  \\ \cline{1-3}
-.getObjectColorRGB(valorBajo,valorAlto) & \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}Devuelve un objeto con la posición del objeto \\ detectado por la cámara con los valores pasados por parámetro\end{tabular}} & \begin{tabular}[c]{@{}c@{}}\{center:{[}x.y{]},\\ area: int\}\end{tabular} &  &  \\ \cline{1-3}
+.getObjectColor(color) & \begin{tabular}[c]{@{}c@{}}Devuelve un objeto con la posición del elemento\\ detectado por la cámara del color pasado por parámetro\end{tabular} & \begin{tabular}[c]{@{}c@{}}\{center:{[}x.y{]},\\ area: int\}\end{tabular} &  &  \\ \cline{1-3}
+.getObjectColorRGB(valorBajo,valorAlto) & \begin{tabular}[c]{@{}c@{}}Devuelve un objeto con la posición del elemento\\ detectado por la cámara con los valores pasados por parámetro\end{tabular} & \begin{tabular}[c]{@{}c@{}}\{center:{[}x.y{]},\\ area: int\}\end{tabular} &  &  \\ \cline{1-3}
 \end{tabular}%
 }
 \end{table}
@@ -303,15 +321,15 @@ En la tabla \ref{tab:tablaSensores} se explican todas las funciones del \textit{
 \subsection{Drivers de actuadores}
 \label{subsec:driversMotores}
 
-La función de los actuadores es otorgar movimiento al cuerpo del robot simulado en \textit{A-Frame}. Con los métodos creados, además, no es necesario mandarle ordenes constantemente, si no que es suficiente con mandar la instrucción una vez y el robot seguirá ejecutándola hasta que reciba una nueva.  
+La función de los actuadores es otorgar movimiento al cuerpo del robot simulado en \textit{A-Frame}. Con los métodos creados, además, no es necesario mandarle órdenes constantemente, si no que es suficiente con mandar la instrucción una vez y el robot seguirá ejecutándola hasta que reciba una nueva.  
 
-Para que el robot siga las ordenes mandadas existen los siguientes métodos: 
+Para que el robot siga las órdenes mandadas existen los siguientes métodos: 
 \begin{itemize}
-    \item \textit{getV}: Método para conocer la velocidad lineal ordenada al robot.
-    \item \textit{getW}: Método que devuelve la velocidad angular.
-    \item \textit{setV}: Método que permite otorgar velocidad lineal al robot.
-    \item \textit{setL}: Método para que el usuario comande la velocidad angular del robot. 
-    \item \textit{move}: Método que sirve para otorgar tanto velocidad lineal como angular. 
+    \item \textit{\textbf{getV}}: Método para conocer la velocidad lineal ordenada al robot.
+    \item \textit{\textbf{getW}}: Método que devuelve la velocidad angular comandada.
+    \item \textit{\textbf{setV}}: Método que permite ordenar velocidad lineal al robot.
+    \item \textit{\textbf{setL}}: Método para que el usuario comande la velocidad angular del robot. 
+    \item \textit{\textbf{move}}: Método que sirve para ordenar tanto velocidad lineal como angular. 
 \end{itemize}
 Después de llamar a cada uno de estos métodos, se guarda la velocidad pasada por parámetro en la variable interna llamada \textit{velocity} y, para calcular la posición en el escenario simulado con \textit{A-Frame} es necesaria la siguiente función:
 
@@ -325,8 +343,8 @@ updatePosition(rotation, velocity, robotPos){
 }
 \end{lstlisting}
 
-En esta función se establece la nueva posición relativa para el objeto. En cada iteracción se calcula y se establece nueva posición y rotación del robot. Además, gracias a la función de \textit{javaScript} llamada \textit{setTimeout},
-se establece un temporizador para actualizar la posición del robot llamando a la función \textit{updatePosition} iterativamente cada cierto periodo de tiempo. Esto permite simplificar el código ya que hace que no es necesario mandar ordenes al robot constantemente. 
+En esta función se establece la nueva posición relativa para el objeto. En cada iteracción se calcula y se establece nueva posición y rotación del robot. Además, gracias a la función de \textit{JavaScript} llamada \textit{setTimeout},
+se establece un temporizador para actualizar la posición del robot llamando a la función \textit{updatePosition} iterativamente cada cierto periodo de tiempo. Esto permite simplificar el código ya que hace que no es necesario mandar órdenes al robot constantemente. 
 
 En la tabla \ref{tab:tablaMotores} se explican todas las funciones del \textit{HAL API} que hacen referencia a los actuadores.
 

@@ -5,7 +5,7 @@ En este capítulo se introducen los conceptos básicos en los que se apoya este 
    
 \section{Tecnologías web}
 \label{sec:web}
-Las tecnologías web han ido evolucionando a los largo de la historia, pero todas se basan en un modelo cliente-servidor. Para lograr la comunicación entre cliente y servidor, se necesita un navegador por parte del cliente y un servidor web capaz de atender las solicitudes. El protocolo que es utilizado para esta comunicación se llama \textit{HTTP}.
+Las tecnologías web han ido evolucionando a los largo de la historia, pero todas se basan en un modelo cliente-servidor. Para lograr la comunicación entre cliente y servidor, se necesita un navegador por parte del cliente y un servidor web capaz de atender las solicitudes. El protocolo utilizado para esta comunicación se llama \textit{HTTP}.
 
 \subsection{HTTP}
 \label{subsec:http}
@@ -20,7 +20,7 @@ Las peticiones están definidas por el protocolo y tienen métodos concretos:
     \item DELETE: Elimina en el servidor un recurso.
 \end{itemize}
 
-Aunque estos son los principales métodos, el protocolo tiene flexibilidad para ir añadiendo nuevos e incorporar funcionalidad. El número de métodos se han ido aumentando con las nuevas versiones. 
+Aunque estos son los principales métodos, el protocolo tiene flexibilidad para ir añadiendo nuevos e incorporar funcionalidad. El número de métodos ha ido aumentando con las nuevas versiones. 
 \begin{figure}[h]
 \centering
 \includegraphics[scale=0.4]{img/http.jpeg}
@@ -34,36 +34,36 @@ Aunque la versión actual del protocolo data del 2 de abril de 2019 (\textit{HTT
 Es la parte encargada de dar forma a la interfaz de usuario y de establecer la comunicación con el servidor. Una pieza importante del cliente es el navegador, ya que es el encargado de leer e interpretar la información recibida. Las más utilizadas son: 
 \begin{itemize}
     \item \textit{HTML}: es el estándar más utilizado para el desarrollo de páginas web. Actualmente los navegadores usan la versión \textit{HTML5}. Este lenguaje indica la estructura de una página web, para editar el estilo y presentación visual hay que hacer uso de otros elementos como \textit{CSS}.
-    \item \textit{CSS}: \textit{Cascading Style Sheets} es un lenguaje de diseño gráfico para definir y crear la presentación de un documento escrito en un lenguaje de marcado. De esta forma, se permite separar información y datos (en los documentos \textit{HTML}) y todo lo relativo al diseño y presentación (en documentos \textit{CSS}). Actualmente los navegadores usan la versión \textit{CSS3}.
+    \item \textit{CSS}: \textit{Cascading Style Sheets} es un lenguaje de diseño gráfico para definir y crear la presentación de un documento escrito en un lenguaje de marcado. De esta forma, se puede separar información y datos (en los documentos \textit{HTML}) y todo lo relativo al diseño y presentación (en documentos \textit{CSS}). Actualmente los navegadores usan la versión \textit{CSS3}.
     \item \textit{JavaScript}: para programar la lógica, dinamismo e interacción con el usuario es el lenguaje más común y extendido en el desarrollo de páginas. Debido a su importancia en el proyecto, se explicará más a fondo en próximos capítulos. 
 \end{itemize}
 
 \subsection{Tecnologías en servidor}
 \label{subsec:tecserver}
-Son las encargadas de dar forma al servidor web de manera que permite el acceso a herramientas como base de datos, conexiones de red o recursos compartidos. O, dicho de otra forma, se ocupan de realizar las tareas necesarias para hacer posible crear una aplicación que visualizará el cliente. Las más utilizadas son: 
+Son las encargadas de dar forma al servidor web de manera que permiten el acceso a herramientas como base de datos, conexiones de red o recursos compartidos. O, dicho de otra forma, se ocupan de realizar las tareas necesarias para hacer posible crear una aplicación que visualizará el cliente. Las más utilizadas son: 
 \begin{itemize}
-    \item \textit{Node.js}: es una forma de ejecutar \textit{JavaScript} en el servidor. Proporciona un entorno de ejecución del lado del servidor que compila y ejecuta a gran velocidad.  Esto es debido a que compila en código máquina nativo en lugar de interpretarlo o ejecutarlo.   
+    \item \textit{Node.js}: es una forma de ejecutar \textit{JavaScript} en el servidor. Proporciona un entorno de ejecución del lado del servidor que compila y ejecuta a gran velocidad. Esto es debido a que compila en código máquina nativo en lugar de interpretarlo o ejecutarlo.   
     \item \textit{Django}: entorno web de alto nivel programado en \textit{python} diseñado para realizar aplicaciones de cualquier complejidad. Es seguro, rápido y escalable. Además, incluye una interfaz para acceder a bases de datos lo que facilita las consultas al no tener que manejar \textit{SQL} y realizarlas con filtros de \textit{Python}.
-    \item \textit{Spring}: herramienta que tiene la finalidad de simplificar el desarrollo de aplicaciones ya que facilita la configuración de la aplicación y el despliegue en servidor. De esta manera, \textit{Spring} está pensado para aplicaciones web, servicios \textit{REST}, análisis de datos o integración de sistemas. 
+    \item \textit{Spring}: herramienta cuya finalidad es simplificar el desarrollo de aplicaciones ya que facilita la configuración de la aplicación y el despliegue en servidor. De esta manera, \textit{Spring} está pensado para aplicaciones web, servicios \textit{REST}, análisis de datos e integración de sistemas. 
 \end{itemize}
 
 \section{Robótica}
 \label{sec:robotica}
 La robótica es una rama tecnológica encargada del diseño y construcción de aparatos que realizan operaciones y trabajos en sustitución de la mano de obra humana. 
 
-Un robot es un sistema autónomo programable capaz de realizar tareas de ayuda al ser humano y con aplicaciones en campos diversos como medicina, hogar, fábricas, etc. 
+Un robot es un sistema autónomo programable capaz de realizar tareas de ayuda al ser humano y con aplicaciones en campos diversos como la medicina, el hogar, las fábricas, etc. 
 
 Los robots se componen de sensores, controladores y actuadores.
 \begin{itemize}
-    \item \textbf{Sensores}: son los encargados de recoger información del entorno. En este grupo se encuentran láser, cámaras, ultrasonidos u odómetros. Estos dispositivos equivalen a los sentidos humanos. 
+    \item \textbf{Sensores}: son los encargados de recoger información del entorno. En este grupo se encuentran lásers, cámaras, ultrasonidos u odómetros. Estos dispositivos equivalen a los sentidos humanos. 
     \item \textbf{Controladores}: analizan los datos recogidos por los sensores y elaboran una respuesta que va a ser enviada a los actuadores. En los seres humanos equivale al cerebro. 
-    \item \textbf{Actuadores}: se encargan de transformar energía eléctrica, hidráulica o neumática en mecánica. Son los interactúan con el entorno y equivalen a los músculos humanos. 
+    \item \textbf{Actuadores}: se encargan de transformar energía eléctrica, hidráulica o neumática en mecánica. Son los que interactúan con el entorno y equivalen a los músculos humanos. 
 \end{itemize}
 
 \subsection{Historia}
 La palabra robot fue empleada por primera vez en 1920 por Karel Capek, un escritor checo que realiza una obra de teatro en la que un hombre fabrica un robot. 
 
-Años más tarde, en 1950, Isaac Asimov publica un libro llamado \textit{Yo, Robot} en el que acuña la palabra robótica definiendo a la ciencia que estudia a los robots. En el también se incluyen tres leyes de la robótica:
+Años más tarde, en 1950, Isaac Asimov publica un libro llamado \textit{Yo, Robot} en el que acuña la palabra "robótica" definiendo a la ciencia que estudia a los robots. En el también se incluyen tres leyes de la robótica:
 \begin{itemize}
     \item Un robot no hará daño a un ser humano ni permitirá que un ser humano sufra ningún tipo daño.
     \item Un robot debe cumplir las órdenes recibidas por un ser humano, salvo las que entren en conflicto con la primera ley.
@@ -102,47 +102,42 @@ Es en 2011 cuando la robótica alcanza uno de sus mayores hitos gracias al robot
 \caption{Autorretrato del Curiosity en Marte} \label{fig:curiosity}
 \end{figure}
 
-
-Hoy en día no solo se ven robots en entornos industriales, si no que aparecen cada vez más en entornos domésticos, educativos o automovilístico.
+Hoy en día no solo se ven robots en entornos industriales, si no que aparecen cada vez más en entornos domésticos, educativos o automovilísticos.
 
 \subsection{Tipos de robots}
 \label{subsec:tiposRobots}
-Los ámbitos en los que se encuentra la robótica son diversos. Los tipos en los que podemos dividir los tipos de robots son: 
+Los ámbitos en los que se puede encontrar la robótica son diversos, así como los diferentes tipos de robots: 
 \begin{itemize}
     \item \textbf{Industriales}: son los utilizados para mover materiales pesados, herramientas y realizar una serie de tareas en ambientes de producción y manufactura. Este tipo de robots permiten realizar trabajos peligrosos y repetitivos sin cometer errores, por lo que están revolucionando la industria y cada vez es más común verlos en las fábricas.   
-    \item \textbf{Militares}: robots autónomos o controlados de manera remota diseñados para transporte, búsqueda, rescate o ataque. Destacan drones usados para espionaje o recolección de datos e imágenes. 
+    \item \textbf{Militares}: robots autónomos o controlados de manera remota diseñados para transporte, búsqueda, rescate o ataque. Destacan los drones usados para espionaje o recolección de datos e imágenes. 
     Existen muchas funciones que son realizadas por este tipo de robots, es común la supervisión humana para controlar que el criterio del robot sea correcto frente posibles amenazas. 
     \item \textbf{Espaciales}: son aquellos que se utilizan en exploraciones de terrenos y ambientes de otros planetas o como apoyo al trabajo de los astronautas. 
-    \item \textbf{Medicina}: involucra varios ámbitos sanitarios y tiene grandes ventajas. Desde sistemas de desinfección eficientes (como el robot \textit{Xenex}\footnote{\url{https://www.xenex.com}}), herramienta para desinfectar instalaciones médicas) hasta robots que pueden reemplazar o ayudar a cirujanos por su precisión y eficiencia (robot \textit{Da Vinci}\footnote{\url{https://www.intuitive.com}}, que permite tener un campo de visión magnificado e instrumental médico mejorado). 
-    \item \textbf{Robots de servicio}: este tipo de robots mejoran la productividad en casi cualquier tarea dando la posibilidad de automatizar cualquier tipo de tarea que requiera eficiencia y rapidez. Pueden operar de forma autónoma y pueden formar parte robots desde aspiradores robóticos (como el robot   \textit{Roomba}\footnote{\url{https://www.irobot.es}}) hasta sistemas domóticos (como el altavoz desarrollado por \textit{Google}, \textit{Google Home}\footnote{\url{https://store.google.com/es/product/google_home}}).
+    \item \textbf{Medicina}: sus aplicaciones abarcan varios ámbitos sanitarios y proporciona grandes ventajas al sector; desde sistemas de desinfección eficientes (como el robot \textit{Xenex}\footnote{\url{https://www.xenex.com}}), herramienta para desinfectar instalaciones médicas) hasta robots que pueden reemplazar o ayudar a cirujanos por su precisión y eficiencia (robot \textit{Da Vinci}\footnote{\url{https://www.intuitive.com}}, que permite tener un campo de visión magnificado e instrumental médico mejorado). 
+    \item \textbf{Robots de servicio}: mejoran la productividad en casi cualquier tarea posibilitando la automatización de cualquier tipo de labor que requiera eficiencia y rapidez, siendo capaces de operar de forma autónoma. Abarcan un amplio campo, desde aspiradores robóticos (como el robot   \textit{Roomba}\footnote{\url{https://www.irobot.es}}) hasta sistemas domóticos (como el altavoz desarrollado por \textit{Google}, \textit{Google Home}\footnote{\url{https://store.google.com/es/product/google_home}}).
     \item \textbf{Entretenimiento}: son algunos de los robots más sofisticados ya que requieren interactuar con personas. Se pueden encontrar desde juguetes hasta robots que ayuden a la enseñanza. En este último tipo se entrará más en detalle por ser un pilar fundamental del proyecto.
 \end{itemize}
 \section{Robótica educativa}
 \label{sec:educativa}
-
-
-La robótica con fines educativos está empezando a adquirir importancia en la enseñanza porque su aprendizaje está disponible para estudiantes de cualquier nivel. Este método de enseñanza intenta despertar el interés de los estudiantes cambiando asignaturas tradicionales y convirtiéndolas en atractivas e integradoras. \newline
-
-Es importante empezar poco a poco y para preparar a los más jóvenes y tener nociones básicas de la robótica por la importancia que esta adquiriendo esta disciplina pues ya se empiezan a implantar robots en la mayor parte de los sectores laborales. \newline
+La robótica con fines educativos está empezando a adquirir importancia en la enseñanza porque su aprendizaje está disponible para estudiantes de cualquier nivel. Este método de enseñanza intenta despertar el interés de los alumnos porque, gracias a la innovación que posibilita la tecnología, añade un componente atractivo e integrador a las asignaturas tradicionales. \newline
 
 La enseñanza en centros escolares se realiza en gran parte mediante plataformas como la creada por LEGO o placas Arduino que simplifican el aprendizaje y resulta motivadora para el alumno porque obtiene resultados vistosos y se le puede dar una aplicación real. \newline
 
+Resulta importante acercar la robótica a alumnos en edades muy tempranas, partiendo de nociones básicas, dada la importancia que está adquiriendo la disciplina y la fuerte presencia que tiene en la mayor parte de los sectores laborales. Además, la capacidad de programar es una parte importante en la sociedad actual ya que, con esta habilidad, se aprenden estrategias para resolver problemas, diseñar proyectos y comunicar ideas. \newline
 
 
-La capacidad de programar es una parte importante en la sociedad actual ya que, con esta habilidad, se aprenden estrategias para resolver problemas, diseñar proyectos y comunicar ideas. Es por eso que se intenta inculcar programación desde cortas edades y se realiza mediante lenguajes de programación visual. Se trata de lenguajes de programación potentes que abstraen al alumno de la complejidad que implica la sintaxis, son muy intuitivos y aportan un entorno visual haciendo que el software sea bien aceptado por estudiantes de corta edad. Estos lenguajes permiten a los usuarios programar manipulando elementos gráficos del en lugar de hacerlo textualmente. Los lenguajes de programación visual más importantes son: 
+Las nociones básicas de las que se sirve este acercamiento son los lenguajes de programación visual. Se trata de lenguajes potentes y muy intuitivos que abstraen al alumno de la complejidad que implica la sintaxis y aportan un entorno visual haciendo que el software sea bien aceptado por estudiantes de corta edad. Además permiten a los usuarios programar manipulando elementos gráficos en lugar de hacerlo textualmente. Los lenguajes de programación visual más importantes son: 
 
 \begin{itemize}
-    \item \textit{Scratch}: proyecto liderado por el \textit{MIT} y es utilizado por estudiantes y docentes para programar animaciones, juegos e interacciones fácilmente gracias a su interfaz visual. Se trata de un lenguaje donde los programas se construyen ensamblando bloques gráficos y cada bloque es el equivalente a una función o método de cualquier lenguaje de programación. Actualmente está en su versión \textit{Scratch 3.0} y en la figura \ref{fig:scratch} se puede ver un ejemplo de su interfaz gráfica. 
+    \item \textit{Scratch}\footnote{\url{https://scratch.mit.edu/}}: proyecto liderado por el \textit{MIT}, es utilizado por estudiantes y docentes para programar animaciones, juegos e interacciones fácilmente gracias a su interfaz visual. Se trata de un lenguaje donde los programas se construyen ensamblando bloques gráficos y cada bloque es el equivalente a una función o método de cualquier lenguaje de programación. Actualmente está en su versión \textit{Scratch 3.0} y en la figura \ref{fig:scratch} se puede ver un ejemplo de su interfaz gráfica. 
     \begin{figure}[H]
     \centering
-    \includegraphics[width=1\textwidth]{img/scratch.jpg}
+    \includegraphics[width=0.85\textwidth]{img/scratch.jpg}
     \caption{Interfaz gráfica de Scratch} \label{fig:scratch}
     \end{figure}
     
     \item \textit{Blockly}: proyecto de \textit{Google} diseñado para el lenguaje de programación \textit{JavaScript} pensado para crear lenguajes de programación visual. Se ejecuta en un navegador web y visualmente recuerda a \textit{Scratch}. Hablaremos en capítulos siguientes más en profundidad. 
     
     \item \textit{LEGO}: dispone de una amplia gama de robots programables y cada uno de ellos tiene un sistema de programación bajo interfaz gráfica. En las figuras \ref{fig:lego1} y \ref{fig:lego2} se pueden ver dos ejemplos de distintos software para distintos robots.  
-    
     
     \begin{figure}[h]
     \centering

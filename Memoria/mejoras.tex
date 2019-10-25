@@ -1,16 +1,50 @@
 \chapter{Mejoras a WebSim}
 \label{chap:mejoras}
+Una vez presentado el contexto, objetivos y herramientas empleadas, en este capitulo se detallan todas las mejoras realizadas del simulador \textit{WebSim} y cómo se han llevado a cabo. 
 
-\section{Modelos y mundos}
-\subsection{Drone}
-\subsection{F1}
-\subsection{mBot}
+\section{Drone}
+Uno de los objetivos principales del TFG era ampliar el soporte para otros robots y escenarios en \textit{WebSim}. Se ha comenzado dando soporte a drones debido a las diferencias con el \textit{piBot}, del que ya disponía soporte. 
+Para ello hay que extender el \textit{software} existente de la plataforma.
+\subsection{Software}
+Una de las principales diferencias es el movimiento vertical, tanto como para darle velocidad al drone como para actualizar la posición. 
+Se han creado las funciones para ello y se ha extendido la función \textit{updatePosition()} para poder actualizar el eje Y de la escena de \textit{WebSim}.
+
+De esta manera, las nuevas funciones que dan soporte al drone son: 
+\begin{itemize}
+    \item \textit{\textbf{setL()}}: Método que permite ordenar velocidad vertical al robot. 
+    \item \textit{\textbf{getV()}}: Método que devuelve la velocidad vertical del robot.
+    \item \textit{\textit{\textbf{despegar}}}: Método que da velocidad vertical al robot hasta alcanzar cierta altura.
+    \item \textit{\textbf{aterrizar}}: Método que da velocidad vertical negativa al robot hasta que alcance el suelo. 
+\end{itemize}
+
+Además, se ha editado la función \textit{move} para que acepte 3 parámetros. 
+
+\begin{table}[H]
+  \begin{center}
+    \caption{Métodos (HAL API) de los actuadores implementados para el drone.}
+    \vspace{0.5cm}
+    \label{tab:tablaMotores}
+    \begin{tabular}{|c|c|} 
+    \hline
+      \textbf{Método} & \textbf{Descripción}\\
+      \hline
+.setL(integer) & \begin{tabular}[c]{@{}c@{}}Mueve hacia arriba o hacia abajo el robot.\\\end{tabular} \\ \hline
+.getL() & \begin{tabular}[c]{@{}c@{}}Devuelve la velocidad vertical del robot.\\\end{tabular} \\ \hline
+.move(integer, integer, integer) & \begin{tabular}[c]{@{}c@{}}Mueve el robot hacia delante/atrás,\\ arriba/abajo y gira al mismo tiempo.\\ \end{tabular} \\ \hline
+.despegar() & \begin{tabular}[c]{@{}c@{}}Comanda velocidad vertical al robot hasta que \\ alcanza una determinada altura.\\ \end{tabular} \\ \hline
+.aterrizar() & \begin{tabular}[c]{@{}c@{}}Comanda velocidad vertical negativa al robot hasta que \\ alcanza el suelo.\\ \end{tabular} \\ \hline
+    \end{tabular}
+  \end{center}
+\end{table}
+
+\subsection{Bloques Scratch}
+\subsection{Modelo 3D}
+\subsection{Otros mundos}
 
 
 \section{Teleoperadores}
 \subsection{Archivos de configuración}
-\subsection{Diseño}
 
 \section{Ejercicios competitivos}
 \subsection{Escenarios}
-\subsection{Evaluador automático}
+\subsection{Evaluadores automáticos}

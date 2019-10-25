@@ -1,4 +1,5 @@
 # 2019-tfg-ruben-alvarez
+- [Week 29](#week29)
 - [Week 28](#week28)
 - [Week 27](#week27)
 - [Week 26](#week26)
@@ -27,6 +28,22 @@
 - [Week 2](#week2)
 - [Week 1](#week1)
 
+
+### Week 29 <a name="week29"></a>
+
+- Scalextric circuit finished:
+
+[![](http://img.youtube.com/vi/MMDWlWL3e1M/0.jpg)](https://youtu.be/MMDWlWL3e1M)  
+
+
+- Teleoperator refactored to Websim 2.0
+
+- Scratch competitive refactored
+
+- Evaluator advanced
+
+
+***
 ### Week 28 <a name="week28"></a>
 - New circuit with bridge
   ![alt text](/resources/circuitoInfinito.png)
