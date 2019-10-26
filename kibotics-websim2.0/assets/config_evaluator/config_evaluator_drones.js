@@ -21,30 +21,13 @@ function createInterface(){
   time.innerHTML="Tiempo: 00:00";
   time.style.color="black";
   node.appendChild(time);
-  console.log(node);
   var myiframe= document.getElementById("myIFrame");
   myiframe.insertBefore(node,myiframe.childNodes[0]);
-  console.log(myiframe);
 }
 
 function setGraphic(arrayRobots){
   myPanel = new jsgl.Panel(document.getElementById("panel"));
-  var axis = myPanel.createLine();
-  axis.setStartPointXY(20,10);
-  axis.setEndPointXY(20,100);
-  myPanel.addElement(axis);
-  var myLabel = myPanel.createLabel();
-  myLabel.setLocation(new jsgl.Vector2D(0,10));
-  myLabel.setText("10");
-  myPanel.addElement(myLabel);
-  var myLabel = myPanel.createLabel();
-  myLabel.setLocation(new jsgl.Vector2D(0,30));
-  myLabel.setText("30");
-  myPanel.addElement(myLabel);
-  var myLabel2 = myPanel.createLabel();
-  myLabel2.setLocation(new jsgl.Vector2D(0,60));
-  myLabel2.setText("60");
-  myPanel.addElement(myLabel2);
+  setAxis(myPanel);
   var line = myPanel.createPolyline();
   line.getStroke().setColor('blue');
   line.getStroke().setWeight(2);
@@ -61,8 +44,43 @@ function setGraphic(arrayRobots){
       myPanel.addElement(line);
     }
   }, 100);
-
 }
+
+function setAxis(myPanel){
+  var axisX = myPanel.createLine();
+  axisX.setStartPointXY(20,10);
+  axisX.setEndPointXY(20,100);
+  myPanel.addElement(axisX);
+  var axisY = myPanel.createLine();
+  axisY.setStartPointXY(20,100);
+  axisY.setEndPointXY(500,100);
+  myPanel.addElement(axisY);
+  var myLabel = myPanel.createLabel();
+  myLabel.setLocation(new jsgl.Vector2D(50,100));
+  myLabel.setText("00:10");
+  myPanel.addElement(myLabel);
+  var myLabel = myPanel.createLabel();
+  myLabel.setLocation(new jsgl.Vector2D(150,100));
+  myLabel.setText("00:30");
+  myPanel.addElement(myLabel);
+  var myLabel = myPanel.createLabel();
+  myLabel.setLocation(new jsgl.Vector2D(250,100));
+  myLabel.setText("01:00");
+  myPanel.addElement(myLabel);
+  var myLabel = myPanel.createLabel();
+  myLabel.setLocation(new jsgl.Vector2D(0,10));
+  myLabel.setText("10");
+  myPanel.addElement(myLabel);
+  var myLabel = myPanel.createLabel();
+  myLabel.setLocation(new jsgl.Vector2D(0,30));
+  myLabel.setText("30");
+  myPanel.addElement(myLabel);
+  var myLabel2 = myPanel.createLabel();
+  myLabel2.setLocation(new jsgl.Vector2D(0,60));
+  myLabel2.setText("60");
+  myPanel.addElement(myLabel2);
+}
+
 
 function setTime(robotID){
   /**This function do a cronometer and put it in index.html

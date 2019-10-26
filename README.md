@@ -45,7 +45,7 @@
 
 - Evaluator to watch distance between robots:
 
-![alt text](/resources/distance_evaluator.jpeg)
+![alt text](/resources/distance_evaluator.png)
 
 
 ***
