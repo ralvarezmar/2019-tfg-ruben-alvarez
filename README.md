@@ -40,7 +40,12 @@
 
 - Scratch competitive refactored
 
-- Evaluator advanced
+- Evaluators configuration finished.
+
+
+- Evaluator to watch distance between robots:
+
+![alt text](/resources/distance_evaluator.png)
 
 
 ***

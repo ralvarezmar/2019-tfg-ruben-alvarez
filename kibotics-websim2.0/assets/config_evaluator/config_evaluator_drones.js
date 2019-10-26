@@ -3,6 +3,7 @@ var evaluator = {};
 evaluator.main= (arrayRobots)=>{
   createInterface();
   setGraphic(arrayRobots);
+
   setTime(arrayRobots[0]);
 }
 
@@ -12,32 +13,54 @@ function createInterface(){
   */
   var node = document.createElement("div");
   node.setAttribute("id","panel");
-  node.style.height="200px";
+  node.style.height="150px";
+  node.style.backgroundColor="white";
   var time = document.createElement("div");
   time.setAttribute("id","time");
+  time.marginLeft="50px";
   time.innerHTML="Tiempo: 00:00";
+  time.style.color="black";
   node.appendChild(time);
+  console.log(node);
   var myiframe= document.getElementById("myIFrame");
   myiframe.insertBefore(node,myiframe.childNodes[0]);
+  console.log(myiframe);
 }
 
 function setGraphic(arrayRobots){
   myPanel = new jsgl.Panel(document.getElementById("panel"));
+  var axis = myPanel.createLine();
+  axis.setStartPointXY(20,10);
+  axis.setEndPointXY(20,100);
+  myPanel.addElement(axis);
+  var myLabel = myPanel.createLabel();
+  myLabel.setLocation(new jsgl.Vector2D(0,10));
+  myLabel.setText("10");
+  myPanel.addElement(myLabel);
+  var myLabel = myPanel.createLabel();
+  myLabel.setLocation(new jsgl.Vector2D(0,30));
+  myLabel.setText("30");
+  myPanel.addElement(myLabel);
+  var myLabel2 = myPanel.createLabel();
+  myLabel2.setLocation(new jsgl.Vector2D(0,60));
+  myLabel2.setText("60");
+  myPanel.addElement(myLabel2);
   var line = myPanel.createPolyline();
   line.getStroke().setColor('blue');
   line.getStroke().setWeight(2);
-  var x= 0;
+  var x= 20;
+  var robot1 = Websim.robots.getHalAPI(arrayRobots[0]);
+  var robot2 = Websim.robots.getHalAPI(arrayRobots[1]);
   setInterval(()=>{
-    var robot1 = Websim.robots.getHalAPI(arrayRobots[0]);
-    var robot2 = Websim.robots.getHalAPI(arrayRobots[1]);
-    var pos1 = robot1.getPosition();
-    var pos2 = robot2.getPosition();
-    var dist = Math.sqrt(Math.pow(pos2.x-pos1.x,2)+Math.pow(pos2.y-pos1.y,2)+Math.pow(pos2.z-pos1.z,2));
-    console.log(dist);
-    line.addPointXY(x,dist);
-    x=x+1;
-    myPanel.addElement(line);
-}, 200);
+    if(robot1.velocity.x >0 || robot2.velocity.x>0){
+      var pos1 = robot1.getPosition();
+      var pos2 = robot2.getPosition();
+      var dist = Math.sqrt(Math.pow(pos2.x-pos1.x,2)+Math.pow(pos2.y-pos1.y,2)+Math.pow(pos2.z-pos1.z,2));
+      line.addPointXY(x,dist);
+      x=x+0.5;
+      myPanel.addElement(line);
+    }
+  }, 100);
 
 }
 
