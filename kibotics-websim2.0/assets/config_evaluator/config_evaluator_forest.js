@@ -12,6 +12,7 @@ function createInterface(){
   */
   var node = document.createElement("div");
   node.setAttribute("class","evaluator");
+  node.style.height="100px";
   var img1 = document.createElement("img");
   img1.setAttribute("class","carMarker");
   img1.setAttribute("src","../assets/resources/car1.svg")
@@ -37,6 +38,8 @@ function createInterface(){
   var time = document.createElement("div");
   time.setAttribute("id","time");
   time.innerHTML="Tiempo: 00:00";
+  time.style.marginTop="-80px";
+  time.style.color="white";
   node.appendChild(time);
   var myiframe= document.getElementById("myIFrame");
   myiframe.insertBefore(node,myiframe.childNodes[0]);

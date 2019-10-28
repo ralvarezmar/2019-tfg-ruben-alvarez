@@ -13,13 +13,14 @@ function createInterface(){
   */
   var node = document.createElement("div");
   node.setAttribute("id","panel");
-  node.style.height="150px";
+  node.style.height="130px";
   node.style.backgroundColor="white";
   var time = document.createElement("div");
   time.setAttribute("id","time");
   time.marginLeft="50px";
   time.innerHTML="Tiempo: 00:00";
   time.style.color="black";
+  time.style.textAlign="center";
   node.appendChild(time);
   var myiframe= document.getElementById("myIFrame");
   myiframe.insertBefore(node,myiframe.childNodes[0]);
