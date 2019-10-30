@@ -1,0 +1,6 @@
+node_modules/
+PiBot/
+PiBot-test.zip
+PiBot/ejercicio.py
+build/
+package-lock.json

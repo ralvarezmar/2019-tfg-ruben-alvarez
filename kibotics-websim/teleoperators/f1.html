@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>WebSim - F1 teleoperator </title>
+    <meta charset="utf-8" />
+    <!-- Physics for A-Frame VR -->
+    <link rel="stylesheet" type="text/css" href="css/teleoperators.css"></link>
+    <script src="build/websim.bundle.js"></script>
+    <script>var config_file="../assets/config/config_f1_2.0.json";</script>
+    <script src="../simcore/utils/config.js"></script>
+    <script src="js/teleop.js"></script>
+  </head>
+  <body>
+    <nav id="navbar">
+      <a href="/index.html" ><img src="../assets/resources/jderobot.svg" alt="JdeRobot logo" style="width:70px; height:70px; margin-top: 6px;" /></a>
+      <div id="nav-button-container">
+        <button onclick id="cambtn"><img src="../assets/resources/play-camera-icon.png" alt="Stop button image"/></button>
+        <button onclick id="spectatorCamera"><img src="../assets/resources/focus.svg" alt="Change spectator camera"/></button>
+      </div>
+    </nav>
+    <div id="container">
+      <div id="myIFrame">
+        <script type="text/javascript" src="js/opencv3.3.1.js" ></script>
+      </div>
+      <div id="scriptContainer"></div>
+      <div id="right-container">
+        <div class="buttons">
+          <div id="upArrow">
+              <button onclick class="buttonArrow" id="invisible"><img class="buttonArrow" src="../assets/resources/speed.svg" /></button>
+              <button onclick class="buttonArrow" id="speed"><img class="buttonArrow" src="../assets/resources/speed.svg" /></button>
+          </div>
+          <div id="bottomArrows">
+              <button onclick class="buttonArrow" id="left" ><img class="buttonArrow" src="../assets/resources/left.svg"/></button>
+              <button onclick class="buttonArrow" id="brake"><img class="buttonArrow" src="../assets/resources/brake.svg"/></button>
+              <button onclick class="buttonArrow" id="right"><img class="buttonArrow" src="../assets/resources/right.svg"/></button><br>
+          </div>
+        </div>
+        <div id="cameras" style="display:inline-flex;">
+          <div id="cameraOpenCV" style="margin-left: 5px;">
+            <p>OpenCV image</p>
+            <canvas id="outputCanvas" ></canvas>
+          </div>
+          <div id="robotCam">
+            <p>Robot Camera</p>
+            <div id="spectatorDiv" style="width: 150px; height: 100px;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
