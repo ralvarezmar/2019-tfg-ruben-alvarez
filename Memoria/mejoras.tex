@@ -133,18 +133,167 @@ Para simular el robot en el entorno de \textit{A-Frame} es necesario realizar un
     \caption{Drone en Blender} \label{fig:droneBlender}
 \end{figure}
 
-Además, se han incluido varios escenarios nuevos:
-\begin{itemize}
-    \item Escenario liso para realizar pruebas y controlar el \textit{drone} sin elementos en el entorno. 
-    %El drone implementado en el entorno de \textit{Websim} se puede ver en la figura \ref{fig:escenarioDrone}.
-    
-    \begin{figure}[H]
+El drone implementado en el entorno de \textit{Websim} se puede ver en la figura \ref{fig:escenarioDrone}.
+   \begin{figure}[H]
     \centering
     \includegraphics[scale=0.3]{img/websimDrone.png}
     \caption{Escenario de WebSim con drone integrado} \label{fig:escenarioDrone}
     \end{figure}
+
+
+\section{Escenarios}
+
+Se han incorporado nuevos escenarios a \textit{WebSim} que dan la posibilidad de realizar nuevos ejercicios o de mejorar el que había ya disponible. En esta sección se explicarán los escenarios con un solo robot y se hará mención a los escenarios con dos robots, que se explicarán en profundidad más adelante.
+
+\subsection{Sigue-líneas visión}
+    Se ha mejorado el escenario cambiando la textura del suelo a una creada con la trazada del circuito de Interlagos. Se ha realizado con un programa de diseño gráfico y, debido a su peso, se ha reducido posteriormente su tamaño para aliviar los tiempos de carga. 
     
-    \item Otro con un cuadrado en el suelo para facilitar el ejercicio ``cuadrado drone'' en el que hay que dibujar un cuadrado con el movimiento del drone.
+    \begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{img/pibot_vision.JPG}
+    \caption{Escenario para el ejercicio \textit{piBot} sigue-líneas con cámara} \label{fig:siguelineavision}
+    \end{figure}
+    
+\subsection{Sigue-líneas infrarrojos}
+    Con un recorrido similar a sigue-líneas visión, pero con fondo blanco y recorrido negro para facilitar la implementación de código al robot real y que no haya que realizar modificaciones. Para que funcionara correctamente ha sido necesario añadir el color blanco a \textit{undestandedColors} para realizar el filtro y poder pasar ``\textit{white}'' como atributo a la función \textit{getObjectColor()}.
+    
+    \begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{img/siguelineas_ir.JPG}
+    \caption{Escenario para el ejercicio \textit{piBot} sigue-líneas infrarrojo} \label{fig:siguelineasIR}
+    \end{figure}
+    
+\subsection{Choca-gira}
+Escenario creado en \textit{Blender} con un aspecto similar a su análogo en \textit{Python}. Para ello se han adaptado la mayor parte de las estructuras que dispone el escenario original para su integración en \textit{WebSim}. 
+
+    \begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{img/bump&go.png}
+    \caption{Escenario para el ejercicio choca-gira} \label{fig:chocagira}
+    \end{figure}
+
+
+\subsection{Sigue-pelota con piBot}
+Dispone de una pelota de color rojo en el escenario a la que se le ha dado movimiento a través de primitivas de \textit{A-Frame}. En la figura \ref{fig:secuenciaPibot} se puede ver una secuencia con la animación de la pelota. 
+
+
+
+\begin{figure}[htbp]
+\begin{subfigure}[t]{0.2\textwidth}
+    \includegraphics[width=3cm, height=3cm]{img/BallPibot1.png}
+\label{fig:figure1_1}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.2\textwidth}
+  \includegraphics[width=3cm, height=3cm]{img/BallPibot2.png}
+\label{fig:figure1_2}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.2\textwidth}
+    \includegraphics[width=3cm, height=3cm]{img/BallPibot3.png}
+\label{fig:figure1_3}
+\end{subfigure}
+
+\begin{subfigure}[t]{0.2\textwidth}
+    \includegraphics[width=3cm, height=3cm]{img/BallPibot4.png}
+\label{fig:figure1_4}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.2\textwidth}
+    \includegraphics[width=3cm, height=3cm]{img/BallPibot5.png}
+\label{fig:figure1_5}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.2\textwidth}
+    \includegraphics[width=3cm, height=3cm]{img/BallPibot6.png}
+\label{fig:figure1_6}
+\end{subfigure}
+
+\begin{subfigure}[t]{0.2\textwidth}
+    \includegraphics[width=3cm, height=3cm]{img/BallPibot7.png}
+\label{fig:figure1_7}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.2\textwidth}
+    \includegraphics[width=3cm, height=3cm]{img/BallPibot8.png}
+\label{fig:figure1_8}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.2\textwidth}
+    \includegraphics[width=3cm, height=3cm]{img/BallPibot9.png}
+\label{fig:figure1_9}
+\end{subfigure}
+\caption{Secuencia de la animación de una pelota para el ejercicio piBot sigue-pelota}
+\label{fig:secuenciaPibot}
+\end{figure}
+
+\subsection{Atraviesa-bosque}
+Creado con primitivas de \textit{A-Frame}, el escenario tiene disposición de pasillo y diversos objetos en el camino para realizar un ejercicio que haga uso del sensor de ultrasonidos para evitar obstáculos.
+
+    \begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{img/atraviesabosque-indiv.png}
+    \caption{Escenario para el ejercicio atraviesa bosque} 
+    \label{fig:atraviesaBosqueind}
+    \end{figure}
+    
+\subsection{Sigue-pelota con drone}
+Realizado de forma similar al ejercicio con piBot, pero modificando la animación para que la pelota se mueva también en el eje Y. Se puede ver una secuencia con la animación en la figura \ref{fig:secuenciaDrone}.
+
+
+\begin{figure}[htbp]
+\begin{subfigure}[t]{0.2\textwidth}
+    \includegraphics[width=3cm, height=3cm]{img/followBallTello1.png}
+\label{fig:figure2_1}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.2\textwidth}
+  \includegraphics[width=3cm, height=3cm]{img/followBallTello2.png}
+\label{fig:figure2_2}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.2\textwidth}
+    \includegraphics[width=3cm, height=3cm]{img/followBallTello3.png}
+\label{fig:figure2_3}
+\end{subfigure}
+
+\begin{subfigure}[t]{0.2\textwidth}
+    \includegraphics[width=3cm, height=3cm]{img/followBallTello4.png}
+\label{fig:figure2_4}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.2\textwidth}
+    \includegraphics[width=3cm, height=3cm]{img/followBallTello5.png}
+\label{fig:figure2_5}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.2\textwidth}
+    \includegraphics[width=3cm, height=3cm]{img/followBallTello6.png}
+\label{fig:figure2_6}
+\end{subfigure}
+
+\begin{subfigure}[t]{0.2\textwidth}
+    \includegraphics[width=3cm, height=3cm]{img/followBallTello7.png}
+\label{fig:figure2_7}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.2\textwidth}
+    \includegraphics[width=3cm, height=3cm]{img/followBallTello8.png}
+\label{fig:figure2_8}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.2\textwidth}
+    \includegraphics[width=3cm, height=3cm]{img/followBallTello9.png}
+\label{fig:figure2_9}
+\end{subfigure}
+
+\begin{subfigure}[t]{0.2\textwidth}
+    \includegraphics[width=3cm, height=3cm]{img/followBallTello10.png}
+\label{fig:figure2_10}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.2\textwidth}
+    \includegraphics[width=3cm, height=3cm]{img/followBallTello11.png}
+\label{fig:figure2_11}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.2\textwidth}
+    \includegraphics[width=3cm, height=3cm]{img/followBallTello12.png}
+\label{fig:figure2_12}
+\end{subfigure}
+\caption{Secuencia de la animación de una pelota para el ejercicio \textit{drone} sigue-pelota}
+\label{fig:secuenciaDrone}
+\end{figure}
+
+\subsection{Cuadrado con drone}
+
+Escenario para facilitar el ejercicio ``cuadrado drone'' en el que hay que dibujar un cuadrado con el movimiento del \textit{drone}.
     
     \begin{figure}[H]
         \centering
@@ -153,13 +302,48 @@ Además, se han incluido varios escenarios nuevos:
         \label{fig:droneCuadrado}
     \end{figure}
     
-    \item Un último con una pelota de color rojo en el escenario a la que se le ha dado movimiento a través de primitivas de \textit{A-Frame} para simular el ejercicio ``drone sigue-pelota''.
-    \begin{figure}[H]
-    \centering
-    \includegraphics[scale=0.4]{img/droneBall.png}
-    \caption{Escenario de WebSim para el ejercicio drone sigue-pelota} \label{fig:droneBall}
+\subsection{Escenarios competitivos}
+
+Se han realizado varios escenarios para realizar ejercicios competitivos:
+\begin{itemize}
+    \item Muros: prototipo creado para realizar pruebas comandando velocidades a los robots y comprobar el estado de sus sensores.
+      
+       \begin{figure}[H]
+        \centering           
+        \includegraphics[scale=0.3]{img/ejercicio_muros.png}
+        \caption{Prototipo ejercicio competitivo}
+        \label{fig:ejercicio_muro}
     \end{figure}
-\end{itemize} 
+
+    
+    \item Atraviesa-bosque: ejercicio similar al escenario con un solo robot, pero en este caso se han creado dos pasillos con objetos para recorrerlos sin chocar con ninguno de los obstáculos. Se han añadido distintas primitivas de \textit{A-Frame} en la misma ubicación para los dos \textit{robots} para que el recorrido sea justo.
+    
+    \begin{figure}[H]
+        \centering           
+        \includegraphics[scale=0.3]{img/ejercicio_atraviesabosque.png}
+        \caption{Ejercicio atraviesa-bosque competitivo}
+        \label{fig:atraviesabosque_escenario}
+    \end{figure}
+    
+    \item Sigue-líneas: escenario con dos robots en el que tienen que seguir una linea de color blanco sobre fondo negro atravesando un puente en medio del circuito para que, de esta manera, ambos recorran la misma distancia.
+
+    \begin{figure}[H]
+        \centering            
+        \includegraphics[scale=0.3]{img/ejercicio_siguelineas.png}
+        \caption{Ejercicio sigue-líneas competitivo}
+        \label{fig:siguelineas_competitivo}
+    \end{figure}
+\end{itemize}
+
+Siendo el principal problema el puente creado para el ejercicio sigue-líneas. La solución definitiva ha sido creando primitivas de \textit{A-Frame} (\textit{a-plane}) de tal forma que simule un puente y pueda cruzarlo el coche. Se ha intentado realizar un modelo de puente en \textit{Blender}, pero el entorno no simulaba correctamente la malla de colisiones siendo imposible subir el puente porque el robot ``chocaba'' contra él. En la figura \ref{fig:prueba_puente} se puede ver el puente creado y la malla de colisión generada por \textit{A-Frame}.
+
+    \begin{figure}[H]
+        \centering            
+        \includegraphics[scale=0.3]{img/prueba_puente.png}
+        \caption{Prueba de puente creado en \textit{Blender}}
+        \label{fig:prueba_puente}
+    \end{figure}
+
 
 \section{Teleoperadores}
 Se han incorporado teleoperadores en \textit{WebSim} para poder controlar los robots sin necesidad de programarlos. De esta manera es posible saber el estado y valor de sus sensores de manera sencilla ayudando a los desarrolladores a buscar fallos en drivers o incorporar nuevos escenarios. 
@@ -198,32 +382,26 @@ En este ejemplo se configura el escenario para que cargue el modelo del \textit{
 
 \subsection{Teleoperadores}
 
-Además de los modelos existentes del drone y \textit{piBot}, se han creado otros nuevos para extender las posibilidades de la plataforma y poder teleoperar todos ellos: 
-\begin{itemize}
-    \item Fórmula 1
-        \begin{figure}[H]
-            \centering            \includegraphics[scale=0.35]{img/f1_teleoperator.png}
-            \caption{Teleoperador para el modelo del fórmula 1} \label{fig:f1_teleoperator}
-        \end{figure}
-    \item PiBot 
-        \begin{figure}[H]
-            \centering            \includegraphics[scale=0.35]{img/pibot_teleoperator.png}
-            \caption{Teleoperador para el modelo del piBot} \label{fig:piBot_teleoperator}
-        \end{figure}
-    \item mBot
-          \begin{figure}[H]
-            \centering
-            \includegraphics[scale=0.3]{img/mBot_teleoperator.png}
-            \caption{Teleoperador para el modelo del mBot} \label{fig:mBot_teleoperator}
-        \end{figure}
-    \item Drone
-        \begin{figure}[H]
-            \centering
-            \includegraphics[scale=0.3]{img/drone_teleoperator.png}
-            \caption{Teleoperador para el modelo del drone} \label{fig:drone_teleoperator}
-        \end{figure}
+Además de los modelos existentes del drone y \textit{piBot}, se han creado otros nuevos para extender las posibilidades de la plataforma y poder teleoperar todos ellos.
+\begin{figure}[H]
+    \centering            \includegraphics[scale=0.35]{img/f1_teleoperator.png}
+    \caption{Teleoperador para el modelo del fórmula 1} \label{fig:f1_teleoperator}
+\end{figure}
+\begin{figure}[H]
+    \centering            \includegraphics[scale=0.35]{img/pibot_teleoperator.png}
+    \caption{Teleoperador para el modelo del piBot} \label{fig:piBot_teleoperator}
+\end{figure}
+  \begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.3]{img/mBot_teleoperator.png}
+    \caption{Teleoperador para el modelo del mBot} \label{fig:mBot_teleoperator}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.3]{img/drone_teleoperator.png}
+    \caption{Teleoperador para el modelo del drone} \label{fig:drone_teleoperator}
+\end{figure}
     
-\end{itemize}
 Pudiendo controlar todos ellos con los botones que aparecen en la imagen o bien a través del teclado. 
 Además, se ha creado una página principal para poder acceder a todos ellos a través de una interfaz gráfica: 
 
@@ -237,100 +415,78 @@ Además, se ha creado una página principal para poder acceder a todos ellos a t
 
 Uno de los objetivos de este proyecto era añadir ejercicios competitivos. Se hace especial mención a ellos debido a que son completamente diferentes al resto de los ya creados. Este tipo de ejercicios aumenta el valor de la plataforma ya que da la posibilidad de programar dos robots en el mismo escenario, pudiendo entender la programación como un juego en el que se premia al que aporte la mejor solución.
 
- Para dar soporte a este tipo de ejercicios se ha realizado una refactorización de \textit{WebSim}, actualizando así la aplicación a la versión \textit{WebSim 2.0}. En esta versión se separan los hilos de \textit{HAL API}, simulador y editor dando la posibilidad de crear más de un robot en la misma escena, cambiar el código del robot en la simulación o incluso parar la simulación y reanudarla después con un código distinto. \newline
+%  Para dar soporte a este tipo de ejercicios se ha realizado una refactorización de \textit{WebSim}, actualizando así la aplicación a la versión \textit{WebSim 2.0}. En esta versión se separan los hilos de \textit{HAL API}, simulador y editor dando la posibilidad de crear más de un robot en la misma escena, cambiar el código del robot en la simulación o incluso parar la simulación y reanudarla después con un código distinto. \newline
 
-En este tipo de ejercicios hay dos robots en una misma escena donde cada uno de ellos se puede programar con un código distinto. Para facilitar la integración con el resto de la plataforma se han incorporado dos aplicaciones más a \textit{WebSim}: ejercicios competitivos en \textit{Scratch} y ejercicios competitivos en \textit{JavaScript}. \newline
+En este tipo de ejercicios hay dos robots en una misma escena donde cada uno de ellos se puede programar con un código distinto. Para facilitar la integración con el resto de la plataforma se han incorporado dos aplicaciones más a \textit{WebSim}: ejercicios competitivos en \textit{Scratch} y ejercicios competitivos en \textit{JavaScript}. 
 
 
 Se ha comenzado creando la aplicación llamada \textit{competitive-JavaScript} debido a la facilidad para probar código y hacer pruebas en el entorno. Para ello se ha cambiado la interfaz del editor, añadiendo botones para cada uno de los robots (figura \ref{fig:javascript_competitivo}) y añadir funcionalidad a cada botón para guardar el código de cada robot o mostrar el código en caso de tener uno guardado.
-    \begin{figure}[H]
+
+    \begin{figure}[h]
         \centering            \includegraphics[scale=0.30]{img/competitiveEditorJavascript.png}
         \caption{Editor de \textit{JavaScript} para ejercicios competitivos}
         \label{fig:javascript_competitivo}
     \end{figure}
 
-La aplicación \textit{competitive-Scratch} se ha realizado de la misma manera, con la diferencia de que, en este caso, es necesario guardar el código de los bloques en \textit{XML} y su traducción en \textit{JavaScript}. Para realizarlo de forma limpia se ha creado un objeto que contiene un \textit{boolean} y dos cadenas de texto. En el \textit{boolean} se indica el código de qué \textit{robot} se está editando, en una cadena de texto se guarda el código \textit{XML} y en la otra su traducción en \textit{JavaScript}. Se puede ver la interfaz en la figura \ref{fig:scratch_competitivo}.
+La aplicación \textit{competitive-Scratch} se ha realizado de la misma manera, con la diferencia de que, en este caso, es necesario guardar el código de los bloques en \textit{XML} y su traducción en \textit{JavaScript}. Para realizarlo de forma limpia se ha creado un objeto que contiene un \textit{boolean} y dos cadenas de texto. En el \textit{boolean} se indica el código de qué \textit{robot} se está editando, en una cadena de texto se guarda el código \textit{XML} y en la otra su traducción en \textit{JavaScript}. Se puede ver la interfaz de este editor en la figura \ref{fig:scratch_competitivo}.
 
-    \begin{figure}[H]
+    \begin{figure}[h]
         \centering            
         \includegraphics[scale=0.30]{img/competitivoEditorScratch.png}
         \caption{Editor de \textit{Scratch} para ejercicios competitivos}
         \label{fig:scratch_competitivo}
     \end{figure}
     
+Para puntuar el comportamiento de los robots de manera justa, se han incluido en estos ejercicios evaluadores automáticos. Van a tener diferentes comportamientos en cada ejercicio, por lo que se han desarrollado de tal forma que se pueda cargar cargar un evaluador distinto para cada uno o, incluso, no cargar ninguno. \newline
 
-\subsection{Ejercicios competitivos}
+Para su implementación se ha creado la función \textit{runEvaluator}, que acepta como parámetro un \textit{array} con los identificadores de los robots y el archivo del evaluador deseado. Este fichero se recoge como variable en el \textit{index.html} del editor correspondiente (de forma similar a los archivos de configuración). 
+Para llamar a \textit{runEvaluator} se comprueba que se haya pasado un fichero en el \textit{index.html} y, si eso ocurre, se realiza un \textit{require} de ese fichero y se ejecuta la función principal del evaluador, \textit{evaluator.main()}, que se encarga de llamar a las funciones necesarias para que el evaluador sea completo: crea la interfaz gráfica y la funcionalidad necesaria para su correcto funcionamiento. 
 
-Se han creado distintos escenarios para este nuevo tipo de ejercicios:
+A continuación se explican los ejercicios y evaluadores para cada uno de ellos. 
 
-\begin{itemize}
-    \item \textbf{Muros}: prototipo creado para realizar pruebas comandando velocidades a los robots y comprobar el estado de sus sensores (figura \ref{fig:ejercicio_muro}).
-    
-    \item \textbf{Sigue-líneas}: escenario con dos robots en el que tienen que seguir una linea de color blanco sobre fondo negro atravesando un puente creado en el circuito para que de esta manera ambos recorran la misma distancia(figura \ref{fig:siguelineas_competitivo}). 
-    %problema con gltf y modelo creado
-    
-    \item \textbf{Atraviesa-bosque}: en este caso se han creado dos pasillos con objetos para recorrerlos sin chocar con ninguno de los obstáculos. Se han añadido distintas primitivas de \textit{A-Frame} en la misma ubicación para los dos \textit{robots} (figura \ref{fig:atraviesabosque_escenario}). 
-    
-       \begin{figure}[H]
-        \centering           
-        \includegraphics[scale=0.3]{img/ejercicio_muros.png}
-        \caption{Prototipo ejercicio competitivo}
-        \label{fig:ejercicio_muro}
-    \end{figure}
-    
-    \begin{figure}[H]
-        \centering            
-        \includegraphics[scale=0.3]{img/ejercicio_siguelineas.png}
-        \caption{Ejercicio sigue-líneas competitivo}
-        \label{fig:siguelineas_competitivo}
-    \end{figure}
-    \begin{figure}[H]
-        \centering           
-        \includegraphics[scale=0.3]{img/ejercicio_atraviesabosque.png}
-        \caption{Ejercicio atraviesa-bosque competitivo}
-        \label{fig:atraviesabosque_escenario}
-    \end{figure}
+\subsection{Atraviesa-bosque competitivo}
 
-\end{itemize}
+Para este ejercicio se usa el escenario de la imagen \ref{fig:atraviesabosque_escenario}. Se ha creado un evaluador en el que se crea una barra de progreso para cada robot y un cronómetro. Cuando se empiezan a mover los robots la barra de progreso se va completando y el cronómetro se inicia, para comprobar el porcentaje completado solo hay que obtener la posición del robot y compararla con el punto de llegada.
 
-Además, con la nueva estructura de \textit{WebSim 2.0} se permite realizar el ejercicio gato-ratón con \textit{drones}. Se trata de otro tipo en el que no se compite con dos códigos programados por distintos usuarios, si no que un \textit{drone} ya está programado y el usuario solo tiene que desarrollar su solución para que su \textit{robot} no se aleje del objetivo. Para ello ha sido necesario crear un modelo al que se le ha pintado de color rojo para que sea más sencillo su filtrado. Se puede ver el escenario con ambos \textit{drones} en la figura \ref{fig:gato_raton}.
-
-    
 \begin{figure}[H]
-    \centering           
-    \includegraphics[scale=0.35]{img/ejercicio_gatoraton.png}
-    \caption{Ejercicio gato-ratón}
-    \label{fig:gato_raton}
+\centering           
+\includegraphics[scale=0.3]{img/evaluador_forest.png}
+\caption{Evaluador para el ejercicio atraviesa-bosque}
+\label{fig:evaluador_bosque}
 \end{figure}
 
 
-\subsection{Evaluadores automáticos}
+\subsection{Sigue-líneas competitivo}
 
-Para puntuar de manera justa el comportamiento de los robots en estos ejercicios se han creado evaluadores automáticos. Van a tener diferentes comportamientos en cada ejercicio, por lo tanto se han implementado para poder cargar un evaluador distinto para cada uno o, incluso, no cargar ninguno. \newline
+Para este ejercicio se usa el escenario de la figura \ref{fig:siguelineas_competitivo} y su evaluador es similar al de atraviesa-bosque con la diferencia de que es necesario guardar en todo momento la posición y distancia recorrida por cada robot para calcular el porcentaje del circuito completado.
 
-Los evaluadores se han implementado de forma similar a los archivos de configuración; se ha creado la función \textit{runEvaluator} que acepta como parámetro un \textit{array} con los identificadores de los robots y el archivo del evaluador deseado que lo recoge como variable en el \textit{index.html} del editor correspondiente. 
-Dentro de la función \textit{runEvaluator} se comprueba que se le haya pasado un fichero y, si eso ocurre, se realiza un \textit{require} de ese fichero y llama a su función principal, \textit{evaluator.main()}. Esta función se encarga de llamar a las funciones necesarias para que el evaluador sea completo: crea la interfaz gráfica y la funcionalidad necesaria para su correcto funcionamiento. 
 
-Se han creado varios evaluadores: 
-\begin{itemize}
-    \item \textbf{Evaluador atraviesa-bosque}: Se crea una barra de progreso para cada robot y un cronómetro. Cuando se empiezan a mover los robots la barra de progreso se va completando y el cronómetro se inicia.
-    
-    \begin{figure}[H]
+\begin{figure}[H]
     \centering           
-    \includegraphics[scale=0.3]{img/evaluador_forest.png}
-    \caption{Evaluador para el ejercicio atraviesa-bosque}
-    \label{fig:evaluador_bosque}
-    \end{figure}
+    \includegraphics[scale=0.3]{img/evaluator_follow_line.png}
+    \caption{Evaluador sigue-líneas}
+    \label{fig:evaluador_siguelineas}
+\end{figure}
 
-    \item \textbf{Evaluador gato-ratón}: Se crea un gráfico con ayuda de una librería externa de \textit{JavaScript} (\textit{JavaScript Graphics Library}\footnote{\url{http://www.jsgl.org/}}) que muestra la distancia entre \textit{drones} y el tiempo que lleva de ejecución.
-    
-    \begin{figure}[H]
+\subsection{Gato-ratón}
+
+Con la nueva estructura de \textit{WebSim} se permite realizar el ejercicio gato-ratón con \textit{drones}. Se trata de otro tipo en el que no se compite con dos códigos programados por distintos usuarios, si no que un \textit{drone} ya está programado y el usuario solo tiene que desarrollar su solución para que el \textit{robot} no se aleje del objetivo. Para ello ha sido necesario crear un modelo al que se le ha pintado de color rojo para que sea más sencillo su filtrado. Se puede ver el escenario con ambos \textit{drones} en la figura \ref{fig:gato_raton}.
+
+
+
+
+Para el evaluador de este ejercicio se crea un gráfico con ayuda de una librería externa de \textit{JavaScript} (\textit{JavaScript Graphics Library}\footnote{\url{http://www.jsgl.org/}}) que muestra la distancia entre \textit{drones} y el tiempo que lleva de ejecución. Se puede ver este evaluador en la figura \ref{fig:evaluador_gato_raton}.
+  
+    \begin{figure}[h]
     \centering           
-    \includegraphics[scale=0.3]{img/evaluador_drone.png}
-    \caption{Evaluador para ejercicio gato-ratón}
-    \label{fig:evaluador_gato_raton}
-    \end{figure}
+    \includegraphics[scale=0.3]{img/ejercicio_gatoraton.png}
+    \caption{Ejercicio gato-ratón}
+    \label{fig:gato_raton}
     
-    
-    \item \textbf{Evaluador sigue-lineas}: Evaluador similar a atraviesa-bosque con la diferencia de que muestra el porcentaje de circuito completado por cada uno de los robots. 
-\end{itemize}
+\end{figure}
+\begin{figure}[h]
+\centering           
+\includegraphics[scale=0.3]{img/evaluador_drone.png}
+\caption{Evaluador para ejercicio gato-ratón}
+\label{fig:evaluador_gato_raton}
+\end{figure}
