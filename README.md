@@ -1,4 +1,5 @@
 # 2019-tfg-ruben-alvarez
+- [Week 30](#week30)
 - [Week 29](#week29)
 - [Week 28](#week28)
 - [Week 27](#week27)
@@ -28,7 +29,18 @@
 - [Week 2](#week2)
 - [Week 1](#week1)
 
+### Week 30 <a name="week30"></a>
 
+- Chapter 4 finished
+
+- Forest exercise finished:
+
+  ![alt text](/resources/atraviesabosque-indiv.png)
+
+- Solved issue with sleep.
+
+
+***
 ### Week 29 <a name="week29"></a>
 
 - Scalextric circuit finished:
