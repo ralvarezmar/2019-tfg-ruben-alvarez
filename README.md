@@ -35,12 +35,17 @@
 
 [![](http://img.youtube.com/vi/MMDWlWL3e1M/0.jpg)](https://youtu.be/MMDWlWL3e1M)  
 
+- Evaluator to watch distance between robots:
+
+![alt text](/resources/distance_evaluator.png)
+
 
 - Teleoperator refactored to Websim 2.0
 
 - Scratch competitive refactored
 
-- Evaluator advanced
+- Evaluators configuration finished.
+
 
 
 ***
