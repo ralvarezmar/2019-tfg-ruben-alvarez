@@ -143,7 +143,7 @@ El drone implementado en el entorno de \textit{Websim} se puede ver en la figura
 
 \section{Escenarios}
 
-Se han incorporado nuevos escenarios a \textit{WebSim} que dan la posibilidad de realizar nuevos ejercicios o de mejorar el que había ya disponible. En esta sección se explicarán los escenarios con un solo robot y se hará mención a los escenarios con dos robots, que se explicarán en profundidad más adelante.
+Se han incorporado nuevos escenarios a \textit{WebSim} que dan la posibilidad de realizar nuevos ejercicios y  mejorar los ya disponibles. En esta sección se explicarán los escenarios con un solo robot y se hará mención a lo que tienen con dos robots, que se explicarán en profundidad más adelante.
 
 \subsection{Sigue-líneas visión}
     Se ha mejorado el escenario cambiando la textura del suelo a una creada con la trazada del circuito de Interlagos. Se ha realizado con un programa de diseño gráfico y, debido a su peso, se ha reducido posteriormente su tamaño para aliviar los tiempos de carga. 
@@ -174,9 +174,7 @@ Escenario creado en \textit{Blender} con un aspecto similar a su análogo en \te
 
 
 \subsection{Sigue-pelota con piBot}
-Dispone de una pelota de color rojo en el escenario a la que se le ha dado movimiento a través de primitivas de \textit{A-Frame}. En la figura \ref{fig:secuenciaPibot} se puede ver una secuencia con la animación de la pelota. 
-
-
+El escenario dispone de una pelota de color rojo a la que se le ha dado movimiento a través de primitivas de \textit{A-Frame}. En la figura \ref{fig:secuenciaPibot} se puede ver una secuencia con la animación de la pelota. 
 
 \begin{figure}[htbp]
 \begin{subfigure}[t]{0.2\textwidth}
@@ -232,7 +230,7 @@ Creado con primitivas de \textit{A-Frame}, el escenario tiene disposición de pa
     \end{figure}
     
 \subsection{Sigue-pelota con drone}
-Realizado de forma similar al ejercicio con piBot, pero modificando la animación para que la pelota se mueva también en el eje Y. Se puede ver una secuencia con la animación en la figura \ref{fig:secuenciaDrone}.
+Realizado de forma similar al ejercicio con piBot, pero modificando la animación para que la pelota se mueva también en el eje Y. Se puede ver una secuencia de la animación en la figura \ref{fig:secuenciaDrone}.
 
 
 \begin{figure}[htbp]
@@ -440,7 +438,7 @@ La aplicación \textit{competitive-Scratch} se ha realizado de la misma manera, 
 Para puntuar el comportamiento de los robots de manera justa, se han incluido en estos ejercicios evaluadores automáticos. Van a tener diferentes comportamientos en cada ejercicio, por lo que se han desarrollado de tal forma que se pueda cargar cargar un evaluador distinto para cada uno o, incluso, no cargar ninguno. \newline
 
 Para su implementación se ha creado la función \textit{runEvaluator}, que acepta como parámetro un \textit{array} con los identificadores de los robots y el archivo del evaluador deseado. Este fichero se recoge como variable en el \textit{index.html} del editor correspondiente (de forma similar a los archivos de configuración). 
-Para llamar a \textit{runEvaluator} se comprueba que se haya pasado un fichero en el \textit{index.html} y, si eso ocurre, se realiza un \textit{require} de ese fichero y se ejecuta la función principal del evaluador, \textit{evaluator.main()}, que se encarga de llamar a las funciones necesarias para que el evaluador sea completo: crea la interfaz gráfica y la funcionalidad necesaria para su correcto funcionamiento. 
+Para llamar a \textit{runEvaluator} se comprueba que se haya pasado un fichero en el \textit{index.html} y, si eso ocurre, se realiza un \textit{require} de ese fichero y se ejecuta la función principal del evaluador, \textit{evaluator.main()}. Esta se encarga de llamar a las funciones necesarias para que el evaluador sea completo: crea la interfaz gráfica y la lógica necesaria para su correcto funcionamiento.
 
 A continuación se explican los ejercicios y evaluadores para cada uno de ellos. 
 
@@ -458,30 +456,28 @@ Para este ejercicio se usa el escenario de la imagen \ref{fig:atraviesabosque_es
 
 \subsection{Sigue-líneas competitivo}
 
-Para este ejercicio se usa el escenario de la figura \ref{fig:siguelineas_competitivo} y su evaluador es similar al de atraviesa-bosque con la diferencia de que es necesario guardar en todo momento la posición y distancia recorrida por cada robot para calcular el porcentaje del circuito completado.
+Para este ejercicio se usa el escenario de la figura \ref{fig:siguelineas_competitivo} y su evaluador es similar al de atraviesa-bosque, con la diferencia de que es necesario guardar en todo momento la posición y distancia recorrida por cada robot para calcular el porcentaje del circuito completado.
 
 
 \begin{figure}[H]
     \centering           
-    \includegraphics[scale=0.3]{img/evaluator_follow_line.png}
+    \includegraphics[scale=0.25]{img/evaluator_follow_line.png}
     \caption{Evaluador sigue-líneas}
     \label{fig:evaluador_siguelineas}
 \end{figure}
 
 \subsection{Gato-ratón}
 
-Con la nueva estructura de \textit{WebSim} se permite realizar el ejercicio gato-ratón con \textit{drones}. Se trata de otro tipo en el que no se compite con dos códigos programados por distintos usuarios, si no que un \textit{drone} ya está programado y el usuario solo tiene que desarrollar su solución para que el \textit{robot} no se aleje del objetivo. Para ello ha sido necesario crear un modelo al que se le ha pintado de color rojo para que sea más sencillo su filtrado. Se puede ver el escenario con ambos \textit{drones} en la figura \ref{fig:gato_raton}.
-
-
+Con la nueva estructura de \textit{WebSim} se permite realizar el ejercicio gato-ratón con \textit{drones}. Se trata de otro tipo en el que no se compite con dos códigos programados por distintos usuarios, si no que un \textit{drone} ya está programado y el usuario solo tiene que desarrollar su solución para que el \textit{robot} no se aleje del objetivo. Para ello ha sido necesario crear un modelo al que se le ha pintado de color rojo para que sea más sencillo su filtrado. Se puede ver el nuevo modelo de \textit{drone} en la figura \ref{fig:drone_rojo}.
 
 
 Para el evaluador de este ejercicio se crea un gráfico con ayuda de una librería externa de \textit{JavaScript} (\textit{JavaScript Graphics Library}\footnote{\url{http://www.jsgl.org/}}) que muestra la distancia entre \textit{drones} y el tiempo que lleva de ejecución. Se puede ver este evaluador en la figura \ref{fig:evaluador_gato_raton}.
   
     \begin{figure}[h]
     \centering           
-    \includegraphics[scale=0.3]{img/ejercicio_gatoraton.png}
-    \caption{Ejercicio gato-ratón}
-    \label{fig:gato_raton}
+    \includegraphics[scale=0.5]{img/red_drone.jpg}
+    \caption{Nuevo modelo de drone para ejercicio gato-ratón}
+    \label{fig:drone_rojo}
     
 \end{figure}
 \begin{figure}[h]
