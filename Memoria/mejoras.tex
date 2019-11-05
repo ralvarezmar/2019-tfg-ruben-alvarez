@@ -3,6 +3,8 @@
 Una vez presentado el contexto, objetivos y herramientas empleadas, en este capitulo se detallan todas las mejoras realizadas del simulador \textit{WebSim} y cómo se han llevado a cabo. 
 
 \section{Drone}
+\label{sec:drone}
+
 Uno de los objetivos principales del TFG era ampliar el soporte para otros robots y escenarios en \textit{WebSim}. Se ha comenzado dando soporte a drones debido a las diferencias con el \textit{piBot} del que ya disponía soporte. 
 Para ello hay que extender el \textit{software} existente de la plataforma.
 \subsection{Drivers}
@@ -141,7 +143,8 @@ El drone implementado en el entorno de \textit{Websim} se puede ver en la figura
     \end{figure}
 
 
-\section{Escenarios}
+\section{Escenarios y ejercicios}
+\label{sec:escenarios}
 
 Se han incorporado nuevos escenarios a \textit{WebSim} que dan la posibilidad de realizar nuevos ejercicios y  mejorar los ya disponibles. En esta sección se explicarán los escenarios con un solo robot y se hará mención a lo que tienen con dos robots, que se explicarán en profundidad más adelante.
 
@@ -164,6 +167,7 @@ Se han incorporado nuevos escenarios a \textit{WebSim} que dan la posibilidad de
     \end{figure}
     
 \subsection{Choca-gira}
+\label{subsec:chocagira}
 Escenario creado en \textit{Blender} con un aspecto similar a su análogo en \textit{Python}. Para ello se han adaptado la mayor parte de las estructuras que dispone el escenario original para su integración en \textit{WebSim}. 
 
     \begin{figure}[H]
@@ -174,6 +178,7 @@ Escenario creado en \textit{Blender} con un aspecto similar a su análogo en \te
 
 
 \subsection{Sigue-pelota con piBot}
+\label{subsec:pelotapibot}
 El escenario dispone de una pelota de color rojo a la que se le ha dado movimiento a través de primitivas de \textit{A-Frame}. En la figura \ref{fig:secuenciaPibot} se puede ver una secuencia con la animación de la pelota. 
 
 \begin{figure}[htbp]
@@ -220,6 +225,8 @@ El escenario dispone de una pelota de color rojo a la que se le ha dado movimien
 \end{figure}
 
 \subsection{Atraviesa-bosque}
+\label{subsec:atraviesabosque}
+
 Creado con primitivas de \textit{A-Frame}, el escenario tiene disposición de pasillo y diversos objetos en el camino para realizar un ejercicio que haga uso del sensor de ultrasonidos para evitar obstáculos.
 
     \begin{figure}[H]
@@ -230,6 +237,8 @@ Creado con primitivas de \textit{A-Frame}, el escenario tiene disposición de pa
     \end{figure}
     
 \subsection{Sigue-pelota con drone}
+\label{subsec:pelotadrone}
+
 Realizado de forma similar al ejercicio con piBot, pero modificando la animación para que la pelota se mueva también en el eje Y. Se puede ver una secuencia de la animación en la figura \ref{fig:secuenciaDrone}.
 
 
@@ -344,6 +353,8 @@ Siendo el principal problema el puente creado para el ejercicio sigue-líneas. L
 
 
 \section{Teleoperadores}
+\label{sec:teleoperadores}
+
 Se han incorporado teleoperadores en \textit{WebSim} para poder controlar los robots sin necesidad de programarlos. De esta manera es posible saber el estado y valor de sus sensores de manera sencilla ayudando a los desarrolladores a buscar fallos en drivers o incorporar nuevos escenarios. 
 
 \subsection{Ficheros de configuración}
@@ -410,10 +421,8 @@ Además, se ha creado una página principal para poder acceder a todos ellos a t
 \end{figure}
 
 \section{Ejercicios competitivos}
-
+\label{sec:competitive}
 Uno de los objetivos de este proyecto era añadir ejercicios competitivos. Se hace especial mención a ellos debido a que son completamente diferentes al resto de los ya creados. Este tipo de ejercicios aumenta el valor de la plataforma ya que da la posibilidad de programar dos robots en el mismo escenario, pudiendo entender la programación como un juego en el que se premia al que aporte la mejor solución.
-
-%  Para dar soporte a este tipo de ejercicios se ha realizado una refactorización de \textit{WebSim}, actualizando así la aplicación a la versión \textit{WebSim 2.0}. En esta versión se separan los hilos de \textit{HAL API}, simulador y editor dando la posibilidad de crear más de un robot en la misma escena, cambiar el código del robot en la simulación o incluso parar la simulación y reanudarla después con un código distinto. \newline
 
 En este tipo de ejercicios hay dos robots en una misma escena donde cada uno de ellos se puede programar con un código distinto. Para facilitar la integración con el resto de la plataforma se han incorporado dos aplicaciones más a \textit{WebSim}: ejercicios competitivos en \textit{Scratch} y ejercicios competitivos en \textit{JavaScript}. 
 
@@ -473,14 +482,14 @@ Con la nueva estructura de \textit{WebSim} se permite realizar el ejercicio gato
 
 Para el evaluador de este ejercicio se crea un gráfico con ayuda de una librería externa de \textit{JavaScript} (\textit{JavaScript Graphics Library}\footnote{\url{http://www.jsgl.org/}}) que muestra la distancia entre \textit{drones} y el tiempo que lleva de ejecución. Se puede ver este evaluador en la figura \ref{fig:evaluador_gato_raton}.
   
-    \begin{figure}[h]
+    \begin{figure}[ht]
     \centering           
     \includegraphics[scale=0.5]{img/red_drone.jpg}
     \caption{Nuevo modelo de drone para ejercicio gato-ratón}
     \label{fig:drone_rojo}
     
 \end{figure}
-\begin{figure}[h]
+\begin{figure}[ht]
 \centering           
 \includegraphics[scale=0.3]{img/evaluador_drone.png}
 \caption{Evaluador para ejercicio gato-ratón}

@@ -87,13 +87,11 @@
 \title{Memoria del Proyecto}
 \author{Rubén Álvarez Martín}
 
-\renewcommand{\baselinestretch}{1.5}  %% Interlineado
+\renewcommand{\baselinestretch}{1.5}  
+\renewcommand{\appendixname}{Apéndice}
 
 \begin{document}
 
-\renewcommand{\refname}{Bibliografía}  %% Renombrando
-\renewcommand{\appendixname}{Apéndice}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % PORTADA
 \begin{titlepage}
 \begin{center}
@@ -140,6 +138,8 @@ Tutor : Dr. José María Cañas Plaza \\
 % RESUMEN %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\input{resumen}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ÍNDICES %
 
@@ -155,17 +155,15 @@ Tutor : Dr. José María Cañas Plaza \\
 \listoftables % indice de tablas
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
-% INTRODUCCIÓN %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \cleardoublepage
 \pagestyle{fancy}
 \setlength{\parindent}{6mm}
 \pagenumbering{arabic} 
 
-\input{intro}
+% INTRODUCCIÓN %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\input{intro}
 
 % OBJETIVOS %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -185,5 +183,4 @@ Tutor : Dr. José María Cañas Plaza \\
 \cleardoublepage
 
 \input{biblio}
-
 \end{document}
