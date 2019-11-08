@@ -1,26 +1,70 @@
 \chapter{Mejoras a WebSim}
 \label{chap:mejoras}
-Una vez presentado el contexto, objetivos y herramientas empleadas, en este capitulo se detallan todas las mejoras realizadas del simulador \textit{WebSim} y cómo se han llevado a cabo. 
+Una vez presentado el contexto, objetivos y herramientas empleadas, en este capitulo se detallan todas las mejoras realizadas del simulador \textit{WebSim} y cómo se han llevado a cabo. Se va a explicar cómo se han integrado los \textit{drones} a \textit{WebSim} ampliando los drivers existentes para incluir nueva funcionalidad, el modelo en 3D o los bloques necesarios, los  teleoperadores creados y sus ficheros de configuración y los nuevos ejercicios creados, tanto individuales como competitivos, que incorporan evaluadores para puntuar el funcionamiento de los \textit{robots} programados.
 
-\section{Drone}
+\section{Soporte a drones en Websim}
 \label{sec:drone}
 
 Uno de los objetivos principales del TFG era ampliar el soporte para otros robots y escenarios en \textit{WebSim}. Se ha comenzado dando soporte a drones debido a las diferencias con el \textit{piBot} del que ya disponía soporte. 
 Para ello hay que extender el \textit{software} existente de la plataforma.
 \subsection{Drivers}
-Una de las principales diferencias es el movimiento vertical, tanto para darle velocidad al \textit{drone} como para actualizar la posición. 
+Una de las principales diferencias es el movimiento vertical o en el eje Y (en la figura \ref{fig:ejesFrame} se puede ver una representación del sistema de coordenadas de \textit{A-Frame}) tanto para darle velocidad al \textit{drone} como para actualizar la posición. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.3]{img/ejesframe.jpg}
+    \caption{Sistema de ejes en A-Frame} \label{fig:ejesFrame}
+\end{figure}
+
 Se han creado las siguiente funciones para ello:
 \begin{itemize}
     \item \textit{\textbf{setL()}}: Método que permite ordenar velocidad vertical al \textit{robot}. 
     
-    \item \textit{\textbf{getV()}}: Método que devuelve la velocidad vertical del \textit{robot}.
+    \begin{lstlisting}[language=javascript]
+    setL(l){
+        this.velocity.y = l;
+    }
+    \end{lstlisting}
+    
+    \item \textit{\textbf{getL()}}: Método que devuelve la velocidad vertical del \textit{robot}.
+    
+    \begin{lstlisting}[language=javascript]
+      getL(){
+            return this.velocity.y;
+        }
+    \end{lstlisting}
     
     \item \textit{\textit{\textbf{despegar}}}: Método que da velocidad vertical al \textit{robot} hasta alcanzar cierta altura.
     
+    
+    \begin{lstlisting}[language=javascript]
+      despegar(){
+      var position = this.getPosition();
+      while(position.y<10){
+        position = this.getPosition();
+        return this.velocity.y=2;
+      }
+      return this.velocity = {x:0, y:0, z:0, ax:0, ay:0, az:0};
+    }
+    \end{lstlisting}
+    
     \item \textit{\textbf{aterrizar}}: Método que da velocidad vertical negativa al \textit{robot} hasta que alcance el suelo. 
+    
+    \begin{lstlisting}[language=javascript]
+     aterrizar(){
+      var position = this.getPosition();
+      while(position.y>3){
+        position = this.getPosition();
+        return  this.velocity = {x:0, y:-1, z:0, ax:0, ay:0, az:0};
+      }
+      return this.velocity.y=0;
+    }
+    \end{lstlisting}
+    
 \end{itemize}
 
 Además, se ha editado la función \textit{move} para que acepte 3 parámetros (añadiendo velocidad vertical como nuevo parámetro) y se ha extendido la función \textit{updatePosition()} para poder actualizar el eje Y en la escena de \textit{WebSim}.
+
 
 \begin{lstlisting}[language=javascript, caption=Función para actualizar la posición del robot en el escenario]
     updatePosition(rotation, velocity, robotPos){
@@ -76,7 +120,39 @@ Los resultados obtenidos se pueden observar en la tabla \ref{tab:tablaGravedad}.
 
 El mejor resultado se ha obtenido fijando la gravedad a -3.5 y las iteraciones a 1000000, de esta manera existe gravedad en el escenario y no supone un coste computacional demasiado grande. 
 
+
+\subsection{Modelo 3D}
+
+Para simular el robot en el entorno de \textit{A-Frame} es necesario realizar un modelo tridimensional. Para ello se ha buscado un modelo en una librería\footnote{\url{https://sketchfab.com/}} y se ha editado en \textit{Blender} (figura \ref{fig:droneBlender}) para que se ajuste a los requisitos del entorno. Las modificaciones que se han realizado al modelo son: 
+\begin{itemize}
+    \item Reducción de polinomios  para que no se ralentice la carga del mundo.
+    \item Rotación del modelo para que encaje con la orientación que disponía el anterior robot. Es decir, que el robot tenga su parte frontal mirando hacia el eje X positivo para que al comandarle velocidad lineal se desplace hacia delante.
+    \item Modificación de la luz para adaptarla al escenario de \textit{WebSim}. 
+    
+    \item Elaborar una animación a las hélices para darle un aspecto más realista. Esta animación se activa vía \textit{software} cuando el drone despega del suelo\footnote{\url{https://www.youtube.com/watch?v=XjQNhNCkOJA}}.
+    
+\end{itemize}
+
+ \begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.3]{img/droneBlender.jpg}
+    \caption{Drone en Blender} \label{fig:droneBlender}
+\end{figure}
+
+\textit{Blender} genera un fichero \textit{gltf} y da la posibilidad de incluir en él un fichero binario que incluye las animaciones o exportarlo en dos distintos. En este caso, como uno solo y tiene un aspecto similar a formato \textit{JSON}\footnote{\url{https://github.com/RoboticsLabURJC/2019-tfg-ruben-alvarez/blob/master/upgrades/drones/drone_animation.gltf}}. 
+%revisar esto
+
+El drone implementado en el entorno de \textit{Websim} se puede ver en la figura \ref{fig:escenarioDrone}.
+
+   \begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.3]{img/websimDrone.png}
+    \caption{Escenario de WebSim con drone integrado} \label{fig:escenarioDrone}
+    \end{figure}
+
 \subsection{Bloques Scratch}
+
+%poner traduccion en javascript de los bloques 
 
 Una vez implementado el código \textit{JavaScript} para el soporte del drone, es necesario crear los bloques con \textit{Blockly} para poder añadir sus funcionalidad en el editor de \textit{Scratch}. 
 
@@ -109,44 +185,240 @@ Para ello, se han creado 4 bloques con las funciones anteriormente explicadas:
         \end{figure}
 \end{itemize}
 
-Para que los bloques aparezcan en el editor de \textit{Scratch} es necesario importarlos e inicializarlos en el fichero que lo configura. Se pueden ver los bloques traducidos a inglés e implementados en el espacio de trabajo en la figura {\ref{fig:newblocks}}.
+ Se muestra en detalle la traducción del bloque despegar, que va incluida (junto a los otros bloques creados) en el directorio de bloques personalizados.
 
-        \begin{figure}[H]
-            \centering
-            \includegraphics[width=0.65\textwidth]{img/kibotics_newblocks.png}
-            \caption{Espacio de trabajo de \textit{Scratch} con los bloques del drone incorporados} 
-            \label{fig:newblocks}
-        \end{figure}
 
-\subsection{Modelo 3D}
+\begin{lstlisting}[language=javascript,label=list:traduccion]
+export default function initLandBlock(){
+  var landBlock = {
+  "type": "land",
+  "message0": "Despegar %1",
+  "args0": [
+    {
+      "type": "field_variable",
+      "name": "NAME",
+      "variable": "MyRobot"
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": "String",
+  "colour": "%{BKY_MATH_HUE}",
+  "tooltip": "Aterriza el drone",
+  "helpUrl": "Aterriza el drone"
+}
+  Blockly.Blocks['land'] = {
+    init: function() {
+      this.jsonInit(landBlock);
+    }
+  };
+  Blockly.JavaScript['land'] = function(block) {
+    var variable_name = Blockly.JavaScript.variableDB_.getName(block.getFieldValue('NAME'), Blockly.Variables.NAME_TYPE);
+    var value_robotvar = Blockly.JavaScript.valueToCode(block, 'ROBOTVAR', Blockly.JavaScript.ORDER_ATOMIC);
+    var code = variable_name + '.aterrizar(); \n';
+    return code;
+  };
+  Blockly.Python['land'] = function(block) {
+    var variable_name = Blockly.Python.variableDB_.getName(block.getFieldValue('NAME'), Blockly.Variables.NAME_TYPE);
+    var value_robotvar = Blockly.Python.valueToCode(block, 'ROBOTVAR', Blockly.Python.ORDER_ATOMIC);
 
-Para simular el robot en el entorno de \textit{A-Frame} es necesario realizar un modelo tridimensional. Para ello se ha buscado un modelo en una librería\footnote{\url{https://sketchfab.com/}} y se ha editado en \textit{Blender} (figura \ref{fig:droneBlender}) para que se ajuste a los requisitos del entorno. Las modificaciones que se han realizado al modelo son: 
-\begin{itemize}
-    \item Reducción de polinomios  para que no se ralentice la carga del mundo.
-    \item Rotación del modelo para que encaje con la orientación que disponía el anterior robot. Es decir, que el robot tenga su parte frontal mirando hacia el eje X positivo para que al comandarle velocidad lineal se desplace hacia delante.
-    \item Modificación de la luz para adaptarla al escenario de \textit{WebSim}. 
-    
-    \item Elaborar una animación a las hélices para darle un aspecto más realista. Esta animación se activa vía \textit{software} cuando el drone despega del suelo\footnote{\url{https://www.youtube.com/watch?v=XjQNhNCkOJA}}.
-\end{itemize}
+    var code = variable_name + '.aterrizar()\r\n';
+    return code;
+  };
+}
+\end{lstlisting}
 
- \begin{figure}
-    \centering
-    \includegraphics[scale=0.3]{img/droneBlender.jpg}
-    \caption{Drone en Blender} \label{fig:droneBlender}
+Para que los bloques aparezcan en el editor de \textit{Scratch} es necesario importarlos e inicializarlos en el fichero que lo configura. En la siguiente imagen se muestra el espacio de trabajo de \textit{Scratch} con los nuevos bloques incorporados:
+
+\begin{figure}[H]
+    \centering            \includegraphics[width=0.65\textwidth]{img/kibotics_newblocks.png}
+    \caption{Espacio de trabajo de \textit{Scratch} con los bloques del drone incorporados} 
+    \label{fig:newblocks}
 \end{figure}
 
-El drone implementado en el entorno de \textit{Websim} se puede ver en la figura \ref{fig:escenarioDrone}.
-   \begin{figure}[H]
+\section{Teleoperadores en WebSim}
+\label{sec:teleoperadores}
+
+Se han incorporado teleoperadores en \textit{WebSim} para poder controlar los robots sin necesidad de programarlos. De esta manera es posible saber el estado y valor de sus sensores de manera sencilla ayudando a los desarrolladores a buscar fallos en drivers o incorporar nuevos escenarios. 
+
+\subsection{Teleoperadores}
+
+% esquema de arquitectura de teleoperadores
+
+Se muestran los teleoperadores creados para los modelos del \textit{piBot} y del \textit{drone}, con la diferencia del botón de ascenso/descenso incorporado al del \textit{drone}.
+
+\begin{figure}[H]
+    \centering            \includegraphics[scale=0.25]{img/pibot_teleoperator.png}
+    \caption{Teleoperador para el modelo del piBot} \label{fig:piBot_teleoperator}
+\end{figure}
+
+\begin{figure}[H]
     \centering
-    \includegraphics[scale=0.3]{img/websimDrone.png}
-    \caption{Escenario de WebSim con drone integrado} \label{fig:escenarioDrone}
-    \end{figure}
+    \includegraphics[scale=0.25]{img/drone_teleoperator.png}
+    \caption{Teleoperador para el modelo del drone} \label{fig:drone_teleoperator}
+\end{figure}
+
+A continuación se detalla el código del evento que inicializa el robot, que inicializa los eventos de pulsación del teclado y botones.
+
+\begin{lstlisting}[language=javascript,label=list:traduccion]
+  document.addEventListener('robot-loaded', (evt)=>{
+    localRobot = evt.detail;
+    console.log(localRobot);
+    document.addEventListener("keydown", keypressHandler, false);
+    document.addEventListener("keyup", keyupHandler, false);
+    $("#speed").click(()=>{
+      speed();
+    });
+    $("#brake").click(()=>{
+      brake();
+    });
+    $("#left").click(()=>{
+      left();
+    });
+    $("#right").click(()=>{
+      right();
+    });
+    $("#up").click(()=>{
+      up();
+    });
+    $("#down").click(()=>{
+      down();
+    });
+    $("#takeOff").click(()=>{
+      takeOff();
+    });
+    $("#land").click(()=>{
+      land();
+    });
+  });
+\end{lstlisting}
+
+Las funciones llamadas cuando se pulsa el teclado comanda una velocidad fija mientras se esté pulsando: 
+\begin{lstlisting}[language=javascript,label=list:teclado]
+function keypressHandler(evt){
+  if (evt.key == "i"){
+    localRobot.setV(0.9);
+  }else if(evt.key == "l"){
+    localRobot.setW(-0.2);
+  }else if(evt.key == "j"){
+    localRobot.setW(0.2);
+  }else if(evt.key == "k"){
+    localRobot.setV(-0.9);
+  }else if(evt.key == "u"){
+    localRobot.setL(0.9);
+  }else if(evt.key == "h"){
+    localRobot.setL(-0.9);
+  }
+}
+\end{lstlisting}
+
+Cuando se pulsa alguno de los botones el comportamiento es diferente: 
+\begin{itemize}
+    \item Flecha hacia arriba: se obtiene la velocidad lineal del robot y se incrementa.
+    \begin{lstlisting}[language=javascript,label=list:speed]
+    function speed(){
+      let velocity = localRobot.getV()
+      localRobot.setV(velocity + 0.2);
+    }
+    \end{lstlisting}
+    \item Flecha hacia abajo: se obtiene la velocidad lineal del robot y se reduce. 
+    \begin{lstlisting}[language=javascript,label=list:brake]
+   function brake(){
+      let velocity = localRobot.getV()
+      localRobot.setV(velocity - 0.2);
+    }
+    \end{lstlisting}
+    \item Flechas laterales: se obtiene la velocidad angular del robot y, si es distinta de 0, se le comanda una velocidad en el sentido pulsado. 
+    \begin{lstlisting}[language=javascript,label=list:right]
+   function right(){
+      let rotation = localRobot.getW()
+      if(rotation>0){
+        localRobot.setW(0);
+      }else{
+        localRobot.setW(-0.2);
+      }
+    }
+    function left(){
+      let rotation = localRobot.getW()
+      if(rotation<0){
+        localRobot.setW(0);
+      }else{
+        localRobot.setW(0.2);
+      }
+    }
+    \end{lstlisting}
+    \item Botón de ascenso/descenso: se obtiene la velocidad de ascensión y se incrementa/disminuye.
+    \begin{lstlisting}[language=javascript,label=list:up]
+        function up(){
+          let velocity = localRobot.getL()
+          localRobot.setL(velocity + 0.2);
+        }
+        function down(){
+          let velocity = localRobot.getL()
+          localRobot.setL(velocity - 0.2);
+        }
+
+    \end{lstlisting}
+    \end{itemize}
+
+%codigo html y css de algun teleoperador y del index
+
+Además de los modelos existentes del drone y \textit{piBot}, se han creado otros nuevos para extender las posibilidades de la plataforma y poder teleoperar todos ellos.
+\begin{figure}[H]
+    \centering            \includegraphics[scale=0.3]{img/f1_teleoperator.png}
+    \caption{Teleoperador para el modelo del fórmula 1} \label{fig:f1_teleoperator}
+\end{figure}
+
+  \begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.3]{img/mBot_teleoperator.png}
+    \caption{Teleoperador para el modelo del mBot} \label{fig:mBot_teleoperator}
+\end{figure}
+    
+Además, se ha creado una página principal para poder acceder a todos ellos a través de una interfaz gráfica: 
+
+ \begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.25]{img/teleoperators.png}
+    \caption{Interfaz que permite acceder a cada uno de los teleoperadores} \label{fig:teleoperators}
+\end{figure}
+
+\subsection{Ficheros de configuración}
+
+Para incorporar estos teleoperadores ha sido necesario elaborar unos ficheros de configuración y así poder cambiar el escenario y el \textit{drone} cargado por \textit{A-Frame}. 
+
+Estos archivos de configuración se han creado en \textit{JSON} (un formato de texto para representar datos estructurados en la sintaxis de objeto de \textit{JavaScript}) y se ha programado un \textit{script} para cargar cada fichero de configuración. Para ello se crea una variable en el \textit{index.html} del editor con la ruta en la que esté ubicado y el \textit{script} abre el fichero y recorre el \textit{JSON} para dar al escenario los valores establecidos. \newline
+
+En los ficheros creados se pueden configurar aspectos como el modelo del robot cargado, su posición y rotación, la posición de la cámara a bordo del robot, el fichero del cielo y suelo que debe cargar o los elementos que queramos añadir en el escenario. \newline
+
+\begin{lstlisting}[language=json]
+  {
+  "robot": {
+    "model":"../assets/models/drone.gltf",
+    "scale": "0.5 0.5 0.5",
+    "position":"12 0 25",
+    "rotation": "0 320 0"
+  },
+  "gravity": 0,
+  "ground": "../assets/textures/escenarioLiso.png",
+  "sky": "../assets/textures/sky.png",
+  "secondaryCamera": "0 0 0",
+  "cameraRobot":"0 0.03 -0.01",
+  "objects":[{
+      "type": "a-sphere",
+      "position": "4 1 20",
+      "color": "#FF0000"
+      }
+    ]
+}
+\end{lstlisting}
+
+En este ejemplo se configura el escenario para que cargue el modelo del \textit{drone}, con el tamaño indicado en \textit{size}, la posición y rotación que aparece en \textit{position} y \textit{rotation}. En el valor \textit{gravity} se indica que el escenario no tenga gravedad, se carga la textura que posee el campo \textit{ground} como suelo del mundo y, por último, la posición de las cámaras es la ubicada en \textit{secondaryCamera} y \textit{cameraRobot}. Además, en \textit{objects} se pueden añadir todos los objetos deseados a la escena. En este ejemplo se añade una pelota de color rojo en la posición que aparece en \textit{position}.
 
 
-\section{Escenarios y ejercicios}
+\section{Ejercicios individuales}
 \label{sec:escenarios}
 
-Se han incorporado nuevos escenarios a \textit{WebSim} que dan la posibilidad de realizar nuevos ejercicios y  mejorar los ya disponibles. En esta sección se explicarán los escenarios con un solo robot y se hará mención a lo que tienen con dos robots, que se explicarán en profundidad más adelante.
+Se han incorporado nuevos escenarios a \textit{WebSim} que dan la posibilidad de realizar nuevos ejercicios y  mejorar los ya disponibles. En esta sección se explicarán los escenarios con un solo robot.
 
 \subsection{Sigue-líneas visión}
     Se ha mejorado el escenario cambiando la textura del suelo a una creada con la trazada del circuito de Interlagos. Se ha realizado con un programa de diseño gráfico y, debido a su peso, se ha reducido posteriormente su tamaño para aliviar los tiempos de carga. 
@@ -308,117 +580,6 @@ Escenario para facilitar el ejercicio ``cuadrado drone'' en el que hay que dibuj
         \caption{Escenario de WebSim para el ejercicio drone cuadrado} 
         \label{fig:droneCuadrado}
     \end{figure}
-    
-\subsection{Escenarios competitivos}
-
-Se han realizado varios escenarios para realizar ejercicios competitivos:
-\begin{itemize}
-    \item Muros: prototipo creado para realizar pruebas comandando velocidades a los robots y comprobar el estado de sus sensores.
-      
-       \begin{figure}[H]
-        \centering           
-        \includegraphics[scale=0.3]{img/ejercicio_muros.png}
-        \caption{Prototipo ejercicio competitivo}
-        \label{fig:ejercicio_muro}
-    \end{figure}
-
-    
-    \item Atraviesa-bosque: ejercicio similar al escenario con un solo robot, pero en este caso se han creado dos pasillos con objetos para recorrerlos sin chocar con ninguno de los obstáculos. Se han añadido distintas primitivas de \textit{A-Frame} en la misma ubicación para los dos \textit{robots} para que el recorrido sea justo.
-    
-    \begin{figure}[H]
-        \centering           
-        \includegraphics[scale=0.3]{img/ejercicio_atraviesabosque.png}
-        \caption{Ejercicio atraviesa-bosque competitivo}
-        \label{fig:atraviesabosque_escenario}
-    \end{figure}
-    
-    \item Sigue-líneas: escenario con dos robots en el que tienen que seguir una linea de color blanco sobre fondo negro atravesando un puente en medio del circuito para que, de esta manera, ambos recorran la misma distancia.
-
-    \begin{figure}[H]
-        \centering            
-        \includegraphics[scale=0.3]{img/ejercicio_siguelineas.png}
-        \caption{Ejercicio sigue-líneas competitivo}
-        \label{fig:siguelineas_competitivo}
-    \end{figure}
-\end{itemize}
-
-Siendo el principal problema el puente creado para el ejercicio sigue-líneas. La solución definitiva ha sido creando primitivas de \textit{A-Frame} (\textit{a-plane}) de tal forma que simule un puente y pueda cruzarlo el coche. Se ha intentado realizar un modelo de puente en \textit{Blender}, pero el entorno no simulaba correctamente la malla de colisiones siendo imposible subir el puente porque el robot ``chocaba'' contra él. En la figura \ref{fig:prueba_puente} se puede ver el puente creado y la malla de colisión generada por \textit{A-Frame}.
-
-    \begin{figure}[H]
-        \centering            
-        \includegraphics[scale=0.3]{img/prueba_puente.png}
-        \caption{Prueba de puente creado en \textit{Blender}}
-        \label{fig:prueba_puente}
-    \end{figure}
-
-
-\section{Teleoperadores}
-\label{sec:teleoperadores}
-
-Se han incorporado teleoperadores en \textit{WebSim} para poder controlar los robots sin necesidad de programarlos. De esta manera es posible saber el estado y valor de sus sensores de manera sencilla ayudando a los desarrolladores a buscar fallos en drivers o incorporar nuevos escenarios. 
-
-\subsection{Ficheros de configuración}
-
-Para incorporar estos teleoperadores ha sido necesario elaborar unos ficheros de configuración y así poder cambiar el escenario y el \textit{drone} cargado por \textit{A-Frame}. 
-
-Estos archivos de configuración se han creado en \textit{JSON} (un formato de texto para representar datos estructurados en la sintaxis de objeto de \textit{JavaScript}) y se ha programado un \textit{script} para cargar cada fichero de configuración. Para ello se crea una variable en el \textit{index.html} del editor con la ruta en la que esté ubicado y el \textit{script} abre el fichero y recorre el \textit{JSON} para dar al escenario los valores establecidos. \newline
-
-En los ficheros creados se pueden configurar aspectos como el modelo del robot cargado, su posición y rotación, la posición de la cámara a bordo del robot, el fichero del cielo y suelo que debe cargar o los elementos que queramos añadir en el escenario. \newline
-
-\begin{lstlisting}[language=json, caption=Ejemplo de fichero de configuración]
-  {
-  "robot": {
-    "model":"../assets/models/drone.gltf",
-    "scale": "0.5 0.5 0.5",
-    "position":"12 0 25",
-    "rotation": "0 320 0"
-  },
-  "gravity": 0,
-  "ground": "../assets/textures/escenarioLiso.png",
-  "sky": "../assets/textures/sky.png",
-  "secondaryCamera": "0 0 0",
-  "cameraRobot":"0 0.03 -0.01",
-  "objects":[{
-      "type": "a-sphere",
-      "position": "4 1 20",
-      "color": "#FF0000"
-      }
-    ]
-}
-\end{lstlisting}
-
-En este ejemplo se configura el escenario para que cargue el modelo del \textit{drone}, con el tamaño indicado en \textit{size}, la posición y rotación que aparece en \textit{position} y \textit{rotation}. En el valor \textit{gravity} se indica que el escenario no tenga gravedad, se carga la textura que posee el campo \textit{ground} como suelo del mundo y, por último, la posición de las cámaras es la ubicada en \textit{secondaryCamera} y \textit{cameraRobot}. Además, en \textit{objects} se pueden añadir todos los objetos deseados a la escena. En este ejemplo se añade una pelota de color rojo en la posición que aparece en \textit{position}.
-
-\subsection{Teleoperadores}
-
-Además de los modelos existentes del drone y \textit{piBot}, se han creado otros nuevos para extender las posibilidades de la plataforma y poder teleoperar todos ellos.
-\begin{figure}[H]
-    \centering            \includegraphics[scale=0.35]{img/f1_teleoperator.png}
-    \caption{Teleoperador para el modelo del fórmula 1} \label{fig:f1_teleoperator}
-\end{figure}
-\begin{figure}[H]
-    \centering            \includegraphics[scale=0.35]{img/pibot_teleoperator.png}
-    \caption{Teleoperador para el modelo del piBot} \label{fig:piBot_teleoperator}
-\end{figure}
-  \begin{figure}[H]
-    \centering
-    \includegraphics[scale=0.3]{img/mBot_teleoperator.png}
-    \caption{Teleoperador para el modelo del mBot} \label{fig:mBot_teleoperator}
-\end{figure}
-\begin{figure}[H]
-    \centering
-    \includegraphics[scale=0.3]{img/drone_teleoperator.png}
-    \caption{Teleoperador para el modelo del drone} \label{fig:drone_teleoperator}
-\end{figure}
-    
-Pudiendo controlar todos ellos con los botones que aparecen en la imagen o bien a través del teclado. 
-Además, se ha creado una página principal para poder acceder a todos ellos a través de una interfaz gráfica: 
-
- \begin{figure}[H]
-    \centering
-    \includegraphics[scale=0.25]{img/teleoperators.png}
-    \caption{Interfaz que permite acceder a cada uno de los teleoperadores} \label{fig:teleoperators}
-\end{figure}
 
 \section{Ejercicios competitivos}
 \label{sec:competitive}
@@ -426,10 +587,9 @@ Uno de los objetivos de este proyecto era añadir ejercicios competitivos. Se ha
 
 En este tipo de ejercicios hay dos robots en una misma escena donde cada uno de ellos se puede programar con un código distinto. Para facilitar la integración con el resto de la plataforma se han incorporado dos aplicaciones más a \textit{WebSim}: ejercicios competitivos en \textit{Scratch} y ejercicios competitivos en \textit{JavaScript}. 
 
-
 Se ha comenzado creando la aplicación llamada \textit{competitive-JavaScript} debido a la facilidad para probar código y hacer pruebas en el entorno. Para ello se ha cambiado la interfaz del editor, añadiendo botones para cada uno de los robots (figura \ref{fig:javascript_competitivo}) y añadir funcionalidad a cada botón para guardar el código de cada robot o mostrar el código en caso de tener uno guardado.
 
-    \begin{figure}[h]
+    \begin{figure}[H]
         \centering            \includegraphics[scale=0.30]{img/competitiveEditorJavascript.png}
         \caption{Editor de \textit{JavaScript} para ejercicios competitivos}
         \label{fig:javascript_competitivo}
@@ -437,11 +597,20 @@ Se ha comenzado creando la aplicación llamada \textit{competitive-JavaScript} d
 
 La aplicación \textit{competitive-Scratch} se ha realizado de la misma manera, con la diferencia de que, en este caso, es necesario guardar el código de los bloques en \textit{XML} y su traducción en \textit{JavaScript}. Para realizarlo de forma limpia se ha creado un objeto que contiene un \textit{boolean} y dos cadenas de texto. En el \textit{boolean} se indica el código de qué \textit{robot} se está editando, en una cadena de texto se guarda el código \textit{XML} y en la otra su traducción en \textit{JavaScript}. Se puede ver la interfaz de este editor en la figura \ref{fig:scratch_competitivo}.
 
-    \begin{figure}[h]
+    \begin{figure}[H]
         \centering            
         \includegraphics[scale=0.30]{img/competitivoEditorScratch.png}
         \caption{Editor de \textit{Scratch} para ejercicios competitivos}
         \label{fig:scratch_competitivo}
+    \end{figure}
+
+Para facilitar las pruebas y poder comprobar el estado de los sensores, comandar velocidades y crear nueva funcionalidad, se ha creado un escenario para realizar pruebas.
+      
+       \begin{figure}[H]
+        \centering           
+        \includegraphics[scale=0.3]{img/ejercicio_muros.png}
+        \caption{Escenario para realizar pruebas con dos robots}
+        \label{fig:ejercicio_muro}
     \end{figure}
     
 Para puntuar el comportamiento de los robots de manera justa, se han incluido en estos ejercicios evaluadores automáticos. Van a tener diferentes comportamientos en cada ejercicio, por lo que se han desarrollado de tal forma que se pueda cargar cargar un evaluador distinto para cada uno o, incluso, no cargar ninguno. \newline
@@ -452,18 +621,32 @@ Para llamar a \textit{runEvaluator} se comprueba que se haya pasado un fichero e
 A continuación se explican los ejercicios y evaluadores para cada uno de ellos. 
 
 \subsection{Atraviesa-bosque competitivo}
+    
+Ejercicio similar al escenario con un solo robot, pero en este caso se han creado dos pasillos con objetos para recorrerlos sin chocar con ninguno de los obstáculos. Se han añadido distintas primitivas de \textit{A-Frame} en la misma ubicación para los dos \textit{robots} para que el recorrido sea justo.
 
-Para este ejercicio se usa el escenario de la imagen \ref{fig:atraviesabosque_escenario}. Se ha creado un evaluador en el que se crea una barra de progreso para cada robot y un cronómetro. Cuando se empiezan a mover los robots la barra de progreso se va completando y el cronómetro se inicia, para comprobar el porcentaje completado solo hay que obtener la posición del robot y compararla con el punto de llegada.
+Para su evaluador en el que se crea una barra de progreso para cada robot y un cronómetro. Cuando se empiezan a mover los robots la barra de progreso se va completando y el cronómetro se inicia, para comprobar el porcentaje completado solo hay que obtener la posición del robot y compararla con el punto de llegada.
 
 \begin{figure}[H]
 \centering           
 \includegraphics[scale=0.3]{img/evaluador_forest.png}
-\caption{Evaluador para el ejercicio atraviesa-bosque}
+\caption{Escenario y evaluador para el ejercicio atraviesa-bosque}
 \label{fig:evaluador_bosque}
 \end{figure}
 
 
 \subsection{Sigue-líneas competitivo}
+
+Escenario con dos robots en el que tienen que seguir una linea de color blanco sobre fondo negro atravesando un puente en medio del circuito para que, de esta manera, ambos recorran la misma distancia.
+
+Siendo el principal problema el puente creado porque el entorno no simulaba correctamente la malla de colisiones siendo imposible subir el puente porque el robot ``chocaba'' contra él. Se ha intentado realizar un modelo de puente en \textit{Blender}. En la figura \ref{fig:prueba_puente} se puede ver el puente creado y la malla de colisión generada por \textit{A-Frame}. 
+La solución definitiva ha sido creando primitivas de \textit{A-Frame} (\textit{a-plane}) de tal forma que simule un puente y pueda cruzarlo el coche. 
+
+    \begin{figure}[H]
+        \centering            
+        \includegraphics[scale=0.3]{img/prueba_puente.png}
+        \caption{Prueba de puente creado en \textit{Blender}}
+        \label{fig:prueba_puente}
+    \end{figure}
 
 Para este ejercicio se usa el escenario de la figura \ref{fig:siguelineas_competitivo} y su evaluador es similar al de atraviesa-bosque, con la diferencia de que es necesario guardar en todo momento la posición y distancia recorrida por cada robot para calcular el porcentaje del circuito completado.
 
@@ -471,7 +654,7 @@ Para este ejercicio se usa el escenario de la figura \ref{fig:siguelineas_compet
 \begin{figure}[H]
     \centering           
     \includegraphics[scale=0.25]{img/evaluator_follow_line.png}
-    \caption{Evaluador sigue-líneas}
+    \caption{Ejercicio y evaluador sigue-líneas competitivo}
     \label{fig:evaluador_siguelineas}
 \end{figure}
 
