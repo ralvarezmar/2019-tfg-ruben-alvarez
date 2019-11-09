@@ -1,6 +1,6 @@
 \chapter{Mejoras a WebSim}
 \label{chap:mejoras}
-Una vez presentado el contexto, objetivos y herramientas empleadas, en este capitulo se detallan todas las mejoras realizadas del simulador \textit{WebSim} y cómo se han llevado a cabo. Se va a explicar cómo se han integrado los \textit{drones} a \textit{WebSim} ampliando los drivers existentes para incluir nueva funcionalidad, el modelo en 3D o los bloques necesarios, los  teleoperadores creados y sus ficheros de configuración y los nuevos ejercicios creados, tanto individuales como competitivos, que incorporan evaluadores para puntuar el funcionamiento de los \textit{robots} programados.
+Una vez presentado el contexto, objetivos y herramientas empleadas, en este capitulo se detallan todas las mejoras realizadas del simulador \textit{WebSim} y cómo se han llevado a cabo. Se va a explicar cómo se han integrado los \textit{drones} ampliando los drivers existentes para incluir nueva funcionalidad, el modelo en 3D o los bloques necesarios, los teleoperadores creados y sus ficheros de configuración. También se detallan los nuevos ejercicios creados, tanto individuales como competitivos, que incorporan evaluadores para puntuar el funcionamiento de los \textit{robots} programados.
 
 \section{Soporte a drones en Websim}
 \label{sec:drone}
@@ -29,16 +29,16 @@ Se han creado las siguiente funciones para ello:
     \item \textit{\textbf{getL()}}: Método que devuelve la velocidad vertical del \textit{robot}.
     
     \begin{lstlisting}[language=javascript]
-      getL(){
-            return this.velocity.y;
-        }
+getL(){
+    return this.velocity.y;
+}
     \end{lstlisting}
     
-    \item \textit{\textit{\textbf{despegar}}}: Método que da velocidad vertical al \textit{robot} hasta alcanzar cierta altura.
+    \item \textit{\textit{\textbf{despegar()}}}: Método que da velocidad vertical al \textit{robot} hasta alcanzar cierta altura.
     
     
     \begin{lstlisting}[language=javascript]
-      despegar(){
+  despegar(){
       var position = this.getPosition();
       while(position.y<10){
         position = this.getPosition();
@@ -48,17 +48,17 @@ Se han creado las siguiente funciones para ello:
     }
     \end{lstlisting}
     
-    \item \textit{\textbf{aterrizar}}: Método que da velocidad vertical negativa al \textit{robot} hasta que alcance el suelo. 
+    \item \textit{\textbf{aterrizar()}}: Método que da velocidad vertical negativa al \textit{robot} hasta que alcance el suelo. 
     
     \begin{lstlisting}[language=javascript]
-     aterrizar(){
+ aterrizar(){
       var position = this.getPosition();
       while(position.y>3){
         position = this.getPosition();
         return  this.velocity = {x:0, y:-1, z:0, ax:0, ay:0, az:0};
       }
       return this.velocity.y=0;
-    }
+}
     \end{lstlisting}
     
 \end{itemize}
@@ -125,7 +125,7 @@ El mejor resultado se ha obtenido fijando la gravedad a -3.5 y las iteraciones a
 
 Para simular el robot en el entorno de \textit{A-Frame} es necesario realizar un modelo tridimensional. Para ello se ha buscado un modelo en una librería\footnote{\url{https://sketchfab.com/}} y se ha editado en \textit{Blender} (figura \ref{fig:droneBlender}) para que se ajuste a los requisitos del entorno. Las modificaciones que se han realizado al modelo son: 
 \begin{itemize}
-    \item Reducción de polinomios  para que no se ralentice la carga del mundo.
+    \item Reducción de polinomios (modelo \textit{low-poly}) para disminuir el peso del modelo y aliviar los tiempos de carga del escenario.
     \item Rotación del modelo para que encaje con la orientación que disponía el anterior robot. Es decir, que el robot tenga su parte frontal mirando hacia el eje X positivo para que al comandarle velocidad lineal se desplace hacia delante.
     \item Modificación de la luz para adaptarla al escenario de \textit{WebSim}. 
     
@@ -139,8 +139,7 @@ Para simular el robot en el entorno de \textit{A-Frame} es necesario realizar un
     \caption{Drone en Blender} \label{fig:droneBlender}
 \end{figure}
 
-\textit{Blender} genera un fichero \textit{gltf} y da la posibilidad de incluir en él un fichero binario que incluye las animaciones o exportarlo en dos distintos. En este caso, como uno solo y tiene un aspecto similar a formato \textit{JSON}\footnote{\url{https://github.com/RoboticsLabURJC/2019-tfg-ruben-alvarez/blob/master/upgrades/drones/drone_animation.gltf}}. 
-%revisar esto
+\textit{Blender} genera un fichero \textit{gltf} y da la posibilidad de incluir en él un binario que incluye las animaciones o exportarlo en dos distintos. En este caso, se ha hecho como un único fichero y tiene un aspecto similar a formato \textit{JSON}\footnote{\url{https://github.com/RoboticsLabURJC/2019-tfg-ruben-alvarez/blob/master/upgrades/drones/drone_animation.gltf}}. 
 
 El drone implementado en el entorno de \textit{Websim} se puede ver en la figura \ref{fig:escenarioDrone}.
 
@@ -242,7 +241,6 @@ Se han incorporado teleoperadores en \textit{WebSim} para poder controlar los ro
 
 \subsection{Teleoperadores}
 
-% esquema de arquitectura de teleoperadores
 
 Se muestran los teleoperadores creados para los modelos del \textit{piBot} y del \textit{drone}, con la diferencia del botón de ascenso/descenso incorporado al del \textit{drone}.
 
@@ -256,6 +254,124 @@ Se muestran los teleoperadores creados para los modelos del \textit{piBot} y del
     \includegraphics[scale=0.25]{img/drone_teleoperator.png}
     \caption{Teleoperador para el modelo del drone} \label{fig:drone_teleoperator}
 \end{figure}
+
+Estos teleoperadores tienen una arquitectura similar a las aplicaciones creadas de \textit{Scratch} o \textit{JavaScript}. A continuación se muestra un esquema con la arquitectura de esta aplicación:
+
+\begin{figure}[H]
+    \centering            \includegraphics[scale=0.5]{img/arquitecturaTeleoperador.png}
+    \caption{Arquitectura de la aplicación teleoperadores} 
+    \label{fig:arq_teleop}
+\end{figure}
+
+Siendo el bloque teleoperador la interfaz creada en \textit{HTML} (listing \ref{list:teleop}). Se envía un evento cuando se pulsa uno de los botones del teleoperador o del teclado, que mediante un controlador se comunica con \textit{WebSim} tanto como para obtener las velocidades del robot como para enviarle las nuevas originadas por el evento. \textit{WebSim} se comunica con el simulador para ejecutar los nuevos valores obtenidos.
+
+\begin{multicols}{2}
+\begin{lstlisting}[language=CSS,label=list:teleopCSS]
+  button {
+    border-radius: 10px;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.1s;
+    cursor: pointer;
+    background-color: Transparent;
+  }
+.buttons{
+  margin: 50px;
+  position: relative;
+}
+#bottomArrows{
+  float: center;
+}
+#invisible{
+  visibility: hidden;
+}
+#upArrow{
+  float: center;
+}
+image{
+  float: center;
+  border:5px solid #ff0000;
+  box-sizing: border-box;
+}
+.buttonArrow{
+  padding: 10px;
+  width: 100px;
+  height: 100px;
+}
+#land {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #f4511e;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 14px;
+  padding: 10px;
+  width: 100px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+.takeland{
+  float: center;
+}
+#takeOff {
+  display: inline-block;
+  border-radius: 2px;
+  background-color: #32CD32;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 14px;
+  padding: 2px;
+  width: 100px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+  float: left;
+}
+.buttonHeight {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  height: 100px;
+  width: 100px;
+  font-size: 16px;
+  margin: 10px 10px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+\end{lstlisting}
+\end{multicols}
+
+\begin{lstlisting}[language=html,label=list:teleop,caption=Código HTML y CSS del teleoperador del drone]
+      <div id="right-container">
+        <div class="buttons">
+          <div id="upArrow">
+              <button onclick class="buttonArrow" id="invisible"><img class="buttonArrow" src="../assets/resources/speed.svg" /></button>
+              <button onclick class="buttonArrow" id="speed"><img class="buttonArrow" src="../assets/resources/speed.svg" /></button>
+          </div>
+          <div id="bottomArrows">
+              <button onclick class="buttonArrow" id="left" ><img class="buttonArrow" src="../assets/resources/left.svg"/></button>
+              <button onclick class="buttonArrow" id="brake"><img class="buttonArrow" src="../assets/resources/brake.svg"/></button>
+              <button onclick class="buttonArrow" id="right"><img class="buttonArrow" src="../assets/resources/right.svg"/></button><br>
+          </div>
+          <div id="takeoff">
+            <button onclick id="up"><img class="buttonArrow" src="../assets/resources/goUp.svg" /></button>
+            <button onclick id="down"><img class="buttonArrow" src="../assets/resources/goDown.svg" /></button></button>
+          </div>
+        </div>
+\end{lstlisting}
 
 A continuación se detalla el código del evento que inicializa el robot, que inicializa los eventos de pulsación del teclado y botones.
 
@@ -293,6 +409,7 @@ A continuación se detalla el código del evento que inicializa el robot, que in
 \end{lstlisting}
 
 Las funciones llamadas cuando se pulsa el teclado comanda una velocidad fija mientras se esté pulsando: 
+
 \begin{lstlisting}[language=javascript,label=list:teclado]
 function keypressHandler(evt){
   if (evt.key == "i"){
@@ -311,7 +428,7 @@ function keypressHandler(evt){
 }
 \end{lstlisting}
 
-Cuando se pulsa alguno de los botones el comportamiento es diferente: 
+Cuando se pulsa alguno de los botones de la interfaz gráfica el comportamiento es diferente que pulsando el teclado: 
 \begin{itemize}
     \item Flecha hacia arriba: se obtiene la velocidad lineal del robot y se incrementa.
     \begin{lstlisting}[language=javascript,label=list:speed]
@@ -360,8 +477,6 @@ Cuando se pulsa alguno de los botones el comportamiento es diferente:
     \end{lstlisting}
     \end{itemize}
 
-%codigo html y css de algun teleoperador y del index
-
 Además de los modelos existentes del drone y \textit{piBot}, se han creado otros nuevos para extender las posibilidades de la plataforma y poder teleoperar todos ellos.
 \begin{figure}[H]
     \centering            \includegraphics[scale=0.3]{img/f1_teleoperator.png}
@@ -374,7 +489,7 @@ Además de los modelos existentes del drone y \textit{piBot}, se han creado otro
     \caption{Teleoperador para el modelo del mBot} \label{fig:mBot_teleoperator}
 \end{figure}
     
-Además, se ha creado una página principal para poder acceder a todos ellos a través de una interfaz gráfica: 
+También se ha creado una página principal para poder acceder a todos ellos a través de una interfaz gráfica: 
 
  \begin{figure}[H]
     \centering
@@ -382,14 +497,100 @@ Además, se ha creado una página principal para poder acceder a todos ellos a t
     \caption{Interfaz que permite acceder a cada uno de los teleoperadores} \label{fig:teleoperators}
 \end{figure}
 
+\begin{lstlisting}[language=html,label=list:teleop,caption=Código HTML de la interfaz para acceder a los teleoperadores]
+	<body>
+		<div id="wrapper">
+				<header id="header" class="alt">
+					<p class="logo"><strong>Teleoperators</strong></a>
+				</header>
+				<div id="main">
+					<section id="one" class="tiles">
+						<article>
+							<span class="image">
+								<img src="../assets/resources/drone.png" alt="drone"/>
+							</span>
+							<header class="major">
+								<h3><a href="drone.html" class="link">Drone</a></h3>
+								<p>Drone teleoperator </p>
+							</header>
+						</article>
+						<article>
+							<span class="image">
+								<img src="../assets/resources/pibot.png" alt="piBot"/>
+							</span>
+							<header class="major">
+								<h3><a href="pibot.html" class="link">PiBot</a></h3>
+								<p>PiBot teleoperator</p>
+							</header>
+						</article>
+						<article>
+							<span class="image">
+								<img src="../assets/resources/f1.png" alt="f1"/>
+							</span>
+							<header class="major">
+								<h3><a href="f1.html" class="link">F1</a></h3>
+								<p>F1 teleoperator</p>
+							</header>
+						</article>
+						<article>
+							<span class="image">
+								<img src="../assets/resources/mBot.png" alt="mbot"/>
+							</span>
+							<header class="major">
+								<h3><a href="mBot.html" class="link">mBot</a></h3>
+								<p>mBot teleoperator</p>
+							</header>
+						</article>
+					</section>
+				</div>
+		</div>
+		<script src="js/jquery.scrolly.min.js"></script>
+		<script src="js/jquery.scrollex.min.js"></script>
+		<script src="js/browser.min.js"></script>
+		<script src="js/breakpoints.min.js"></script>
+		<script src="js/util.js"></script>
+		<script src="js/main.js"></script>
+	</body>
+\end{lstlisting}
+
 \subsection{Ficheros de configuración}
 
 Para incorporar estos teleoperadores ha sido necesario elaborar unos ficheros de configuración y así poder cambiar el escenario y el \textit{drone} cargado por \textit{A-Frame}. 
 
-Estos archivos de configuración se han creado en \textit{JSON} (un formato de texto para representar datos estructurados en la sintaxis de objeto de \textit{JavaScript}) y se ha programado un \textit{script} para cargar cada fichero de configuración. Para ello se crea una variable en el \textit{index.html} del editor con la ruta en la que esté ubicado y el \textit{script} abre el fichero y recorre el \textit{JSON} para dar al escenario los valores establecidos. \newline
+Estos archivos de configuración se han creado en \textit{JSON} (un formato de texto para representar datos estructurados en la sintaxis de objeto de \textit{JavaScript}) y se ha programado un \textit{script} (listing \ref{list:conf}) para cargar cada fichero de configuración. Para ello se crea una variable en el \textit{index.html} del editor con la ruta en la que esté ubicado y el \textit{script} abre el fichero y recorre el \textit{JSON} para dar al escenario los valores establecidos.
 
-En los ficheros creados se pueden configurar aspectos como el modelo del robot cargado, su posición y rotación, la posición de la cámara a bordo del robot, el fichero del cielo y suelo que debe cargar o los elementos que queramos añadir en el escenario. \newline
-
+En los ficheros creados se pueden configurar aspectos como el modelo del robot cargado, su posición y rotación, la posición de la cámara a bordo del robot, el fichero del cielo y suelo que debe cargar o los elementos que queramos añadir en el escenario. 
+\begin{lstlisting}[language=JavaScript,caption=script que carga los ficheros de configuración,label={list:conf}]
+  loadJSON(function(response) {
+    var config = JSON.parse(response);
+    var sceneEl = document.querySelector('a-scene');
+    var robot = sceneEl.querySelector('#a-pibot');
+    robot.setAttribute('gltf-model',config.robot.model);
+    robot.setAttribute('scale',config.robot.scale);
+    robot.setAttribute('position',config.robot.position);
+    robot.setAttribute('rotation',config.robot.rotation);
+    sceneEl.systems.physics.driver.world.gravity.y = config.gravity;
+    sceneEl.querySelector('#ground').setAttribute('src',config.ground);
+    sceneEl.querySelector('#sky').setAttribute('src',config.sky);
+    sceneEl.querySelector('#ground').setAttribute('src',config.ground);
+    sceneEl.querySelector('#secondaryCamera').setAttribute('position',config.secondaryCamera);
+    sceneEl.querySelector('#cameraRobot').setAttribute('position',config.cameraRobot);
+    if(config.objects.length>0){
+      setObjects(config.objects,sceneEl);
+  }
+});
+function setObjects(object,scene){
+  for (let i in object){
+    let keys = Object.keys(object[i]);
+    var element = document.createElement(object[i][keys[0]]);
+    for (let j = 1; j < keys.length; j++) {
+      let attribute = object[i][keys[j]];
+      element.setAttribute(keys[j],attribute);
+    }
+    scene.appendChild(element);
+  }
+}
+\end{lstlisting}
 \begin{lstlisting}[language=json]
   {
   "robot": {
@@ -418,7 +619,7 @@ En este ejemplo se configura el escenario para que cargue el modelo del \textit{
 \section{Ejercicios individuales}
 \label{sec:escenarios}
 
-Se han incorporado nuevos escenarios a \textit{WebSim} que dan la posibilidad de realizar nuevos ejercicios y  mejorar los ya disponibles. En esta sección se explicarán los escenarios con un solo robot.
+Se han incorporado nuevos escenarios a \textit{WebSim} que dan la posibilidad de realizar nuevos ejercicios y  mejorar los ya disponibles. En esta sección se explicarán los escenarios con un solo robot y sus soluciones en \textit{Scratch}.
 
 \subsection{Sigue-líneas visión}
     Se ha mejorado el escenario cambiando la textura del suelo a una creada con la trazada del circuito de Interlagos. Se ha realizado con un programa de diseño gráfico y, debido a su peso, se ha reducido posteriormente su tamaño para aliviar los tiempos de carga. 
@@ -427,6 +628,13 @@ Se han incorporado nuevos escenarios a \textit{WebSim} que dan la posibilidad de
     \centering
     \includegraphics[scale=0.4]{img/pibot_vision.JPG}
     \caption{Escenario para el ejercicio \textit{piBot} sigue-líneas con cámara} \label{fig:siguelineavision}
+    \end{figure}
+    
+        \begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.5]{img/siguelineasvisioncodigo.png}
+    \caption{Solución en \textit{Scratch} para el ejercicio sigue-líneas visión} 
+    \label{fig:visionSolution}
     \end{figure}
     
 \subsection{Sigue-líneas infrarrojos}
@@ -438,6 +646,13 @@ Se han incorporado nuevos escenarios a \textit{WebSim} que dan la posibilidad de
     \caption{Escenario para el ejercicio \textit{piBot} sigue-líneas infrarrojo} \label{fig:siguelineasIR}
     \end{figure}
     
+           \begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.5]{img/siguelineaIRcodigo.png}
+    \caption{Solución en \textit{Scratch} para el ejercicio sigue-líneas infrarrojos} 
+    \label{fig:irSolution}
+    \end{figure}
+    
 \subsection{Choca-gira}
 \label{subsec:chocagira}
 Escenario creado en \textit{Blender} con un aspecto similar a su análogo en \textit{Python}. Para ello se han adaptado la mayor parte de las estructuras que dispone el escenario original para su integración en \textit{WebSim}. 
@@ -447,74 +662,61 @@ Escenario creado en \textit{Blender} con un aspecto similar a su análogo en \te
     \includegraphics[scale=0.4]{img/bump&go.png}
     \caption{Escenario para el ejercicio choca-gira} \label{fig:chocagira}
     \end{figure}
-
-
-\subsection{Sigue-pelota con piBot}
-\label{subsec:pelotapibot}
-El escenario dispone de una pelota de color rojo a la que se le ha dado movimiento a través de primitivas de \textit{A-Frame}. En la figura \ref{fig:secuenciaPibot} se puede ver una secuencia con la animación de la pelota. 
-
-\begin{figure}[htbp]
-\begin{subfigure}[t]{0.2\textwidth}
-    \includegraphics[width=3cm, height=3cm]{img/BallPibot1.png}
-\label{fig:figure1_1}
-\end{subfigure}\hfill
-\begin{subfigure}[t]{0.2\textwidth}
-  \includegraphics[width=3cm, height=3cm]{img/BallPibot2.png}
-\label{fig:figure1_2}
-\end{subfigure}\hfill
-\begin{subfigure}[t]{0.2\textwidth}
-    \includegraphics[width=3cm, height=3cm]{img/BallPibot3.png}
-\label{fig:figure1_3}
-\end{subfigure}
-
-\begin{subfigure}[t]{0.2\textwidth}
-    \includegraphics[width=3cm, height=3cm]{img/BallPibot4.png}
-\label{fig:figure1_4}
-\end{subfigure}\hfill
-\begin{subfigure}[t]{0.2\textwidth}
-    \includegraphics[width=3cm, height=3cm]{img/BallPibot5.png}
-\label{fig:figure1_5}
-\end{subfigure}\hfill
-\begin{subfigure}[t]{0.2\textwidth}
-    \includegraphics[width=3cm, height=3cm]{img/BallPibot6.png}
-\label{fig:figure1_6}
-\end{subfigure}
-
-\begin{subfigure}[t]{0.2\textwidth}
-    \includegraphics[width=3cm, height=3cm]{img/BallPibot7.png}
-\label{fig:figure1_7}
-\end{subfigure}\hfill
-\begin{subfigure}[t]{0.2\textwidth}
-    \includegraphics[width=3cm, height=3cm]{img/BallPibot8.png}
-\label{fig:figure1_8}
-\end{subfigure}\hfill
-\begin{subfigure}[t]{0.2\textwidth}
-    \includegraphics[width=3cm, height=3cm]{img/BallPibot9.png}
-\label{fig:figure1_9}
-\end{subfigure}
-\caption{Secuencia de la animación de una pelota para el ejercicio piBot sigue-pelota}
-\label{fig:secuenciaPibot}
-\end{figure}
-
-\subsection{Atraviesa-bosque}
-\label{subsec:atraviesabosque}
-
-Creado con primitivas de \textit{A-Frame}, el escenario tiene disposición de pasillo y diversos objetos en el camino para realizar un ejercicio que haga uso del sensor de ultrasonidos para evitar obstáculos.
-
     \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.4]{img/atraviesabosque-indiv.png}
-    \caption{Escenario para el ejercicio atraviesa bosque} 
-    \label{fig:atraviesaBosqueind}
+    \includegraphics[scale=0.5]{img/chocagiracodigo.png}
+    \caption{Solución en \textit{Scratch} para el ejercicio choca-gira} 
+    \label{fig:chocagiraSolution}
     \end{figure}
-    
-\subsection{Sigue-pelota con drone}
-\label{subsec:pelotadrone}
 
-Realizado de forma similar al ejercicio con piBot, pero modificando la animación para que la pelota se mueva también en el eje Y. Se puede ver una secuencia de la animación en la figura \ref{fig:secuenciaDrone}.
+\subsection{Sigue-pelota}
+\label{subsec:pelota}
+Se ha realizado dos escenarios distintos, uno para \textit{piBot} y otro para \textit{drone}.
+Ambos disponen de una pelota de color rojo, que debe ser seguida usando la cámara del \textit{robot}, a la que se le ha dado movimiento a través de primitivas de \textit{A-Frame}. En la figura \ref{fig:secuenciaDrone} se puede ver una secuencia con la animación de la pelota y en el siguiente código se muestra el archivo de configuración de este ejercicio:
 
+\begin{lstlisting}[language=json]
+{
+  "robot": {
+    "model":"../assets/models/drone_animation.gltf",
+    "scale": "0.5 0.5 0.5",
+    "position":"12 1 25",
+    "rotation": "0 50 0"
+  },
+  "gravity": 0,
+  "ground": "../assets/textures/escenarioLiso.png",
+  "sky": "../assets/textures/sky.png",
+  "secondaryCamera": "4 20 30",
+  "cameraRobot":"0 0.03 -0.01",
+  "objects":[{
+      "type": "a-sphere",
+      "id":"redBall",
+      "position": "4 15 20",
+      "color": "#FF0000",
+      "radius": "1.5",
+      "animation":"property: position; from: 4 15 20 ;to: 0 15 -20; dir: alternate; dur: 10000; loop: true",
+      "animation__2":"property: position; from: 0 15 -20 ;to: 0 2 -20 ; delay: 10000; dir: alternate; dur: 10000; loop: true",
+      "animation__3":"property: position; from: 0 2 -20 ;to: 4 2 20 ; delay: 20000; dir: alternate; dur: 10000; loop: true",
+      "animation__4":"property: position; from: 4 2 20 ;to: 4 15 20; delay: 30000; dir: alternate; dur: 10000; loop: true",
+      "animation__5":"property: position; from: 4 15 20 ;to: -10 15 10; delay: 40000; dir: alternate; dur: 10000; loop: true",
+      "animation__6":"property: position; from: -10 15 10 ;to: 20 8 -30; delay: 50000; dir: alternate; dur: 10000; loop: true"
+      }]
+}
+\end{lstlisting}
 
-\begin{figure}[htbp]
+Haciendo especial mención al campo \textit{objects}, en el que se crea una pelota roja con la animación indicada en todos los campos \textit{animation}. Esto genera el siguiente elemento en \textit{HTML}:
+
+\begin{lstlisting}[language=html]
+<a-sphere id="redBall" position="12 1 25" color="#FF0000" radius="1.5" 
+animation="property: position; from: 4 15 20 ;to: 0 15 -20; dir: alternate; dur: 10000; loop: true"
+animation__2="property: position; from: 0 15 -20 ;to: 0 2 -20 ; delay: 10000; dir: alternate; dur: 10000; loop: true"
+animation__3="property: position; from: 0 2 -20 ;to: 4 2 20 ; delay: 20000; dir: alternate; dur: 10000; loop: true" 
+animation__4="property: position; from: 4 2 20 ;to: 4 15 20; delay: 30000; dir: alternate; dur: 10000; loop: true"
+animation__5= "property: position; from: 4 15 20 ;to: -10 15 10; delay: 40000; dir: alternate; dur: 10000; loop: true"
+animation__6="property: position; from: -10 15 10 ;to: 20 8 -30; delay: 50000; dir: alternate; dur: 10000; loop: true">
+</a-sphere>
+\end{lstlisting}
+
+\begin{figure}[H]
 \begin{subfigure}[t]{0.2\textwidth}
     \includegraphics[width=3cm, height=3cm]{img/followBallTello1.png}
 \label{fig:figure2_1}
@@ -526,12 +728,11 @@ Realizado de forma similar al ejercicio con piBot, pero modificando la animació
 \begin{subfigure}[t]{0.2\textwidth}
     \includegraphics[width=3cm, height=3cm]{img/followBallTello3.png}
 \label{fig:figure2_3}
-\end{subfigure}
-
+\end{subfigure}\hfill
 \begin{subfigure}[t]{0.2\textwidth}
     \includegraphics[width=3cm, height=3cm]{img/followBallTello4.png}
 \label{fig:figure2_4}
-\end{subfigure}\hfill
+\end{subfigure}
 \begin{subfigure}[t]{0.2\textwidth}
     \includegraphics[width=3cm, height=3cm]{img/followBallTello5.png}
 \label{fig:figure2_5}
@@ -539,8 +740,7 @@ Realizado de forma similar al ejercicio con piBot, pero modificando la animació
 \begin{subfigure}[t]{0.2\textwidth}
     \includegraphics[width=3cm, height=3cm]{img/followBallTello6.png}
 \label{fig:figure2_6}
-\end{subfigure}
-
+\end{subfigure}\hfill
 \begin{subfigure}[t]{0.2\textwidth}
     \includegraphics[width=3cm, height=3cm]{img/followBallTello7.png}
 \label{fig:figure2_7}
@@ -548,12 +748,11 @@ Realizado de forma similar al ejercicio con piBot, pero modificando la animació
 \begin{subfigure}[t]{0.2\textwidth}
     \includegraphics[width=3cm, height=3cm]{img/followBallTello8.png}
 \label{fig:figure2_8}
-\end{subfigure}\hfill
+\end{subfigure}
 \begin{subfigure}[t]{0.2\textwidth}
     \includegraphics[width=3cm, height=3cm]{img/followBallTello9.png}
 \label{fig:figure2_9}
-\end{subfigure}
-
+\end{subfigure}\hfill
 \begin{subfigure}[t]{0.2\textwidth}
     \includegraphics[width=3cm, height=3cm]{img/followBallTello10.png}
 \label{fig:figure2_10}
@@ -570,6 +769,33 @@ Realizado de forma similar al ejercicio con piBot, pero modificando la animació
 \label{fig:secuenciaDrone}
 \end{figure}
 
+    \begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.5]{img/siguepelotacodigo.png}
+    \caption{Solución en \textit{Scratch} para el ejercicio sigue pelota drone} 
+    \label{fig:pelotaSolution}
+    \end{figure}
+    
+\subsection{Atraviesa-bosque}
+\label{subsec:atraviesabosque}
+
+Creado con primitivas de \textit{A-Frame}, el escenario tiene disposición de pasillo y diversos objetos en el camino para realizar un ejercicio que haga uso del sensor de ultrasonidos para evitar obstáculos.
+
+    \begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{img/atraviesabosque-indiv.png}
+    \caption{Escenario para el ejercicio atraviesa bosque} 
+    \label{fig:atraviesaBosqueind}
+    \end{figure}
+
+    \begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.3]{img/atraviesaBosqueCodigo.png}
+    \caption{Solución en \textit{Scratch} para el ejercicio atraviesa bosque} 
+    \label{fig:bosqueSolution}
+    \end{figure}
+    
+
 \subsection{Cuadrado con drone}
 
 Escenario para facilitar el ejercicio ``cuadrado drone'' en el que hay que dibujar un cuadrado con el movimiento del \textit{drone}.
@@ -581,11 +807,19 @@ Escenario para facilitar el ejercicio ``cuadrado drone'' en el que hay que dibuj
         \label{fig:droneCuadrado}
     \end{figure}
 
+    \begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{img/tellocuadradocodigo.png}
+    \caption{Solución en \textit{Scratch} para el ejercicio cuadrado drone} 
+    \label{fig:cuadradoSolution}
+    \end{figure}
+    
 \section{Ejercicios competitivos}
 \label{sec:competitive}
 Uno de los objetivos de este proyecto era añadir ejercicios competitivos. Se hace especial mención a ellos debido a que son completamente diferentes al resto de los ya creados. Este tipo de ejercicios aumenta el valor de la plataforma ya que da la posibilidad de programar dos robots en el mismo escenario, pudiendo entender la programación como un juego en el que se premia al que aporte la mejor solución.
 
-En este tipo de ejercicios hay dos robots en una misma escena donde cada uno de ellos se puede programar con un código distinto. Para facilitar la integración con el resto de la plataforma se han incorporado dos aplicaciones más a \textit{WebSim}: ejercicios competitivos en \textit{Scratch} y ejercicios competitivos en \textit{JavaScript}. 
+En este tipo de ejercicios hay dos robots en una misma escena donde cada uno de ellos se puede programar con un código distinto. Para su implementación se ha creado el módulo \textit{brains} que contiene el método \textit{runBrains} que ejecuta un hilo para cada \textit{robot} existente en la escena. Además contiene los métodos \textit{stopBrain} y \textit{resumeBrain} que paran y reanudan la simulación. 
+Para la integración de este tipo de ejercicios en plataforma se han incorporado dos aplicaciones más a \textit{WebSim}: ejercicios competitivos en \textit{Scratch} y ejercicios competitivos en \textit{JavaScript}. 
 
 Se ha comenzado creando la aplicación llamada \textit{competitive-JavaScript} debido a la facilidad para probar código y hacer pruebas en el entorno. Para ello se ha cambiado la interfaz del editor, añadiendo botones para cada uno de los robots (figura \ref{fig:javascript_competitivo}) y añadir funcionalidad a cada botón para guardar el código de cada robot o mostrar el código en caso de tener uno guardado.
 
@@ -595,7 +829,7 @@ Se ha comenzado creando la aplicación llamada \textit{competitive-JavaScript} d
         \label{fig:javascript_competitivo}
     \end{figure}
 
-La aplicación \textit{competitive-Scratch} se ha realizado de la misma manera, con la diferencia de que, en este caso, es necesario guardar el código de los bloques en \textit{XML} y su traducción en \textit{JavaScript}. Para realizarlo de forma limpia se ha creado un objeto que contiene un \textit{boolean} y dos cadenas de texto. En el \textit{boolean} se indica el código de qué \textit{robot} se está editando, en una cadena de texto se guarda el código \textit{XML} y en la otra su traducción en \textit{JavaScript}. Se puede ver la interfaz de este editor en la figura \ref{fig:scratch_competitivo}.
+La aplicación \textit{competitive-Scratch} se ha realizado de la misma manera, con la diferencia de que, en este caso, es necesario guardar el código de los bloques en \textit{XML} y su traducción en \textit{JavaScript}. Para realizarlo de forma limpia se ha creado un objeto que contiene un \textit{boolean} y dos cadenas de texto. En el primero indica el código de qué \textit{robot} se está editando, en una cadena de texto se guarda el código \textit{XML} y en la otra su traducción en \textit{JavaScript}. Se puede ver la interfaz de este editor en la figura \ref{fig:scratch_competitivo}.
 
     \begin{figure}[H]
         \centering            
@@ -660,21 +894,44 @@ Para este ejercicio se usa el escenario de la figura \ref{fig:siguelineas_compet
 
 \subsection{Gato-ratón}
 
-Con la nueva estructura de \textit{WebSim} se permite realizar el ejercicio gato-ratón con \textit{drones}. Se trata de otro tipo en el que no se compite con dos códigos programados por distintos usuarios, si no que un \textit{drone} ya está programado y el usuario solo tiene que desarrollar su solución para que el \textit{robot} no se aleje del objetivo. Para ello ha sido necesario crear un modelo al que se le ha pintado de color rojo para que sea más sencillo su filtrado. Se puede ver el nuevo modelo de \textit{drone} en la figura \ref{fig:drone_rojo}.
+Con la nueva estructura de \textit{WebSim} se permite realizar el ejercicio gato-ratón con \textit{drones}. Se trata de otro tipo en el que no se compite con dos códigos programados por distintos usuarios, si no que un \textit{drone} ya está programado y el usuario solo tiene que desarrollar su solución para que el \textit{robot} no se aleje del objetivo. Para ello ha sido necesario crear un modelo al que se le ha pintado de color rojo para que sea más sencillo su filtrado. 
 
-
-Para el evaluador de este ejercicio se crea un gráfico con ayuda de una librería externa de \textit{JavaScript} (\textit{JavaScript Graphics Library}\footnote{\url{http://www.jsgl.org/}}) que muestra la distancia entre \textit{drones} y el tiempo que lleva de ejecución. Se puede ver este evaluador en la figura \ref{fig:evaluador_gato_raton}.
+Para el evaluador de este ejercicio se crea un gráfico con ayuda de una librería externa de \textit{JavaScript} (\textit{JavaScript Graphics Library}\footnote{\url{http://www.jsgl.org/}}) que muestra la distancia entre \textit{drones} y el tiempo que lleva de ejecución. Se puede ver este evaluador en la figura \ref{fig:evaluador_gato_raton} así como el nuevo modelo de \textit{drone} creado para este ejercicio.
   
-    \begin{figure}[ht]
-    \centering           
-    \includegraphics[scale=0.5]{img/red_drone.jpg}
-    \caption{Nuevo modelo de drone para ejercicio gato-ratón}
-    \label{fig:drone_rojo}
-    
-\end{figure}
+
 \begin{figure}[ht]
 \centering           
 \includegraphics[scale=0.3]{img/evaluador_drone.png}
-\caption{Evaluador para ejercicio gato-ratón}
+\caption{Evaluador y nuevo modelo de \textit{drone} para ejercicio gato-ratón}
 \label{fig:evaluador_gato_raton}
 \end{figure}
+
+Además, para este ejercicio se ha creado un \textit{script} llamado \textit{agents-methods.js} para ejecutar el código del \textit{drone} ratón sin necesidad de escribir código. Es muy similar al método \textit{runBrain} con la diferencia de que el código viene de un fichero en lugar del editor. En este módulo se guarda el código en la variable \textit{agents.code} con el siguiente código: 
+
+\begin{lstlisting}[language=javascript]
+agents.getCode = (file) => {
+  var request = new XMLHttpRequest();
+  request.open("GET", file);
+  request.onreadystatechange = function () {
+    if(request.status === 200 || request.status == 0) {
+        agents.code = request.responseText;
+    }
+  }
+  request.send();
+}
+agents.getCode("../assets/agents/mouse_code.js");
+\end{lstlisting}
+
+Y una vez obtenido el código se llama al método \textit{runAgent} que recoge el código e incorpora en el \textit{array} de \textit{robots} del módulo \textit{brains} la lógica programada.
+
+\begin{lstlisting}[language=javascript]
+agents.runAgent = (robotID, code) =>{
+  code = 'async function myAlgorithm(){\n'+code+'\n}\nmyAlgorithm();';
+  brains.threadsBrains.push({
+    "id": robotID,
+    "running": true,
+    "iteration": brains.createTimeoutBrain(code, Websim.robots.getHalAPI(robotID), robotID),
+    "codeRunning": code
+  });
+}
+\end{lstlisting}
