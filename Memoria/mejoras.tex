@@ -821,16 +821,65 @@ Uno de los objetivos de este proyecto era añadir ejercicios competitivos. Se ha
 En este tipo de ejercicios hay dos robots en una misma escena donde cada uno de ellos se puede programar con un código distinto. Para su implementación se ha creado el módulo \textit{brains} que contiene el método \textit{runBrains} que ejecuta un hilo para cada \textit{robot} existente en la escena. Además contiene los métodos \textit{stopBrain} y \textit{resumeBrain} que paran y reanudan la simulación. 
 Para la integración de este tipo de ejercicios en plataforma se han incorporado dos aplicaciones más a \textit{WebSim}: ejercicios competitivos en \textit{Scratch} y ejercicios competitivos en \textit{JavaScript}. 
 
-Se ha comenzado creando la aplicación llamada \textit{competitive-JavaScript} debido a la facilidad para probar código y hacer pruebas en el entorno. Para ello se ha cambiado la interfaz del editor, añadiendo botones para cada uno de los robots (figura \ref{fig:javascript_competitivo}) y añadir funcionalidad a cada botón para guardar el código de cada robot o mostrar el código en caso de tener uno guardado.
+Se ha comenzado creando la aplicación llamada \textit{competitive-JavaScript} debido a la facilidad para probar código y hacer pruebas en el entorno. Para ello se ha cambiado la interfaz del editor, añadiendo botones para cada uno de los robots (figura \ref{fig:javascript_competitivo}) y añadir funcionalidad a cada botón para guardar el código de cada robot o mostrar el código en caso de tener uno guardado. %código del editor de JavaScript y sus botones
+
+
 
     \begin{figure}[H]
         \centering            \includegraphics[scale=0.30]{img/competitiveEditorJavascript.png}
         \caption{Editor de \textit{JavaScript} para ejercicios competitivos}
         \label{fig:javascript_competitivo}
     \end{figure}
+    
+Cada uno de los botones tiene la funcionalidad de guardar el código escrito en el editor y, si se pulsa el botón del robot que no se está editando, se guarda el código y se carga el  del otro robot, en caso de que ya haya uno guardado. Si no hay ninguno se carga un editor vacío. 
 
-La aplicación \textit{competitive-Scratch} se ha realizado de la misma manera, con la diferencia de que, en este caso, es necesario guardar el código de los bloques en \textit{XML} y su traducción en \textit{JavaScript}. Para realizarlo de forma limpia se ha creado un objeto que contiene un \textit{boolean} y dos cadenas de texto. En el primero indica el código de qué \textit{robot} se está editando, en una cadena de texto se guarda el código \textit{XML} y en la otra su traducción en \textit{JavaScript}. Se puede ver la interfaz de este editor en la figura \ref{fig:scratch_competitivo}.
+\begin{lstlisting}[language=javascript]
+var editFirst = true;
+var editSecond = false;
+var codeFirst = null;
+var codeSecond = null;
+  $('#firstRobot').click(()=>{
+    if(editFirst){
+      codeFirst = editor.getCode();
+    }
+    if(editSecond){
+      codeSecond = editor.getCode();
+      editSecond=false;
+      if(codeFirst==null){
+        editor.insertCode("",editor);
+      }else{
+        editor.insertCode(codeFirst,editor);
+      }
+    }
+    editFirst= true;
+  });
+\end{lstlisting}
 
+Cuando se pulsa el botón de ejecutar código, se ejecuta el método \textit{runBrain} del módulo \textit{brains} obteniendo previamente el código del robot que se esté editando.
+\begin{lstlisting}[language=javascript]
+  $("#runbtn").click(()=>{
+     if (editFirst) {
+       codeFirst = editor.getCode();
+     } else {
+       codeSecond = editor.getCode();
+     }
+    if (brains.threadExists(editorRobot1)){
+      if (brains.isThreadRunning(editorRobot1)){
+        brains.stopBrain(editorRobot1);
+        brains.stopBrain(editorRobot2);
+      }else{
+        brains.resumeBrain(editorRobot1,codeFirst);
+        brains.resumeBrain(editorRobot2,codeSecond);
+      }
+    }else{
+      brains.runBrain(editorRobot1,codeFirst);
+      brains.runBrain(editorRobot2,codeSecond);
+    }
+  });
+\end{lstlisting}
+
+
+La aplicación \textit{competitive-Scratch} se ha realizado de  manera similar, con la diferencia de que, en este caso, es necesario guardar el código de los bloques en \textit{XML} y su traducción en \textit{JavaScript}. Para realizarlo de forma limpia se ha creado un objeto que contiene un \textit{boolean} y dos cadenas de texto (\textit{listing} \ref{lst:savecode}). En el primero indica el código de qué \textit{robot} se está editando, en una cadena de texto se guarda el código \textit{XML} y en la otra su traducción en \textit{JavaScript}. Se puede ver la interfaz de este editor en la figura \ref{fig:scratch_competitivo}.
     \begin{figure}[H]
         \centering            
         \includegraphics[scale=0.30]{img/competitivoEditorScratch.png}
@@ -838,7 +887,67 @@ La aplicación \textit{competitive-Scratch} se ha realizado de la misma manera, 
         \label{fig:scratch_competitivo}
     \end{figure}
 
-Para facilitar las pruebas y poder comprobar el estado de los sensores, comandar velocidades y crear nueva funcionalidad, se ha creado un escenario para realizar pruebas.
+\begin{lstlisting}[language=javascript,label=lst:savecode, caption=código \textit{JavaScript} para guardar código de un robot]
+var codeFirst = {
+  js:"",
+  xml:null,
+  edit:true
+};
+var codeSecond = {
+  js:"",
+  xml: null,
+  edit: false
+};
+  $('#firstRobot').click(()=>{
+    if(codeFirst.edit){
+      codeFirst.xml = editor.storeCode(editor.ui);
+      editor.ui = editor.injectCode(editor.ui, codeFirst.xml);
+    }
+    if(codeSecond.edit){
+      codeSecond.xml = editor.storeCode(editor.ui);
+      codeSecond.edit = false;
+      if(codeFirst.xml == null){
+        editor.ui = editor.injectCode(editor.ui, '<xml></xml>');
+      } else{
+        editor.ui = editor.injectCode(editor.ui, codeFirst.xml);
+      }
+    }
+    codeFirst.edit = true;
+\end{lstlisting}
+
+\begin{lstlisting}[language=javascript,caption=código \textit{JavaScript} para ejecutar código de los robots y guardar el que se esté editando]
+$("#runbtn").click(()=>{
+    if (codeFirst.edit) {
+        codeFirst.xml = editor.storeCode(editor.ui);
+        editor.ui = editor.injectCode(editor.ui,codeSecond.xml);
+        codeSecond.js = editor.getCode();
+        editor.ui = editor.injectCode(editor.ui,codeFirst.xml);
+        codeFirst.js = editor.getCode();
+    } else {
+        codeSecond.xml = editor.storeCode(editor.ui);
+        editor.ui = editor.injectCode(editor.ui,codeFirst.xml);
+        codeFirst.js = editor.getCode();
+        editor.ui = editor.injectCode(editor.ui,codeSecond.xml);
+        codeSecond.js = editor.getCode();
+    }
+    if (brains.threadExists(editorRobot1)){
+      if (brains.isThreadRunning(editorRobot1)){
+        brains.stopBrain(editorRobot1);
+        brains.stopBrain(editorRobot2);
+      }else{
+        brains.resumeBrain(editorRobot1,codeFirst.js);
+        //agents.resumeAgent(editorRobot2,agents.code);
+        brains.resumeBrain(editorRobot2,codeSecond.js);
+      }
+    }else{
+      brains.runBrain(editorRobot1,codeFirst.js);
+      //agents.runAgent(editorRobot2,agents.code);
+      brains.runBrain(editorRobot2,codeSecond.js);
+    }
+  });
+\end{lstlisting}
+
+Para facilitar las pruebas y poder comprobar el estado de los sensores, comandar velocidades y crear nueva funcionalidad, se ha creado un escenario:
       
        \begin{figure}[H]
         \centering           
