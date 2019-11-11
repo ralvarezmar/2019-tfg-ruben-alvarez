@@ -48,7 +48,7 @@ getL(){
     }
     \end{lstlisting}
     
-    \item \textit{\textbf{aterrizar()}}: Método que da velocidad vertical negativa al \textit{robot} hasta que alcance el suelo. 
+    \item \textit{\textbf{aterrizar()}}: Método que da velocidad vertical negativa al \textit{robot} hasta que alcance el suelo.
     
     \begin{lstlisting}[language=javascript]
  aterrizar(){
@@ -187,7 +187,7 @@ Para ello, se han creado 4 bloques con las funciones anteriormente explicadas:
  Se muestra en detalle la traducción del bloque despegar, que va incluida (junto a los otros bloques creados) en el directorio de bloques personalizados.
 
 
-\begin{lstlisting}[language=javascript,label=list:traduccion]
+\begin{lstlisting}[language=javascript,label=lst:tradAterrizar]
 export default function initLandBlock(){
   var landBlock = {
   "type": "land",
@@ -258,15 +258,16 @@ Se muestran los teleoperadores creados para los modelos del \textit{piBot} y del
 Estos teleoperadores tienen una arquitectura similar a las aplicaciones creadas de \textit{Scratch} o \textit{JavaScript}. A continuación se muestra un esquema con la arquitectura de esta aplicación:
 
 \begin{figure}[H]
-    \centering            \includegraphics[scale=0.5]{img/arquitecturaTeleoperador.png}
+    \centering            
+    \includegraphics[scale=0.5]{img/arquitecturaTeleoperador.png}
     \caption{Arquitectura de la aplicación teleoperadores} 
     \label{fig:arq_teleop}
 \end{figure}
 
-Siendo el bloque teleoperador la interfaz creada en \textit{HTML} (listing \ref{list:teleop}). Se envía un evento cuando se pulsa uno de los botones del teleoperador o del teclado, que mediante un controlador se comunica con \textit{WebSim} tanto como para obtener las velocidades del robot como para enviarle las nuevas originadas por el evento. \textit{WebSim} se comunica con el simulador para ejecutar los nuevos valores obtenidos.
+Siendo el bloque teleoperador la interfaz creada en \textit{HTML} (\textit{listing} \ref{lst:teleop}). Se envía un evento cuando se pulsa uno de los botones del teleoperador o del teclado, que mediante un controlador se comunica con \textit{WebSim} tanto como para obtener las velocidades del robot como para enviarle las nuevas originadas por el evento. \textit{WebSim} se comunica con el simulador para ejecutar los nuevos valores obtenidos.
 
 \begin{multicols}{2}
-\begin{lstlisting}[language=CSS,label=list:teleopCSS]
+\begin{lstlisting}[language=CSS,label={lst:cssTeleop}]
   button {
     border-radius: 10px;
     border: none;
@@ -354,7 +355,7 @@ image{
 \end{lstlisting}
 \end{multicols}
 
-\begin{lstlisting}[language=html,label=list:teleop,caption=Código HTML y CSS del teleoperador del drone]
+\begin{lstlisting}[language=html,label=lst:teleop,caption=Código HTML y CSS del teleoperador del drone]
       <div id="right-container">
         <div class="buttons">
           <div id="upArrow">
@@ -373,7 +374,7 @@ image{
         </div>
 \end{lstlisting}
 
-A continuación se detalla el código del evento que inicializa el robot, que inicializa los eventos de pulsación del teclado y botones.
+A continuación se detalla el código del evento que inicializa el robot, los eventos que genera pulsar el teclado y los botones de la interfaz gráfica.
 
 \begin{lstlisting}[language=javascript,label=list:traduccion]
   document.addEventListener('robot-loaded', (evt)=>{
@@ -408,7 +409,7 @@ A continuación se detalla el código del evento que inicializa el robot, que in
   });
 \end{lstlisting}
 
-Las funciones llamadas cuando se pulsa el teclado comanda una velocidad fija mientras se esté pulsando: 
+Las funciones llamadas cuando se pulsa el teclado comandan una velocidad fija mientras se esté pulsando: 
 
 \begin{lstlisting}[language=javascript,label=list:teclado]
 function keypressHandler(evt){
@@ -463,7 +464,7 @@ Cuando se pulsa alguno de los botones de la interfaz gráfica el comportamiento 
       }
     }
     \end{lstlisting}
-    \item Botón de ascenso/descenso: se obtiene la velocidad de ascensión y se incrementa/disminuye.
+    \item Botón de ascenso/descenso: se obtiene la velocidad vertical y se incrementa/disminuye.
     \begin{lstlisting}[language=javascript,label=list:up]
         function up(){
           let velocity = localRobot.getL()
@@ -497,70 +498,64 @@ También se ha creado una página principal para poder acceder a todos ellos a t
     \caption{Interfaz que permite acceder a cada uno de los teleoperadores} \label{fig:teleoperators}
 \end{figure}
 
-\begin{lstlisting}[language=html,label=list:teleop,caption=Código HTML de la interfaz para acceder a los teleoperadores]
-	<body>
-		<div id="wrapper">
-				<header id="header" class="alt">
-					<p class="logo"><strong>Teleoperators</strong></a>
-				</header>
-				<div id="main">
-					<section id="one" class="tiles">
-						<article>
-							<span class="image">
-								<img src="../assets/resources/drone.png" alt="drone"/>
-							</span>
-							<header class="major">
-								<h3><a href="drone.html" class="link">Drone</a></h3>
-								<p>Drone teleoperator </p>
-							</header>
-						</article>
-						<article>
-							<span class="image">
-								<img src="../assets/resources/pibot.png" alt="piBot"/>
-							</span>
-							<header class="major">
-								<h3><a href="pibot.html" class="link">PiBot</a></h3>
-								<p>PiBot teleoperator</p>
-							</header>
-						</article>
-						<article>
-							<span class="image">
-								<img src="../assets/resources/f1.png" alt="f1"/>
-							</span>
-							<header class="major">
-								<h3><a href="f1.html" class="link">F1</a></h3>
-								<p>F1 teleoperator</p>
-							</header>
-						</article>
-						<article>
-							<span class="image">
-								<img src="../assets/resources/mBot.png" alt="mbot"/>
-							</span>
-							<header class="major">
-								<h3><a href="mBot.html" class="link">mBot</a></h3>
-								<p>mBot teleoperator</p>
-							</header>
-						</article>
-					</section>
-				</div>
-		</div>
-		<script src="js/jquery.scrolly.min.js"></script>
-		<script src="js/jquery.scrollex.min.js"></script>
-		<script src="js/browser.min.js"></script>
-		<script src="js/breakpoints.min.js"></script>
-		<script src="js/util.js"></script>
-		<script src="js/main.js"></script>
-	</body>
+\begin{lstlisting}[language=html,label=lst:teleopMain,caption=Código HTML de la interfaz para acceder a los teleoperadores]
+<body>
+   <div id="wrapper">
+      <header id="header" class="alt">
+         <p class="logo"><strong>Teleoperators</strong></a>
+      </header>
+      <div id="main">
+         <section id="one" class="tiles">
+            <article>
+               <span class="image">
+               <img src="../assets/resources/drone.png" alt="drone"/>
+               </span>
+               <header class="major">
+                  <h3><a href="drone.html" class="link">Drone</a></h3>
+                  <p>Drone teleoperator </p>
+               </header>
+            </article>
+            <article>
+               <span class="image">
+               <img src="../assets/resources/pibot.png" alt="piBot"/>
+               </span>
+               <header class="major">
+                  <h3><a href="pibot.html" class="link">PiBot</a></h3>
+                  <p>PiBot teleoperator</p>
+               </header>
+            </article>
+            <article>
+               <span class="image">
+               <img src="../assets/resources/f1.png" alt="f1"/>
+               </span>
+               <header class="major">
+                  <h3><a href="f1.html" class="link">F1</a></h3>
+                  <p>F1 teleoperator</p>
+               </header>
+            </article>
+            <article>
+               <span class="image">
+               <img src="../assets/resources/mBot.png" alt="mbot"/>
+               </span>
+               <header class="major">
+                  <h3><a href="mBot.html" class="link">mBot</a></h3>
+                  <p>mBot teleoperator</p>
+               </header>
+            </article>
+         </section>
+      </div>
+   </div>
+</body>
 \end{lstlisting}
 
 \subsection{Ficheros de configuración}
 
 Para incorporar estos teleoperadores ha sido necesario elaborar unos ficheros de configuración y así poder cambiar el escenario y el \textit{drone} cargado por \textit{A-Frame}. 
 
-Estos archivos de configuración se han creado en \textit{JSON} (un formato de texto para representar datos estructurados en la sintaxis de objeto de \textit{JavaScript}) y se ha programado un \textit{script} (listing \ref{list:conf}) para cargar cada fichero de configuración. Para ello se crea una variable en el \textit{index.html} del editor con la ruta en la que esté ubicado y el \textit{script} abre el fichero y recorre el \textit{JSON} para dar al escenario los valores establecidos.
+Estos archivos se han creado en \textit{JSON} y se ha programado un \textit{script} (\textit{listing} \ref{list:conf}) para cargar cada fichero de configuración. Para ello se crea una variable en el \textit{index.html} del editor (\textit{listing} \ref{list:variable}) con la ruta en la que esté ubicado y el \textit{script} abre el fichero y recorre el \textit{JSON} para dar al escenario los valores establecidos.
 
-En los ficheros creados se pueden configurar aspectos como el modelo del robot cargado, su posición y rotación, la posición de la cámara a bordo del robot, el fichero del cielo y suelo que debe cargar o los elementos que queramos añadir en el escenario. 
-\begin{lstlisting}[language=JavaScript,caption=script que carga los ficheros de configuración,label={list:conf}]
+En los ficheros creados se pueden configurar aspectos como el modelo del robot cargado, su posición y rotación, la posición de la cámara a bordo del robot, la textura del cielo y suelo que debe cargar o los elementos que queramos añadir en el escenario. 
+\begin{lstlisting}[language=JavaScript,caption=\textit{script} que carga los ficheros de configuración,label={list:conf}]
   loadJSON(function(response) {
     var config = JSON.parse(response);
     var sceneEl = document.querySelector('a-scene');
@@ -591,6 +586,11 @@ function setObjects(object,scene){
   }
 }
 \end{lstlisting}
+
+\begin{lstlisting}[language=html,caption=variable en \textit{HTML} para indicar la ruta del fichero de configuración,label={list:variable}]
+    <script>var config_file = '../assets/config/config_follow_line.json';</script>
+\end{lstlisting}
+
 \begin{lstlisting}[language=json]
   {
   "robot": {
@@ -598,7 +598,7 @@ function setObjects(object,scene){
     "scale": "0.5 0.5 0.5",
     "position":"12 0 25",
     "rotation": "0 320 0"
-  },
+   },
   "gravity": 0,
   "ground": "../assets/textures/escenarioLiso.png",
   "sky": "../assets/textures/sky.png",
@@ -606,14 +606,13 @@ function setObjects(object,scene){
   "cameraRobot":"0 0.03 -0.01",
   "objects":[{
       "type": "a-sphere",
-      "position": "4 1 20",
+      "position" : "12 1 15",
       "color": "#FF0000"
-      }
-    ]
+      }]
 }
 \end{lstlisting}
 
-En este ejemplo se configura el escenario para que cargue el modelo del \textit{drone}, con el tamaño indicado en \textit{size}, la posición y rotación que aparece en \textit{position} y \textit{rotation}. En el valor \textit{gravity} se indica que el escenario no tenga gravedad, se carga la textura que posee el campo \textit{ground} como suelo del mundo y, por último, la posición de las cámaras es la ubicada en \textit{secondaryCamera} y \textit{cameraRobot}. Además, en \textit{objects} se pueden añadir todos los objetos deseados a la escena. En este ejemplo se añade una pelota de color rojo en la posición que aparece en \textit{position}.
+En este ejemplo se configura el escenario para que cargue el modelo del \textit{drone}, con el tamaño indicado en \textit{size}, la posición y rotación que aparece en \textit{position} y \textit{rotation}. En el valor \textit{gravity} se indica que el escenario no tenga gravedad, se carga la textura que posee el campo \textit{ground} como suelo del mundo y, por último, la posición de las cámaras es la ubicada en \textit{secondaryCamera} y \textit{cameraRobot}. Además, en \textit{objects} se pueden añadir todos los objetos deseados a la escena. En este ejemplo se añade al escenario una pelota de color rojo en la posición indicada.
 
 
 \section{Ejercicios individuales}
@@ -638,11 +637,11 @@ Se han incorporado nuevos escenarios a \textit{WebSim} que dan la posibilidad de
     \end{figure}
     
 \subsection{Sigue-líneas infrarrojos}
-    Con un recorrido similar a sigue-líneas visión, pero con fondo blanco y recorrido negro para facilitar la implementación de código al robot real y que no haya que realizar modificaciones. Para que funcionara correctamente ha sido necesario añadir el color blanco a \textit{undestandedColors} para realizar el filtro y poder pasar ``\textit{white}'' como atributo a la función \textit{getObjectColor()}.
+    Con un recorrido similar a sigue-líneas visión, pero con fondo blanco y recorrido negro para facilitar la implementación de código en el robot real y que no haya que realizar modificaciones. Para que funcionara correctamente ha sido necesario añadir el color blanco a \textit{undestandedColors} para realizar el filtro y poder pasar ``\textit{white}'' como atributo a la función \textit{getObjectColor()}.
     
     \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.4]{img/siguelineas_ir.JPG}
+    \includegraphics[scale=0.35]{img/siguelineas_ir.JPG}
     \caption{Escenario para el ejercicio \textit{piBot} sigue-líneas infrarrojo} \label{fig:siguelineasIR}
     \end{figure}
     
@@ -659,7 +658,7 @@ Escenario creado en \textit{Blender} con un aspecto similar a su análogo en \te
 
     \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.4]{img/bump&go.png}
+    \includegraphics[scale=0.3]{img/bump&go.png}
     \caption{Escenario para el ejercicio choca-gira} \label{fig:chocagira}
     \end{figure}
     \begin{figure}[H]
@@ -703,7 +702,7 @@ Ambos disponen de una pelota de color rojo, que debe ser seguida usando la cáma
 }
 \end{lstlisting}
 
-Haciendo especial mención al campo \textit{objects}, en el que se crea una pelota roja con la animación indicada en todos los campos \textit{animation}. Esto genera el siguiente elemento en \textit{HTML}:
+Haciendo especial mención al campo \textit{objects}, en el que se crea una pelota roja con la animación indicada en todos los campos \textit{animation} y genera el siguiente elemento en \textit{HTML}:
 
 \begin{lstlisting}[language=html]
 <a-sphere id="redBall" position="12 1 25" color="#FF0000" radius="1.5" 
@@ -826,7 +825,8 @@ Se ha comenzado creando la aplicación llamada \textit{competitive-JavaScript} d
 
 
     \begin{figure}[H]
-        \centering            \includegraphics[scale=0.30]{img/competitiveEditorJavascript.png}
+        \centering            
+        \includegraphics[scale=0.30]{img/competitiveEditorJavascript.png}
         \caption{Editor de \textit{JavaScript} para ejercicios competitivos}
         \label{fig:javascript_competitivo}
     \end{figure}
@@ -879,10 +879,10 @@ Cuando se pulsa el botón de ejecutar código, se ejecuta el método \textit{run
 \end{lstlisting}
 
 
-La aplicación \textit{competitive-Scratch} se ha realizado de  manera similar, con la diferencia de que, en este caso, es necesario guardar el código de los bloques en \textit{XML} y su traducción en \textit{JavaScript}. Para realizarlo de forma limpia se ha creado un objeto que contiene un \textit{boolean} y dos cadenas de texto (\textit{listing} \ref{lst:savecode}). En el primero indica el código de qué \textit{robot} se está editando, en una cadena de texto se guarda el código \textit{XML} y en la otra su traducción en \textit{JavaScript}. Se puede ver la interfaz de este editor en la figura \ref{fig:scratch_competitivo}.
+La aplicación \textit{competitive-Scratch} se ha realizado de  manera similar con la diferencia de que, en este caso, es necesario guardar el código de los bloques en \textit{XML} y su traducción en \textit{JavaScript}. Para realizarlo de forma limpia se ha creado un objeto que contiene un \textit{boolean} y dos cadenas de texto (\textit{listing} \ref{lst:savecode}). En el primero indica el código de qué \textit{robot} se está editando, en una cadena de texto se guarda el código \textit{XML} y en la otra su traducción en \textit{JavaScript}. Se puede ver la interfaz de este editor en la figura \ref{fig:scratch_competitivo}.
     \begin{figure}[H]
         \centering            
-        \includegraphics[scale=0.30]{img/competitivoEditorScratch.png}
+        \includegraphics[scale=0.5]{img/competitivoEditorScratch.png}
         \caption{Editor de \textit{Scratch} para ejercicios competitivos}
         \label{fig:scratch_competitivo}
     \end{figure}
@@ -915,7 +915,7 @@ var codeSecond = {
     codeFirst.edit = true;
 \end{lstlisting}
 
-\begin{lstlisting}[language=javascript,caption=código \textit{JavaScript} para ejecutar código de los robots y guardar el que se esté editando]
+\begin{lstlisting}[language=javascript,caption=código \textit{JavaScript} para ejecutar código de los robots y guardar el que se está editando]
 $("#runbtn").click(()=>{
     if (codeFirst.edit) {
         codeFirst.xml = editor.storeCode(editor.ui);
@@ -936,12 +936,10 @@ $("#runbtn").click(()=>{
         brains.stopBrain(editorRobot2);
       }else{
         brains.resumeBrain(editorRobot1,codeFirst.js);
-        //agents.resumeAgent(editorRobot2,agents.code);
         brains.resumeBrain(editorRobot2,codeSecond.js);
       }
     }else{
       brains.runBrain(editorRobot1,codeFirst.js);
-      //agents.runAgent(editorRobot2,agents.code);
       brains.runBrain(editorRobot2,codeSecond.js);
     }
   });
@@ -958,16 +956,28 @@ Para facilitar las pruebas y poder comprobar el estado de los sensores, comandar
     
 Para puntuar el comportamiento de los robots de manera justa, se han incluido en estos ejercicios evaluadores automáticos. Van a tener diferentes comportamientos en cada ejercicio, por lo que se han desarrollado de tal forma que se pueda cargar cargar un evaluador distinto para cada uno o, incluso, no cargar ninguno. \newline
 
-Para su implementación se ha creado la función \textit{runEvaluator}, que acepta como parámetro un \textit{array} con los identificadores de los robots y el archivo del evaluador deseado. Este fichero se recoge como variable en el \textit{index.html} del editor correspondiente (de forma similar a los archivos de configuración). 
+Para su implementación se ha creado la función \textit{runEvaluator}, que acepta como parámetro un \textit{array} con los identificadores de los robots y el archivo del evaluador deseado. Este fichero se recoge como variable en el \textit{index.html} (listing \ref{lst:confEvaluator}) del editor correspondiente (de forma similar a los archivos de configuración). 
 Para llamar a \textit{runEvaluator} se comprueba que se haya pasado un fichero en el \textit{index.html} y, si eso ocurre, se realiza un \textit{require} de ese fichero y se ejecuta la función principal del evaluador, \textit{evaluator.main()}. Esta se encarga de llamar a las funciones necesarias para que el evaluador sea completo: crea la interfaz gráfica y la lógica necesaria para su correcto funcionamiento.
 
-A continuación se explican los ejercicios y evaluadores para cada uno de ellos. 
+\begin{lstlisting}[language=html,label=lst:confEvaluator,caption=Linea para crear una variable que indica que evaluador configurar]
+   <script>var config_evaluator = "evaluator_follow_line.js";</script> 
+\end{lstlisting}
+
+\begin{lstlisting}[language=javascript,caption=Función que ejecuta el evaluador que se le ha pasado como variable en \textit{index.html}]
+export function runEvaluator(arrayRobots,config_file){
+  if(config_file){
+    var evaluator = require("../assets/evaluators/"+config_file);
+    evaluator.main(arrayRobots);
+  }
+}
+\end{lstlisting}
+
 
 \subsection{Atraviesa-bosque competitivo}
     
-Ejercicio similar al escenario con un solo robot, pero en este caso se han creado dos pasillos con objetos para recorrerlos sin chocar con ninguno de los obstáculos. Se han añadido distintas primitivas de \textit{A-Frame} en la misma ubicación para los dos \textit{robots} para que el recorrido sea justo.
+Ejercicio similar al escenario con un solo robot, pero en este caso se han creado dos pasillos en lugar de uno. Se han añadido distintas primitivas de \textit{A-Frame} en la misma ubicación para los dos \textit{robots} para que el recorrido sea justo.
 
-Para su evaluador en el que se crea una barra de progreso para cada robot y un cronómetro. Cuando se empiezan a mover los robots la barra de progreso se va completando y el cronómetro se inicia, para comprobar el porcentaje completado solo hay que obtener la posición del robot y compararla con el punto de llegada.
+Para su evaluador en el que se crea una barra de progreso para cada robot y un cronómetro. Cuando se empiezan a mover los robots la barra de progreso empieza a completarse y el cronómetro se inicia, para comprobar el porcentaje completado se obtiene la posición del robot y la compara con el punto de llegada.
 
 \begin{figure}[H]
 \centering           
@@ -976,6 +986,97 @@ Para su evaluador en el que se crea una barra de progreso para cada robot y un c
 \label{fig:evaluador_bosque}
 \end{figure}
 
+
+Las funciones necesarias para el evaluador se definen a continuación: 
+\begin{itemize}
+    \item Una dedicada a crear la interfaz que establece los elementos necesarios para añadir las barras de progreso, iconos, tiempo y sus atributos. 
+\begin{lstlisting}[language=javascript]
+function createInterface(){
+  var node = document.createElement("div");
+  node.setAttribute("class","evaluator");
+  var img1 = document.createElement("img");
+  img1.setAttribute("class","carMarker");
+  img1.setAttribute("src","../assets/resources/car1.svg")
+  node.appendChild(img1);
+  var node2 = document.createElement("div");
+  node2.setAttribute("id","car1Progress");
+  var node3 = document.createElement("div");
+  node3.setAttribute("id","a-car1bar");
+  node3.innerHTML = "0%";
+  node2.appendChild(node3);
+  node.appendChild(node2);
+  var img2 = document.createElement("img");
+  img2.setAttribute("class","carMarker");
+  img2.setAttribute("src","../assets/resources/car2.svg")
+  node.appendChild(img2);
+  var node4 = document.createElement("div");
+  node4.setAttribute("id","car2Progress");
+  var node5 = document.createElement("div");
+  node5.setAttribute("id","a-car2bar");
+  node5.innerHTML = "0%";
+  node4.appendChild(node5);="-87px";
+  time.style.color="white";
+  node.appendChild(time);
+  var myiframe= document.getElementById("myIFrame");
+  myiframe.insertBefore(node,myiframe.childNodes[0]);
+}
+\end{lstlisting}
+    \item Otra que crea un setInterval que comprueba la velocidad de los robots y, si es mayor que 0, se limpia el intervalo, se inician los evaluadores, llama a una función que realiza la funcionalidad para actualizar las barras de progreso y crea un cronómetro que añade al \textit{DOM}. Cronómetro y barras de progreso se actualizan cada 400 milisegundos mediante un \textit{setInterval}.
+\begin{lstlisting}[language=javascript]
+function setEvaluator(arrayRobots){
+  let robot=Websim.robots.getHalAPI(arrayRobots[0]);
+  var time= document.getElementById("time");
+  var id= setInterval(function(){
+    if(robot.velocity.x>0){
+      clearInterval(id);
+      var timeInitial = new Date();
+      setInterval(function(){
+        progressBar(arrayRobots);
+        var realTime = new Date(new Date() - timeInitial);
+        var formatTime = timeFormatter(realTime);
+        time.innerHTML = "Tiempo: " + formatTime;
+      },400);
+    }
+  },500,robot,time);
+}
+\end{lstlisting}
+    \item Función que modifica las barras de progreso y muestra el porcentaje recorrido por cada uno de los robots comprobando su posición.
+  \begin{lstlisting}[language=javascript]
+function progressBar(arrayRobots){
+  arrayRobots.forEach(function(robotID){
+    let robot = Websim.robots.getHalAPI(robotID);
+    var left=38.24 + robot.getPosition().x;
+    var completed=(left*100)/78.48;
+    var element = document.getElementById(robot.myRobotID+"bar");
+    if((100-completed)>100){
+      element.style.width = 100 + '%';
+      element.innerHTML = 100 + '%';
+    }else{
+      element.style.width = Math.round(100-completed) + '%';
+      element.innerHTML = Math.round(100-completed) + '%';
+    }
+  });
+}
+\end{lstlisting}
+        \item Función que da formato al cronómetro.
+\begin{lstlisting}[language=javascript]
+function timeFormatter(time){
+  var formatTime;
+  if (time.getMinutes()<10){
+    formatTime="0"+time.getMinutes();
+  }else{
+    formatTime=time.getMinutes();
+  }
+  formatTime+=":";
+  if (time.getSeconds()<10){
+    formatTime+="0"+time.getSeconds();
+  }else{
+    formatTime+=time.getSeconds();
+  }
+  return formatTime;
+}
+\end{lstlisting}
+\end{itemize}
 
 \subsection{Sigue-líneas competitivo}
 
@@ -991,9 +1092,36 @@ La solución definitiva ha sido creando primitivas de \textit{A-Frame} (\textit{
         \label{fig:prueba_puente}
     \end{figure}
 
-Para este ejercicio se usa el escenario de la figura \ref{fig:siguelineas_competitivo} y su evaluador es similar al de atraviesa-bosque, con la diferencia de que es necesario guardar en todo momento la posición y distancia recorrida por cada robot para calcular el porcentaje del circuito completado.
+El evaluador de este ejercicio es similar al de atraviesa-bosque, con la diferencia de que es necesario guardar en todo momento la posición y distancia recorrida por cada robot para calcular el porcentaje del circuito completado. 
+\begin{lstlisting}[language=javascript,caption=Objeto creado para guardar posición y distancia recorrida de un robot]
+var car={pos:{x:robot1.getPosition().x,z:robot1.getPosition().z},
+    dist: 0
+}
+\end{lstlisting}
 
-
+ \begin{lstlisting}[language=javascript,caption=Función que realiza la funcionalidad de la barra de progreso]
+     function progressBar(arrayRobots,cars){
+      var i=0;
+      arrayRobots.forEach(function(robotID){
+        let robot = Websim.robots.getHalAPI(robotID);
+        var posNow = {x:robot.getPosition().x,z:robot.getPosition().z};
+        distNow =  Math.sqrt(Math.pow(cars[i].pos.x-posNow.x,2)+Math.pow(cars[i].pos.z-posNow.z,2));
+        cars[i].pos=posNow;
+        cars[i].dist=cars[i].dist+Math.abs(distNow);
+        var completed = (cars[i].dist*100/185);
+        var element = document.getElementById(robot.myRobotID+"bar");
+        if(completed>100){
+          element.style.width = 100 + '%';
+          element.innerHTML = 100 + '%';
+        }else{
+          element.style.width = Math.round(completed) + '%';
+          element.innerHTML = Math.round(completed) + '%';
+        }
+        i++;
+      });
+ }
+\end{lstlisting}
+            
 \begin{figure}[H]
     \centering           
     \includegraphics[scale=0.25]{img/evaluator_follow_line.png}
@@ -1005,9 +1133,61 @@ Para este ejercicio se usa el escenario de la figura \ref{fig:siguelineas_compet
 
 Con la nueva estructura de \textit{WebSim} se permite realizar el ejercicio gato-ratón con \textit{drones}. Se trata de otro tipo en el que no se compite con dos códigos programados por distintos usuarios, si no que un \textit{drone} ya está programado y el usuario solo tiene que desarrollar su solución para que el \textit{robot} no se aleje del objetivo. Para ello ha sido necesario crear un modelo al que se le ha pintado de color rojo para que sea más sencillo su filtrado. 
 
-Para el evaluador de este ejercicio se crea un gráfico con ayuda de una librería externa de \textit{JavaScript} (\textit{JavaScript Graphics Library}\footnote{\url{http://www.jsgl.org/}}) que muestra la distancia entre \textit{drones} y el tiempo que lleva de ejecución. Se puede ver este evaluador en la figura \ref{fig:evaluador_gato_raton} así como el nuevo modelo de \textit{drone} creado para este ejercicio.
+Para el evaluador de este ejercicio se crea un gráfico con ayuda de una librería externa de \textit{JavaScript} (\textit{JavaScript Graphics Library}\footnote{\url{http://www.jsgl.org/}}) que muestra la distancia entre \textit{drones} y el tiempo que lleva de ejecución. Se puede ver este evaluador en la figura \ref{fig:evaluador_gato_raton} así como el nuevo modelo de \textit{drone} creado para este ejercicio. 
   
+\begin{lstlisting}[language=javascript,caption=Función que establece los ejes y etiquetas de la gráfica]
+function setAxis(myPanel){
+  var axisX = myPanel.createLine();
+  axisX.setStartPointXY(20,10);
+  axisX.setEndPointXY(20,100);
+  myPanel.addElement(axisX);
+  var axisY = myPanel.createLine();
+  axisY.setStartPointXY(20,100);
+  axisY.setEndPointXY(500,100);
+  myPanel.addElement(axisY);
+  var myLabel = myPanel.createLabel();
+  myLabel.setLocation(new jsgl.Vector2D(75,100));
+  myLabel.setText("00:30");
+  myPanel.addElement(myLabel);
+  var myLabel = myPanel.createLabel();
+  myLabel.setLocation(new jsgl.Vector2D(0,20));
+  myLabel.setText("10");
+  myPanel.addElement(myLabel);
+}
+\end{lstlisting}
 
+\begin{lstlisting}[language=javascript,caption={Código JavaScript que calcula la distancia entre \textit{drones}, la representa e incorpora un temporizador al \textit{DOM}}]
+function setEvaluator(arrayRobots){
+  myPanel = new jsgl.Panel(document.getElementById("panel"));
+  setAxis(myPanel);
+  var line = myPanel.createPolyline();
+  line.getStroke().setColor('blue');
+  line.getStroke().setWeight(2);
+  var x= 20;
+  var robot1 = Websim.robots.getHalAPI(arrayRobots[0]);
+  var robot2 = Websim.robots.getHalAPI(arrayRobots[1]);
+  var time= document.getElementById("time");
+  var id= setInterval(function(){
+    if(robot1.velocity.x>0){
+      clearInterval(id);
+      var timeInitial = new Date();
+      setInterval(function(){
+        var realTime = new Date(new Date() - timeInitial);
+        var formatTime = timeFormatter(realTime);
+        time.innerHTML = "Tiempo: " + formatTime;
+        if(robot1.velocity.x >0 || robot2.velocity.x>0){
+          var pos1 = robot1.getPosition();
+          var pos2 = robot2.getPosition();
+          var dist = Math.sqrt(Math.pow(pos2.x-pos1.x,2)+Math.pow(pos2.y-pos1.y,2)+Math.pow(pos2.z-pos1.z,2));
+          line.addPointXY(x,dist+10);
+          x=x+0.5;
+          myPanel.addElement(line);
+        }
+      },200);
+    }
+  },500,robot1,time);
+}
+\end{lstlisting}
 \begin{figure}[ht]
 \centering           
 \includegraphics[scale=0.3]{img/evaluador_drone.png}
@@ -1028,7 +1208,6 @@ agents.getCode = (file) => {
   }
   request.send();
 }
-agents.getCode("../assets/agents/mouse_code.js");
 \end{lstlisting}
 
 Y una vez obtenido el código se llama al método \textit{runAgent} que recoge el código e incorpora en el \textit{array} de \textit{robots} del módulo \textit{brains} la lógica programada.
