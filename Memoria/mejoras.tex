@@ -956,19 +956,44 @@ Para facilitar las pruebas y poder comprobar el estado de los sensores, comandar
     
 Para puntuar el comportamiento de los robots de manera justa, se han incluido en estos ejercicios evaluadores automáticos. Van a tener diferentes comportamientos en cada ejercicio, por lo que se han desarrollado de tal forma que se pueda cargar cargar un evaluador distinto para cada uno o, incluso, no cargar ninguno. \newline
 
-Para su implementación se ha creado la función \textit{runEvaluator}, que acepta como parámetro un \textit{array} con los identificadores de los robots y el archivo del evaluador deseado. Este fichero se recoge como variable en el \textit{index.html} (listing \ref{lst:confEvaluator}) del editor correspondiente (de forma similar a los archivos de configuración). 
-Para llamar a \textit{runEvaluator} se comprueba que se haya pasado un fichero en el \textit{index.html} y, si eso ocurre, se realiza un \textit{require} de ese fichero y se ejecuta la función principal del evaluador, \textit{evaluator.main()}. Esta se encarga de llamar a las funciones necesarias para que el evaluador sea completo: crea la interfaz gráfica y la lógica necesaria para su correcto funcionamiento.
-
-\begin{lstlisting}[language=html,label=lst:confEvaluator,caption=Linea para crear una variable que indica que evaluador configurar]
+Para su implementación se ha creado el módulo \textit{evaluators}, que es similar a \textit{brains}. Tiene un método \textit{runEvaluator}, que acepta como parámetro un \textit{array} con los identificadores de los robots y el archivo del evaluador deseado. Este fichero se recoge como variable en el \textit{index.html} (listing \ref{lst:confEvaluator}) del editor correspondiente de forma similar a los archivos de configuración:
+\begin{lstlisting}[language=html,label=lst:confEvaluator]
    <script>var config_evaluator = "evaluator_follow_line.js";</script> 
 \end{lstlisting}
 
-\begin{lstlisting}[language=javascript,caption=Función que ejecuta el evaluador que se le ha pasado como variable en \textit{index.html}]
-export function runEvaluator(arrayRobots,config_file){
-  if(config_file){
-    var evaluator = require("../assets/evaluators/"+config_file);
-    evaluator.main(arrayRobots);
+Para llamar a \textit{runEvaluator} se comprueba que se haya pasado un fichero en el \textit{index.html} en el código que inicializa el editor correspondiente: 
+
+\begin{lstlisting}[language=html,label=lst:checkFile]
+   if(typeof config_evaluator!=="undefined"){
+    evaluators.runEvaluator([editorRobot1,editorRobot2],config_evaluator);
   }
+\end{lstlisting}
+
+En el método \textit{runEvaluator} se realiza un \textit{require} (que es la forma de importar módulos en \textit{JavaScript} de manera dinámica) de ese fichero, se crea la interfaz gráfica en el método \textit{evaluator.createInterface()} y se crea un objeto en el array de \textit{brains} que se ejecuta cada 400 milisegundos por medio del método \textit{evaluators.createTimeoutEvaluator}, que se apoya en la función \textit{setTimeout} de JavaScript. 
+
+
+\begin{lstlisting}[language=javascript,caption={Funciones que crean el objeto para ejecutar el evaluador periódicamente}]
+evaluators.runEvaluator = (arrayRobots,config_file)=>{
+   evaluator = require("../assets/evaluators/"+config_file);
+   evaluator.createInterface();
+   brains.threadsBrains.push({
+     "id": "evaluator",
+     "running": true,
+     "iteration": evaluators.createTimeoutEvaluator(arrayRobots,"evaluator"),
+     "codeRunning": ""
+   });
+}
+evaluators.createTimeoutEvaluator = (arrayRobots,id)=>{
+  stopTimeoutRequested = false;
+  let brainIteration = setTimeout(async function iteration(){
+    evaluator.setEvaluator(arrayRobots);
+    if (!stopTimeoutRequested) {
+        var t = setTimeout(iteration, 400);
+        var threadBrain = brains.threadsBrains.find((threadBrain)=> threadBrain.id == id);
+        threadBrain.iteration = t;
+    }
+  }, 400);
+  return brainIteration;
 }
 \end{lstlisting}
 
@@ -977,7 +1002,7 @@ export function runEvaluator(arrayRobots,config_file){
     
 Ejercicio similar al escenario con un solo robot, pero en este caso se han creado dos pasillos en lugar de uno. Se han añadido distintas primitivas de \textit{A-Frame} en la misma ubicación para los dos \textit{robots} para que el recorrido sea justo.
 
-Para su evaluador en el que se crea una barra de progreso para cada robot y un cronómetro. Cuando se empiezan a mover los robots la barra de progreso empieza a completarse y el cronómetro se inicia, para comprobar el porcentaje completado se obtiene la posición del robot y la compara con el punto de llegada.
+Para su evaluador se crea una barra de progreso para cada robot y un cronómetro. Cuando se empiezan a mover los robots la barra de progreso empieza a completarse y el cronómetro se inicia, para comprobar el porcentaje completado se obtiene la posición del robot y la compara con el punto de llegada.
 
 \begin{figure}[H]
 \centering           
@@ -989,9 +1014,9 @@ Para su evaluador en el que se crea una barra de progreso para cada robot y un c
 
 Las funciones necesarias para el evaluador se definen a continuación: 
 \begin{itemize}
-    \item Una dedicada a crear la interfaz que establece los elementos necesarios para añadir las barras de progreso, iconos, tiempo y sus atributos. 
+    \item Una dedicada a crear la interfaz que establece los elementos necesarios para añadir las barras de progreso, iconos, tiempo y sus atributos.
 \begin{lstlisting}[language=javascript]
-function createInterface(){
+evaluator.createInterface= ()=>{
   var node = document.createElement("div");
   node.setAttribute("class","evaluator");
   var img1 = document.createElement("img");
@@ -1014,33 +1039,37 @@ function createInterface(){
   var node5 = document.createElement("div");
   node5.setAttribute("id","a-car2bar");
   node5.innerHTML = "0%";
-  node4.appendChild(node5);="-87px";
+  node4.appendChild(node5);
+  node.appendChild(node4);
+  var time = document.createElement("div");
+  time.setAttribute("id","time");
+  time.innerHTML="Tiempo: 00:00";
+  time.style.marginTop="-87px";
   time.style.color="white";
   node.appendChild(time);
   var myiframe= document.getElementById("myIFrame");
   myiframe.insertBefore(node,myiframe.childNodes[0]);
 }
 \end{lstlisting}
-    \item Otra que crea un setInterval que comprueba la velocidad de los robots y, si es mayor que 0, se limpia el intervalo, se inician los evaluadores, llama a una función que realiza la funcionalidad para actualizar las barras de progreso y crea un cronómetro que añade al \textit{DOM}. Cronómetro y barras de progreso se actualizan cada 400 milisegundos mediante un \textit{setInterval}.
+    \item La función que se ejecuta periódicamente comprueba la velocidad de los robots y, si es mayor que 0, se inician los evaluadores, llama a una función que realiza la lógica para actualizar las barras de progreso y añadir un cronómetro al \textit{DOM}. La variable \textit{timeInit} se actualiza constantemente hasta que el usuario ejecuta su código y el \textit{robot} comienza a moverse, que se calcula el tiempo transcurrido y lo muestra en pantalla.
 \begin{lstlisting}[language=javascript]
-function setEvaluator(arrayRobots){
+evaluator.setEvaluator = (arrayRobots) =>{
   let robot=Websim.robots.getHalAPI(arrayRobots[0]);
-  var time= document.getElementById("time");
-  var id= setInterval(function(){
-    if(robot.velocity.x>0){
-      clearInterval(id);
-      var timeInitial = new Date();
-      setInterval(function(){
-        progressBar(arrayRobots);
-        var realTime = new Date(new Date() - timeInitial);
-        var formatTime = timeFormatter(realTime);
-        time.innerHTML = "Tiempo: " + formatTime;
-      },400);
-    }
-  },500,robot,time);
+  if(!clock){
+    timeInit = new Date();
+  }
+  if(robot.velocity.x>0){
+    clock=true;
+    var time= document.getElementById("time");
+    progressBar(arrayRobots);
+    var realTime = new Date(new Date() - timeInit);
+    var formatTime = timeFormatter(realTime);
+    time.innerHTML = "Tiempo: " + formatTime;
+  }
 }
 \end{lstlisting}
-    \item Función que modifica las barras de progreso y muestra el porcentaje recorrido por cada uno de los robots comprobando su posición.
+    \item Función que calcula el porcentaje recorrido por cada uno de los \textit{robots}, modifica las barras de progreso y lo añade al \textit{DOM} para que aparezca en texto.
+    
   \begin{lstlisting}[language=javascript]
 function progressBar(arrayRobots){
   arrayRobots.forEach(function(robotID){
@@ -1094,37 +1123,50 @@ La solución definitiva ha sido creando primitivas de \textit{A-Frame} (\textit{
 
 El evaluador de este ejercicio es similar al de atraviesa-bosque, con la diferencia de que es necesario guardar en todo momento la posición y distancia recorrida por cada robot para calcular el porcentaje del circuito completado. 
 \begin{lstlisting}[language=javascript,caption=Objeto creado para guardar posición y distancia recorrida de un robot]
-var car={pos:{x:robot1.getPosition().x,z:robot1.getPosition().z},
+var car={
+    pos:{
+        x:robot.getPosition().x,
+        z:robot.getPosition().z
+    },
     dist: 0
 }
 \end{lstlisting}
 
- \begin{lstlisting}[language=javascript,caption=Función que realiza la funcionalidad de la barra de progreso]
-     function progressBar(arrayRobots,cars){
-      var i=0;
-      arrayRobots.forEach(function(robotID){
-        let robot = Websim.robots.getHalAPI(robotID);
-        var posNow = {x:robot.getPosition().x,z:robot.getPosition().z};
-        distNow =  Math.sqrt(Math.pow(cars[i].pos.x-posNow.x,2)+Math.pow(cars[i].pos.z-posNow.z,2));
-        cars[i].pos=posNow;
-        cars[i].dist=cars[i].dist+Math.abs(distNow);
-        var completed = (cars[i].dist*100/185);
-        var element = document.getElementById(robot.myRobotID+"bar");
-        if(completed>100){
-          element.style.width = 100 + '%';
-          element.innerHTML = 100 + '%';
-        }else{
-          element.style.width = Math.round(completed) + '%';
-          element.innerHTML = Math.round(completed) + '%';
-        }
-        i++;
-      });
- }
+ \begin{lstlisting}[language=javascript,caption=Función que realiza la funcionalidad para rellenar la barra de progreso]
+evaluator.setEvaluator = (arrayRobots) => {
+  let robot1=Websim.robots.getHalAPI(arrayRobots[0]);
+  let robot2=Websim.robots.getHalAPI(arrayRobots[1]);
+  if(!clock){
+    timeInit = new Date();
+    car1 = {
+        pos:{
+                x:robot1.getPosition().x,
+                z:robot1.getPosition().z
+            },
+            dist: 0
+    };
+    car2 = {
+        pos:{
+            x:robot2.getPosition().x,
+            z:robot2.getPosition().z
+        },
+        dist: 0
+    }
+  }
+  if(robot1.velocity.x>0){
+    clock=true;
+    var time= document.getElementById("time");
+    progressBar(arrayRobots,[car1,car2]);
+    var realTime = new Date(new Date() - timeInit);
+    var formatTime = timeFormatter(realTime);
+    time.innerHTML = "Tiempo: " + formatTime;
+  }
+}
 \end{lstlisting}
             
 \begin{figure}[H]
     \centering           
-    \includegraphics[scale=0.25]{img/evaluator_follow_line.png}
+    \includegraphics[scale=0.2]{img/evaluator_follow_line.png}
     \caption{Ejercicio y evaluador sigue-líneas competitivo}
     \label{fig:evaluador_siguelineas}
 \end{figure}
@@ -1134,8 +1176,31 @@ var car={pos:{x:robot1.getPosition().x,z:robot1.getPosition().z},
 Con la nueva estructura de \textit{WebSim} se permite realizar el ejercicio gato-ratón con \textit{drones}. Se trata de otro tipo en el que no se compite con dos códigos programados por distintos usuarios, si no que un \textit{drone} ya está programado y el usuario solo tiene que desarrollar su solución para que el \textit{robot} no se aleje del objetivo. Para ello ha sido necesario crear un modelo al que se le ha pintado de color rojo para que sea más sencillo su filtrado. 
 
 Para el evaluador de este ejercicio se crea un gráfico con ayuda de una librería externa de \textit{JavaScript} (\textit{JavaScript Graphics Library}\footnote{\url{http://www.jsgl.org/}}) que muestra la distancia entre \textit{drones} y el tiempo que lleva de ejecución. Se puede ver este evaluador en la figura \ref{fig:evaluador_gato_raton} así como el nuevo modelo de \textit{drone} creado para este ejercicio. 
-  
-\begin{lstlisting}[language=javascript,caption=Función que establece los ejes y etiquetas de la gráfica]
+ En este caso, el método \textit{createInterface} realiza añade todo lo necesario al \textit{DOM} para que el gráfico sea completo y llama a la función \textit{setAxis()} para añadir los ejes y las etiquetas.
+ \begin{lstlisting}[language=javascript,caption=Función que establece los ejes y etiquetas de la gráfica]
+ evaluator.createInterface= ()=>{
+  var node = document.createElement("div");
+  node.setAttribute("id","panel");
+  node.style.height="130px";
+  node.style.backgroundColor="white";
+  var time = document.createElement("div");
+  time.setAttribute("id","time");
+  time.marginLeft="50px";
+  time.innerHTML="Tiempo: 00:00";
+  time.style.color="black";
+  time.style.textAlign="center";
+  node.appendChild(time);
+  var myiframe= document.getElementById("myIFrame");
+  myiframe.insertBefore(node,myiframe.childNodes[0]);
+  myPanel = new jsgl.Panel(document.getElementById("panel"));
+  setAxis(myPanel);
+  line = myPanel.createPolyline();
+  line.getStroke().setColor('blue');
+  line.getStroke().setWeight(2);
+}
+\end{lstlisting}
+
+\begin{lstlisting}[language=javascript,caption=Método \textit{createInterface}]
 function setAxis(myPanel){
   var axisX = myPanel.createLine();
   axisX.setStartPointXY(20,10);
@@ -1156,36 +1221,26 @@ function setAxis(myPanel){
 }
 \end{lstlisting}
 
-\begin{lstlisting}[language=javascript,caption={Código JavaScript que calcula la distancia entre \textit{drones}, la representa e incorpora un temporizador al \textit{DOM}}]
-function setEvaluator(arrayRobots){
-  myPanel = new jsgl.Panel(document.getElementById("panel"));
-  setAxis(myPanel);
-  var line = myPanel.createPolyline();
-  line.getStroke().setColor('blue');
-  line.getStroke().setWeight(2);
-  var x= 20;
+\begin{lstlisting}[language=javascript,caption={Código JavaScript que calcula la distancia entre \textit{drones}, la representa e incorpora un cronómetro al \textit{DOM}}]
+evaluator.setEvaluator = (arrayRobots) => {
   var robot1 = Websim.robots.getHalAPI(arrayRobots[0]);
   var robot2 = Websim.robots.getHalAPI(arrayRobots[1]);
-  var time= document.getElementById("time");
-  var id= setInterval(function(){
-    if(robot1.velocity.x>0){
-      clearInterval(id);
-      var timeInitial = new Date();
-      setInterval(function(){
-        var realTime = new Date(new Date() - timeInitial);
-        var formatTime = timeFormatter(realTime);
-        time.innerHTML = "Tiempo: " + formatTime;
-        if(robot1.velocity.x >0 || robot2.velocity.x>0){
-          var pos1 = robot1.getPosition();
-          var pos2 = robot2.getPosition();
-          var dist = Math.sqrt(Math.pow(pos2.x-pos1.x,2)+Math.pow(pos2.y-pos1.y,2)+Math.pow(pos2.z-pos1.z,2));
-          line.addPointXY(x,dist+10);
-          x=x+0.5;
-          myPanel.addElement(line);
-        }
-      },200);
-    }
-  },500,robot1,time);
+  if(!clock){
+    timeInit = new Date();
+  }
+  if(robot1.velocity.x >0 || robot2.velocity.x>0){
+    clock = true;
+    var time= document.getElementById("time");
+    var realTime = new Date(new Date() - timeInit);
+    var formatTime = timeFormatter(realTime);
+    time.innerHTML = "Tiempo: " + formatTime;
+    var pos1 = robot1.getPosition();
+    var pos2 = robot2.getPosition();
+    var dist = Math.sqrt(Math.pow(pos2.x-pos1.x,2)+Math.pow(pos2.y-pos1.y,2)+Math.pow(pos2.z-pos1.z,2));
+    line.addPointXY(x,dist+10);
+    x=x+0.5;
+    myPanel.addElement(line);
+  }
 }
 \end{lstlisting}
 \begin{figure}[ht]
@@ -1210,7 +1265,7 @@ agents.getCode = (file) => {
 }
 \end{lstlisting}
 
-Y una vez obtenido el código se llama al método \textit{runAgent} que recoge el código e incorpora en el \textit{array} de \textit{robots} del módulo \textit{brains} la lógica programada.
+Y una vez obtenido el código se llama al método \textit{runAgent} que recoge el código e incorpora la lógica programada en el \textit{array} de \textit{robots} del módulo \textit{brains}.
 
 \begin{lstlisting}[language=javascript]
 agents.runAgent = (robotID, code) =>{
@@ -1223,3 +1278,29 @@ agents.runAgent = (robotID, code) =>{
   });
 }
 \end{lstlisting}
+
+A la hora de ejecutar el código, se elige si el código que se ejecuta es el que hay en el agente llamando al método \textit{runAgent} del módulo \textit{agents} o el que hay en el editor con el método \textit{runBrain} del módulo \textit{brains}. \\
+En el siguiente código se ejecuta en un \textit{robot} el código escrito en el editor y en otro el escrito en el agente:
+
+\begin{lstlisting}[language=javascript]
+  $("#runbtn").click(()=>{
+     if (editFirst) {
+       codeFirst = editor.getCode();
+     } else {
+       codeSecond = editor.getCode();
+     }
+    if (brains.threadExists(editorRobot1)){
+      if (brains.isThreadRunning(editorRobot1)){
+        brains.stopBrain(editorRobot1);
+        brains.stopBrain(editorRobot2);
+      }else{
+        brains.resumeBrain(editorRobot1,codeFirst);
+        agents.resumeAgent(editorRobot2,agents.code);
+      }
+    }else{
+      brains.runBrain(editorRobot1,codeFirst);
+      agents.runAgent(editorRobot2,agents.code);
+    }
+  });\end{lstlisting}
+  
+  
