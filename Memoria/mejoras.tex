@@ -63,10 +63,18 @@ getL(){
     
 \end{itemize}
 
-Además, se ha editado la función \textit{move} para que acepte 3 parámetros (añadiendo velocidad vertical como nuevo parámetro) y se ha extendido la función \textit{updatePosition()} para poder actualizar el eje Y en la escena de \textit{WebSim}.
-
-
-\begin{lstlisting}[language=javascript, caption=Función para actualizar la posición del robot en el escenario]
+Además, se han editado funciones y variables que ya existían para ampliar su funcionalidad: 
+\begin{itemize}
+    \item \textit{\textbf{move()}}: ahora acepta 3 parámetros y se incluye  velocidad vertical como nuevo:
+        \begin{lstlisting}[language=javascript]
+            move(v, w, h){
+                this.setV(v);
+                this.setW(w);
+                this.setL(h);
+            }
+        \end{lstlisting}
+    \item \textit{\textbf{updatePosition()}}: se ha extendido para poder actualizar el eje Y para representarlo en la escena de \textit{A-Frame}:
+    \begin{lstlisting}[language=javascript]
     updatePosition(rotation, velocity, robotPos){
       let x = velocity.x/10 * Math.cos(rotation.y * Math.PI/180);
       let z = velocity.x/10 * Math.sin(-rotation.y * Math.PI/180);
@@ -77,8 +85,15 @@ Además, se ha editado la función \textit{move} para que acepte 3 parámetros (
       return robotPos;
     }
 \end{lstlisting}
+    \item \textit{\textbf{this.velocity}}: se ha ampliado la variable de la clase \textit{robot} que guarda la velocidad:
+    
+\begin{lstlisting}[language=javascript]
+        this.velocity = {x:0, y:0, z:0, ax:0, ay:0, az:0};
+\end{lstlisting}
+\end{itemize}
 
-En la tabla \ref{tab:tablaMotores2} se explican todas las funciones del \textit{HAL API} que extienden la plataforma para dar soporte al \textit{drone}.
+
+En la tabla \ref{tab:tablaMotores2} se explican todas las funciones del \textit{HAL API} que extienden la plataforma para dar soporte a \textit{drones}.
 
 \begin{table}[H]
   \begin{center}
@@ -150,8 +165,6 @@ El drone implementado en el entorno de \textit{Websim} se puede ver en la figura
     \end{figure}
 
 \subsection{Bloques Scratch}
-
-%poner traduccion en javascript de los bloques 
 
 Una vez implementado el código \textit{JavaScript} para el soporte del drone, es necesario crear los bloques con \textit{Blockly} para poder añadir sus funcionalidad en el editor de \textit{Scratch}. 
 
@@ -831,7 +844,7 @@ Se ha comenzado creando la aplicación llamada \textit{competitive-JavaScript} d
         \label{fig:javascript_competitivo}
     \end{figure}
     
-Cada uno de los botones tiene la funcionalidad de guardar el código escrito en el editor y, si se pulsa el botón del robot que no se está editando, se guarda el código y se carga el  del otro robot, en caso de que ya haya uno guardado. Si no hay ninguno se carga un editor vacío. 
+Cada uno de los botones tiene la funcionalidad de guardar el código escrito en el editor y, si se pulsa el botón del robot que no se está editando, se guarda el código y se carga el  del otro robot en caso de que ya haya uno guardado. Si no hay ninguno se carga un editor vacío. 
 
 \begin{lstlisting}[language=javascript]
 var editFirst = true;
