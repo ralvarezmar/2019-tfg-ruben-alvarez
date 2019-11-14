@@ -1,0 +1,147 @@
+%!TEX program = xelatex
+\documentclass[xcolor={table}]{beamer}
+
+\usepackage[brazil]{babel}	
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[scaled]{helvet}
+\usepackage{amsthm}
+\usepackage{ragged2e}
+\usepackage{subfig}
+\usepackage[table]{xcolor}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{fancyvrb}
+\usepackage{verbatim}
+\usepackage{subcaption}
+
+\usetheme{Execushares}
+
+   \begin{subfigure}
+           \hspace*{0.1in}
+
+        \vspace*{0.2in}
+           \includegraphics[scale=0.45]{URJC_logo.png}
+            \label{fig:urjc}
+        \end{subfigure}
+        \begin{subfigure}
+            \includegraphics[scale=0.36]{betsitLogo.png}
+            \label{fig:etsit}
+        \end{subfigure}
+
+\vspace{0.8cm}
+\title{Mejoras en entorno de robótica  educativa para niños}
+
+\subtitle{Trabajo de fin de grado}
+\author{Rubén Álvarez Martín}
+\date{Noviembre, 2019}
+
+\setcounter{showSlideNumbers}{1}
+
+\begin{document}
+	\setcounter{showProgressBar}{0}
+	\setcounter{showSlideNumbers}{0}
+
+	\frame{\titlepage}
+
+	\begin{frame}
+		\frametitle{Índice}
+		\begin{enumerate}
+			\item Introducción \\ \textcolor{ExecusharesGrey}{}
+		 \textcolor{ExecusharesGrey}{\footnotesize\hspace{1em}}
+ 		\item Objetivos \\ \textcolor{ExecusharesGrey}{}
+		 \textcolor{ExecusharesGrey}{\footnotesize\hspace{1em}}
+			\item Herramientas \\ \textcolor{ExecusharesGrey}{\footnotesize\hspace{1em}}
+			\item Mejoras a WebSim  \textcolor{ExecusharesGrey}{
+			\begin{itemize}
+			    \item Soporte a drones en WebSim
+			    \item Teleoperadores en WebSim
+			    \item Ejercicios individuales
+			    \item Ejercicios competitivos  \\
+			\end{itemize}} 
+			\item Conclusiones  \textcolor{ExecusharesGrey}{\footnotesize\hspace{1em}}
+		\end{enumerate}
+	\end{frame}
+
+	\setcounter{framenumber}{0}
+	\setcounter{showProgressBar}{1}
+	\setcounter{showSlideNumbers}{1}
+	\section{Introducción}		
+	\begin{frame}
+			\frametitle{Introducción}
+			\begin{itemize}
+			    \item \textit{WebSim} es un simulador robótico diseñado para enseñar conceptos básicos de tecnología e iniciar a niños en robótica y programación.
+			    \item Editor en \textit{JavaScript} y \textit{Scratch}.
+			\end{itemize}
+		\end{frame}
+
+% 		\begin{frame}
+% 			\frametitle{Why Custom Themes?}
+% 			\begin{itemize}
+% 				\item The default Beamer themes are outdated and visually displeasing
+% 				\item There aren't many Beamer themes readily available online
+% 				\item Making custom Beamer themes is easy!
+% 			\end{itemize}
+% 		\end{frame}
+	\section{Herramientas}
+		\begin{frame}
+			\frametitle{Herramientas}
+           	\begin{itemize}
+			    \item JavaScript
+			     \item A-Frame
+			    \item Blender
+			    \item Blockly
+			    \item Gestores de paquetes
+			\end{itemize}
+		\end{frame}
+		
+	\section{Objetivos}
+		\begin{frame}
+			\frametitle{Objetivos}
+			\begin{enumerate}
+				\item Ampliar el simulador robótico WebSim para dar soporte a drones
+				\item Teleoperadores para poder manejar los robots sin necesidad de programar.
+				\item Ficheros de configuración para cambiar modelos y escenarios.
+				\item Nuevos ejercicios, tanto individuales como competitivos
+			\end{enumerate}
+		\end{frame}
+
+	\section{Mejoras a WebSim}
+		\begin{frame}
+			\frametitle{Soporte a drones}
+		\end{frame}
+
+		\begin{frame}
+			\frametitle{Teleoperadores en WebSim}
+			\begin{figure}
+			    \centering			    \includegraphics[scale=0.45]{arquitecturaTeleoperador.png}
+			    \label{fig:teleop}
+			\end{figure}
+			
+		\end{frame}
+
+		\begin{frame}
+			\frametitle{Ejercicios individuales}
+		\end{frame}
+		
+		\begin{frame}
+			\frametitle{Ejercicios competitivos}
+		\end{frame}
+
+	\section{Conclusiones}
+		\begin{frame}
+			\frametitle{Conclusiones}
+			\begin{itemize}
+				\item Prueba
+			\end{itemize}
+		\end{frame}
+	
+	\appendix
+
+	\backupbegin
+	  \begin{frame}
+	    \frametitle{Conclusiones}
+	  \end{frame}
+	\backupend
+
+\end{document}
