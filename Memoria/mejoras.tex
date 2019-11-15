@@ -2,7 +2,7 @@
 \label{chap:mejoras}
 Una vez presentado el contexto, objetivos y herramientas empleadas, en este capitulo se detallan todas las mejoras realizadas del simulador \textit{WebSim} y cómo se han llevado a cabo. Se va a explicar cómo se han integrado los \textit{drones} ampliando los drivers existentes para incluir nueva funcionalidad, el modelo en 3D o los bloques necesarios, los teleoperadores creados y sus ficheros de configuración. También se detallan los nuevos ejercicios creados, tanto individuales como competitivos, que incorporan evaluadores para puntuar el funcionamiento de los \textit{robots} programados.
 
-\section{Soporte a drones en Websim}
+\section{Soporte a drones y nuevos robots}
 \label{sec:drone}
 
 Uno de los objetivos principales del TFG era ampliar el soporte para otros robots y escenarios en \textit{WebSim}. Se ha comenzado dando soporte a drones debido a las diferencias con el \textit{piBot} del que ya disponía soporte. 
@@ -154,7 +154,10 @@ Para simular el robot en el entorno de \textit{A-Frame} es necesario realizar un
     \caption{Drone en Blender} \label{fig:droneBlender}
 \end{figure}
 
-\textit{Blender} genera un fichero \textit{gltf} y da la posibilidad de incluir en él un binario que incluye las animaciones o exportarlo en dos distintos. En este caso, se ha hecho como un único fichero y tiene un aspecto similar a formato \textit{JSON}\footnote{\url{https://github.com/RoboticsLabURJC/2019-tfg-ruben-alvarez/blob/master/upgrades/drones/drone_animation.gltf}}. 
+
+
+
+\textit{Blender} genera un fichero \textit{gltf} y da la posibilidad de contener en él un binario que incluye las animaciones o exportarlo en dos distintos. En este caso, se ha hecho como un único fichero y tiene un aspecto similar al formato \textit{JSON}\footnote{\url{https://github.com/RoboticsLabURJC/2019-tfg-ruben-alvarez/blob/master/upgrades/drones/drone_animation.gltf}}. 
 
 El drone implementado en el entorno de \textit{Websim} se puede ver en la figura \ref{fig:escenarioDrone}.
 
@@ -164,8 +167,27 @@ El drone implementado en el entorno de \textit{Websim} se puede ver en la figura
     \caption{Escenario de WebSim con drone integrado} \label{fig:escenarioDrone}
     \end{figure}
 
-\subsection{Bloques Scratch}
+Se han creado modelos de \textit{drones} de distintos colores para su disposición en ejercicios que requieran más de un \textit{robot} en el escenario: 
 
+      \begin{figure}[H]
+        \centering
+        \begin{subfigure}{0.3\textwidth}
+         \includegraphics[width=4cm, height=3cm]{img/red_drone.png}
+ \label{fig:drone_rojo}
+        \end{subfigure}
+        \begin{subfigure}{0.3\textwidth}
+         \includegraphics[width=4cm, height=3cm]{img/black_drone.png}
+   \label{fig:drone_negro}
+        \end{subfigure}
+        \begin{subfigure}{0.3\textwidth}
+         \includegraphics[width=4cm, height=3cm]{img/red_blackdrone.png}
+   \label{fig:drone_negrorojo}
+        \end{subfigure}
+          \caption{Modelos de \textit{drone} de distintos colores}
+    \end{figure}
+
+\subsection{Bloques Scratch}
+\label{subsec:bloques}
 Una vez implementado el código \textit{JavaScript} para el soporte del drone, es necesario crear los bloques con \textit{Blockly} para poder añadir sus funcionalidad en el editor de \textit{Scratch}. 
 
 Para ello, se han creado 4 bloques con las funciones anteriormente explicadas: 
@@ -232,7 +254,6 @@ export default function initLandBlock(){
   Blockly.Python['land'] = function(block) {
     var variable_name = Blockly.Python.variableDB_.getName(block.getFieldValue('NAME'), Blockly.Variables.NAME_TYPE);
     var value_robotvar = Blockly.Python.valueToCode(block, 'ROBOTVAR', Blockly.Python.ORDER_ATOMIC);
-
     var code = variable_name + '.aterrizar()\r\n';
     return code;
   };
@@ -247,6 +268,36 @@ Para que los bloques aparezcan en el editor de \textit{Scratch} es necesario imp
     \label{fig:newblocks}
 \end{figure}
 
+\subsection{Nuevos robots}
+\label{subsec:nuevosrobots}
+
+Además de los modelos de \textit{drones}, se han incluido nuevos \textit{robots} a \textit{WebSim}: 
+
+\begin{itemize}
+    \item \textbf{Fórmula 1}: se han creado dos modelos distintos para incorporarlos a ejercicios competitivos y que haya diferencias entre ambos para poder distinguirlos. 
+    
+      \begin{figure}[H]
+        \centering
+        \begin{subfigure}{0.4\textwidth}
+         \includegraphics[width=6cm, height=5cm]{img/f1_renault.png}
+ \label{fig:f1_renault}
+        \end{subfigure}
+        \begin{subfigure}{0.4\textwidth}
+         \includegraphics[width=6cm, height=5cm]{img/f1_williams.png}
+   \label{fig:f1_williams}
+        \end{subfigure}
+          \caption{Modelos de fórmula 1}
+    \end{figure}
+
+    \item \textbf{mBot}: creado por la disponibilidad del modelo físico real y su facilidad para añadir elementos al \textit{robot} en la simulación.
+    \begin{figure}[H]
+    \centering            
+    \includegraphics[scale=0.25]{img/mBot_model.png}
+    \caption{Modelo mBot} \label{fig:mBot}
+    \end{figure}
+    
+\end{itemize}
+
 \section{Teleoperadores en WebSim}
 \label{sec:teleoperadores}
 
@@ -254,30 +305,39 @@ Se han incorporado teleoperadores en \textit{WebSim} para poder controlar los ro
 
 \subsection{Teleoperadores}
 
+Se han creado teleoperadores para los modelos del \textit{piBot}, \textit{mBot}, \textit{Formula 1} y del \textit{drone}. Los 3 primeros tienen la misma interfaz gráfica y el último incorpora dos botones para controlar la velocidad vertical. 
 
-Se muestran los teleoperadores creados para los modelos del \textit{piBot} y del \textit{drone}, con la diferencia del botón de ascenso/descenso incorporado al del \textit{drone}.
-
-\begin{figure}[H]
-    \centering            \includegraphics[scale=0.25]{img/pibot_teleoperator.png}
-    \caption{Teleoperador para el modelo del piBot} \label{fig:piBot_teleoperator}
-\end{figure}
 
 \begin{figure}[H]
-    \centering
-    \includegraphics[scale=0.25]{img/drone_teleoperator.png}
-    \caption{Teleoperador para el modelo del drone} \label{fig:drone_teleoperator}
+\centering
+\begin{subfigure}[b]{0.475\textwidth}
+\centering
+    \includegraphics[width=\textwidth]{img/pibot_teleoperator.png}
+\label{fig:pibottele}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.475\textwidth}\centering
+
+  \includegraphics[width=\textwidth]{img/drone_teleoperator.png}
+\label{fig:dronetele}
+\end{subfigure} 
+\vskip\baselineskip
+\begin{subfigure}[b]{0.475\textwidth}
+\centering
+    \includegraphics[width=\textwidth]{img/f1_teleoperator.png}
+\label{fig:f1tele}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.475\textwidth}
+\centering
+    \includegraphics[width=\textwidth]{img/mBot_teleoperator.png}
+\label{fig:mbotele}
+\end{subfigure}
+\label{fig:teleoperadores}
 \end{figure}
 
-Estos teleoperadores tienen una arquitectura similar a las aplicaciones creadas de \textit{Scratch} o \textit{JavaScript}. A continuación se muestra un esquema con la arquitectura de esta aplicación:
 
-\begin{figure}[H]
-    \centering            
-    \includegraphics[scale=0.5]{img/arquitecturaTeleoperador.png}
-    \caption{Arquitectura de la aplicación teleoperadores} 
-    \label{fig:arq_teleop}
-\end{figure}
-
-Siendo el bloque teleoperador la interfaz creada en \textit{HTML} (\textit{listing} \ref{lst:teleop}). Se envía un evento cuando se pulsa uno de los botones del teleoperador o del teclado, que mediante un controlador se comunica con \textit{WebSim} tanto como para obtener las velocidades del robot como para enviarle las nuevas originadas por el evento. \textit{WebSim} se comunica con el simulador para ejecutar los nuevos valores obtenidos.
+Siendo el código fuente \textit{CSS} y \textit{HTML} empleado para el teleoperador del drone el mostrado a continuación: 
 
 \begin{multicols}{2}
 \begin{lstlisting}[language=CSS,label={lst:cssTeleop}]
@@ -387,6 +447,78 @@ image{
         </div>
 \end{lstlisting}
 
+También se ha creado una página principal para poder acceder a todos ellos a través de una interfaz gráfica: 
+
+ \begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.25]{img/teleoperators.png}
+    \caption{Interfaz que permite acceder a cada uno de los teleoperadores} \label{fig:teleoperators}
+\end{figure}
+
+\begin{lstlisting}[language=html,label=lst:teleopMain,caption=Código HTML de la interfaz para acceder a los teleoperadores]
+<body>
+   <div id="wrapper">
+      <header id="header" class="alt">
+         <p class="logo"><strong>Teleoperators</strong></a>
+      </header>
+      <div id="main">
+         <section id="one" class="tiles">
+            <article>
+               <span class="image">
+               <img src="../assets/resources/drone.png" alt="drone"/>
+               </span>
+               <header class="major">
+                  <h3><a href="drone.html" class="link">Drone</a></h3>
+                  <p>Drone teleoperator </p>
+               </header>
+            </article>
+            <article>
+               <span class="image">
+               <img src="../assets/resources/pibot.png" alt="piBot"/>
+               </span>
+               <header class="major">
+                  <h3><a href="pibot.html" class="link">PiBot</a></h3>
+                  <p>PiBot teleoperator</p>
+               </header>
+            </article>
+            <article>
+               <span class="image">
+               <img src="../assets/resources/f1.png" alt="f1"/>
+               </span>
+               <header class="major">
+                  <h3><a href="f1.html" class="link">F1</a></h3>
+                  <p>F1 teleoperator</p>
+               </header>
+            </article>
+            <article>
+               <span class="image">
+               <img src="../assets/resources/mBot.png" alt="mbot"/>
+               </span>
+               <header class="major">
+                  <h3><a href="mBot.html" class="link">mBot</a></h3>
+                  <p>mBot teleoperator</p>
+               </header>
+            </article>
+         </section>
+      </div>
+   </div>
+</body>
+\end{lstlisting}
+
+\subsection{Arquitectura}
+\label{subsec:teleop_arq}
+
+Estos teleoperadores tienen una arquitectura similar a las aplicaciones creadas de \textit{Scratch} o \textit{JavaScript}. A continuación se muestra un esquema con el diseño de esta aplicación:
+
+\begin{figure}[H]
+    \centering            
+    \includegraphics[scale=0.5]{img/arquitecturaTeleoperador.png}
+    \caption{Arquitectura de la aplicación teleoperadores} 
+    \label{fig:arq_teleop}
+\end{figure}
+
+Siendo el bloque teleoperador la interfaz creada en \textit{HTML} (\textit{listing} \ref{lst:teleop}). Se envía un evento cuando se pulsa uno de los botones del teleoperador o del teclado, que mediante un controlador se comunica con \textit{WebSim} tanto como para obtener las velocidades del robot como para enviarle las nuevas originadas por el evento. \textit{WebSim} se comunica con el simulador para ejecutar los nuevos valores obtenidos.
+
 A continuación se detalla el código del evento que inicializa el robot, los eventos que genera pulsar el teclado y los botones de la interfaz gráfica.
 
 \begin{lstlisting}[language=javascript,label=list:traduccion]
@@ -491,83 +623,13 @@ Cuando se pulsa alguno de los botones de la interfaz gráfica el comportamiento 
     \end{lstlisting}
     \end{itemize}
 
-Además de los modelos existentes del drone y \textit{piBot}, se han creado otros nuevos para extender las posibilidades de la plataforma y poder teleoperar todos ellos.
-\begin{figure}[H]
-    \centering            \includegraphics[scale=0.3]{img/f1_teleoperator.png}
-    \caption{Teleoperador para el modelo del fórmula 1} \label{fig:f1_teleoperator}
-\end{figure}
-
-  \begin{figure}[H]
-    \centering
-    \includegraphics[scale=0.3]{img/mBot_teleoperator.png}
-    \caption{Teleoperador para el modelo del mBot} \label{fig:mBot_teleoperator}
-\end{figure}
-    
-También se ha creado una página principal para poder acceder a todos ellos a través de una interfaz gráfica: 
-
- \begin{figure}[H]
-    \centering
-    \includegraphics[scale=0.25]{img/teleoperators.png}
-    \caption{Interfaz que permite acceder a cada uno de los teleoperadores} \label{fig:teleoperators}
-\end{figure}
-
-\begin{lstlisting}[language=html,label=lst:teleopMain,caption=Código HTML de la interfaz para acceder a los teleoperadores]
-<body>
-   <div id="wrapper">
-      <header id="header" class="alt">
-         <p class="logo"><strong>Teleoperators</strong></a>
-      </header>
-      <div id="main">
-         <section id="one" class="tiles">
-            <article>
-               <span class="image">
-               <img src="../assets/resources/drone.png" alt="drone"/>
-               </span>
-               <header class="major">
-                  <h3><a href="drone.html" class="link">Drone</a></h3>
-                  <p>Drone teleoperator </p>
-               </header>
-            </article>
-            <article>
-               <span class="image">
-               <img src="../assets/resources/pibot.png" alt="piBot"/>
-               </span>
-               <header class="major">
-                  <h3><a href="pibot.html" class="link">PiBot</a></h3>
-                  <p>PiBot teleoperator</p>
-               </header>
-            </article>
-            <article>
-               <span class="image">
-               <img src="../assets/resources/f1.png" alt="f1"/>
-               </span>
-               <header class="major">
-                  <h3><a href="f1.html" class="link">F1</a></h3>
-                  <p>F1 teleoperator</p>
-               </header>
-            </article>
-            <article>
-               <span class="image">
-               <img src="../assets/resources/mBot.png" alt="mbot"/>
-               </span>
-               <header class="major">
-                  <h3><a href="mBot.html" class="link">mBot</a></h3>
-                  <p>mBot teleoperator</p>
-               </header>
-            </article>
-         </section>
-      </div>
-   </div>
-</body>
-\end{lstlisting}
-
 \subsection{Ficheros de configuración}
 
 Para incorporar estos teleoperadores ha sido necesario elaborar unos ficheros de configuración y así poder cambiar el escenario y el \textit{drone} cargado por \textit{A-Frame}. 
 
 Estos archivos se han creado en \textit{JSON} y se ha programado un \textit{script} (\textit{listing} \ref{list:conf}) para cargar cada fichero de configuración. Para ello se crea una variable en el \textit{index.html} del editor (\textit{listing} \ref{list:variable}) con la ruta en la que esté ubicado y el \textit{script} abre el fichero y recorre el \textit{JSON} para dar al escenario los valores establecidos.
 
-En los ficheros creados se pueden configurar aspectos como el modelo del robot cargado, su posición y rotación, la posición de la cámara a bordo del robot, la textura del cielo y suelo que debe cargar o los elementos que queramos añadir en el escenario. 
+En los ficheros creados se pueden configurar aspectos como el modelo del robot cargado, su posición y rotación, la posición de la cámara a bordo del robot, la textura de cielo y de suelo que debe cargar o los elementos que queramos añadir en el escenario. 
 \begin{lstlisting}[language=JavaScript,caption=\textit{script} que carga los ficheros de configuración,label={list:conf}]
   loadJSON(function(response) {
     var config = JSON.parse(response);
@@ -830,12 +892,14 @@ Escenario para facilitar el ejercicio ``cuadrado drone'' en el que hay que dibuj
 \label{sec:competitive}
 Uno de los objetivos de este proyecto era añadir ejercicios competitivos. Se hace especial mención a ellos debido a que son completamente diferentes al resto de los ya creados. Este tipo de ejercicios aumenta el valor de la plataforma ya que da la posibilidad de programar dos robots en el mismo escenario, pudiendo entender la programación como un juego en el que se premia al que aporte la mejor solución.
 
-En este tipo de ejercicios hay dos robots en una misma escena donde cada uno de ellos se puede programar con un código distinto. Para su implementación se ha creado el módulo \textit{brains} que contiene el método \textit{runBrains} que ejecuta un hilo para cada \textit{robot} existente en la escena. Además contiene los métodos \textit{stopBrain} y \textit{resumeBrain} que paran y reanudan la simulación. 
+\subsection{Arquitectura de cómputo}
+\label{subsec:arquitectura}
+En este tipo de ejercicios hay dos robots en una misma escena donde cada uno de ellos se puede programar con un código distinto. Para su implementación se ha creado el módulo \textit{brains}, que contiene el método \textit{runBrains}, que ejecuta un hilo para cada \textit{robot} existente en la escena. Además contiene los métodos \textit{stopBrain} y \textit{resumeBrain} que paran y reanudan la simulación. 
+
+
 Para la integración de este tipo de ejercicios en plataforma se han incorporado dos aplicaciones más a \textit{WebSim}: ejercicios competitivos en \textit{Scratch} y ejercicios competitivos en \textit{JavaScript}. 
 
-Se ha comenzado creando la aplicación llamada \textit{competitive-JavaScript} debido a la facilidad para probar código y hacer pruebas en el entorno. Para ello se ha cambiado la interfaz del editor, añadiendo botones para cada uno de los robots (figura \ref{fig:javascript_competitivo}) y añadir funcionalidad a cada botón para guardar el código de cada robot o mostrar el código en caso de tener uno guardado. %código del editor de JavaScript y sus botones
-
-
+Se ha comenzado creando la aplicación llamada \textit{competitive-JavaScript} debido a la facilidad para probar código y hacer pruebas en el entorno. Para ello se ha cambiado la interfaz del editor, añadiendo botones para cada uno de los robots (figura \ref{fig:javascript_competitivo}) y añadir funcionalidad a cada botón para guardar el código de cada robot o mostrar el código en caso de tener uno guardado. 
 
     \begin{figure}[H]
         \centering            
@@ -844,7 +908,7 @@ Se ha comenzado creando la aplicación llamada \textit{competitive-JavaScript} d
         \label{fig:javascript_competitivo}
     \end{figure}
     
-Cada uno de los botones tiene la funcionalidad de guardar el código escrito en el editor y, si se pulsa el botón del robot que no se está editando, se guarda el código y se carga el  del otro robot en caso de que ya haya uno guardado. Si no hay ninguno se carga un editor vacío. 
+Cada uno de los botones tiene la funcionalidad de guardar el código escrito en el editor y, si se pulsa el botón del robot que no se está editando, se guarda el código y se carga el del otro robot en caso de que ya haya uno guardado. Si no hay ninguno se carga un editor vacío. 
 
 \begin{lstlisting}[language=javascript]
 var editFirst = true;
@@ -1012,7 +1076,7 @@ evaluators.createTimeoutEvaluator = (arrayRobots,id)=>{
 
 
 \subsection{Atraviesa-bosque competitivo}
-    
+\label{subsec:bosquecmp}
 Ejercicio similar al escenario con un solo robot, pero en este caso se han creado dos pasillos en lugar de uno. Se han añadido distintas primitivas de \textit{A-Frame} en la misma ubicación para los dos \textit{robots} para que el recorrido sea justo.
 
 Para su evaluador se crea una barra de progreso para cada robot y un cronómetro. Cuando se empiezan a mover los robots la barra de progreso empieza a completarse y el cronómetro se inicia, para comprobar el porcentaje completado se obtiene la posición del robot y la compara con el punto de llegada.
@@ -1121,6 +1185,7 @@ function timeFormatter(time){
 \end{itemize}
 
 \subsection{Sigue-líneas competitivo}
+\label{subsec:race}
 
 Escenario con dos robots en el que tienen que seguir una linea de color blanco sobre fondo negro atravesando un puente en medio del circuito para que, de esta manera, ambos recorran la misma distancia.
 
@@ -1185,10 +1250,11 @@ evaluator.setEvaluator = (arrayRobots) => {
 \end{figure}
 
 \subsection{Gato-ratón}
+\label{subsec:gatoraton}
 
-Con la nueva estructura de \textit{WebSim} se permite realizar el ejercicio gato-ratón con \textit{drones}. Se trata de otro tipo en el que no se compite con dos códigos programados por distintos usuarios, si no que un \textit{drone} ya está programado y el usuario solo tiene que desarrollar su solución para que el \textit{robot} no se aleje del objetivo. Para ello ha sido necesario crear un modelo al que se le ha pintado de color rojo para que sea más sencillo su filtrado. 
+Con la nueva arquitectura de \textit{WebSim} se permite realizar el ejercicio gato-ratón con \textit{drones}. Se trata de otro tipo en el que no se compite con dos códigos programados por distintos usuarios, si no que un \textit{drone} ya está programado y el usuario solo tiene que desarrollar su solución para que el \textit{robot} no se aleje del objetivo. Para ello ha sido necesario crear modelos nuevos a los que se ha pintado de color rojo o negro para que sea más sencillo su filtrado.
 
-Para el evaluador de este ejercicio se crea un gráfico con ayuda de una librería externa de \textit{JavaScript} (\textit{JavaScript Graphics Library}\footnote{\url{http://www.jsgl.org/}}) que muestra la distancia entre \textit{drones} y el tiempo que lleva de ejecución. Se puede ver este evaluador en la figura \ref{fig:evaluador_gato_raton} así como el nuevo modelo de \textit{drone} creado para este ejercicio. 
+Para el evaluador de este ejercicio se crea un gráfico con ayuda de una librería externa de \textit{JavaScript} (\textit{JavaScript Graphics Library}\footnote{\url{http://www.jsgl.org/}}) que muestra la distancia entre \textit{drones} y el tiempo que lleva de ejecución. Se puede ver este evaluador en la figura \ref{fig:evaluador_gato_raton}. 
  En este caso, el método \textit{createInterface} realiza añade todo lo necesario al \textit{DOM} para que el gráfico sea completo y llama a la función \textit{setAxis()} para añadir los ejes y las etiquetas.
  \begin{lstlisting}[language=javascript,caption=Función que establece los ejes y etiquetas de la gráfica]
  evaluator.createInterface= ()=>{
@@ -1259,7 +1325,7 @@ evaluator.setEvaluator = (arrayRobots) => {
 \begin{figure}[ht]
 \centering           
 \includegraphics[scale=0.3]{img/evaluador_drone.png}
-\caption{Evaluador y nuevo modelo de \textit{drone} para ejercicio gato-ratón}
+\caption{Evaluador y escenario con dos robots para ejercicio gato-ratón}
 \label{fig:evaluador_gato_raton}
 \end{figure}
 

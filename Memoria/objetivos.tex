@@ -3,31 +3,34 @@ Una vez expuestas las motivaciones y contexto del proyecto, en este capítulo se
 
 \label{chap:objetivos}
 \section{Objetivos}
-El propósito de este proyecto es la extensión y mejora de una herramienta docente para facilitar el aprendizaje de algoritmos y robótica. Para cumplir ese propósito se han fijado varios objetivos:
+El propósito de este proyecto es la extensión y mejora de la herramienta docente basada en el simulador \textit{WebSim} que está orientada a facilitar el aprendizaje de programación y robótica. Para cumplir ese propósito se han fijado varios subobjetivos:
 \begin{itemize}
-    \item Añadir soporte para \textit{drone} en la plataforma, incluyendo tanto el software necesario como el modelo 3D para el entorno de \textit{A-Frame}.
-    
-    \item Incluir más ejercicios a \textit{WebSim}. Siendo necesario elaborar archivos de configuración para poder cambiar entre los distintos ejercicios y robots soportados. Esto incluye añadir más modelos de robots y nuevos escenarios a la plataforma.
-    
+    \item Añadir soporte para \textit{drone} en la plataforma, incluyendo tanto su simulación realista en su apariencia visual y comportamiento físico como la infraestructura para que sea programable desde fuera del simulador.
+        
     \item Añadir teleoperadores para que los robots se puedan controlar sin necesidad de programar. De esta manera se facilita la labor de los desarrolladores al poder probar el entorno y los sensores del robot de manera sencilla.
     
-    \item Incluir ejercicios competitivos de tal manera que dos usuarios puedan programar sobre el mismo escenario. Este objetivo también incluye crear un evaluador para puntuar el comportamiento de cada robot. 
+    \item Incluir más ejercicios sobre \textit{WebSim}. Siendo necesario elaborar archivos de configuración para poder cambiar entre los distintos ejercicios y robots soportados. Esto incluye añadir más modelos de robots y nuevos escenarios a la plataforma.
+
+    \item Incluir \textit{ejercicios competitivos} de tal manera que dos usuarios puedan programar sobre el mismo escenario. Este objetivo también incluye crear un evaluador automático para puntuar la eficacia del comportamiento de cada robot. 
     
 \end{itemize}
 \section{Metodología}
 \label{sec:metodologia}
 
-Para el desarrollo del proyecto se han hecho reuniones semanales con el tutor del TFG en las que se elaboraba un plan de trabajo para la semana y se revisaban las tareas concluidas. Cuando era necesario tener un desarrollo terminado, se ampliaba la frecuencia de las reuniones. Este tipo de trabajo se asemeja mucho a la metodología \textit{agile}. \newline
+Para el desarrollo del proyecto se han hecho reuniones semanales con el tutor del TFG en las que se elaboraba un plan de trabajo para la semana y se revisaban las tareas concluidas. Cuando era necesario tener un desarrollo terminado, se aumentaba la frecuencia de las reuniones. Este tipo de trabajo se asemeja mucho a la metodología \textit{extreme programming}. \newline
 
-Esta forma de trabajar consiste en estructurar el proyecto en pequeñas partes que se tienen que completar y entregar en pocas semanas. Estos plazos se llaman \textit{sprints} y en ellos el desarrollador se encarga de programar una parte especifica del proyecto. 
-\section{GitHub}
-\label{sec:github}
+Esta forma de trabajar es una metodología \textit{agile} con el objetivo de conseguir un código de calidad y flexible y mejorar la productividad. Es un método muy útil para proyectos con requisitos cambiantes porque hace énfasis en la adaptabilidad. 
+Para su cumplimiento son fundamentales la comunicación y realimentación con el resto de integrantes del equipo. Para ello se ha utilizado la herramienta \textit{Slack}\footnote{\url{https://slack.com/}} en la que todos los desarrolladores están en contacto en todo momento.
+
+
+\subsection{Repositorios GitHub}
+\label{subsec:github}
 Como en la mayor parte de proyectos en la que se desarrolla \textit{software}, se ha utilizado \textit{GitHub}; un sistema de control de versiones que permite llevar un registro de los cambios efectuados del código del proyecto y administrarlo. Facilita trabajar en colaboración con otras personas, planificar proyectos y realizar un seguimiento el trabajo. \newline
 
-Los archivos de cada proyecto se almacenan en repositorios, que pueden estar en local o ubicado en el almacenamiento de \textit{GitHub}. Para el desarrollo de este proyecto se han utilizado dos repositorios:  en el que se desarrolla el software principal del proyecto\footnote{\url{https://github.com/jderobot-hub/kibotics-websim}} y otro para llevar el registro de las tareas realizadas\footnote{\url{https://github.com/RoboticsLabURJC/2019-tfg-ruben-alvarez}}.
+Los archivos de cada proyecto se almacenan en repositorios, que pueden estar en local o ubicado en el almacenamiento de \textit{GitHub}. Para el desarrollo de este proyecto se han utilizado dos repositorios:  en el que se desarrolla el software principal del proyecto\footnote{\url{https://github.com/jderobot-hub/kibotics-websim}} y en el que participa un equipo de seis personas y otro personal\footnote{\url{https://github.com/RoboticsLabURJC/2019-tfg-ruben-alvarez}}   en el que se realizaba un registro semanal de los avances en el \textit{README.md} del repositorio.
 \newline
 
-En el primer repositorio, la metodología de trabajo durante el proyecto ha consistido en crear incidencias (\textit{issues}) de alguna tarea en específico (con el fin de solucionar problemas o añadir funcionalidad) y para cerrarla se creaba una rama (\textit{branch}) realizando después un \textit{pull request} a modo parche para fusionarlo con la rama principal y así arreglar la incidencia. Se sigue esta metodología para registrar de forma limpia los cambios realizados por los diferentes desarrolladores que trabajan sobre el repositorio y, en caso de ser una modificación importante, solicitar la supervisión de otro desarrollador para integrarla. En la figura \ref{fig:github} se puede observar gráficamente una cronología de las ramas del repositorio durante medio mes de trabajo.
+En el primer repositorio, la metodología de trabajo durante el proyecto ha consistido en crear incidencias (\textit{issues}) de alguna tarea en específico (con el fin de solucionar problemas o añadir funcionalidad) y para cerrarla se creaba una rama (\textit{branch}) realizando después un parche (\textit{pull request}) para fusionarlo con la rama principal y así arreglar la incidencia. Se sigue esta metodología para registrar de forma limpia los cambios realizados por los diferentes desarrolladores que trabajan sobre el repositorio y, en caso de ser una modificación importante, solicitar la supervisión de otro desarrollador para integrarla. En la figura \ref{fig:github} se puede observar gráficamente una cronología de las ramas del repositorio durante medio mes de trabajo.
 
  \begin{figure}[H]
     \centering
@@ -52,3 +55,16 @@ then
 	git push upstream
 fi
 \end{lstlisting}
+
+\section{Plan de trabajo}
+\label{sec:plan}
+
+Se ha establecido un plan de trabajo dividido en fases para afrontar los objetivos previstos: 
+\begin{itemize}
+    \item Fase 1: Estudio de \textit{A-Frame} y \textit{Websim}. Periodo de aprendizaje y familiarización con el entorno en el que se va a trabajar. 
+    \item Fase 2: Desarrollo de soporte a \textit{drones} y nuevos modelos. Incluye la ampliación de los drivers y creación de bloques.
+    \item Fase 3: Desarrollo de teleoperadores. Incorpora el diseño de un frontal para seleccionar teleoperador entre los modelos disponibles de \textit{WebSim}.
+    \item Fase 4: Ejercicios individuales. Se lleva a cabo desarrollo, creación y prueba de nuevos escenarios. 
+    \item Fase 5: Ejercicios competitivos. Comprende la creación de escenarios y nuevos modelos. 
+    \item Fase 6: Evaluadores automáticos. En la que se realiza el diseño de cada evaluador y la lógica para su correcto funcionamiento.
+\end{itemize}

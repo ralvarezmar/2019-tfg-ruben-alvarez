@@ -6,6 +6,9 @@
 *.lot
 *.dvi
 *.lof
+*.nav
+*.out
+*.snm
 #WebSim
 node_modules
 build
