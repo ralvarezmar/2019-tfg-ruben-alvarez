@@ -89,7 +89,6 @@
 			    \item \textit{Kodu}
 			    \item \textit{Snap!}
 			    \item \textit{Blockly}
-
 			\end{itemize}
 		\end{frame}
 
@@ -114,26 +113,25 @@
     \includegraphics[width=3cm, height=3cm]{img/blender.png}
 \label{fig:figure2_7}
 \end{subfigure}\hfill
-\begin{subfigure}{\textwidth}
-    \includegraphics[width=3cm, height=3cm]{img/webpack.jpeg}
-\label{fig:figure2_9}
-\end{subfigure}\hfill
-\begin{subfigure}{\textwidth}
-    \includegraphics[width=3cm, height=2cm]{img/npm.png}
-\label{fig:figure2_8}
-\end{subfigure}\hfill
-
-\label{fig:secuenciaDrone}
-\end{figure}
-		\end{frame}
-			\begin{frame}
-			\frametitle{WebSim}
-			\begin{itemize}
-			    \item \textit{WebSim} es un simulador robótico diseñado para enseñar conceptos básicos de tecnología e iniciar a niños en robótica y programación.
-			    
-			    \item Permite conectar un editor de texto o bloques a un robot simulado. 
-			\end{itemize}
-		\end{frame}
+    \begin{subfigure}{\textwidth}
+        \includegraphics[width=3cm, height=3cm]{img/webpack.jpeg}
+    \label{fig:figure2_9}
+    \end{subfigure}\hfill
+    \begin{subfigure}{\textwidth}
+        \includegraphics[width=3cm, height=2cm]{img/npm.png}
+    \label{fig:figure2_8}
+    \end{subfigure}\hfill
+    \label{fig:secuenciaDrone}
+    \end{figure}
+\end{frame}
+	\begin{frame}
+	\frametitle{WebSim}
+	\begin{itemize}
+	    \item \textit{WebSim} es un simulador robótico diseñado para enseñar conceptos básicos de tecnología e iniciar a niños en robótica y programación.
+	    
+	    \item Permite conectar un editor de texto o bloques a un robot simulado. 
+	\end{itemize}
+\end{frame}
 		
 	\section{Objetivos}
 		\begin{frame}
@@ -158,29 +156,81 @@
 		\end{frame}
 			\begin{frame}
 			\frametitle{Soporte a drones: Drivers}
-				\begin{itemize}
-	
+			\begin{itemize}
+				\item \textit{setL}
+				\item \textit{getL}
+				\item \textit{despegar}
+				\item \textit{aterrizar}
+				\item \textit{updatePosition}
 			\end{itemize}
 		\end{frame}
+			\begin{frame}
+			\frametitle{Soporte a drones: Drivers}
+			\begin{itemize}
+				\item Sistema de físicas
+			\end{itemize}
+		\end{frame}
+				
     	\begin{frame}
 			\frametitle{Soporte a drones: Modelo 3D}
-				\begin{itemize}
-	
-			\end{itemize}
-		\end{frame}
-		   	\begin{frame}
-			\frametitle{Soporte a drones: Bloques}
-				\begin{itemize}
-	
+            \begin{itemize}
+                \item Reducción de polinomios o creación de modelo \textit{low-poly}).
+                \item Rotación del modelo para seguir el mismo sistema de coordenadas que \textit{A-Frame}.
+                \item Modificación de luz y texturas. \item Animación de las helices. 
+            \end{itemize}
+    	\end{frame}
+    	
+    	\begin{frame}
+			\frametitle{Soporte a drones: Modelo 3D}
+           \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.2]{img/websimDrone.png}
+           \label{fig:escenarioDrone}
+            \end{figure}
+    	\end{frame}
+    	
+    	   \begin{frame}
+			\frametitle{Soporte a drones: Modelo 3D}
+          \begin{figure}[H]
+        \centering
+        \begin{subfigure}{\textwidth}
+         \includegraphics[width=4cm, height=3cm]{img/red_drone.png}
+ \label{fig:drone_rojo}
+        \end{subfigure}
+        \begin{subfigure}{\textwidth}
+         \includegraphics[width=4cm, height=3cm]{img/black_drone.png}
+   \label{fig:drone_negro}
+        \end{subfigure}
+        \begin{subfigure}{\textwidth}
+         \includegraphics[width=4cm, height=3cm]{img/red_blackdrone.png}
+   \label{fig:drone_negrorojo}
+        \end{subfigure}
+    \end{figure}
+    	\end{frame}
+		   
+		   
+		   \begin{frame}
+		\frametitle{Soporte a drones: Bloques}
+		\begin{itemize}
 			\end{itemize}
 		\end{frame}
 		\begin{frame}
 			\frametitle{Otros modelos}
-				\begin{itemize}
-	            \item Fórmula 1
-	            
-	            \item mBot
-			\end{itemize}
+			          \begin{figure}[H]
+        \centering
+        \begin{subfigure}{\textwidth}
+         \includegraphics[width=4cm, height=3cm]{img/f1_williams.png}
+ \label{fig:f1williams}
+        \end{subfigure}
+        \begin{subfigure}{\textwidth}
+         \includegraphics[width=4cm, height=3cm]{img/f1_renault.png}
+   \label{fig:f1renault}
+        \end{subfigure}
+        \begin{subfigure}{\textwidth}
+         \includegraphics[width=4cm, height=3cm]{img/mBot_model.png}
+   \label{fig:mbot}
+        \end{subfigure}
+        \end{figure}
 		\end{frame}
 			\begin{frame}
 			\frametitle{Teleoperadores}
@@ -212,7 +262,10 @@
 		\begin{frame}
 			\frametitle{Conclusiones}
 			\begin{itemize}
-				\item Prueba
+				\item Se han conseguido cumplir todos los objetivos establecidos. 
+				\item Soporte a \textit{drones} para websim. 
+				\item Nuevos ejercicios que aprovechan las funcionalidades existentes de \textit{WebSim}.
+				\item Nuevos ejercicios competitivos que implementan nueva funcionalidad como los evaluadores automáticos. 
 			\end{itemize}
 		\end{frame}
 	
@@ -220,8 +273,13 @@
 
 	\backupbegin
 	  \begin{frame}
-	    \frametitle{Conclusiones}
-	  \end{frame}
+	    \frametitle{GitHub}
+	    \begin{enumerate}
+	        \item \url{https://github.com/RoboticsLabURJC/2019-tfg-ruben-alvarez}
+	        
+	        \item \url{https://github.com/jderobot-hub/kibotics-websim}
+	        
+	    \end{enumerate}	  \end{frame}
 	\backupend
 
 \end{document}
