@@ -1,6 +1,7 @@
 import editor from './editor-methods.js'
 import brains from '../../brains/brains-methods.js'
-import {runEvaluator} from '../../brains/evaluator-methods.js'
+import agents from '../../brains/agents-methods.js'
+import evaluators from '../../brains/evaluators-methods.js'
 var editorRobot1 = 'a-car1';
 var editorRobot2 = 'a-car2';
 
@@ -28,18 +29,23 @@ $(document).ready(async ()=>{
      * - Stop thread for a robot if exists and running
      * - Resume thread for a robot if exists and not running
      */
-    console.log(codeFirst);
-    console.log(codeSecond);
+     if (editFirst) {
+       codeFirst = editor.getCode();
+     } else {
+       codeSecond = editor.getCode();
+     }
     if (brains.threadExists(editorRobot1)){
       if (brains.isThreadRunning(editorRobot1)){
         brains.stopBrain(editorRobot1);
         brains.stopBrain(editorRobot2);
       }else{
         brains.resumeBrain(editorRobot1,codeFirst);
+        //agents.resumeAgent(editorRobot2,agents.code);
         brains.resumeBrain(editorRobot2,codeSecond);
       }
     }else{
       brains.runBrain(editorRobot1,codeFirst);
+      //agents.runAgent(editorRobot2,agents.code);
       brains.runBrain(editorRobot2,codeSecond);
     }
   });
@@ -72,7 +78,7 @@ $(document).ready(async ()=>{
       codeFirst = editor.getCode();
       editFirst=false;
       if(codeSecond==null){
-        editor.insertCode("async function myAlgorithm(){\nmyRobot.move(0.5, 0, 0);\n}",editor);
+        editor.insertCode("myRobot.move(0.5, 0, 0);",editor);
       }else{
         editor.insertCode(codeSecond,editor);
       }
@@ -87,6 +93,7 @@ $(document).ready(async ()=>{
   // Init Websim simulator with config contained in the file passed
   // as parameter
   await Websim.config.init(config_file);
-  runEvaluator([editorRobot1,editorRobot2],config_evaluator);
-  //setInterval(brains.showThreads, 1000);
+  if(typeof config_evaluator!=="undefined"){
+    evaluators.runEvaluator([editorRobot1,editorRobot2],config_evaluator);
+  }
 });

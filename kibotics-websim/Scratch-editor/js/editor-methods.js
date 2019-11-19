@@ -69,9 +69,9 @@ editor.toggleCamera = () =>{
     var imageCamBtn = document.querySelector("#cambtn").firstChild;
     $("#outputCanvas, #spectatorDiv").toggle();
     if(opencvCam.style.display != "none"){
-      imageCamBtn.src = "../../assets/resources/stop-camera-icon.png"
+      imageCamBtn.src = stop_camera_icon;
     }else{
-      imageCamBtn.src = "../../assets/resources/play-camera-icon.png"
+      imageCamBtn.src = play_camera_icon;
     }
 }
 
@@ -127,6 +127,7 @@ editor.getCode = () =>{
    */
   c = Blockly.JavaScript.workspaceToCode(editor.ui);
   c =  c.replace('var myRobot;', '');
+  c =  c.replace('var myRobot,', 'var');
   c =  c.replace(', myRobot;', ';');
   return c
 }

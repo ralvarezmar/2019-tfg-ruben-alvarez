@@ -7,7 +7,8 @@ var editor = {};
 
 editor.ui = {};
 
-editor.mainVarId = null;
+editor.mainVarId1 = null;
+editor.mainVarId2 = null;
 
 editor.setup = () =>{
   editor.ui = editor.setupBlockly(editor.ui); // Sets up blockly editor
@@ -75,9 +76,9 @@ editor.toggleCamera = () =>{
     var imageCamBtn = document.querySelector("#cambtn").firstChild;
     $("#outputCanvas, #spectatorDiv").toggle();
     if(opencvCam.style.display != "none"){
-      imageCamBtn.src = "../../assets/resources/stop-camera-icon.png"
+      imageCamBtn.src = stop_camera_icon;
     }else{
-      imageCamBtn.src = "../../assets/resources/play-camera-icon.png"
+      imageCamBtn.src = play_camera_icon;
     }
 }
 
@@ -128,22 +129,28 @@ editor.saveCode = (demoWorkspace, socket) =>{
   socket.send(JSON.stringify(message));
 }
 
-editor.storeCode = (demoWorkspace) =>{
+editor.storeCode = (demoWorkspace, edit1, edit2) =>{
   console.log("Storing code from the embedded editor.")
   var xml = Blockly.Xml.workspaceToDom(demoWorkspace);
   variables = xml.getElementsByTagName('variable');
   for (var v=0;v<variables.length;v++){
     if (variables[v].innerHTML == "myRobot"){
-        if (!editor.mainVarId) {
-            editor.mainVarId = variables[v].id
+        if (edit1 && !editor.mainVarId1) {
+            console.log("1: " + variables[v].id);
+            editor.mainVarId1 = variables[v].id
+        }
+        if (edit2 && !editor.mainVarId2) {
+            console.log("2: " + variables[v].id);
+            editor.mainVarId2 = variables[v].id
         }
         variables[v].parentNode.removeChild(variables[v]);
     }
   }
   fields = xml.getElementsByTagName('field');
   for (var f=0;f<fields.length;f++){
-    if (fields[f].innerHTML == "myRobot"){      
-        fields[f].id = editor.mainVarId;
+    if (fields[f].innerHTML == "myRobot"){
+        if (edit1) {fields[f].id = editor.mainVarId1;}
+        if (edit2) {fields[f].id = editor.mainVarId2;}
     }
   }
   var xml_text = Blockly.Xml.domToText(xml);
@@ -160,6 +167,7 @@ editor.getCode = () =>{
    */
   c = Blockly.JavaScript.workspaceToCode(editor.ui);
   c =  c.replace('var myRobot;', '');
+  c =  c.replace('var myRobot,', 'var');
   c =  c.replace(', myRobot;', ';');
   return c
 }

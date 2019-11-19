@@ -237,7 +237,7 @@ Además del \textit{software} explicado en esta sección, existen multitud de he
 
 \subsection{Diseño}
 \label{subsec:design}
-El simulador hace uso del entorno \textit{A-Frame} y su diseño permite conectar un editor de texto o un editor de bloques para  programar en \textit{JavaScript} o \textit{Blockly} y conectar este código con el robot simulado. También permite acoplar una aplicación externa al navegador a través de comunicaciones ICE. En la imagen  \ref{fig:websim} se puede ver el diseño de \textit{WebSim}.
+El simulador hace uso del entorno \textit{A-Frame} y su diseño permite conectar un editor de texto o un editor de bloques para  programar en \textit{JavaScript} o \textit{Blockly} y conectar este código con el robot simulado. También permite acoplar una aplicación externa al navegador a través de comunicaciones ICE. En la figura \ref{fig:websim} se puede ver el diseño de \textit{WebSim}.
 
 Las principales funcionalidades del simulador son: 
 
@@ -249,9 +249,11 @@ Las principales funcionalidades del simulador son:
     \item No es necesario que el usuario instancie ningún tipo de variable de la clase que contiene al objeto robot porque el simulador lo ofrece de manera directa. De esta manera el usuario puede mandar directamente instrucciones al robot simulado con el objeto \textit{myRobot} y los métodos existentes de la clase \textit{RobotI}.
     
     \item Permite manejar la ejecución de la simulación del robot. Es decir, permite lanzar o pausar la ejecución del robot e incluso reiniciar su posición para no tener que recargar la página en caso de querer probar distintos códigos con la misma simulación. Además este control del entorno evita que la variable \textit{myRobot} pierda el objeto instanciado porque el usuario cambie su valor.
+    
 \end{itemize}
 
 Gracias a estas características, el simulador hace que los usuarios puedan programar de manera sencilla, ya que solo tienen que acceder a la información que ofrecen los sensores del robot y mandar órdenes sobre los actuadores del mismo. Es decir, solo  se tienen que encargar de programar la lógica del robot para resolver los ejercicios propuestos que se explicarán en próximos capítulos. 
+
 
 \begin{figure}[H]
     \centering
@@ -259,7 +261,7 @@ Gracias a estas características, el simulador hace que los usuarios puedan prog
     \caption{Interfaz gráfica de \textit{WebSim}} \label{fig:websim}
 \end{figure}
 
-\subsection{Clase Robot}
+\subsection{Robot en WebSim}
 \label{subsec:robot}
 Para tener una entidad en \textit{A-Frame} que pueda ser programada por el usuario existe un clase en \textit{JavaScript} llamada \textit{RobotI}.
 El constructor de esta clase es un método obligatorio y es al primero que se llama cuando se instancia un objeto. 
@@ -277,8 +279,41 @@ Además de inicializar el robot, la clase contiene una serie de variables para s
     \item \textit{\textbf{velocity}}: variable que guarda la velocidad del robot en los distintos ejes (x,y,z). En el eje X se almacena la velocidad en el plano horizontal y en el eje Z la velocidad de giro. La velocidad del eje Y será útil en el desarrollo del proyecto ya que es la que otorga velocidad de elevación. 
 \end{itemize}
 
-Además, el constructor llama a los métodos para inicializar los motores y sensores los cuales tienen sus propios métodos para su manejo. 
+Además, el constructor llama a los métodos para inicializar los motores y sensores que tienen sus propios métodos para su manejo. \\
 
+Para mandar al \textit{robot} el código programado por el usuario se hace uso del módulo \textit{brains} en \textit{JavaScript}, que crea un ``hilo'' en el método \textit{runBrain} para ejecutar el código escrito en el editor y lo guarda en un \textit{array} que se ejecuta periódicamente gracias a la función \textit{timeOut} de \textit{JavaScript}. 
+Este módulo también dispone de un método para parar el ``cerebro'' y reanudarlo después con un código distinto.
+\begin{lstlisting}[language=javascript, caption=Método \textit{runBrain} para ejecutar el código del usuario]
+brains.runBrain = (robotID, code) =>{
+  code = 'async function myAlgorithm(){\n'+code+'\n}\nmyAlgorithm();';
+  brains.threadsBrains.push({
+    "id": robotID,
+    "running": true,
+    "iteration": brains.createTimeoutBrain(code, Websim.robots.getHalAPI(robotID), robotID),
+    "codeRunning": code
+  });
+}
+\end{lstlisting}
+
+\begin{lstlisting}[language=javascript, caption=Métodos \textit{resumeBrain} y \textit{stopBrain} para parar/reanudar el cerebro del robot]
+brains.resumeBrain = (robotID, code) =>{
+  code = 'async function myAlgorithm(){\n'+code+'\n}\nmyAlgorithm();';
+  var threadBrain = brains.threadsBrains.find((threadBrain)=> threadBrain.id == robotID);
+  threadBrain.iteration = brains.createTimeoutBrain(code, Websim.robots.getHalAPI(robotID), robotID);
+  threadBrain.running = true;
+  threadBrain.codeRunning = code;
+}
+brains.stopBrain = (robotID) =>{
+  var threadBrain = brains.threadsBrains.find((threadBrain)=> threadBrain.id == robotID);
+  stopTimeoutRequested = true;
+  clearTimeout(threadBrain.iteration);
+  threadBrain.running = false;
+}
+\end{lstlisting}
+
+%%modulo brains
+
+% Para su implementación se ha creado el módulo \textit{brains} en \textit{JavaScript}, que contiene el método \textit{runBrains}, que ejecuta un ``hilo'' para cada \textit{robot} existente en la escena. Además contiene los métodos \textit{stopBrain} y \textit{resumeBrain} que paran y reanudan el cerebro del robot correspondiente. 
 \subsection{Drivers de sensores}
 \label{subsec:driversSensores}
 El robot consta de sensores simulados con \textit{A-Frame}. Los drivers permiten que el usuario, vía \textit{JavaScript}, pueda acceder a estos y obtener su información. En este entorno disponemos de los siguientes sensores: 

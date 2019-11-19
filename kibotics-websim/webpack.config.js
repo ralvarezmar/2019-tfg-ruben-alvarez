@@ -20,7 +20,7 @@ var configWebsim = {
     ]
   },
   mode: 'development'
-}
+};
 
 var configScratch = {
   entry : {
@@ -44,11 +44,30 @@ var configScratch = {
     ]
   },
   mode: 'development'
-}
+};
 
 var configJavaScript = {
   entry : {
     editor: path.join(__dirname, 'JavaScript-editor/js/editor.js')
+  },
+  resolve: {
+    extensions: ['.js']
+  },
+  module:{
+    rules: [
+      {
+        test: /\.js$/,
+        loader: 'babel-loader',
+        exclude: "/node_modules/"
+      }
+    ]
+  },
+  mode: 'development'
+};
+
+var configPython = {
+  entry : {
+    editor: path.join(__dirname, 'Python-editor/js/editor.js')
   },
   resolve: {
     extensions: ['.js']
@@ -119,6 +138,14 @@ var jsOutput = Object.assign({}, configWebsim, {
   }
 });
 
+var pythonOutput = Object.assign({}, configWebsim, {
+  name: "PythonAPP",
+  output: {
+    path: path.join(__dirname, "Python-editor/build/"),
+    filename: "[name].bundle.js"
+  }
+});
+
 var jsCompetitiveOutput = Object.assign({}, configWebsim, {
   name: "CompetitiveJavaScriptAPP",
   output: {
@@ -159,6 +186,14 @@ var jsEditor = Object.assign({}, configJavaScript, {
   }
 });
 
+var pythonEditor = Object.assign({}, configPython, {
+  name: "PythonEditor",
+  output: {
+    path: path.join(__dirname, "Python-editor/build"),
+    filename: "[name].bundle.js"
+  }
+});
+
 var jsCompetitiveEditor = Object.assign({}, configJavaScriptCompetitive, {
   name: "CompetitiveJavaScript",
   output: {
@@ -175,4 +210,5 @@ var scratchCompetitiveEditor = Object.assign({}, configScratchCompetitive, {
   }
 });
 
-module.exports = [scratchOutput, jsOutput, teleopOutput, jsCompetitiveOutput, scratchCompetitiveOutput, scratchEditor, jsEditor,jsCompetitiveEditor, scratchCompetitiveEditor];
+
+module.exports = [scratchOutput, jsOutput, teleopOutput, jsCompetitiveOutput, scratchCompetitiveOutput, scratchEditor, jsEditor,jsCompetitiveEditor, scratchCompetitiveEditor, pythonOutput, pythonEditor];

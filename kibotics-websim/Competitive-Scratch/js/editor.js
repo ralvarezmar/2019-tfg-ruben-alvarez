@@ -1,5 +1,7 @@
 import editor from './editor-methods.js'
 import brains from '../../brains/brains-methods.js'
+import agents from '../../brains/agents-methods.js'
+import evaluators from '../../brains/evaluators-methods.js'
 import initGetAngularSpeedBlock from '../customBlocks/getAngularSpeedBlock.js'
 import initConsoleLogBlock from '../customBlocks/consoleLogBlock.js'
 import initGetDistanceBlock from '../customBlocks/getDistanceBlock.js'
@@ -30,6 +32,7 @@ import initMoveBackwardToBlock from '../customBlocks/moveBackwardToBlock.js'
 import initMoveForwardToBlock from '../customBlocks/moveForwardToBlock.js'
 import initTurnLeftToBlock from '../customBlocks/turnLeftToBlock.js'
 import initTurnRightToBlock from '../customBlocks/turnRightToBlock.js'
+import initGetImageOfBlock from '../customBlocks/getImageOfBlock.js'
 
 
 // Load enviroment variables defined in the html template
@@ -41,8 +44,25 @@ console.log("----------------------===========----------------");
 //var userCode = window.userCode;
 var socket = "";
 
-var editorRobot1 = 'a-car1';
-var editorRobot2 = 'a-car2';
+
+// parse A-Frame config
+var r = new XMLHttpRequest();
+r.overrideMimeType("application/json");
+r.open('GET', config_file, false);
+r.send(null);
+if (r.status == 200){
+  var f = JSON.parse(r.responseText);
+}
+// Identify multiple robot IDs
+var robIDs = [];
+for (var obj in f.objects) {
+    if (f.objects[obj].tag == 'a-robot') {
+        robIDs.push(f.objects[obj].attr.id);
+    }
+}
+
+var editorRobot1 = robIDs[0];
+var editorRobot2 = robIDs[1];
 
 // Editor Control Variables for each Robot
 var codeFirst = {
@@ -78,37 +98,57 @@ $(document).ready(async ()=>{
      * - Resume thread for a robot if exists and not running
      */
 
+    var iconRunBtn = document.querySelector("#runbtn").firstChild;
+    if ($(iconRunBtn).hasClass("glyphicon-stop")){
+        iconRunBtn.classList.remove("glyphicon-stop");
+        iconRunBtn.classList.add("glyphicon-play");
+        document.querySelector("#runbtn").innerHTML = document.querySelector("#runbtn").innerHTML.replace('Pausar Código', 'Ejecutar Código');
+    } else {
+        iconRunBtn.classList.remove("glyphicon-play");
+        iconRunBtn.classList.add("glyphicon-stop");
+        document.querySelector("#runbtn").innerHTML = document.querySelector("#runbtn").innerHTML.replace('Ejecutar Código','Pausar Código');
+    }
+
     if (codeFirst.edit) {
         // Store the current code (XML). Necessary to avoid var names collisions.
-        codeFirst.xml = editor.storeCode(editor.ui);
+        codeFirst.xml = editor.storeCode(editor.ui, codeFirst.edit, codeSecond.edit);
         // Injects and gets Code of the second user
         editor.ui = editor.injectCode(editor.ui,codeSecond.xml);
         codeSecond.js = editor.getCode();
-        // Injects and gets Code of the first user, so that the state of the editor 
+        // Injects and gets Code of the first user, so that the state of the editor
         // remains the same
         editor.ui = editor.injectCode(editor.ui,codeFirst.xml);
         codeFirst.js = editor.getCode();
     } else {
-        codeSecond.xml = editor.storeCode(editor.ui);
+        codeSecond.xml = editor.storeCode(editor.ui, codeFirst.edit, codeSecond.edit);
         editor.ui = editor.injectCode(editor.ui,codeFirst.xml);
         codeFirst.js = editor.getCode();
         editor.ui = editor.injectCode(editor.ui,codeSecond.xml);
         codeSecond.js = editor.getCode();
     }
-    console.log(codeFirst.js);
-    console.log(codeSecond.js);   
-    
+    console.log(codeFirst);
+    console.log(codeSecond);
+
     if (brains.threadExists(editorRobot1)){
       if (brains.isThreadRunning(editorRobot1)){
         brains.stopBrain(editorRobot1);
         brains.stopBrain(editorRobot2);
       }else{
-        brains.resumeScratchBrain(editorRobot1,codeFirst.js);
-        brains.resumeScratchBrain(editorRobot2,codeSecond.js);
+        brains.resumeBrain(editorRobot1,codeFirst.js);
+        if(agent){
+          agents.resumeAgent(editorRobot2,agents.code);
+        }else{
+          brains.resumeBrain(editorRobot2,codeSecond.js);
+        }
       }
     }else{
-      brains.runScratchBrain(editorRobot1,codeFirst.js);
-      brains.runScratchBrain(editorRobot2,codeSecond.js);
+      brains.runBrain(editorRobot1,codeFirst.js);
+      if(agent){
+        agents.runAgent(editorRobot2,agents.code);
+      }else{
+        brains.runBrain(editorRobot2,codeSecond.js);
+      }
+
     }
   });
 
@@ -124,13 +164,14 @@ $(document).ready(async ()=>{
     editor.sendEvent('reset');
   });
 
+  document.querySelector("#firstRobot").style.background = '#5addf1';
   $('#firstRobot').click(()=>{
     if(codeFirst.edit){
-      codeFirst.xml = editor.storeCode(editor.ui);
+      codeFirst.xml = editor.storeCode(editor.ui, codeFirst.edit, codeSecond.edit);
       editor.ui = editor.injectCode(editor.ui, codeFirst.xml);
-    }     
+    }
     if(codeSecond.edit){
-      codeSecond.xml = editor.storeCode(editor.ui);
+      codeSecond.xml = editor.storeCode(editor.ui, codeFirst.edit, codeSecond.edit);
       codeSecond.edit = false;
       if(codeFirst.xml == null){
         editor.ui = editor.injectCode(editor.ui, '<xml></xml>');
@@ -139,15 +180,17 @@ $(document).ready(async ()=>{
       }
     }
     codeFirst.edit = true;
+    document.querySelector("#firstRobot").style.background = '#5addf1';
+    document.querySelector("#secondRobot").style.background = '#e6e6e6';
   });
 
   $('#secondRobot').click(()=>{
     if(codeSecond.edit){
-      codeSecond.xml = editor.storeCode(editor.ui);
+      codeSecond.xml = editor.storeCode(editor.ui, codeFirst.edit, codeSecond.edit);
       editor.ui = editor.injectCode(editor.ui, codeSecond.xml);
-    }     
+    }
     if(codeFirst.edit){
-      codeFirst.xml = editor.storeCode(editor.ui);
+      codeFirst.xml = editor.storeCode(editor.ui, codeFirst.edit, codeSecond.edit);
       codeFirst.edit = false;
       if(codeSecond.xml == null){
         editor.ui = editor.injectCode(editor.ui, '<xml></xml>');
@@ -156,10 +199,21 @@ $(document).ready(async ()=>{
       }
     }
     codeSecond.edit = true;
+    document.querySelector("#secondRobot").style.background = '#5addf1';
+    document.querySelector("#firstRobot").style.background = '#e6e6e6';
   });
 
   $('#simButton').click(()=>{
+    var imageSimBtn = document.querySelector("#simButton").firstChild;
     Websim.simulation.toggleSimulation();
+
+    if(imageSimBtn.src.indexOf('play-icon.png') == -1){
+      imageSimBtn.src = play_icon;
+      document.querySelector("#simButton").innerHTML = document.querySelector("#simButton").innerHTML.replace('Pausar Simulación', 'Reanudar Simulación');
+    }else{
+      imageSimBtn.src = stop_icon;
+      document.querySelector("#simButton").innerHTML = document.querySelector("#simButton").innerHTML.replace('Reanudar Simulación','Pausar Simulación');
+    }
   });
 
    // Only should try connect to Ws Server if wsUri is not null. Its necesary for avoid error with no registered users
@@ -170,7 +224,9 @@ $(document).ready(async ()=>{
   // Init Websim simulator with config contained in the file passed
   // as parameter
   await Websim.config.init(config_file);
-
+  if(typeof config_evaluator!=="undefined"){
+    evaluators.runEvaluator([editorRobot1,editorRobot2],config_evaluator);
+  }
   //setInterval(brains.showThreads, 1000);
 });
 
@@ -205,4 +261,5 @@ function configureCustomBlocks() {
   initMoveForwardToBlock();
   initTurnLeftToBlock();
   initTurnRightToBlock();
+  initGetImageOfBlock();
 }

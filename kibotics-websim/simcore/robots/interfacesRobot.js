@@ -11,6 +11,7 @@ export class RobotI
         this.initialRotation = { x: 0, y: 0, z: 0 };
         this.activeRays = false;
         this.camerasData = [];
+        //this.activeCamera = 0;
         this.raycastersArray = [];
         this.distanceArray = {
           center: [],
@@ -20,7 +21,7 @@ export class RobotI
         this.understandedColors = {
           blue: {low: [0, 0, 235, 0], high: [0, 0, 255, 255]},
           green: {low: [0, 235, 0, 0], high: [0, 255, 0, 255]},
-          red: {low: [235, 0, 0, 0], high: [255, 0, 0, 255]},
+          red: {low: [110, 0 , 0 ,0], high: [255, 30, 30, 255]},
           white: {low: [230, 230, 230, 0], high: [255, 255, 255, 255]},
           black: {low: [0, 0, 0, 255], high: [105,105,105 ,255]}
         };
@@ -64,7 +65,7 @@ export class RobotI
       var sceneCameras = document.getElementsByTagName('a-camera');
       for(var i = 0; i < sceneCameras.length; i++){
         var cameraID = sceneCameras[i].getAttribute('id');
-        if (cameraID.includes(this.myRobotID)){ 
+        if (cameraID.includes(this.myRobotID)){
           this.camerasData.push(
             {
               'wrapperID': cameraID + 'Wrapper',
@@ -199,6 +200,16 @@ export class RobotI
       }
     }
 
+    /*toggleCamera(){
+      var availableCameras = this.camerasData.length;
+      if (this.activeCamera + 1 + 1 <= availableCameras) {
+        this.activeCamera += 1;
+      } else {
+        this.activeCamera = 0;
+      }
+      console.log(this.activeCamera);
+    }*/
+
     getImage(cameraID){
       /**
        * Returns a screenshot from the robot camera
@@ -207,13 +218,14 @@ export class RobotI
           console.log(this.camerasData[i]);
 
       }*/
-      if (this.camerasData.length == 1) {
+      if (!cameraID || (this.camerasData.length == 1) || (cameraID > this.camerasData.length-1)) {
         // Robots with one camera get the only one available
+        // Requests for cameras that don't exist returns default camera
         return this.camerasData[0]['image'];
+
       } else {
         // Robots with two or more cameras
-        // ToDo
-        return this.camerasData[0]['image'];
+        return this.camerasData[cameraID]['image'];
       }
 
     }
@@ -250,20 +262,19 @@ export class RobotI
           numOfRaycasters += 1;
         }
         var offsetAngle = 180 / numOfRaycasters;
-        var angle = 0;
-        var group = "center";
+        var angle = -90;
         for(var i = 0; i < numOfRaycasters; i++){
-          if( (i%2) == 0 ){
-            angle = angle * -1;
-            if(i != 0){
-              group = "right";
-            }
-          }else{
-            angle = angle * -1;
+          if(i == (numOfRaycasters-1)/2){
             angle += offsetAngle;
-            if(i != 0){
-              group = "left";
-            }
+            var group = "center";
+          }else if( i < (numOfRaycasters-1)/2){
+            angle = angle * 1;
+            angle += offsetAngle;
+            group = "left";
+          }else if( i > (numOfRaycasters-1)/2){
+            angle = angle * 1;
+            angle += offsetAngle;
+            group = "right";
           }
           this.createRaycaster(distance, angle, emptyEntity, group, i);
         }
@@ -379,6 +390,7 @@ export class RobotI
       }
     }
 
+
     getDistance()
     /*
       This function returns the distance for the raycaster in the center of the arc of rays.
@@ -387,25 +399,29 @@ export class RobotI
       if(this.distanceArray["center"][0] != null){
         return this.distanceArray["center"][0].d;
       }else{
-        return null;
+        return 10;
       }
     }
 
     getDistances()
-    /*
-      This function returns an array with all the distances detected by the rays.
-    */
-    {
-        var distances = [];
-        var groups = ["center", "right", "left"];
-
-        for(var i = 0; i < groups.length; i++){
-          this.distanceArray[groups[i]].forEach((obj)=>{
-            distances.push(obj.d);
-          });
-        }
-        return distances;
-    }
+  /*
+    This function returns an array with all the distances detected by the rays.
+  */
+  {
+      var distances = []
+      for(var i = 0; i <= 31; i++){
+          distances.push(10);
+      }
+      var groups = ["center", "right", "left"];
+      for(var i = 0; i < groups.length; i++){
+        this.distanceArray[groups[i]].forEach((obj)=>{
+          if(typeof obj.d !="undefined"){
+            distances[obj.id]=obj.d;
+          }
+        });
+      }
+      return distances;
+  }
 
     getPosition()
     /*
