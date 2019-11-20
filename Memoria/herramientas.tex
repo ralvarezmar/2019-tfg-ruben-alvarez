@@ -263,7 +263,7 @@ Gracias a estas características, el simulador hace que los usuarios puedan prog
 
 \subsection{Robot en WebSim}
 \label{subsec:robot}
-Para tener una entidad en \textit{A-Frame} que pueda ser programada por el usuario existe un clase en \textit{JavaScript} llamada \textit{RobotI}.
+Para tener una entidad en \textit{A-Frame} que pueda ser programada por el usuario existe una clase en \textit{JavaScript} llamada \textit{RobotI}.
 El constructor de esta clase es un método obligatorio y es al primero que se llama cuando se instancia un objeto. 
 Tiene un parámetro de entrada que es una cadena de caracteres con el identificador de la etiqueta \textit{HTML} en la que se encuentra el robot simulado. 
 Además de inicializar el robot, la clase contiene una serie de variables para su configuración: 
@@ -281,7 +281,8 @@ Además de inicializar el robot, la clase contiene una serie de variables para s
 
 Además, el constructor llama a los métodos para inicializar los motores y sensores que tienen sus propios métodos para su manejo. \\
 
-Para mandar al \textit{robot} el código programado por el usuario se hace uso del módulo \textit{brains} en \textit{JavaScript}, que crea un ``hilo'' en el método \textit{runBrain} para ejecutar el código escrito en el editor y lo guarda en un \textit{array} que se ejecuta periódicamente gracias a la función \textit{timeOut} de \textit{JavaScript}. 
+Para enviar al \textit{robot} el código programado por el usuario se hace uso del módulo \textit{brains} en \textit{JavaScript}. En este se crea un ``hilo'' en el método \textit{runBrain} que guarda el código escrito en el editor en un \textit{array} y lo ejecuta periódicamente gracias a la función \textit{timeOut} de \textit{JavaScript}.
+
 Este módulo también dispone de un método para parar el ``cerebro'' y reanudarlo después con un código distinto.
 \begin{lstlisting}[language=javascript, caption=Método \textit{runBrain} para ejecutar el código del usuario]
 brains.runBrain = (robotID, code) =>{
@@ -313,7 +314,8 @@ brains.stopBrain = (robotID) =>{
 
 %%modulo brains
 
-% Para su implementación se ha creado el módulo \textit{brains} en \textit{JavaScript}, que contiene el método \textit{runBrains}, que ejecuta un ``hilo'' para cada \textit{robot} existente en la escena. Además contiene los métodos \textit{stopBrain} y \textit{resumeBrain} que paran y reanudan el cerebro del robot correspondiente. 
+% Para su implementación se ha creado el módulo \textit{brains} en \textit{JavaScript}, que contiene el método \textit{runBrains}, que ejecuta un ``hilo'' para cada \textit{robot} existente en la escena. Además contiene los métodos \textit{stopBrain} y \textit{resumeBrain} que paran y reanudan el cerebro del robot correspondiente.
+
 \subsection{Drivers de sensores}
 \label{subsec:driversSensores}
 El robot consta de sensores simulados con \textit{A-Frame}. Los drivers permiten que el usuario, vía \textit{JavaScript}, pueda acceder a estos y obtener su información. En este entorno disponemos de los siguientes sensores: 

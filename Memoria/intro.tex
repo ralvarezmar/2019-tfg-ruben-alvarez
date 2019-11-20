@@ -5,11 +5,11 @@ En este capítulo se introducen los conceptos básicos en los que se apoya este 
    
 \section{Tecnologías web}
 \label{sec:web}
-Las tecnologías web han ido evolucionando a los largo de la historia, pero todas se basan en un modelo cliente-servidor. Para lograr la comunicación entre cliente y servidor, se necesita un navegador por parte del cliente y un servidor web capaz de atender las solicitudes. El protocolo utilizado para esta comunicación se llama \textit{HTTP}.
+Las tecnologías web han ido evolucionando a lo largo de los últimos años. Se basan fundamentalmente en un modelo cliente-servidor. Actualmente lo más común son las \textit{aplicaciones web}, que son herramientas ejecutadas mediante un navegador \textit{web} en las que los datos son procesados y almacenados en un servidor. Dentro de estas aplicaciones se pueden encontrar sistemas de correo electrónico (\textit{Gmail} \footnote{\url{https://mail.google.com/mail/}} o \textit{Outlook}\footnote{\url{https://outlook.live.com}}), tiendas \textit{online} (\textit{Amazon}\footnote{\url{https://www.amazon.es/}}), distribución de contenidos (\textit{Netflix}\footnote{ \url{https://www.netflix.com/}} o \textit{Spotify}\footnote{ \url{https://www.spotify.es/}}) o \textit{wikis}(\textit{Wikipedia}\footnote{\url{https://www.wikipedia.org/}}).
 
 \subsection{HTTP}
 \label{subsec:http}
-\textit{HTTP} (\textit{HiperText Transfer Protocol}) es el protocolo de nivel de aplicación utilizado para transferir recursos hipermedia entre ordenadores y sigue el esquema petición-respuesta entre cliente y servidor (Figura \ref{fig:http}). En esta comunicación el cliente abre una conexión \textit{TCP} con el servidor y envía un mensaje de petición \textit{HTTP} y, por parte del servidor, responde al cliente con un mensaje \textit{HTTP} y cierra la conexión \textit{TCP}. 
+\textit{HiperText Transfer Protocol} (\textit{HTTP}) es el protocolo de nivel de aplicación utilizado para transferir recursos hipermedia entre ordenadores y sigue el esquema petición-respuesta entre cliente y servidor (Figura \ref{fig:http}). En esta comunicación el cliente abre una conexión \textit{TCP} con el servidor y envía un mensaje de petición \textit{HTTP} y, por parte del servidor, responde al cliente con un mensaje \textit{HTTP} y cierra la conexión \textit{TCP}. 
 El protocolo \textit{HTTP} no mantiene estado. Es decir, el servidor trata cada petición de manera aislada y no almacena información sobre peticiones realizadas por un mismo cliente. 
 Las peticiones están definidas por el protocolo y tienen métodos concretos: 
 \begin{itemize}
@@ -27,15 +27,16 @@ Aunque estos son los principales métodos, el protocolo tiene flexibilidad para 
 \caption{Comunicación cliente-servidor en HTTP} \label{fig:http}
 \end{figure}
 
-Aunque la versión actual del protocolo data del 2 de abril de 2019 (\textit{HTTP/2.4.38}), es en 1991 cuando se lanza la primera versión y, en el mismo año, se publica un estándar para la publicación de páginas web mediante un lenguaje de marcas de hipertexto (\textit{HTML}), que se explicará en el siguiente apartado. 
+La versión actual del protocolo es del 2 de abril de 2019 (\textit{HTTP/2.4.38}) pero la primera versión es del 1991, que es cuando aparece un estándar para la publicación de páginas web mediante un lenguaje de marcas de hipertexto: \textit{HTML}.
+
 
 \subsection{Tecnologías en cliente}
 \label{subsec:tecclient}
-Es la parte encargada de dar forma a la interfaz de usuario y de establecer la comunicación con el servidor. Una pieza importante del cliente es el navegador, ya que es el encargado de leer e interpretar la información recibida. Las más utilizadas son: 
+Es la parte encargada de dar forma a la interfaz de usuario y de establecer la comunicación con el servidor. Una pieza importante del cliente es el navegador, ya que es el encargado de leer e interpretar la información recibida. Entre los navegadores más empleados se encuentran \textit{Firefox}\footnote{\url{https://www.mozilla.org/}}, \textit{Google Chrome}\footnote{\url{https://www.google.com/intl/es/chrome/}} u \textit{Opera}\footnote{\url{https://www.opera.com/}}. Las tecnologías más utilizadas son: 
 \begin{itemize}
-    \item \textit{HTML}: es el estándar más utilizado para el desarrollo de páginas web. Actualmente los navegadores usan la versión \textit{HTML5}. Este lenguaje indica la estructura de una página web, para editar el estilo y presentación visual hay que hacer uso de otros elementos como \textit{CSS}.
-    \item \textit{CSS}: \textit{Cascading Style Sheets} es un lenguaje de diseño gráfico para definir y crear la presentación de un documento escrito en un lenguaje de marcado. De esta forma, se puede separar información y datos (en los documentos \textit{HTML}) y todo lo relativo al diseño y presentación (en documentos \textit{CSS}). Actualmente los navegadores usan la versión \textit{CSS3}.
-    \item \textit{JavaScript}: para programar la lógica, dinamismo e interacción con el usuario es el lenguaje más común y extendido en el desarrollo de páginas. Debido a su importancia en el proyecto, se explicará más a fondo en próximos capítulos. 
+    \item \textit{\textbf{HTML}}: es el estándar más utilizado para el desarrollo de páginas web. Actualmente los navegadores usan la versión \textit{HTML5}, que incluye muchas mejoras respecto a su predecesor: \textit{canvas}, \textit{websockets}, \textit{WebRTC}, vídeo, audio, etc. Este lenguaje indica la estructura de una página web, para editar el estilo y presentación visual hay que hacer uso de otros elementos como \textit{CSS}.
+    \item \textit{\textbf{Cascading Style Sheets (CSS)}}:  es un lenguaje de diseño gráfico para definir y crear la presentación de un documento escrito en un lenguaje de marcado. De esta forma, se puede separar información y datos (en los documentos \textit{HTML}) y todo lo relativo al diseño y presentación (en documentos \textit{CSS}). Actualmente los navegadores usan la versión \textit{CSS3}.
+    \item \textit{\textbf{JavaScript}}: para programar la lógica, dinamismo e interacción con el usuario es el lenguaje más común y extendido en el desarrollo de páginas. Debido a su importancia en el proyecto, se explicará más a fondo en próximos capítulos. 
 \end{itemize}
 
 \subsection{Tecnologías en servidor}
@@ -44,7 +45,7 @@ Son las encargadas de dar forma al servidor web de manera que permiten el acceso
 \begin{itemize}
     \item \textit{Node.js}: es una forma de ejecutar \textit{JavaScript} en el servidor. Proporciona un entorno de ejecución del lado del servidor que compila y ejecuta a gran velocidad. Esto es debido a que compila en código máquina nativo en lugar de interpretarlo o ejecutarlo.   
     \item \textit{Django}: entorno web de alto nivel programado en \textit{python} diseñado para realizar aplicaciones de cualquier complejidad. Es seguro, rápido y escalable. Además, incluye una interfaz para acceder a bases de datos lo que facilita las consultas al no tener que manejar \textit{SQL} y realizarlas con filtros de \textit{Python}.
-    \item \textit{Spring}: herramienta cuya finalidad es simplificar el desarrollo de aplicaciones ya que facilita la configuración de la aplicación y el despliegue en servidor. De esta manera, \textit{Spring} está pensado para aplicaciones web, servicios \textit{REST}, análisis de datos e integración de sistemas. 
+    \item \textit{Spring}: herramienta basada en \textit{Java} cuya finalidad es simplificar el desarrollo de aplicaciones ya que facilita la configuración de la aplicación y el despliegue en servidor. De esta manera, \textit{Spring} está pensado para aplicaciones web, servicios \textit{REST}, análisis de datos e integración de sistemas. 
 \end{itemize}
 
 \section{Robótica}
@@ -61,66 +62,61 @@ Los robots se componen de sensores, controladores y actuadores.
 \end{itemize}
 
 \subsection{Aplicaciones robóticas}
-% La palabra robot fue empleada por primera vez en 1920 por Karel Capek, un escritor checo que realiza una obra de teatro en la que un hombre fabrica un robot. 
 
-% Años más tarde, en 1950, Isaac Asimov publica un libro llamado \textit{Yo, Robot} en el que acuña la palabra "robótica" definiendo a la ciencia que estudia a los robots. En el también se incluyen tres leyes de la robótica:
-% \begin{itemize}
-%     \item Un robot no hará daño a un ser humano ni permitirá que un ser humano sufra ningún tipo daño.
-%     \item Un robot debe cumplir las órdenes recibidas por un ser humano, salvo las que entren en conflicto con la primera ley.
-%     \item Un robot debe proteger su propia existencia mientras que no entre en conflicto con ninguna de las leyes anteriores. 
-% \end{itemize}{}
-
-% Es a finales de la década de los 50 cuando la robótica sufre el mayor impulso al crearse el primer robot comercial en 1956 y, años más tarde, en 1961, se instala el primer robot industrial (Figura \ref{fig:unimate}).  
-
-% \begin{figure}[H]
-% \centering
-% \includegraphics[width=0.6\textwidth]{img/unimate.jpg}
-% \caption{Unimate, primer robot industrial} \label{fig:unimate}
-% \end{figure}
-
-% En los años 70 se crea el primer robot autónomo, \textit{Shakey}  (Figura \ref{fig:shakey}). Fue el primero que incorporaba inteligencia artificial y disponía de control de motores y sensores. \textit{Shakey} era capaz de recoger toda la información de su entorno, crear un mapa y diseñar el camino más corto desde su ubicación al destino. 
-
-% \begin{figure}[H]
-% \centering
-% \includegraphics[width=0.5\textwidth]{img/shakey.jpg}
-% \caption{Shakey, primer robot autónomo} \label{fig:shakey}
-% \end{figure}
-
-% En 2000 la compañía Honda lanza el robot \textit{Asimo} (Figura \ref{fig:asimo}), un robot humanoide capaz de detectar múltiples objetos, reconocer caras e interpretar comandos de voz o gestos.\textit{Asimo} fue creado con el objetivo de, algún día, ofrecer asistencia a personas con necesidades especiales. 
-
-% \begin{figure}[H]
-% \centering
-% \includegraphics[width=0.5\textwidth]{img/asimo-honda.jpg}
-% \caption{Asimo, primer robot humanoide} \label{fig:asimo}
-% \end{figure}
-
-% Es en 2011 cuando la robótica alcanza uno de sus mayores hitos gracias al robot explorador \textit{Curiosity} (Figura \ref{fig:curiosity}). Este robot llego a Marte en 2012 y su cometido fue investigar el planeta para determinar si existió vida en Marte, caracterizar su clima y geología y preparar el entorno para su exploración humana. 
-
-% \begin{figure}[H]
-% \centering
-% \includegraphics[width=0.6\textwidth]{img/curiosity.jpg}
-% \caption{Autorretrato del Curiosity en Marte} \label{fig:curiosity}
-% \end{figure}
-
-% Hoy en día no solo se ven robots en entornos industriales, si no que aparecen cada vez más en entornos domésticos, educativos o automovilísticos.
+La robótica es ya una realidad. Los robots no son utilizados únicamente por empresas para labores industriales, si no que se pueden encontrar en hogares y en la vida cotidiana de las personas. Esto es debido al aumento de eficiencia que generan, reducción de costes o el control de errores que aportan.  Algunas ejemplos de \textit{robots} empleados en la actualidad, tanto en ámbito doméstico como en industrial, son los siguientes: 
+\begin{itemize}
+    \item Aspiradora robótica \textit{Roomba}, robot autónomo que, en los modelos más avanzados, reconocen el entorno, trazan un mapa de la casa y vacían su depósito automáticamente.
+    \begin{figure}[H]
+\centering
+\includegraphics[width=0.5\textwidth]{img/roomba.png}
+\caption{Mapa generado por un robot \textit{Roomba}} \label{fig:roomba}
+\end{figure}
+    \item Robot médico \textit{Da Vinci}, que permite al cirujano operar a través de una consola mejorando así su precisión y reduciendo riesgos en operaciones quirúrgicas. 
+      \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{img/davinci.jpg}
+    \caption{Robot médico \textit{Da Vinci}} \label{fig:davinci}
+    \end{figure}
+    \item Vehículos autónomos \textit{Tesla}, que mediante cámaras y sensores de ultra-sonidos analizan el entorno para garantizar una conducción autónoma segura. 
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.6\textwidth]{img/teslaSensors.png}
+        \caption{Sensores en conducción semi-autónoma de un coche \textit{Tesla}} \label{fig:tesla}
+    \end{figure}
+    
+    \item Robots de logística de \textit{Amazon}, que se encargan, de manera autónoma, de localizar la estantería donde se encuentra un paquete solicitado y la desplaza por todo el centro logístico al lugar de destino. 
+        \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{img/robots-amazon.jpg}
+    \caption{Robots de logística de \textit{Amazon} } \label{fig:amazon}
+    \end{figure}
+    \item Robot \textit{Curiosity} de la \textit{NASA}, empleado para la exploración de la superficie del planeta Marte. 
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{img/curiosity.jpg}
+    \caption{Robot \textit{Curiosity} de la \textit{NASA}} \label{fig:curiosity}
+    \end{figure}
+\end{itemize}{}
 
 \subsection{Software en robótica}
 \label{subsec:softwarerobot}
-% Los ámbitos en los que se puede encontrar la robótica son diversos, así como los diferentes tipos de robots: 
-% \begin{itemize}
-%     \item \textbf{Industriales}: son los utilizados para mover materiales pesados, herramientas y realizar una serie de tareas en ambientes de producción y manufactura. Este tipo de robots permiten realizar trabajos peligrosos y repetitivos sin cometer errores, por lo que están revolucionando la industria y cada vez es más común verlos en las fábricas.   
-%     \item \textbf{Militares}: robots autónomos o controlados de manera remota diseñados para transporte, búsqueda, rescate o ataque. Destacan los drones usados para espionaje o recolección de datos e imágenes. 
-%     Existen muchas funciones que son realizadas por este tipo de robots, es común la supervisión humana para controlar que el criterio del robot sea correcto frente posibles amenazas. 
-%     \item \textbf{Espaciales}: son aquellos que se utilizan en exploraciones de terrenos y ambientes de otros planetas o como apoyo al trabajo de los astronautas. 
-%     \item \textbf{Medicina}: sus aplicaciones abarcan varios ámbitos sanitarios y proporciona grandes ventajas al sector; desde sistemas de desinfección eficientes (como el robot \textit{Xenex}\footnote{\url{https://www.xenex.com}}), herramienta para desinfectar instalaciones médicas) hasta robots que pueden reemplazar o ayudar a cirujanos por su precisión y eficiencia (robot \textit{Da Vinci}\footnote{\url{https://www.intuitive.com}}, que permite tener un campo de visión magnificado e instrumental médico mejorado). 
-%     \item \textbf{Robots de servicio}: mejoran la productividad en casi cualquier tarea posibilitando la automatización de cualquier tipo de labor que requiera eficiencia y rapidez, siendo capaces de operar de forma autónoma. Abarcan un amplio campo, desde aspiradores robóticos (como el robot   \textit{Roomba}\footnote{\url{https://www.irobot.es}}) hasta sistemas domóticos (como el altavoz desarrollado por \textit{Google}, \textit{Google Home}\footnote{\url{https://store.google.com/es/product/google_home}}).
-%     \item \textbf{Entretenimiento}: son algunos de los robots más sofisticados ya que requieren interactuar con personas. Se pueden encontrar desde juguetes hasta robots que ayuden a la enseñanza. En este último tipo se entrará más en detalle por ser un pilar fundamental del proyecto.
-% \end{itemize}
+Para dotar de inteligencia autónoma a los robots se requiere desarrollar sistemas  complejos, aplicaciones e infraestructuras. Por ejemplo, hace años, el desarrollo de \textit{software} se realizaba adoptando soluciones ``\textit{ad-hoc}'' dotando a cada robot de un diseño específico y con sensores y actuadores concretos. Esto implica que había que implementar todo el \textit{software} para un nuevo robot debido a que no se podía aplicar el desarrollado anteriormente. En la actualidad, existen plataformas que permiten el desarrollo de aplicaciones robóticas de forma eficiente y genérica permitiendo así reutilizar aplicaciones creadas en otros robots. \\  
 
+
+Como se ha dicho, se debe desarrollar un \textit{software} para dotar de inteligencia a un \textit{robot}, que habitualmente se programa con ayuda de herramientas, como los \textit{middleware} robóticos. El uso de estas herramientas permiten introducir una capa de abstracción con los \textit{drivers} y el \textit{hardware} del robot, reduciendo la complejidad y los conocimientos necesarios para realizar desarrollos. Algunas de estos \textit{middleware} son: 
+\begin{itemize}
+    \item  \textit{\textbf{Internet Comunication Engine (ICE)}}\footnote{\url{https://zeroc.com/products/ice}}. Plataforma de \textit{software} libre orientada a objetos que proporciona las herramientas para simplificar las comunicaciones entre componentes. Usado para la comunicación entre nodos, proporciona una capa que se encarga de abrir y cerrar conexiones entre ellos sin necesidad de usar el protocolo \textit{HTTP}. 
+    \item \textit{\textbf{Robot Operating System (ROS)}}\footnote{\url{https://www.ros.org/}}. Plataforma de \textit{software} libre para el desarrollo de \textit{software} de robots. Provee servicios estándar de un sistema operativo como la abstracción de \textit{hardware}, control de dispositivos de bajo nivel, mecanismos de intercambio de mensajes entre procesos y una serie de herramientas utilizadas en robótica. 
+    \item \textit{\textbf{Orca}}\footnote{\url{http://orca-robotics.sourceforge.net/}}. Plataforma de \textit{software} libre dedicada al desarrollo de aplicaciones robóticas. Dedicada principalmente al desarrollo de componentes, que se pueden ejecutar de manera independiente o se pueden unir para formar sistemas robóticos de distintas complejidades. Permite reutilizar código y emplear componentes robóticos ya creados.
+     \item \textit{\textbf{Orocos}}\footnote{\url{https://orocos.org/}}. Proyecto de \textit{software} libre dedicado al control de robots y máquinas. Está orientado a componentes y permite añadir funcionalidad de manera sencilla y sin recopilar todo el código. Incluye paquetes complementarios como filtros de \textit{Bayes}, librerías de control dinámico y cinemático o visión.
+\end{itemize}
 
 \section{Robótica educativa}
 \label{sec:educativa}
-La robótica con fines educativos está empezando a adquirir importancia en la enseñanza porque su aprendizaje está disponible para estudiantes de cualquier nivel. Este método de enseñanza intenta despertar el interés de los alumnos porque, gracias a la innovación que posibilita la tecnología, añade un componente atractivo e integrador a las asignaturas tradicionales. \\
+La robótica con fines educativos está empezando a adquirir importancia en la enseñanza porque su aprendizaje está disponible para estudiantes de cualquier nivel. Este método de enseñanza intenta despertar el interés de los alumnos porque, gracias a la innovación que posibilita la tecnología, añade un componente atractivo e integrador a las asignaturas tradicionales. En 2015 la comunidad de Madrid introdujo la asignatura de robótica en los planes docentes de Enseñanza Secundaria y en el curso 2020-2021 se empezará a implantar en Educación Primaria la asignatura ``Tecnología, programación y robótica''. \footnote{\url{https://n9.cl/7lqc}}.\\
+
+El método más empleado para este tipo de enseñanza es la educación \textit{STEM} (\textit{Science, Technology, Engineering and Mathematics}). Este tipo de educación promueve una cultura de pensamiento científico, así como la adquisición de conocimientos tecnológicos aplicables a situaciones reales y permite desarrollar competencias para la resolución de problemas y un pensamiento creativo y crítico.   \\
+
 
 La enseñanza en centros escolares se realiza en gran parte mediante plataformas como la creada por LEGO o placas Arduino que simplifican el aprendizaje y resulta motivadora para el alumno porque obtiene resultados vistosos y se le puede dar una aplicación real. \\
 
@@ -139,7 +135,7 @@ Las nociones básicas de las que se sirve este acercamiento son los lenguajes de
 
     \item \textit{LEGO}: dispone de una amplia gama de robots programables y cada uno de ellos tiene un sistema de programación bajo interfaz gráfica. En las figuras \ref{fig:lego1} y \ref{fig:lego2} se pueden ver dos ejemplos de distintos software para distintos robots.  
     
-    \begin{figure}[h]
+    \begin{figure}[H]
     \centering
         \begin{subfigure}{0.45\textwidth}
            \includegraphics[width=\textwidth]{img/lego1.png}
@@ -168,6 +164,32 @@ Las nociones básicas de las que se sirve este acercamiento son los lenguajes de
         \includegraphics[width=1\textwidth]{img/snap.jpg}
         \caption{Interfaz gráfica de Snap!} \label{fig:snap}
     \end{figure}
+    
+    \item \textit{AppInventor\footnote{\url{http://ai2.appinventor.mit.edu/}}}: Entorno de desarrollo de software creado por \textit{Google} en colaboración con el \textit{MIT} destinado a la elaboración de aplicaciones \textit{Android}. El usuario puede desarrollar de forma visual y con ayuda de bloques una aplicación que cubre un gran número de necesidades básicas en un dispositivo móvil.
+        \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.9\textwidth]{img/AppInventor.png}
+        \caption{Interfaz gráfica de AppInventor} \label{fig:appinventor}
+    \end{figure}
+    
 \end{itemize}
 
 
+También son muy habituales el uso de plataformas hardware, que incorporan los elementos básicos para la construcción de un robot. Las más empleadas son: 
+\begin{itemize}
+    \item \textit{LEGO mindstorms}: plataforma dedicada a construir \textit{robots} con piezas de LEGO. También incluye un microprocesador para ser programado, sensores (infrarrojos, táctiles y de color) y motores.
+            \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.4\textwidth]{img/legomind.jpg}
+        \caption{Ejemplo de \textit{robot} montado con \textit{Mindstorms}} \label{fig:lego}
+    \end{figure}
+    \item \textit{Makeblock\footnote{\url{https://makeblock.es/}}}: plataforma de construcción robótica muy accesible que permite la creación de \textit{robots} con \textit{kits} dirigidos a todo tipo de público. El \textit{robot} que se construye con estos \textit{kits} es el \textit{mBot}:
+        \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.3\textwidth]{img/mBotReal.jpg}
+        \caption{mBot de la plataforma \textit{Makeblock}} \label{fig:makeblock}
+    \end{figure}
+    
+    \item \textit{Arduino\footnote{\url{https://www.arduino.cc/}}}: Plataforma de creación electrónica. Permite crear microordenadores a los que dar multitud de usos con una sola placa, que dispone de entradas para periféricos y un microcontrolador.
+    
+\end{itemize}{}

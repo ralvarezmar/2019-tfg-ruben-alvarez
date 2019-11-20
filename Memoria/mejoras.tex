@@ -308,7 +308,6 @@ Se han creado teleoperadores para los modelos del \textit{piBot}, \textit{mBot},
 \label{fig:teleoperadores}
 \end{figure}
 
-
 Siendo el código fuente \textit{HTML} empleado para el teleoperador del drone el mostrado a continuación: 
 
 \begin{lstlisting}[language=html,label=lst:teleop,caption=Código HTML del teleoperador del drone]
@@ -617,7 +616,7 @@ Se han incorporado nuevos escenarios a \textit{WebSim} que dan la posibilidad de
     \label{fig:irSolution}
     \end{figure}
     
-    En esta solución se comanda una velocidad lineal y se obtienen los valores de los sensores infrarrojos del \textit{robot} y, según los obtenidos, se comanda una velocidad angular.
+    En esta solución se comanda una velocidad lineal y se obtienen los valores de los sensores infrarrojos del \textit{robot} y se comanda una velocidad angular en función de donde detecte la línea.
     
 \subsection{Choca-gira}
 \label{subsec:chocagira}
@@ -943,7 +942,7 @@ evaluators.createTimeoutEvaluator = (arrayRobots,id)=>{
 
 \subsection{Atraviesa-bosque competitivo}
 \label{subsec:bosquecmp}
-Este ejercicio es similar al escenario con un solo robot, pero en este caso se han creado dos pasillos en lugar de uno. Se han añadido distintos objetos y elementos de \textit{A-Frame} en la misma ubicación para los dos \textit{robots} para que el recorrido sea justo.
+Este ejercicio es similar al escenario con un solo robot, pero en este caso se han creado dos pasillos en lugar de uno\footnote{\url{https://www.youtube.com/watch?v=v_aMvNPtncg}}. Se han añadido distintos objetos y elementos de \textit{A-Frame} en la misma ubicación para los dos \textit{robots} para que el recorrido sea justo.
 
 Para su evaluador se crea una barra de progreso para cada robot y un cronómetro. Cuando se empiezan a mover los robots la barra de progreso empieza a completarse y el cronómetro se inicia, para comprobar el porcentaje completado se obtiene la posición del robot y la compara con el punto de llegada.
 
@@ -1053,7 +1052,7 @@ function timeFormatter(time){
 \subsection{Sigue-líneas competitivo}
 \label{subsec:race}
 
-En este ejercicio hay dos robots en el que tienen que seguir una linea de color blanco sobre fondo negro atravesando un puente en medio del circuito para que, de esta manera, ambos recorran la misma distancia.
+En este ejercicio hay dos robots en el que tienen que seguir una linea de color blanco sobre fondo negro atravesando un puente en medio del circuito para que, de esta manera, ambos recorran la misma distancia\footnote{\url{https://www.youtube.com/watch?v=OaA7_wsXhk8}}.
 
 La principal novedad del escenario es el puente creado, que permite ser cruzado mientras siguen la línea. La solución definitiva ha sido creando primitivas de \textit{A-Frame} (\textit{a-plane}) y añadiendo una textura diseñada con \textit{Photoshop} con el mismo aspecto que el resto del circuito.
 
@@ -1110,7 +1109,7 @@ evaluator.setEvaluator = (arrayRobots) => {
 \subsection{Gato-ratón}
 \label{subsec:gatoraton}
 No es estrictamente hablando un ejercicio competitivo directamente, con dos códigos de estudiantes sobre sendos robots en el mismo escenario simultáneamente. En este ejercicio hay dos robots, uno (el \textit{drone} gato) programado por el estudiante que hace el ejercicio y otro (el \textit{drone} ratón) programado por desarrolladores de la plataforma. 
-En este ejercicio el usuario tiene que desarrollar su solución para que el \textit{robot} no se aleje del objetivo, el \textit{drone} ratón, que está en constante movimiento. 
+En este ejercicio el usuario tiene que desarrollar su solución para que el \textit{robot} no se aleje del objetivo, el \textit{drone} ratón, que está en constante movimiento\footnote{\url{https://www.youtube.com/watch?v=xA9Emhdk_HQ}}. 
 
 
 Para este ejercicio se ha creado un \textit{script} llamado \textit{agents-methods.js}, basado en \textit{brains}, para ejecutar el código del \textit{drone} ratón sin necesidad de escribir código. Es muy similar al método \textit{runBrain} con la diferencia de que el código viene de un fichero en lugar del editor. En este módulo se guarda el código en la variable \textit{agents.code} con el siguiente código: 
