@@ -596,7 +596,7 @@ Se han incorporado nuevos escenarios a \textit{WebSim} que dan la posibilidad de
     \label{fig:visionSolution}
     \end{figure}
     
-    En esta solución se comanda velocidad lineal al robot y utiliza el bloque que obtiene el centro del eje X de los objetos blancos. Según el valor obtenido, se gira el \textit{robot} en un sentido u otro.
+    En esta solución\footnote{\url{https://youtu.be/fRq__W_BETk}} se comanda velocidad lineal al robot y utiliza el bloque que obtiene el centro del eje X de los objetos blancos. Según el valor obtenido, se gira el \textit{robot} en un sentido u otro.
     
 \subsection{Sigue-líneas infrarrojos}
      Este ejercicio consiste en seguir una línea negra sobre fondo blanco haciendo uso de los sensores infrarrojos del \textit{robot}. 
@@ -616,7 +616,7 @@ Se han incorporado nuevos escenarios a \textit{WebSim} que dan la posibilidad de
     \label{fig:irSolution}
     \end{figure}
     
-    En esta solución se comanda una velocidad lineal y se obtienen los valores de los sensores infrarrojos del \textit{robot} y se comanda una velocidad angular en función de donde detecte la línea.
+    En esta solución\footnote{\url{https://youtu.be/d4HETtPmahA}} se comanda una velocidad lineal y se obtienen los valores de los sensores infrarrojos del \textit{robot} y se comanda una velocidad angular en función de donde detecte la línea.
     
 \subsection{Choca-gira}
 \label{subsec:chocagira}
@@ -635,7 +635,7 @@ Escenario creado en \textit{Blender} con un aspecto similar a su análogo en el 
     \caption{Solución en \textit{Scratch} para el ejercicio choca-gira} 
     \label{fig:chocagiraSolution}
     \end{figure}
-    En esta solución se obtienen los valores del sensor de ultra-sonidos y se comanda una velocidad lineal. Si encuentra un obstáculo se gira a la derecha durante 0.5 segundos.
+    En esta solución\footnote{\url{https://youtu.be/lXL3lTbgp_E}} se obtienen los valores del sensor de ultra-sonidos y se comanda una velocidad lineal. Si encuentra un obstáculo se gira a la derecha durante 0.5 segundos.
     
 \subsection{Sigue-pelota}
 \label{subsec:pelota}
@@ -643,7 +643,7 @@ Escenario creado en \textit{Blender} con un aspecto similar a su análogo en el 
 Este ejercicio consiste en seguir una pelota en movimiento. Hay que emplear las imágenes obtenidas por el \textit{robot} y programar la lógica de control que permita seguir la pelota.
 
 Se ha realizado dos escenarios distintos, uno para \textit{PiBot} y otro para \textit{drone}.
-Ambos disponen de una pelota de color rojo, que debe ser seguida usando la cámara del \textit{robot}, a la que se le ha dado movimiento a través de primitivas de \textit{A-Frame}. En la figura \ref{fig:secuenciaDrone} se puede ver una secuencia con la animación de la pelota y en el siguiente código se muestra el archivo de configuración de este ejercicio, que incluye esa animación de \textit{A-Frame}:
+Ambos disponen de una pelota de color rojo, que debe ser seguida usando la cámara del \textit{robot}, a la que se le ha dado movimiento a través de primitivas de \textit{A-Frame}. En la figura \ref{fig:secuenciaDrone} se puede ver una secuencia con la animación de una pelota y en el siguiente código se muestra el archivo de configuración de este ejercicio, que incluye esa animación de \textit{A-Frame}:
 
 \begin{lstlisting}[language=json]
 {
@@ -664,12 +664,18 @@ Ambos disponen de una pelota de color rojo, que debe ser seguida usando la cáma
       "position": "4 15 20",
       "color": "#FF0000",
       "radius": "1.5",
-      "animation":"property: position; from: 4 15 20 ;to: 0 15 -20; dir: alternate; dur: 10000; loop: true",
-      "animation__2":"property: position; from: 0 15 -20 ;to: 0 2 -20 ; delay: 10000; dir: alternate; dur: 10000; loop: true",
-      "animation__3":"property: position; from: 0 2 -20 ;to: 4 2 20 ; delay: 20000; dir: alternate; dur: 10000; loop: true",
-      "animation__4":"property: position; from: 4 2 20 ;to: 4 15 20; delay: 30000; dir: alternate; dur: 10000; loop: true",
-      "animation__5":"property: position; from: 4 15 20 ;to: -10 15 10; delay: 40000; dir: alternate; dur: 10000; loop: true",
-      "animation__6":"property: position; from: -10 15 10 ;to: 20 8 -30; delay: 50000; dir: alternate; dur: 10000; loop: true"
+      "animation":"property: position; from: 4 15 20 ;to: 0 15 -20; 
+      dir: alternate; dur: 10000; loop: true",
+      "animation__2":"property: position; from: 0 15 -20 ;to: 0 2 -20 ; delay: 10000; 
+      dir: alternate; dur: 10000; loop: true",
+      "animation__3":"property: position; from: 0 2 -20 ;to: 4 2 20 ; delay: 20000; 
+      dir: alternate; dur: 10000; loop: true",
+      "animation__4":"property: position; from: 4 2 20 ;to: 4 15 20; delay: 30000; 
+      dir: alternate; dur: 10000; loop: true",
+      "animation__5":"property: position; from: 4 15 20 ;to: -10 15 10; delay: 40000; 
+      dir: alternate; dur: 10000; loop: true",
+      "animation__6":"property: position; from: -10 15 10 ;to: 20 8 -30; delay: 50000; 
+      dir: alternate; dur: 10000; loop: true"
       }]
 }
 \end{lstlisting}
@@ -678,12 +684,18 @@ Haciendo especial mención al campo \textit{objects}, en el que se crea una pelo
 
 \begin{lstlisting}[language=html]
 <a-sphere id="redBall" position="12 1 25" color="#FF0000" radius="1.5" 
-animation="property: position; from: 4 15 20 ;to: 0 15 -20; dir: alternate; dur: 10000; loop: true"
-animation__2="property: position; from: 0 15 -20 ;to: 0 2 -20 ; delay: 10000; dir: alternate; dur: 10000; loop: true"
-animation__3="property: position; from: 0 2 -20 ;to: 4 2 20 ; delay: 20000; dir: alternate; dur: 10000; loop: true" 
-animation__4="property: position; from: 4 2 20 ;to: 4 15 20; delay: 30000; dir: alternate; dur: 10000; loop: true"
-animation__5= "property: position; from: 4 15 20 ;to: -10 15 10; delay: 40000; dir: alternate; dur: 10000; loop: true"
-animation__6="property: position; from: -10 15 10 ;to: 20 8 -30; delay: 50000; dir: alternate; dur: 10000; loop: true">
+animation="property: position; from: 4 15 20 ;to: 0 15 -20; 
+dir: alternate; dur: 10000; loop: true"
+animation__2="property: position; from: 0 15 -20 ;to: 0 2 -20 ; delay: 10000; 
+dir: alternate; dur: 10000; loop: true"
+animation__3="property: position; from: 0 2 -20 ;to: 4 2 20 ; delay: 20000; 
+dir: alternate; dur: 10000; loop: true" 
+animation__4="property: position; from: 4 2 20 ;to: 4 15 20; delay: 30000; 
+dir: alternate; dur: 10000; loop: true"
+animation__5= "property: position; from: 4 15 20 ;to: -10 15 10; delay: 40000;
+dir: alternate; dur: 10000; loop: true"
+animation__6="property: position; from: -10 15 10 ;to: 20 8 -30; delay: 50000; 
+dir: alternate; dur: 10000; loop: true">
 </a-sphere>
 \end{lstlisting}
 
@@ -725,7 +737,7 @@ animation__6="property: position; from: -10 15 10 ;to: 20 8 -30; delay: 50000; d
     \caption{Solución en \textit{Scratch} para el ejercicio sigue pelota drone} 
     \label{fig:pelotaSolution}
     \end{figure}
-    La solución de este ejercicio se ha realizado obteniendo toda la información que aporta la cámara, tanto la posición del objeto en el eje X e Y como su área. Según los valores obtenidos se comandan distintas velocidades angulares y lineales. 
+    La solución de este ejercicio\footnote{\url{https://youtu.be/XQrNaWxRg7U}} se ha realizado obteniendo toda la información que aporta la cámara, tanto la posición del objeto en el eje X e Y como su área. Según los valores obtenidos se comandan distintas velocidades angulares y lineales. 
 \subsection{Atraviesa-bosque}
 \label{subsec:atraviesabosque}
 Ejercicio basado en atravesar un pasillo con diversos objetos que hay que esquivar. El sensor necesario es el infrarrojos para detectar en que posición se encuentra cada uno de los obstáculos. El escenario y los obstáculos se han creado con primitivas de \textit{A-Frame}.
@@ -744,7 +756,7 @@ Ejercicio basado en atravesar un pasillo con diversos objetos que hay que esquiv
     \label{fig:bosqueSolution}
     \end{figure}
     
-    En esta solución se obtienen todos los valores que devuelve el sensor de ultra-sonidos y, según donde detecte el obstáculo, se gira en un sentido u otro.
+    En esta solución\footnote{\url{https://youtu.be/z3n47wWHDFc}} se obtienen todos los valores que devuelve el sensor de ultra-sonidos y, según donde detecte el obstáculo, gira en un sentido u otro.
 
 \subsection{Cuadrado con drone}
 Este ejercicio consiste en comandar velocidades al \textit{drone} para dibujar un cuadrado con el movimiento del \textit{robot}.
@@ -762,7 +774,7 @@ Este ejercicio consiste en comandar velocidades al \textit{drone} para dibujar u
     \caption{Solución en \textit{Scratch} para el ejercicio cuadrado drone} 
     \label{fig:cuadradoSolution}
     \end{figure}
-    Su solución consiste en avanzar los metros necesarios para llegar a la cruz y, cuando se ha completado, girar 90 grados aproximadamente para así ``dibujar'' un cuadrado repitiendo este proceso.
+    Su solución\footnote{\url{https://www.youtube.com/watch?v=XjQNhNCkOJA}} consiste en avanzar los metros necesarios para llegar a la cruz y, cuando se ha completado, girar 90 grados aproximadamente para así ``dibujar'' un cuadrado repitiendo este proceso.
     
 \section{Ejercicios competitivos}
 \label{sec:competitive}
