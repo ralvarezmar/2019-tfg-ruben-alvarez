@@ -313,17 +313,28 @@ Siendo el código fuente \textit{HTML} empleado para el teleoperador del drone e
 <div id="right-container">
 <div class="buttons">
   <div id="upArrow">
-      <button onclick class="buttonArrow" id="invisible"><img class="buttonArrow" src="../assets/resources/speed.svg" /></button>
-      <button onclick class="buttonArrow" id="speed"><img class="buttonArrow" src="../assets/resources/speed.svg" /></button>
+      <button onclick class="buttonArrow" id="speed">
+      <img class="buttonArrow" src="../assets/resources/speed.svg"/>
+      </button>
   </div>
   <div id="bottomArrows">
-      <button onclick class="buttonArrow" id="left" ><img class="buttonArrow" src="../assets/resources/left.svg"/></button>
-      <button onclick class="buttonArrow" id="brake"><img class="buttonArrow" src="../assets/resources/brake.svg"/></button>
-      <button onclick class="buttonArrow" id="right"><img class="buttonArrow" src="../assets/resources/right.svg"/></button><br>
+      <button onclick class="buttonArrow" id="left">
+      <img class="buttonArrow" src="../assets/resources/left.svg"/>
+      </button>
+      <button onclick class="buttonArrow" id="brake">
+      <img class="buttonArrow" src="../assets/resources/brake.svg"/>
+      </button>
+      <button onclick class="buttonArrow" id="right">
+      <img class="buttonArrow" src="../assets/resources/right.svg"/>
+      </button><br>
   </div>
   <div id="takeoff">
-    <button onclick id="up"><img class="buttonArrow" src="../assets/resources/goUp.svg" /></button>
-    <button onclick id="down"><img class="buttonArrow" src="../assets/resources/goDown.svg" /></button></button>
+    <button onclick id="up">
+    <img class="buttonArrow" src="../assets/resources/goUp.svg"/>
+    </button>
+    <button onclick id="down">
+    <img class="buttonArrow" src="../assets/resources/goDown.svg"/>
+    </button>
   </div>
 </div>
 \end{lstlisting}
@@ -1178,7 +1189,7 @@ En el siguiente código se ejecuta en un \textit{robot} el código escrito en el
   });\end{lstlisting}
   
   
-Para el evaluador de este ejercicio se crea un gráfico con ayuda de una librería externa de \textit{JavaScript} (\textit{JavaScript Graphics Library}\footnote{\url{http://www.jsgl.org/}}) que muestra la distancia entre \textit{drones} y el tiempo que lleva de ejecución. Se puede ver este evaluador en la figura \ref{fig:evaluador_gato_raton}. 
+Para el evaluador de este ejercicio se crea un gráfico con ayuda de una librería externa de \textit{JavaScript} (\textit{JavaScript Graphics Library}\cite{bib:jsgrafico}) que muestra la distancia entre \textit{drones} y el tiempo que lleva de ejecución. Se puede ver este evaluador en la figura \ref{fig:evaluador_gato_raton}. 
  En este caso, el método \textit{createInterface} realiza añade todo lo necesario al \textit{DOM} para que el gráfico sea completo y llama a la función \textit{setAxis()} para añadir los ejes y las etiquetas.
  \begin{lstlisting}[language=javascript,caption=Función que establece los ejes y etiquetas de la gráfica]
  evaluator.createInterface= ()=>{
@@ -1239,7 +1250,9 @@ evaluator.setEvaluator = (arrayRobots) => {
     time.innerHTML = "Tiempo: " + formatTime;
     var pos1 = robot1.getPosition();
     var pos2 = robot2.getPosition();
-    var dist = Math.sqrt(Math.pow(pos2.x-pos1.x,2)+Math.pow(pos2.y-pos1.y,2)+Math.pow(pos2.z-pos1.z,2));
+    var dist = Math.sqrt(Math.pow(pos2.x-pos1.x,2)+
+                         Math.pow(pos2.y-pos1.y,2)+
+                         Math.pow(pos2.z-pos1.z,2));
     line.addPointXY(x,dist+10);
     x=x+0.5;
     myPanel.addElement(line);

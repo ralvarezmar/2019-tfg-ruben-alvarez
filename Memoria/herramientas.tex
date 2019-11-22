@@ -180,7 +180,7 @@ Un gestor de paquetes es una herramienta para automatizar el proceso de instalac
 \textit{Node Package Manager} (\textit{NPM})\cite{bib:npm} es el sistema de gestión de dependencias por defecto para \textit{Node.js}, que es un entorno de ejecución para \textit{JavaScript} y permite, con la configuración de un fichero, descargar dependencias y paquetes necesarios para el correcto funcionamiento de la aplicación. Todo ello ha de estar definido en un fichero llamado \textit{package.json} que debe ser escrito en \textit{JSON}. Para usar \textit{NPM} como instalador de paquetes únicamente hay que ejecutar ``\textit{npm install}'' en el directorio en el que se encuentre el fichero \textit{package.json}. Además, gracias a este gestor, podemos configurar pequeños \textit{scripts} para ejecutar algún proceso como lanzar una aplicación después de la instalación o empaquetar la aplicación en \textit{bundles} combinándolo con \textit{Webpack}.
 
 \subsection{Webpack}
-\textit{Webpack}\cite{bib:webpack} es un sistema de \textit{bundling} usado para empaquetar una aplicación web en su fase de producción. Se puede considerar una evolución de \textit{Grunt}\cite{bib:grunt} y \textit{Gulp} porque permite automatizar procesos principales tales como transpilar y preprocesar código. 
+\textit{Webpack}\cite{bib:webpack} es un sistema de \textit{bundling} usado para empaquetar una aplicación web en su fase de producción. Se puede considerar una evolución de \textit{Grunt}\cite{bib:grunt} y \textit{Gulp}\cite{bib:gulp} porque permite automatizar procesos principales tales como transpilar y preprocesar código. 
 
 
 % BLENDER %
@@ -245,7 +245,7 @@ El simulador hace uso del entorno \textit{A-Frame} y su diseño permite conectar
 Las principales funcionalidades del simulador son: 
 
 \begin{itemize}
-    \item Registrar los componentes principales para constituir un robot en \textit{A-Frame}, los cuales son \textit{followBody},\textit{spectatorComponent} e \textit{intersectionHandler}. El primero se encarga de simular una cámara en el robot, el segundo maneja eventos de intersección de los láseres y el último permite anclar distintos elementos al robot simulado. 
+    \item Registrar los componentes principales para constituir un robot en \textit{A-Frame}, los cuales son \textit{followBody}, \textit{spectatorComponent} e \textit{intersectionHandler}. El primero se encarga de simular una cámara en el robot, el segundo maneja eventos de intersección de los láseres y el último permite anclar distintos elementos al robot simulado. 
     
     \item Ofrece una interfaz en \textit{JavaScript} para manejar el robot en el entorno simulado de \textit{A-Frame} llamada \textit{Hardware Abstraction Layer} (\textit{HAL API}). \textit{Websim} se encarga de enviar instrucciones al robot de manera sencilla sin necesidad de comunicarse con el motor de \textit{A-Frame}. 
     
