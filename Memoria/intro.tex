@@ -5,7 +5,7 @@ En este capítulo se introducen los conceptos básicos en los que se apoya este 
    
 \section{Tecnologías web}
 \label{sec:web}
-Las tecnologías web han ido evolucionando a lo largo de los últimos años. Se basan fundamentalmente en un modelo cliente-servidor. Actualmente lo más común son las \textit{aplicaciones web}, que son herramientas ejecutadas mediante un navegador \textit{web} en las que los datos son procesados y almacenados en un servidor. Dentro de estas aplicaciones se pueden encontrar sistemas de correo electrónico (\textit{Gmail} \footnote{\url{https://mail.google.com/mail/}} o \textit{Outlook}\footnote{\url{https://outlook.live.com}}), tiendas \textit{online} (\textit{Amazon}\footnote{\url{https://www.amazon.es/}}), distribución de contenidos (\textit{Netflix}\footnote{ \url{https://www.netflix.com/}} o \textit{Spotify}\footnote{ \url{https://www.spotify.es/}}) o \textit{wikis}(\textit{Wikipedia}\footnote{\url{https://www.wikipedia.org/}}).
+Las tecnologías web han ido evolucionando a lo largo de los últimos años. Se basan fundamentalmente en un modelo cliente-servidor. Actualmente lo más común son las \textit{aplicaciones web}, que son herramientas ejecutadas mediante un navegador \textit{web} en las que los datos son procesados y almacenados en un servidor. Dentro de estas aplicaciones se pueden encontrar sistemas de correo electrónico (\textit{Gmail}  o \textit{Outlook}), tiendas \textit{online} (\textit{Amazon}), distribución de contenidos (\textit{Netflix} o \textit{Spotify}) o \textit{wikis}(\textit{Wikipedia}).
 
 
 \subsection{HTTP}
@@ -33,7 +33,7 @@ La versión actual del protocolo es del 2 de abril de 2019 (\textit{HTTP/2.4.38}
 
 \subsection{Tecnologías en cliente}
 \label{subsec:tecclient}
-Es la parte encargada de dar forma a la interfaz de usuario y de establecer la comunicación con el servidor. Una pieza importante del cliente es el navegador, ya que es el encargado de leer e interpretar la información recibida. Entre los navegadores más empleados se encuentran \textit{Firefox}\footnote{\url{https://www.mozilla.org/}}, \textit{Google Chrome}\footnote{\url{https://www.google.com/intl/es/chrome/}} u \textit{Opera}\footnote{\url{https://www.opera.com/}}. Las tecnologías más utilizadas son: 
+Es la parte encargada de dar forma a la interfaz de usuario y de establecer la comunicación con el servidor. Una pieza importante del cliente es el navegador, ya que es el encargado de leer e interpretar la información recibida. Entre los navegadores \textit{web} más empleados se encuentran \textit{Firefox}, \textit{Google Chrome} u \textit{Opera}\cite{bib:navegadores}. Las tecnologías más utilizadas son: 
 \begin{itemize}
     \item \textit{\textbf{HTML}}: es el estándar más utilizado para el desarrollo de páginas web. Actualmente los navegadores usan la versión \textit{HTML5}, que incluye muchas mejoras respecto a su predecesor: \textit{canvas}, \textit{websockets}, \textit{WebRTC}, vídeo, audio, etc. Este lenguaje indica la estructura de una página web, para editar el estilo y presentación visual hay que hacer uso de otros elementos como \textit{CSS}.
     \item \textit{\textbf{Cascading Style Sheets (CSS)}}:  es un lenguaje de diseño gráfico para definir y crear la presentación de un documento escrito en un lenguaje de marcado. De esta forma, se puede separar información y datos (en los documentos \textit{HTML}) y todo lo relativo al diseño y presentación (en documentos \textit{CSS}). Actualmente los navegadores usan la versión \textit{CSS3}.
@@ -106,10 +106,10 @@ Para dotar de inteligencia autónoma a los robots se requiere desarrollar sistem
 
 Como se ha dicho, se debe desarrollar un \textit{software} para dotar de inteligencia a un \textit{robot}, que habitualmente se programa con ayuda de herramientas, como los \textit{middleware} robóticos. El uso de estas herramientas permiten introducir una capa de abstracción con los \textit{drivers} y el \textit{hardware} del robot, reduciendo la complejidad y los conocimientos necesarios para realizar desarrollos. Algunas de estos \textit{middleware} son: 
 \begin{itemize}
-    \item  \textit{\textbf{Internet Comunication Engine (ICE)}}\footnote{\url{https://zeroc.com/products/ice}}. Plataforma de \textit{software} libre orientada a objetos que proporciona las herramientas para simplificar las comunicaciones entre componentes. Usado para la comunicación entre nodos, proporciona una capa que se encarga de abrir y cerrar conexiones entre ellos sin necesidad de usar el protocolo \textit{HTTP}. 
-    \item \textit{\textbf{Robot Operating System (ROS)}}\footnote{\url{https://www.ros.org/}}. Plataforma de \textit{software} libre para el desarrollo de \textit{software} de robots. Provee servicios estándar de un sistema operativo como la abstracción de \textit{hardware}, control de dispositivos de bajo nivel, mecanismos de intercambio de mensajes entre procesos y una serie de herramientas utilizadas en robótica. 
-    \item \textit{\textbf{Orca}}\footnote{\url{http://orca-robotics.sourceforge.net/}}. Plataforma de \textit{software} libre dedicada al desarrollo de aplicaciones robóticas. Dedicada principalmente al desarrollo de componentes, que se pueden ejecutar de manera independiente o se pueden unir para formar sistemas robóticos de distintas complejidades. Permite reutilizar código y emplear componentes robóticos ya creados.
-     \item \textit{\textbf{Orocos}}\footnote{\url{https://orocos.org/}}. Proyecto de \textit{software} libre dedicado al control de robots y máquinas. Está orientado a componentes y permite añadir funcionalidad de manera sencilla y sin recopilar todo el código. Incluye paquetes complementarios como filtros de \textit{Bayes}, librerías de control dinámico y cinemático o visión.
+    \item  \textit{\textbf{Internet Comunication Engine (ICE)}}\cite{bib:ice}. Plataforma de \textit{software} libre orientada a objetos que proporciona las herramientas para simplificar las comunicaciones entre componentes. Usado para la comunicación entre nodos, proporciona una capa que se encarga de abrir y cerrar conexiones entre ellos sin necesidad de usar el protocolo \textit{HTTP}. 
+    \item \textit{\textbf{Robot Operating System (ROS)}}\cite{bib:ros}. Plataforma de \textit{software} libre para el desarrollo de \textit{software} de robots. Provee servicios estándar de un sistema operativo como la abstracción de \textit{hardware}, control de dispositivos de bajo nivel, mecanismos de intercambio de mensajes entre procesos y una serie de herramientas utilizadas en robótica. 
+    \item \textit{\textbf{Orca}}\cite{bib:orca}. Plataforma de \textit{software} libre dedicada al desarrollo de aplicaciones robóticas. Dedicada principalmente al desarrollo de componentes, que se pueden ejecutar de manera independiente o se pueden unir para formar sistemas robóticos de distintas complejidades. Permite reutilizar código y emplear componentes robóticos ya creados.
+     \item \textit{\textbf{Orocos}}\cite{bib:orocos} Proyecto de \textit{software} libre dedicado al control de robots y máquinas. Está orientado a componentes y permite añadir funcionalidad de manera sencilla y sin recopilar todo el código. Incluye paquetes complementarios como filtros de \textit{Bayes}, librerías de control dinámico y cinemático o visión.
 \end{itemize}
 
 \section{Robótica educativa}
@@ -127,47 +127,46 @@ Resulta importante acercar la robótica a alumnos en edades muy tempranas, parti
 Las nociones básicas de las que se sirve este acercamiento son los lenguajes de programación visual. Se trata de lenguajes potentes y muy intuitivos que abstraen al alumno de la complejidad que implica la sintaxis y aportan un entorno visual haciendo que el software sea bien aceptado por estudiantes de corta edad. Además permiten a los usuarios programar manipulando elementos gráficos en lugar de hacerlo textualmente. Los lenguajes de programación visual más importantes son: 
 
 \begin{itemize}
-    \item \textit{Scratch}\footnote{\url{https://scratch.mit.edu/}}: proyecto liderado por el \textit{MIT}, es utilizado por estudiantes y docentes para programar animaciones, juegos e interacciones fácilmente gracias a su interfaz visual. Se trata de un lenguaje donde los programas se construyen ensamblando bloques gráficos y cada bloque es el equivalente a una función o método de cualquier lenguaje de programación. Actualmente está en su versión \textit{Scratch 3.0} y en la figura \ref{fig:scratch} se puede ver un ejemplo de su interfaz gráfica. 
+    \item \textit{\textbf{Scratch}}\cite{bib:scratch}: proyecto liderado por el \textit{MIT}, es utilizado por estudiantes y docentes para programar animaciones, juegos e interacciones fácilmente gracias a su interfaz visual. Se trata de un lenguaje donde los programas se construyen ensamblando bloques gráficos y cada bloque es el equivalente a una función o método de cualquier lenguaje de programación. Actualmente está en su versión \textit{Scratch 3.0} y en la figura \ref{fig:scratch} se puede ver un ejemplo de su interfaz gráfica. 
     \begin{figure}[H]
     \centering
-    \includegraphics[width=0.85\textwidth]{img/scratch.jpg}
+    \includegraphics[width=0.6\textwidth]{img/scratch.jpg}
     \caption{Interfaz gráfica de Scratch} \label{fig:scratch}
     \end{figure}
 
-    \item \textit{LEGO}: dispone de una amplia gama de robots programables y cada uno de ellos tiene un sistema de programación bajo interfaz gráfica. En las figuras \ref{fig:lego1} y \ref{fig:lego2} se pueden ver dos ejemplos de distintos software para distintos robots.  
+    \item \textit{\textbf{LEGO}}\cite{bib:lego}: dispone de una amplia gama de robots programables y cada uno de ellos tiene un sistema de programación bajo interfaz gráfica. En la figura \ref{fig:lego} se pueden ver dos ejemplos de distintos software para distintos robots.  
     
     \begin{figure}[H]
     \centering
-        \begin{subfigure}{0.45\textwidth}
-           \includegraphics[width=\textwidth]{img/lego1.png}
-           \caption{Interfaz gráfica de LEGO WeDo 2.0} 
-            \label{fig:lego1}
+        \begin{subfigure}{0.45\textwidth}           \includegraphics[width=\textwidth]{img/lego1.png}
+           \caption{Interfaz gráfica de LEGO WeDo 2.0}             \label{fig:lego1}
         \end{subfigure}
         \begin{subfigure}{0.45\textwidth}
             \includegraphics[width=\textwidth]{img/lego2.jpg}
             \caption{Interfaz gráfica de LEGO MINDSTORMS EV3} 
             \label{fig:lego2}
         \end{subfigure}
+        \label{fig:lego}
     \end{figure}
 
-    \item \textit{Kodu}\footnote{\url{https://www.kodugamelab.com}}: lenguaje de programación visual creado por Microsoft para desarrollar videojuegos. Diseñado para ser muy accesible y agradable para cualquier usuario siendo un lenguaje basado en reglas, condiciones y acciones prescindiendo de muchas convecciones de programación como bucles, subrutinas o variables simbólicas. Permite a los más jóvenes a ser creadores de sus propios videojuegos.  
+    \item \textit{\textbf{Kodu}}\cite{bib:kodu}: lenguaje de programación visual creado por Microsoft para desarrollar videojuegos. Diseñado para ser muy accesible y agradable para cualquier usuario siendo un lenguaje basado en reglas, condiciones y acciones prescindiendo de muchas convecciones de programación como bucles, subrutinas o variables simbólicas. Permite a los más jóvenes a ser creadores de sus propios videojuegos.  
     
     \begin{figure}[H]
         \centering
-        \includegraphics[width=1\textwidth]{img/kodu.jpg}
+        \includegraphics[width=0.9\textwidth]{img/kodu.jpg}
         \caption{Interfaz gráfica de Kodu} \label{fig:kodu}
     \end{figure}
     
-    \item \textit{Snap!\footnote{\url{https://snap.berkeley.edu}}}: basado en \textit{Scratch}, sigue su facilidad para aprender a programar pero su uso se concentra en edades algo más avanzadas. Accesible desde cualquier navegador al estar programado en \textit{JavaScript}.
+    \item \textit{\textbf{Snap!}}\cite{bib:snap}: basado en \textit{Scratch}, sigue su facilidad para aprender a programar pero su uso se concentra en edades algo más avanzadas. Accesible desde cualquier navegador al estar programado en \textit{JavaScript}.
     
     \begin{figure}[H]
         \centering
-        \includegraphics[width=1\textwidth]{img/snap.jpg}
+        \includegraphics[width=0.9\textwidth]{img/snap.jpg}
         \caption{Interfaz gráfica de Snap!} \label{fig:snap}
     \end{figure}
     
-    \item \textit{AppInventor\footnote{\url{http://ai2.appinventor.mit.edu/}}}: Entorno de desarrollo de software creado por \textit{Google} en colaboración con el \textit{MIT} destinado a la elaboración de aplicaciones \textit{Android}. El usuario puede desarrollar de forma visual y con ayuda de bloques una aplicación que cubre un gran número de necesidades básicas en un dispositivo móvil.
-        \begin{figure}[H]
+    \item \textit{\textbf{AppInventor}}\cite{bib:appinventor}: Entorno de desarrollo de software creado por \textit{Google} en colaboración con el \textit{MIT} destinado a la elaboración de aplicaciones \textit{Android}. El usuario puede desarrollar de forma visual y con ayuda de bloques una aplicación que cubre un gran número de necesidades básicas en un dispositivo móvil.
+        \begin{figure}[h]
         \centering
         \includegraphics[width=0.9\textwidth]{img/AppInventor.png}
         \caption{Interfaz gráfica de AppInventor} \label{fig:appinventor}
@@ -178,19 +177,19 @@ Las nociones básicas de las que se sirve este acercamiento son los lenguajes de
 
 También son muy habituales el uso de plataformas hardware, que incorporan los elementos básicos para la construcción de un robot. Las más empleadas son: 
 \begin{itemize}
-    \item \textit{LEGO mindstorms}: plataforma dedicada a construir \textit{robots} con piezas de LEGO. También incluye un microprocesador para ser programado, sensores (infrarrojos, táctiles y de color) y motores.
+    \item \textit{\textbf{LEGO mindstorms}}: plataforma dedicada a construir \textit{robots} con piezas de LEGO. También incluye un microprocesador para ser programado, sensores (infrarrojos, táctiles y de color) y motores.
             \begin{figure}[H]
         \centering
         \includegraphics[width=0.4\textwidth]{img/legomind.jpg}
         \caption{Ejemplo de \textit{robot} montado con \textit{Mindstorms}} \label{fig:lego}
     \end{figure}
-    \item \textit{Makeblock\footnote{\url{https://makeblock.es/}}}: plataforma de construcción robótica muy accesible que permite la creación de \textit{robots} con \textit{kits} dirigidos a todo tipo de público. El \textit{robot} que se construye con estos \textit{kits} es el \textit{mBot}:
+    \item \textit{\textbf{Makeblock}}\cite{bib:makeblock}: plataforma de construcción robótica muy accesible que permite la creación de \textit{robots} con \textit{kits} dirigidos a todo tipo de público. El \textit{robot} que se construye con estos \textit{kits} es el \textit{mBot}:
         \begin{figure}[H]
         \centering
         \includegraphics[width=0.3\textwidth]{img/mBotReal.jpg}
         \caption{mBot de la plataforma \textit{Makeblock}} \label{fig:makeblock}
     \end{figure}
     
-    \item \textit{Arduino\footnote{\url{https://www.arduino.cc/}}}: Plataforma de creación electrónica. Permite crear microordenadores a los que dar multitud de usos con una sola placa, que dispone de entradas para periféricos y un microcontrolador.
+    \item \textit{\textbf{Arduino}}\cite{bib:arduino}: Plataforma de creación electrónica. Permite crear microordenadores a los que dar multitud de usos con una sola placa, que dispone de entradas para periféricos y un microcontrolador.
     
 \end{itemize}{}

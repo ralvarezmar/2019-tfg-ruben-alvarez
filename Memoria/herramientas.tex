@@ -47,8 +47,10 @@ A-Frame proporciona elementos como \textit{a-box} o \textit{a-sky} llamados prim
     <a-scene background="color: #FAFAFA">
       <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9" shadow></a-box>
       <a-sphere position="0 1.25 -5" radius="1.25" color="#ff0000" shadow></a-sphere>
-      <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D" shadow></a-cylinder>
-      <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color=" #1cde83" shadow></a-plane>
+      <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D" shadow>
+      </a-cylinder>
+      <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color=" #1cde83" shadow>
+      </a-plane>
       <a-sky color="#e7e1e0"></a-sky>
     </a-scene>
   </body>
@@ -101,7 +103,7 @@ A-Frame, además de disponer primitivas como las mostradas, hace posible la crea
 Estos generadores de código aportan las herramientas para crear funciones, condicionales, bucles, etc. El principal problema de esto es que en ocasiones se requiere del uso de APIs de otras dependencias. \textit{Blockly} aporta una solución; un generador de bloques personalizados que traduce al código que deseemos. Esto aporta mucha flexibilidad y da la funcionalidad deseada para el desarrollo de este proyecto. 
 
 \subsection{Bloques personalizados}
-Como se ha explicado, \textit{Blockly} dispone de una gran cantidad de bloques predefinidos; desde funciones matemáticas hasta estructuras en bucle. Sin embargo, para interactuar con una aplicación externa, se deben crear bloques personalizados para formar una API. Según la documentación ofrecida por \textit{Google}\footnote{\url{https://developers.google.com/blockly/guides/create-custom-blocks/overview}}, la mejor forma de crear un bloque es buscar un bloque existente con una funcionalidad similar y modificarlo según se necesite. De otra manera, para generar un bloque personalizado, hay varios aspectos a tener en cuenta: 
+Como se ha explicado, \textit{Blockly} dispone de una gran cantidad de bloques predefinidos; desde funciones matemáticas hasta estructuras en bucle. Sin embargo, para interactuar con una aplicación externa, se deben crear bloques personalizados para formar una API. Según la documentación ofrecida por \textit{Google}\cite{bib:docblockly}, la mejor forma de crear un bloque es buscar uno existente con una funcionalidad similar y modificarlo según se necesite. De otra manera, para generar un bloque personalizado, hay varios aspectos a tener en cuenta: 
 
 \begin{itemize}
     \item Primero se define el bloque para determinar su aspecto gráfico y su comportamiento. Esto incluye el texto, color, forma o cómo conectarlos con otros bloques. La configuración de estos parámetros se puede realizar mediante \textit{JSON} o \textit{JavaScript}. El bloque mostrado en la figura \ref{fig:customblock} se puede configurar con los dos métodos de la siguiente manera:
@@ -175,16 +177,16 @@ Como se ha explicado, \textit{Blockly} dispone de una gran cantidad de bloques p
 Un gestor de paquetes es una herramienta para automatizar el proceso de instalación, actualización, configuración y eliminación de software. En este proyecto se han utilizado \textit{NPM} y \textit{Webpack} en sus versiones \textit{3.5.2} y \textit{4.41.2} respectivamente. Se han empleado para descargar los paquetes y dependencias para la correcta ejecución de la aplicación y para generar los \textit{bundles} correspondientes. 
 
 \subsection{NPM}
-\textit{Node Package Manager}\footnote{\url{https://www.npmjs.com/}} (\textit{NPM}) es el sistema de gestión de dependencias por defecto para \textit{Node.js}, que es un entorno de ejecución para \textit{JavaScript} y permite, con la configuración de un fichero, descargar dependencias y paquetes necesarios para el correcto funcionamiento de la aplicación. Todo ello ha de estar definido en un fichero llamado \textit{package.json} que debe ser escrito en \textit{JSON}. Para usar \textit{NPM} como instalador de paquetes únicamente hay que ejecutar ``\textit{npm install}'' en el directorio en el que se encuentre el fichero \textit{package.json}. Además, gracias a este gestor, podemos configurar pequeños \textit{scripts} para ejecutar algún proceso como lanzar una aplicación después de la instalación o empaquetar la aplicación en \textit{bundles} combinándolo con \textit{Webpack}.
+\textit{Node Package Manager} (\textit{NPM})\cite{bib:npm} es el sistema de gestión de dependencias por defecto para \textit{Node.js}, que es un entorno de ejecución para \textit{JavaScript} y permite, con la configuración de un fichero, descargar dependencias y paquetes necesarios para el correcto funcionamiento de la aplicación. Todo ello ha de estar definido en un fichero llamado \textit{package.json} que debe ser escrito en \textit{JSON}. Para usar \textit{NPM} como instalador de paquetes únicamente hay que ejecutar ``\textit{npm install}'' en el directorio en el que se encuentre el fichero \textit{package.json}. Además, gracias a este gestor, podemos configurar pequeños \textit{scripts} para ejecutar algún proceso como lanzar una aplicación después de la instalación o empaquetar la aplicación en \textit{bundles} combinándolo con \textit{Webpack}.
 
 \subsection{Webpack}
-\textit{Webpack}\footnote{\url{https://webpack.js.org/}} es un sistema de \textit{bundling} usado para empaquetar una aplicación web en su fase de producción. Se puede considerar una evolución de \textit{Grunt}\footnote{\url{https://gruntjs.com/}} y \textit{Gulp}\footnote{\url{https://gulpjs.com/}} porque permite automatizar procesos principales tales como transpilar y preprocesar código. 
+\textit{Webpack}\cite{bib:webpack} es un sistema de \textit{bundling} usado para empaquetar una aplicación web en su fase de producción. Se puede considerar una evolución de \textit{Grunt}\cite{bib:grunt} y \textit{Gulp} porque permite automatizar procesos principales tales como transpilar y preprocesar código. 
 
 
 % BLENDER %
 \section{Blender}
 \label{sec:blender}
-\textit{Blender} es un programa libre dedicado al diseño y animación 3D. Mediante una interfaz gráfica permite diseñar objetos, personajes y escenas en tres dimensiones con muy diversas técnicas. Cada uno de los elementos creados pueden ser animados mediante \textit{keyframing} o animación por fotogramas clave. En su origen \textit{Blender} fue distribuido como una herramienta privada explotada por un estudio de animación, pero actualmente se encuentra bajo licencia \textit{GPL}\footnote{\url{https://www.gnu.org/licenses/gpl-3.0.en.html}}. 
+\textit{Blender} es un programa libre dedicado al diseño y animación 3D. Mediante una interfaz gráfica permite diseñar objetos, personajes y escenas en tres dimensiones con muy diversas técnicas. Cada uno de los elementos creados pueden ser animados mediante \textit{keyframing} o animación por fotogramas clave. En su origen \textit{Blender} fue distribuido como una herramienta privada explotada por un estudio de animación, pero actualmente se encuentra bajo licencia \textit{GPL}\cite{bib:gpl}. 
 
 La versión utilizada en este proyecto es la \textit{2.79} y se ha empleado para la creación de modelos y escenarios para ser incluidos en el simulador \textit{WebSim}. En la imagen \ref{fig:blender} se puede ver la interfaz gráfica de \textit{Blender}. \\
 
@@ -228,12 +230,13 @@ En la imagen \ref{fig:tree} se puede ver la figura añadida a un escenario de A-
 \includegraphics[width=0.8\textwidth]{img/tree_aframe.png}
 \caption{Modelo glTF añadido en un escenario de A-Frame} \label{fig:tree}
 \end{figure}
-Además del \textit{software} explicado en esta sección, existen multitud de herramientas para convertir a glTF desde formatos como \textit{OBJ}, \textit{COLLADA} o  \textit{PCD}\footnote{\url{https://github.com/KhronosGroup/glTF}}. De esta manera es posible buscar modelos 3D en librerías\footnote{\url{https://sketchfab.com}} para editarlos e incluirlos en \textit{Websim}.
+Además del \textit{software} explicado en esta sección, existen multitud de herramientas para convertir a glTF desde formatos como \textit{OBJ}, \textit{COLLADA} o  \textit{PCD}\cite{bib:gltf}. De esta manera es posible buscar modelos 3D en librerías\cite{bib:sketchfab}
+ para editarlos e incluirlos en \textit{Websim}.
 
 % WEBSIM %
 \section{Simulador WebSim}
 
-\textit{Websim} es un simulador diseñado para enseñar conceptos básicos de tecnología e iniciar a niños en robótica y programación. La versión inicial de la que parte este proyecto está desarrollada por Álvaro Paniagua Tena\footnote{\url{https://github.com/RoboticsLabURJC/2018-tfg-alvaro_paniagua}} y dada su  importancia en el desarrollo de este TFG, se describe con cierta profundidad.  
+\textit{Websim} es un simulador diseñado para enseñar conceptos básicos de tecnología e iniciar a niños en robótica y programación. La versión inicial de la que parte este proyecto está desarrollada por Álvaro Paniagua Tena\cite{bib:alvaro} y dada su  importancia en el desarrollo de este TFG, se describe con cierta profundidad.  
 
 \subsection{Diseño}
 \label{subsec:design}
@@ -300,7 +303,7 @@ brains.runBrain = (robotID, code) =>{
 brains.resumeBrain = (robotID, code) =>{
   code = 'async function myAlgorithm(){\n'+code+'\n}\nmyAlgorithm();';
   var threadBrain = brains.threadsBrains.find((threadBrain)=> threadBrain.id == robotID);
-  threadBrain.iteration = brains.createTimeoutBrain(code, Websim.robots.getHalAPI(robotID), robotID);
+  threadBrain.iteration=brains.createTimeoutBrain(code,robots.getHalAPI(robotID),robotID);
   threadBrain.running = true;
   threadBrain.codeRunning = code;
 }

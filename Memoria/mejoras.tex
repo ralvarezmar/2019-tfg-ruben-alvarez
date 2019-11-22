@@ -111,13 +111,13 @@ Uno de los principales problemas encontrados es que el motor de físicas de \tex
 
 \subsection{Modelo 3D, apariencia}
 
-Para simular el robot en el entorno de \textit{A-Frame} es necesario realizar un modelo tridimensional. Para ello se ha buscado un modelo disponible en un repositorio\footnote{\url{https://sketchfab.com/}} y se ha retocado en \textit{Blender} (figura \ref{fig:droneBlender}) para que se ajuste a los requisitos del entorno. Las modificaciones que se han realizado al modelo son: 
+Para simular el robot en el entorno de \textit{A-Frame} es necesario realizar un modelo tridimensional. Para ello se ha buscado un modelo disponible en un repositorio\cite{bib:sketchfab} y se ha retocado en \textit{Blender} (figura \ref{fig:droneBlender}) para que se ajuste a los requisitos del entorno. Las modificaciones que se han realizado al modelo son: 
 \begin{itemize}
     \item Reducción de polinomios (modelo \textit{low-poly}) para disminuir el peso del modelo y aliviar los tiempos de carga del escenario.
     \item Rotación del modelo para que encaje con la orientación que disponía el anterior robot. Es decir, que el robot tenga su parte frontal mirando hacia el eje X positivo para que al comandarle velocidad lineal se desplace hacia delante.
     \item El modelo 3D dispone de focos de luz, que son independientes de la luz que proporciona \textit{A-Frame}. Se ha suprimido o desplazado para adaptarla al escenario.
     
-    \item Elaborar una animación a las hélices para darle un aspecto más realista usando animaciones de \textit{A-Frame}, que se activa vía \textit{software} cuando el drone despega del suelo\footnote{\url{https://www.youtube.com/watch?v=XjQNhNCkOJA}}.
+    \item Elaborar una animación a las hélices para darle un aspecto más realista usando animaciones de \textit{A-Frame}, que se activa vía \textit{software} cuando el drone despega del suelo.
     
 \end{itemize}
 
@@ -192,8 +192,7 @@ Para ello, se han creado 4 bloques con las funciones anteriormente explicadas:
 
  Como ejemplo ilustrativo se muestra en detalle la traducción del bloque despegar, que va incluida (junto a los otros bloques creados) en el directorio de bloques personalizados.
 
-
-\begin{lstlisting}[language=javascript,label=lst:tradAterrizar]
+\begin{lstlisting}[language=javascript,label=lst:tradAterrizar,basicstyle=\tiny]
 export default function initLandBlock(){
   var landBlock = {
   "type": "land",
@@ -311,22 +310,22 @@ Se han creado teleoperadores para los modelos del \textit{piBot}, \textit{mBot},
 Siendo el código fuente \textit{HTML} empleado para el teleoperador del drone el mostrado a continuación: 
 
 \begin{lstlisting}[language=html,label=lst:teleop,caption=Código HTML del teleoperador del drone]
-      <div id="right-container">
-        <div class="buttons">
-          <div id="upArrow">
-              <button onclick class="buttonArrow" id="invisible"><img class="buttonArrow" src="../assets/resources/speed.svg" /></button>
-              <button onclick class="buttonArrow" id="speed"><img class="buttonArrow" src="../assets/resources/speed.svg" /></button>
-          </div>
-          <div id="bottomArrows">
-              <button onclick class="buttonArrow" id="left" ><img class="buttonArrow" src="../assets/resources/left.svg"/></button>
-              <button onclick class="buttonArrow" id="brake"><img class="buttonArrow" src="../assets/resources/brake.svg"/></button>
-              <button onclick class="buttonArrow" id="right"><img class="buttonArrow" src="../assets/resources/right.svg"/></button><br>
-          </div>
-          <div id="takeoff">
-            <button onclick id="up"><img class="buttonArrow" src="../assets/resources/goUp.svg" /></button>
-            <button onclick id="down"><img class="buttonArrow" src="../assets/resources/goDown.svg" /></button></button>
-          </div>
-        </div>
+<div id="right-container">
+<div class="buttons">
+  <div id="upArrow">
+      <button onclick class="buttonArrow" id="invisible"><img class="buttonArrow" src="../assets/resources/speed.svg" /></button>
+      <button onclick class="buttonArrow" id="speed"><img class="buttonArrow" src="../assets/resources/speed.svg" /></button>
+  </div>
+  <div id="bottomArrows">
+      <button onclick class="buttonArrow" id="left" ><img class="buttonArrow" src="../assets/resources/left.svg"/></button>
+      <button onclick class="buttonArrow" id="brake"><img class="buttonArrow" src="../assets/resources/brake.svg"/></button>
+      <button onclick class="buttonArrow" id="right"><img class="buttonArrow" src="../assets/resources/right.svg"/></button><br>
+  </div>
+  <div id="takeoff">
+    <button onclick id="up"><img class="buttonArrow" src="../assets/resources/goUp.svg" /></button>
+    <button onclick id="down"><img class="buttonArrow" src="../assets/resources/goDown.svg" /></button></button>
+  </div>
+</div>
 \end{lstlisting}
 
 También se ha creado una página \textit{web}  única para acceder a todos ellos: 
