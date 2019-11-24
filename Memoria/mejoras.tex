@@ -170,11 +170,11 @@ Para ello, se han creado 4 bloques con las funciones anteriormente explicadas:
         \caption{Bloque de velocidad de ascenso} \label{fig:ascension}
     \end{figure}
     
-    \item Velocidad descenso: Comanda al robot la velocidad descendente del bloque que se le adjunte. 
+    \item Obtener velocidad de elevación: Devuelve la velocidad vertical del robot. 
     \begin{figure}[H]
         \centering
-        \includegraphics[width=0.3\textwidth]{img/descensoBlockly.png}
-        \caption{Bloque de velocidad de descenso} \label{fig:descenso}
+        \includegraphics[width=0.4\textwidth]{img/verticalBlockly.png}
+        \caption{Bloque que obtiene la velocidad vertical del robot} \label{fig:vertical}
     \end{figure}
     \item Aterrizar: Comanda velocidad vertical negativa al \textit{drone} hasta que alcance el suelo. Mantendrá esa posición hasta recibir una nueva orden.
     \begin{figure}[H]
@@ -190,13 +190,13 @@ Para ello, se han creado 4 bloques con las funciones anteriormente explicadas:
         \end{figure}
 \end{itemize}
 
- Como ejemplo ilustrativo se muestra en detalle la traducción del bloque despegar, que va incluida (junto a los otros bloques creados) en el directorio de bloques personalizados.
+ Como ejemplo ilustrativo se muestra en detalle la traducción del bloque aterrizar, que va incluida (junto a los otros bloques creados) en el directorio de bloques personalizados.
 
 \begin{lstlisting}[language=javascript,label=lst:tradAterrizar,basicstyle=\tiny]
 export default function initLandBlock(){
   var landBlock = {
   "type": "land",
-  "message0": "Despegar %1",
+  "message0": "Aterrizar %1",
   "args0": [
     {
       "type": "field_variable",
@@ -517,7 +517,7 @@ Cuando se pulsa alguno de los botones de la interfaz gráfica el comportamiento 
 
 \subsection{WebSim y sus ficheros de configuración}
 
-Se ha mejorado el código de \textit{WebSim} para que acepte sus ficheros de configuración en los que se especifica el escenario simulado, sus elementos, el robot elegido, distintos parámetros, etc. Esto da mucha flexibilidad al uso del simulador, qued deja de tener estos elementos directamente en el código fuente. 
+Se ha mejorado el código de \textit{WebSim} para que acepte sus ficheros de configuración en los que se especifica el escenario simulado, sus elementos, el robot elegido, distintos parámetros, etc. Esto da mucha flexibilidad al uso del simulador, que deja de tener estos elementos directamente en el código fuente. 
 
 Estos archivos se han creado en \textit{JSON} y se ha programado un \textit{script} (\textit{listing} \ref{list:conf}) para cargar cada fichero de configuración. Para ello se crea una variable en el \textit{index.html} del editor (\textit{listing} \ref{list:variable}) con la ruta en la que esté ubicado y el \textit{script} abre el fichero y recorre el \textit{JSON} para dar al escenario los valores establecidos.
 Esta funcionalidad se ha probado y validado satisfactoriamente con los teleoperadores creados. De modo que además de mejorar el simulador para que los acepte, se han creado varios ficheros de configuración concretos como ejemplo con los diferentes \textit{robots} soportados y varios escenarios distintos. 
@@ -723,7 +723,6 @@ dir: alternate; dur: 10000; loop: true">
     \includegraphics[width=4cm, height=4cm]{img/followBallTello4.png}
 \label{fig:figure2_4}
 \end{subfigure}
-
 \begin{subfigure}[t]{0.2\textwidth}
     \includegraphics[width=4cm, height=4cm]{img/followBallTello6.png}
 \label{fig:figure2_6}
