@@ -27,11 +27,11 @@ En el repositorio principal, la metodología de trabajo durante el proyecto ha c
 
  \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{img/github.jpg}
+    \includegraphics[width=0.9\textwidth]{img/github.jpg}
     \caption{Representación gráfica de las ramas del proyecto} \label{fig:github}
 \end{figure}
 
-En el repositorio del \textit{blog} se realizó una copia (\textit{fork}) para trabajar directamente sobre la cuenta personal de \textit{GitHub}\footnote{\url{https://github.com/ralvarezmar/2019-tfg-ruben-alvarez}}. De esta manera, en primera instancia se suben los cambios al repositorio personal y, cuando hay progresos importantes, se suben todos los cambios al repositorio original. Para automatizar esta tarea se ha realizado un \textit{script} de \textit{shell} en el que el primer argumento es el mensaje del \textit{commit} y, si se escribe \textit{'-t'} después de este, se realiza la subida al repositorio copiado y al original.
+En el repositorio del \textit{blog} se realizó una copia (\textit{fork}) para trabajar directamente sobre la cuenta personal de \textit{GitHub}\footnote{\url{https://github.com/ralvarezmar/2019-tfg-ruben-alvarez}}. De esta manera, en primera instancia se suben los cambios al repositorio personal y, cuando hay progresos importantes, se suben todos los cambios al repositorio original. Para automatizar esta tarea se ha realizado un \textit{script} de \textit{shell} en el que el primer argumento es el mensaje del \textit{commit} y, si se escribe \textit{'-t'} después de este, se realiza la subida al repositorio copiado y al original.\newline
 
 \begin{lstlisting}[language=bash, caption=\textit{Script} para subir código a \textit{GitHub}]
 #!/bin/sh

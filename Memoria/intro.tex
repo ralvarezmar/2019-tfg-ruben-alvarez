@@ -1,15 +1,26 @@
 
 \chapter{Introducción}
-\label{chap:intro}
+\label{chap:intro} 
 En este capítulo se introducen los conceptos básicos en los que se apoya este proyecto. Se explican y se ponen en contexto las tecnologías web y el estado actual de la robótica y su expansión hasta llegar al punto en el que se encuentra, haciendo especial mención a la robótica educativa en la que se centra el proyecto.
    
 \section{Tecnologías web}
 \label{sec:web}
-Las tecnologías web han ido evolucionando a lo largo de los últimos años. Se basan fundamentalmente en un modelo cliente-servidor. Actualmente lo más común son las \textit{aplicaciones web}, que son herramientas ejecutadas mediante un navegador \textit{web} en las que los datos son procesados y almacenados en un servidor. Dentro de estas aplicaciones se pueden encontrar sistemas de correo electrónico (\textit{Gmail}  o \textit{Outlook}), tiendas \textit{online} (\textit{Amazon}), distribución de contenidos (\textit{Netflix} o \textit{Spotify}) o \textit{wikis}(\textit{Wikipedia}).
+Las tecnologías web han ido evolucionando a lo largo de los últimos años. Se basan fundamentalmente en un modelo cliente-servidor. Actualmente lo más común son las \textit{aplicaciones web}, que son herramientas ejecutadas mediante un navegador \textit{web} en las que los datos son procesados y almacenados en un servidor. Dentro de estas aplicaciones \textit{web} exitosas se pueden encontrar sistemas de correo electrónico (\textit{Gmail}  o \textit{Outlook}), tiendas \textit{online} (\textit{Amazon}), distribución de contenidos (\textit{Netflix} o \textit{Spotify}) o \textit{wikis} (\textit{Wikipedia}).
 
 
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{img/amazon.png}
+    \caption{Aplicación \textit{web} dedicada a la venta \textit{on-line}} \label{fig:amazon}
+    \end{figure}
+    
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{img/netflix.png}
+    \caption{Aplicación \textit{web} dedicada a la distribución de contenidos} \label{fig:netflix}
+    \end{figure}
 \subsection{HTTP}
-\label{subsec:http}
+\label{subsec:http} 
 \textit{HiperText Transfer Protocol} (\textit{HTTP}) es el protocolo de nivel de aplicación utilizado para transferir recursos hipermedia entre ordenadores y sigue el esquema petición-respuesta entre cliente y servidor (Figura \ref{fig:http}). En esta comunicación el cliente abre una conexión \textit{TCP} con el servidor y envía un mensaje de petición \textit{HTTP} y, por parte del servidor, responde al cliente con un mensaje \textit{HTTP} y cierra la conexión \textit{TCP}. 
 El protocolo \textit{HTTP} no mantiene estado. Es decir, el servidor trata cada petición de manera aislada y no almacena información sobre peticiones realizadas por un mismo cliente. 
 Las peticiones están definidas por el protocolo y tienen métodos concretos: 
@@ -69,11 +80,26 @@ Los robots se componen de sensores, controladores y actuadores.
 La robótica es ya una realidad. Los robots no son utilizados únicamente por empresas para labores industriales, si no que se pueden encontrar en hogares y en la vida cotidiana de las personas. Esto es debido al aumento de eficiencia que generan, reducción de costes o el control de errores que aportan.  Algunas ejemplos de \textit{robots} empleados en la actualidad, tanto en ámbito doméstico como en industrial, son los siguientes: 
 \begin{itemize}
     \item Aspiradora robótica \textit{Roomba}, robot autónomo que, en los modelos más avanzados, reconocen el entorno, trazan un mapa de la casa y vacían su depósito automáticamente.
+    
+    
     \begin{figure}[H]
 \centering
-\includegraphics[width=0.5\textwidth]{img/roomba.png}
-\caption{Mapa generado por un robot \textit{Roomba}} \label{fig:roomba}
+
 \end{figure}
+
+   \begin{figure}[H]
+    \centering
+        \begin{subfigure}{0.45\textwidth}           \includegraphics[width=0.8\textwidth]{img/roomba.png}
+        \caption{Mapa generado por un robot \textit{Roomba}} \label{fig:roomba}        \label{fig:roombamapa}
+        \end{subfigure}
+        \begin{subfigure}{0.45\textwidth}
+            \includegraphics[width=\textwidth]{img/roomba.jpg}
+            \caption{Aspirador robótico \textit{Roomba}} 
+            \label{fig:roombarobot}
+        \end{subfigure}
+        \label{fig:roomba}
+    \end{figure}
+
     \item Robot médico \textit{Da Vinci}, que permite al cirujano operar a través de una consola mejorando así su precisión y reduciendo riesgos en operaciones quirúrgicas. 
       \begin{figure}[H]
     \centering
@@ -81,17 +107,33 @@ La robótica es ya una realidad. Los robots no son utilizados únicamente por em
     \caption{Robot médico \textit{Da Vinci}} \label{fig:davinci}
     \end{figure}
     \item Vehículos autónomos \textit{Tesla}, que mediante cámaras y sensores de ultra-sonidos analizan el entorno para garantizar una conducción autónoma segura. 
+    
+    
+    %   \begin{figure}[H]
+    % \centering
+    %  \begin{subfigure}{0.6\textwidth}
+    %         \includegraphics[width=\textwidth]{img/tesla.jpg}
+    %         \caption{Coche Tesla con sensores reales} 
+    %         \label{fig:teslacoche}
+    %     \end{subfigure}
+    %     \begin{subfigure}{0.35\textwidth}                 \includegraphics[width=0.9\textwidth]{img/teslaSensors.png}
+    %     \caption{Sensores en conducción semi-autónoma} \label{fig:teslasensors}
+    %     \end{subfigure}
+       
+    %     \label{fig:tesla}
+    % \end{figure}
+    
     \begin{figure}[H]
         \centering
-        \includegraphics[width=0.6\textwidth]{img/teslaSensors.png}
-        \caption{Sensores en conducción semi-autónoma de un coche \textit{Tesla}} \label{fig:tesla}
+        \includegraphics[width=0.7\textwidth]{img/tesla.jpg}
+        \caption{Vehículo \textit{Tesla} con imágenes de sus sensores} \label{fig:tesla}
     \end{figure}
     
     \item Robots de logística de \textit{Amazon}, que se encargan, de manera autónoma, de localizar la estantería donde se encuentra un paquete solicitado y la desplaza por todo el centro logístico al lugar de destino. 
         \begin{figure}[H]
     \centering
-    \includegraphics[width=0.6\textwidth]{img/robots-amazon.jpg}
-    \caption{Robots de logística de \textit{Amazon} } \label{fig:amazon}
+    \includegraphics[width=0.65\textwidth]{img/robots-amazon.jpg}
+    \caption{Robots de logística de \textit{Amazon}} \label{fig:amazon}
     \end{figure}
     \item Robot \textit{Curiosity} de la \textit{NASA}, empleado para la exploración de la superficie del planeta Marte. 
     \begin{figure}[H]
@@ -103,15 +145,14 @@ La robótica es ya una realidad. Los robots no son utilizados únicamente por em
 
 \subsection{Software en robótica}
 \label{subsec:softwarerobot}
-Para dotar de inteligencia autónoma a los robots se requiere desarrollar sistemas  complejos, aplicaciones e infraestructuras. Por ejemplo, hace años, el desarrollo de \textit{software} se realizaba adoptando soluciones ``\textit{ad-hoc}'' dotando a cada robot de un diseño específico y con sensores y actuadores concretos. Esto implica que había que implementar todo el \textit{software} para un nuevo robot debido a que no se podía aplicar el desarrollado anteriormente. En la actualidad, existen plataformas que permiten el desarrollo de aplicaciones robóticas de forma eficiente y genérica permitiendo así reutilizar aplicaciones creadas en otros robots. \\  
+Para dotar de inteligencia autónoma a los robots se requiere desarrollar sistemas  complejos, aplicaciones e infraestructuras. Por ejemplo, hace años, el desarrollo de \textit{software} se realizaba adoptando soluciones ``\textit{ad-hoc}'' dotando a cada robot de un diseño específico y con sensores y actuadores concretos. Esto implicaba que había que implementar todo el \textit{software} para un nuevo robot debido a que no se podía aplicar el desarrollado anteriormente. En la actualidad, existen plataformas que permiten el desarrollo de aplicaciones robóticas de forma eficiente y genérica permitiendo así reutilizar aplicaciones creadas en otros robots. \\  
 
 
-Como se ha dicho, se debe desarrollar un \textit{software} para dotar de inteligencia a un \textit{robot}, que habitualmente se programa con ayuda de herramientas, como los \textit{middleware} robóticos. El uso de estas herramientas permiten introducir una capa de abstracción con los \textit{drivers} y el \textit{hardware} del robot, reduciendo la complejidad y los conocimientos necesarios para realizar desarrollos. Algunas de estos \textit{middleware} son: 
+Para dotar de inteligencia a un robot se desarrolla un \textit{software} que habitualmente se programa con ayuda de herramientas, como los \textit{middleware} robóticos. El uso de estas herramientas permiten introducir una capa de abstracción con los \textit{drivers} y el \textit{hardware} del robot, reduciendo la complejidad y los conocimientos necesarios para realizar desarrollos. Algunas de estos \textit{middleware} son: 
 \begin{itemize}
-    \item  \textit{\textbf{Internet Comunication Engine (ICE)}}\cite{bib:ice}. Plataforma de \textit{software} libre orientada a objetos que proporciona las herramientas para simplificar las comunicaciones entre componentes. Usado para la comunicación entre nodos, proporciona una capa que se encarga de abrir y cerrar conexiones entre ellos sin necesidad de usar el protocolo \textit{HTTP}. 
     \item \textit{\textbf{Robot Operating System (ROS)}}\cite{bib:ros}. Plataforma de \textit{software} libre para el desarrollo de \textit{software} de robots. Provee servicios estándar de un sistema operativo como la abstracción de \textit{hardware}, control de dispositivos de bajo nivel, mecanismos de intercambio de mensajes entre procesos y una serie de herramientas utilizadas en robótica. 
-    \item \textit{\textbf{Orca}}\cite{bib:orca}. Plataforma de \textit{software} libre dedicada al desarrollo de aplicaciones robóticas. Dedicada principalmente al desarrollo de componentes, que se pueden ejecutar de manera independiente o se pueden unir para formar sistemas robóticos de distintas complejidades. Permite reutilizar código y emplear componentes robóticos ya creados.
-     \item \textit{\textbf{Orocos}}\cite{bib:orocos} Proyecto de \textit{software} libre dedicado al control de robots y máquinas. Está orientado a componentes y permite añadir funcionalidad de manera sencilla y sin recopilar todo el código. Incluye paquetes complementarios como filtros de \textit{Bayes}, librerías de control dinámico y cinemático o visión.
+    \item \textit{\textbf{ORCA}}\cite{bib:orca}. Plataforma de \textit{software} libre dedicada al desarrollo de aplicaciones robóticas. Dedicada principalmente al desarrollo de componentes, que se pueden ejecutar de manera independiente o se pueden unir para formar sistemas robóticos de distintas complejidades. Permite reutilizar código y emplear componentes robóticos ya creados.
+     \item \textit{\textbf{OROCOS}}\cite{bib:orocos} Proyecto de \textit{software} libre dedicado al control de robots y máquinas. Está orientado a componentes y permite añadir funcionalidad de manera sencilla y sin recopilar todo el código. Incluye paquetes complementarios como filtros de \textit{Bayes}, librerías de control dinámico y cinemático o visión.
 \end{itemize}
 
 \section{Robótica educativa}
@@ -126,17 +167,17 @@ La enseñanza en centros escolares se realiza en gran parte mediante plataformas
 Resulta importante acercar la robótica a alumnos en edades muy tempranas, partiendo de nociones básicas, dada la importancia que está adquiriendo la disciplina y la fuerte presencia que tiene en la mayor parte de los sectores laborales. Además, la capacidad de programar es una parte importante en la sociedad actual ya que, con esta habilidad, se aprenden estrategias para resolver problemas, diseñar proyectos y comunicar ideas. \\
 
 
-Las nociones básicas de las que se sirve este acercamiento son los lenguajes de programación visual. Se trata de lenguajes potentes y muy intuitivos que abstraen al alumno de la complejidad que implica la sintaxis y aportan un entorno visual haciendo que el software sea bien aceptado por estudiantes de corta edad. Además permiten a los usuarios programar manipulando elementos gráficos en lugar de hacerlo textualmente. Los lenguajes de programación visual más importantes son: 
+Una manera de acercar estas nociones básicas son los lenguajes de programación visual. Se trata de lenguajes potentes y muy intuitivos que abstraen al alumno de la complejidad que implica la sintaxis y aportan un entorno visual haciendo que el software sea bien aceptado por estudiantes de corta edad. Además permiten a los usuarios programar manipulando elementos gráficos en lugar de hacerlo textualmente. Los lenguajes de programación visual más importantes son: 
 
 \begin{itemize}
     \item \textit{\textbf{Scratch}}\cite{bib:scratch}: proyecto liderado por el \textit{MIT}, es utilizado por estudiantes y docentes para programar animaciones, juegos e interacciones fácilmente gracias a su interfaz visual. Se trata de un lenguaje donde los programas se construyen ensamblando bloques gráficos y cada bloque es el equivalente a una función o método de cualquier lenguaje de programación. Actualmente está en su versión \textit{Scratch 3.0} y en la figura \ref{fig:scratch} se puede ver un ejemplo de su interfaz gráfica. 
     \begin{figure}[H]
     \centering
-    \includegraphics[width=0.6\textwidth]{img/scratch.jpg}
+    \includegraphics[width=0.7\textwidth]{img/scratch.jpg}
     \caption{Interfaz gráfica de Scratch} \label{fig:scratch}
     \end{figure}
 
-    \item \textit{\textbf{LEGO}}\cite{bib:lego}: dispone de una amplia gama de robots programables y cada uno de ellos tiene un sistema de programación bajo interfaz gráfica. En la figura \ref{fig:lego} se pueden ver dos ejemplos de distintos software para distintos robots.  
+    \item \textit{\textbf{LEGO}}\cite{bib:lego}: dispone de una amplia gama de robots programables y cada uno de ellos tiene un sistema gráfico. En la figura \ref{fig:lego} se pueden ver dos ejemplos de distintos software para distintos robots.  
     
     \begin{figure}[H]
     \centering
@@ -151,7 +192,7 @@ Las nociones básicas de las que se sirve este acercamiento son los lenguajes de
         \label{fig:lego}
     \end{figure}
 
-    \item \textit{\textbf{Kodu}}\cite{bib:kodu}: lenguaje de programación visual creado por Microsoft para desarrollar videojuegos. Diseñado para ser muy accesible y agradable para cualquier usuario siendo un lenguaje basado en reglas, condiciones y acciones prescindiendo de muchas convecciones de programación como bucles, subrutinas o variables simbólicas. Permite a los más jóvenes a ser creadores de sus propios videojuegos.  
+    \item \textit{\textbf{Kodu}}\cite{bib:kodu}: lenguaje de programación visual creado por Microsoft para desarrollar videojuegos. Diseñado para ser muy accesible y agradable para cualquier usuario siendo un lenguaje basado en reglas, condiciones y acciones prescindiendo de muchas convecciones de programación como bucles, subrutinas o variables simbólicas. Permite a los más jóvenes ser creadores de sus propios videojuegos.  
     
     \begin{figure}[H]
         \centering
@@ -177,7 +218,7 @@ Las nociones básicas de las que se sirve este acercamiento son los lenguajes de
 \end{itemize}
 
 
-También son muy habituales el uso de plataformas hardware, que incorporan los elementos básicos para la construcción de un robot. Las más empleadas son: 
+También es habitual en robótica educativa el uso de plataformas hardware, que incorporan los elementos básicos para la construcción de un robot. Las más empleadas son: 
 \begin{itemize}
     \item \textit{\textbf{LEGO mindstorms}}: plataforma dedicada a construir \textit{robots} con piezas de LEGO. También incluye un microprocesador para ser programado, sensores (infrarrojos, táctiles y de color) y motores.
             \begin{figure}[H]

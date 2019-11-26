@@ -49,7 +49,7 @@ A-Frame proporciona elementos como \textit{a-box} o \textit{a-sky} llamados prim
       <a-sphere position="0 1.25 -5" radius="1.25" color="#ff0000" shadow></a-sphere>
       <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D" shadow>
       </a-cylinder>
-      <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color=" #1cde83" shadow>
+      <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#1cde83" shadow>
       </a-plane>
       <a-sky color="#e7e1e0"></a-sky>
     </a-scene>
@@ -83,7 +83,7 @@ A-Frame, además de disponer primitivas como las mostradas, hace posible la crea
           init: function () {
             var el = this.el;
             el.setObject3D('mesh', new THREE.Mesh());
-            el.getObject3D('mesh');  // Returns THREE.Mesh that was just created.
+            el.getObject3D('mesh'); 
           }
         });
     \end{lstlisting}
@@ -143,8 +143,8 @@ Como se ha explicado, \textit{Blockly} dispone de una gran cantidad de bloques p
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
         this.setColour(120);
-     this.setTooltip("This is a custom block");
-     this.setHelpUrl("");
+         this.setTooltip("This is a custom block");
+         this.setHelpUrl("");
       }
     };
     \end{lstlisting}
@@ -191,7 +191,7 @@ Un gestor de paquetes es una herramienta para automatizar el proceso de instalac
 La versión utilizada en este proyecto es la \textit{2.79} y se ha empleado para la creación de modelos y escenarios para ser incluidos en el simulador \textit{WebSim}. En la imagen \ref{fig:blender} se puede ver la interfaz gráfica de \textit{Blender}. \\
 
     
-\begin{figure}[H]
+\begin{figure}[ht]
     \centering
     \includegraphics[width=1\textwidth]{img/blender.jpg}
     \caption{Interfaz gráfica de \textit{Blender}} 
@@ -302,11 +302,11 @@ brains.runBrain = (robotID, code) =>{
 \begin{lstlisting}[language=javascript, caption=Métodos \textit{resumeBrain} y \textit{stopBrain} para parar/reanudar el cerebro del robot]
 brains.resumeBrain = (robotID, code) =>{
   code = 'async function myAlgorithm(){\n'+code+'\n}\nmyAlgorithm();';
-  var threadBrain = brains.threadsBrains.find((threadBrain)=> threadBrain.id == robotID);
-  threadBrain.iteration=brains.createTimeoutBrain(code,robots.getHalAPI(robotID),robotID);
+  var threadBrain = brains.threadsBrains.find((threadBrain) => threadBrain.id == robotID);
+  threadBrain.iteration = brains.createTimeoutBrain(code, Websim.robots.getHalAPI(robotID), robotID);
   threadBrain.running = true;
   threadBrain.codeRunning = code;
-}
+} 
 brains.stopBrain = (robotID) =>{
   var threadBrain = brains.threadsBrains.find((threadBrain)=> threadBrain.id == robotID);
   stopTimeoutRequested = true;
