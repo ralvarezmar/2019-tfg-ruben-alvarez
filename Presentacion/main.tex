@@ -75,11 +75,26 @@
 		\begin{frame}
 			\frametitle{Tecnologías web}
 			\begin{itemize}
-			    \item HTTP
-			    %imagen http
-			    \item Tecnologías en cliente: HTML, CSS y JavaScript. 
-			    \item Tecnologías en servidor: Node.js, Django y Spring. 
+			    \begin{itemize}
+    			    \item HTTP
+    			    \item Tecnologías en cliente: HTML, CSS y JavaScript. 
+    			    \item Tecnologías en servidor: Node.js, Django y Spring. 
+			    \end{itemize}{}
+
 			\end{itemize}
+			
+			  \begin{figure}[H]
+        \centering
+        \begin{subfigure}{\textwidth}
+            \includegraphics[scale=0.12]{img/amazon.png}
+        \label{fig:amazon}
+        \end{subfigure}\hfill
+        \begin{subfigure}{\textwidth}
+            \includegraphics[scale=0.12]{img/netflix.png}
+        \label{fig:netflix}
+        \end{subfigure}\hfill
+            \label{fig:appwebs}
+            \end{figure}
 		\end{frame}
 		
 		
@@ -88,23 +103,20 @@
         \begin{figure}[H]
         \centering
         \begin{subfigure}{\textwidth}
-            \includegraphics[width=5cm, height=3.5cm]{img/roomba.png}
+            \includegraphics[width=3cm, height=3cm]{img/roomba.png}
         \label{fig:roomba}
         \end{subfigure}\hfill
         \begin{subfigure}{\textwidth}
-            \includegraphics[width=5cm, height=3.5cm]{img/teslaSensors.png}
+            \includegraphics[width=6cm, height=3.5cm]{img/tesla.jpg}
         \label{fig:tesla}
         \end{subfigure}\hfill
-        \begin{subfigure}{\textwidth}
-            \includegraphics[width=5cm, height=3.5cm]{img/davinci.jpg}
-        \label{fig:davinci}
-        \end{subfigure}\hfill
-            \begin{subfigure}{\textwidth}
-                \includegraphics[width=5cm, height=3.5cm]{img/robots-amazon.jpg}
-            \label{fig:amazon}
-            \end{subfigure}\hfill
-            \label{fig:robotica}
-            \end{figure}
+        \label{fig:robotica}
+        \end{figure}
+            \begin{itemize}
+                \begin{itemize}
+                    \item \textit{robot} = \textit{hardware} + \textit{software}
+                    \item \textit{hardware} = sensores + actuadores + controladores
+                \end{itemize}            \end{itemize}{}
 		\end{frame}
 		
 	\begin{frame}
@@ -137,12 +149,10 @@
                     \includegraphics[width=3cm, height=3cm]{img/blockly.png}
                 \label{fig:figure2_6}
                 \end{subfigure}\hfill
-                \begin{subfigure}{\textwidth}
-                    \includegraphics[width=3cm, height=3cm]{img/blender.png}
+                \begin{subfigure}{\textwidth}                    \includegraphics[width=3cm, height=3cm]{img/blender.png}
                 \label{fig:figure2_7}
                 \end{subfigure}\hfill
-                    \begin{subfigure}{\textwidth}
-                        \includegraphics[width=3cm, height=3cm]{img/webpack.jpeg}
+                \begin{subfigure}{\textwidth}                      \includegraphics[width=3cm, height=3cm]{img/webpack.jpeg}
                     \label{fig:figure2_9}
                     \end{subfigure}\hfill
                     \begin{subfigure}{\textwidth}
@@ -155,70 +165,76 @@
         
 	\begin{frame}
 	\frametitle{WebSim}
-	\begin{itemize}
-	    \item \textit{WebSim} es un simulador robótico diseñado para enseñar conceptos básicos de tecnología e iniciar a niños en robótica y programación.
-	    
-	    \item Permite conectar un editor de texto o bloques a un robot simulado. 
+	    \begin{figure}
+	        \centering
+	        \includegraphics[width=0.9\textwidth]{img/interfaz-websim.png}
+	        \label{fig:websim}
+	    \end{figure}
+	    \begin{itemize}
+            \begin{itemize}
+    	    \item \textit{WebSim} -> simulador robótico  para enseñar conceptos básicos de tecnología, robótica y programación.
+	     \end{itemize}{}
 	\end{itemize}
 \end{frame}
 		
 	\section{Objetivos}
 		\begin{frame}
 			\frametitle{Objetivos}
-			\begin{enumerate}
-				\item Ampliar el simulador robótico WebSim para dar soporte a drones y nuevos modelos.
-				
-				\item Teleoperadores para poder manejar los robots sin necesidad de programar y ficheros de configuración.
+			\begin{itemize}\itemsep4pt
+			    \item Mejorar \textit{WebSim}:
+			    \begin{enumerate}\itemsep5pt
+			        	\item Soporte a \textit{drones}.
+				\item Teleoperadores y ficheros de configuración.
+				\item Ejercicios individuales. 
+				\item Ejercicios competitivos y evaluadores automáticos. 
+			    \end{enumerate}{}
 			
-				\item Nuevos ejercicios individuales. 
-				\item Nuevos ejercicios competitivos y evaluadores automáticos. 
-			\end{enumerate}
+			\end{itemize}
 		\end{frame}
 
 	\section{Mejoras a WebSim}
+
 		\begin{frame}
-			\frametitle{Soporte a drones y otros modelos}
-				\begin{itemize}
-				\item Drivers
-				\item Modelo 3D
-				\item Bloques de Scratch
-				\item Otros modelos 
-			\end{itemize}
-		\end{frame}
-			\begin{frame}
-			\frametitle{Soporte a drones: Drivers}
-			\begin{itemize}
-				\item \textit{setL}
-				\item \textit{getL}
-				\item \textit{despegar}
-				\item \textit{aterrizar}
-				\item \textit{updatePosition}
-			\end{itemize}
-		\end{frame}
-% 			\begin{frame}
-% 			\frametitle{Soporte a drones: Drivers}
-% 			\begin{itemize}
-% 				\item Sistema de físicas
-% 			\end{itemize}
-% 		\end{frame}
-				
+		\frametitle{Soporte a drones: Drivers}
+
+\begin{table}[H]
+  \begin{center}
+    \vspace{0.5cm}
+    \label{tab:tablaMotores2}
+    \begin{tabular}{|c|c|} 
+    \hline
+      \textbf{Método} & \textbf{Descripción}\\
+      \hline
+.setL(integer) & \begin{tabular}[c]{@{}c@{}}Comanda velocidad ascendente\\\end{tabular} \\ \hline
+.getL() & \begin{tabular}[c]{@{}c@{}}Devuelve velocidad ascendente\\\end{tabular} \\ \hline
+.despegar() & \begin{tabular}[c]{@{}c@{}}Despega \textit{drone}\\ \end{tabular} \\ \hline
+.aterrizar() & \begin{tabular}[c]{@{}c@{}}Aterriza \textit{drone} \\ \end{tabular} \\ \hline
+.move(integer, integer, integer) & \begin{tabular}[c]{@{}c@{}}Comanda velocidades\\ \end{tabular} \\ \hline
+    \end{tabular}
+  \end{center}
+\end{table}
+\end{frame}
+
     	\begin{frame}
 			\frametitle{Soporte a drones: Modelo 3D}
-            \begin{itemize}
-                \item Rotación del modelo para seguir el mismo sistema de coordenadas que \textit{A-Frame}.
-                \item Modificación de luz y texturas. \item Animación de las helices. 
-            \end{itemize}
+        %   \begin{figure}{\textwidth}
+        %     \centering
+        %     \includegraphics[scale=0.2]{img/websimDrone.png}
+        %   \label{fig:escenarioDrone}
+        %     \end{figure}
+      \begin{minipage}{.48\textwidth}
+      \includegraphics[scale=0.25]{img/WebsimDrone.png}
+        \end{minipage}
+      \begin{minipage}{.50\textwidth}
+      \begin{itemize}
+      \begin{itemize}{}\itemsep5pt
+          \item Formato \textit{A-Frame}
+          \item Modelo \textit{low-poly}
+          \item Animación hélices
+          \end{itemize}
+      \end{itemize}
+    \end{minipage}
     	\end{frame}
-    	
-    	\begin{frame}
-			\frametitle{Soporte a drones: Modelo 3D}
-           \begin{figure}[H]
-            \centering
-            \includegraphics[scale=0.2]{img/WebsimDrone.png}
-           \label{fig:escenarioDrone}
-            \end{figure}
-    	\end{frame}
-    	
     	   \begin{frame}
 			\frametitle{Soporte a drones: Modelo 3D}
           \begin{figure}[H]
@@ -262,8 +278,6 @@
             \end{figure}
 		\end{frame}
 		
-		
-		
 		\begin{frame}
 			\frametitle{Otros modelos}
 		\begin{figure}[H]
@@ -285,125 +299,93 @@
 		
 		\begin{frame}
 		\frametitle{Teleoperadores}
-    		\begin{itemize}
-    			\item Posibilidad de controlar los robots sin necesidad de programarlos
-		    \end{itemize}
     		\begin{figure}{\textwidth}
     		\centering
              \includegraphics[scale=0.18]{img/drone_teleoperator.png}
              \label{fig:teleopdrone}
             \end{figure}
-		\end{frame}
-		
-		
-		\begin{frame}
-		\frametitle{Teleoperadores: Arquitectura}
-             \begin{wrapfigure}{L}{0.5\textwidth}
-            \centering
-            \includegraphics[width=0.5\textwidth]{img/arquitecturaTeleoperador.png}
-            \label{fig:droneteleop}
-            \end{wrapfigure}
-              \item Se envía un evento cuando se pulsa uno de los botones de la interfaz gráfica o del teclado.
-              \item Mediante un controlador se obtienen las velocidades del robot y se envían las nuevas.
-              \item  \textit{WebSim} representa las nuevas velocidades comandadas en el simulador web.
+            	\begin{itemize}
+    			\item Posibilidad de controlar los robots sin necesidad de programarlos
+		    \end{itemize}
 		\end{frame}
 		
 		\begin{frame}
 			\frametitle{Teleoperadores: configuración}
 			\newline
 		    \begin{itemize}
-		        \item Ficheros de configuración creados para crear el escenario sin necesidad de tener los elementos en el código fuente.
-		        \item Formato JSON en el que se especifica escenario simulado, robot elegido, distintos parámetros como la gravedad, etc. 
+		        \item Ficheros de configuración ->  crear escenario sin tener elementos en el código fuente.
+		        \item Formato JSON ->  escenario,  robot, gravedad, elementos, etc. 
 		    \end{itemize}
-		\end{frame}
-		
-			\begin{frame}
-			\frametitle{Teleoperadores: configuración}
-		\begin{figure}{\textwidth}
-    		\centering
-             \includegraphics[scale=0.35]{img/configuracion.png}
-             \label{fig:configuracion}
-            \end{figure}
 		\end{frame}
 		
 		\section{Ejercicios individuales}
 		\begin{frame}
-			\frametitle{Sigue líneas}
-        		\begin{figure}[H]
-                \centering
-                \begin{subfigure}{\textwidth}
-                 \includegraphics[scale=0.15]{img/siguelineas_ir.JPG}
-                 \label{fig:ir}
-                \end{subfigure}
-                \begin{subfigure}{\textwidth}
-                 \includegraphics[scale=0.15]{img/pibot_vision.JPG}
-                \label{fig:vision}
-                \end{subfigure}
-                \end{figure}
-        \end{frame}
-		
-		
-		\begin{frame}
-			\frametitle{Choca-gira}
-						\begin{figure}{\textwidth}
-             \includegraphics[scale=0.25]{img/bump&go.png}
-             \label{fig:chocagira}
+			\frametitle{Ejercicios individuales}
+	  \begin{figure}[H]
+        \centering
+        \begin{subfigure}{\textwidth}
+            \includegraphics[width=5cm, height=3cm]{img/siguelineas_ir.JPG}
+        \label{fig:ir}
+        \end{subfigure}
+        \begin{subfigure}{\textwidth}
+            \includegraphics[width=5cm, height=3cm]{img/pibot_vision.JPG}
+        \label{fig:vision}
+        \end{subfigure}\hfill
+        \begin{subfigure}{\textwidth}
+            \includegraphics[width=5cm, height=3cm]{img/bump&go.png}
+        \label{fig:chocagira}
+        \end{subfigure}
+        \begin{subfigure}{\textwidth}
+            \includegraphics[width=5cm, height=3cm]{img/cuadradoDrone.png}
+        \label{fig:cuadrado}
+        \end{subfigure}\hfill
+            \label{fig:ejercicios}
             \end{figure}
-		\end{frame}
+
+         \end{frame}
 		
+
 		\begin{frame}
 			\frametitle{Sigue pelota}
-			\begin{subfigure}{\textwidth}
-              \includegraphics[width=3cm, height=3cm]{img/followBallTello2.png}
-            \label{fig:figure2_2}
-            \end{subfigure}\hfill
-            \begin{subfigure}{\textwidth}
-                \includegraphics[width=3cm, height=3cm]{img/followBallTello3.png}
-            \label{fig:figure2_3}
-            \end{subfigure}\hfill
-            \begin{subfigure}{\textwidth}
-                \includegraphics[width=3cm, height=3cm]{img/followBallTello4.png}
-            \label{fig:figure2_4}
-            \end{subfigure}
-            \begin{subfigure}{\textwidth}
-                \includegraphics[width=3cm, height=3cm]{img/followBallTello6.png}
-            \label{fig:figure2_6}
-            \end{subfigure}\hfill
-            \begin{subfigure}{\textwidth}
-                \includegraphics[width=3cm, height=3cm]{img/followBallTello7.png}
-            \label{fig:figure2_7}
-            \end{subfigure}\hfill
-            \begin{subfigure}{\textwidth}
-                \includegraphics[width=3cm, height=3cm]{img/followBallTello8.png}
-            \label{fig:figure2_8}
-            \end{subfigure}
-		\end{frame}
-		
-		
-		\begin{frame}
-			\frametitle{Cuadrado-drone}
-					\begin{figure}{\textwidth}
-    		\centering
-             \includegraphics[scale=0.4]{img/cuadradoDrone.png}
-             \label{fig:configuracion}
-            \end{figure}
-		\end{frame}
+
+        \begin{figure}[H]
+        \centering
+        \begin{subfigure}{\textwidth}
+            \includegraphics[width=6cm, height=4cm]{img/followBallTello12.png}
+        \label{fig:followBall}
+        \end{subfigure}\hfill
+        \begin{subfigure}{\textwidth}
+            \includegraphics[width=4cm, height=5cm]{img/siguepelotacodigo.png}
+        \label{fig:siguepelotacodigo}
+        \end{subfigure}\hfill
+        \label{fig:siguepelota}
+        \end{figure}
+ 		\end{frame}
+
+	
 		\begin{frame}
 			\frametitle{Atraviesa bosque}
        \begin{figure}
+       \begin{subfigure}{\textwidth}
          \href{https://youtu.be/z3n47wWHDFc}
-              {\includegraphics[width=0.8\textwidth]{img/atraviesabosque-indiv.png}}
+              {\includegraphics[width=6cm, height=4cm]{img/atraviesabosque-indiv.png}}
+       \end{subfigure}
+       \begin{subfigure}      
+       \includegraphics[width=4cm, height=5cm]{img/atraviesaBosqueCodigo.png}
+       \end{subfigure}
        \end{figure}
-
 		\end{frame}
 		\section{Ejercicios competitivos}
 		\begin{frame}
 			\frametitle{Arquitectura de cómputo}
-			\begin{itemize}
-			    \item Módulo \textit{brains} ampliado:
+			\begin{itemize}\itemsep5pt
+			    \item Módulo \textit{\textbf{brains}} ampliado.
+			    \item Módulo \textit{\textbf{evaluators}}:
 			    \begin{itemize}\itemsep5pt
-			        \item Módulo \textit{evaluators}. Lanza un hilo que tiene acceso a los sensores de los \textit{robots} y evalúa la calidad de su comportamiento.
-			        \item  Módulo \textit{agents}. Ejecuta el código en un robot de un fichero creado previamente. 
+			        \itemtextit {runEvaluator(arrayRobots,evaluator)}
+			    \end{itemize}{}
+			    \item Módulo \textit{\textbf{agents}}:
+			    \begin{itemize}\itemsep5pt	        \textit{runAgent(idRobot, path)} 
 			    \end{itemize}
 			\end{itemize}
 		\end{frame}
@@ -411,16 +393,16 @@
 		\begin{frame}
 			\frametitle{Arquitectura de cómputo}
 			\begin{itemize}
-			     \item Nuevos editores para ejercicios competitivos:
+			     \item Nuevos editores:
 			\end{itemize}
 				\begin{figure}[H]
                 \centering
                 \begin{subfigure}{\textwidth}
-                 \includegraphics[width=5cm, height=3.5cm]{img/competitivoEditorScratch.png}
+                 \includegraphics[width=5.5cm, height=4cm]{img/competitivoEditorScratch.png}
                  \label{fig:ir}
                 \end{subfigure}
                 \begin{subfigure}{\textwidth}
-                 \includegraphics[width=4cm, height=3.5cm]{img/competitiveEditorJavascript.png}
+                 \includegraphics[width=3cm, height=4cm]{img/competitiveEditorJavascript.png}
                 \label{fig:vision}
                 \end{subfigure}
                 \end{figure}
@@ -428,39 +410,75 @@
 		
 		\begin{frame}
 			\frametitle{Atraviesa bosque competitivo}
-						\begin{figure}{\textwidth}
-             \includegraphics[scale=0.25]{img/evaluador_forest.png}
-             \label{fig:configuracion}
-            \end{figure}
+			
+			     \begin{minipage}{.48\textwidth}
+      \includegraphics[scale=0.18]{img/evaluador_forest.png}
+        \end{minipage}
+      \begin{minipage}{.50\textwidth}
+      \begin{itemize}
+      \begin{itemize}{}\itemsep5pt
+          \item \% distancia recorrida
+          \item Mismo recorrido 
+      \end{itemize}
+       \end{itemize}
+    \end{minipage}
 		\end{frame}
 		
 		\begin{frame}
 			\frametitle{Siguelíneas visión competitivo}
-       \begin{figure}
-         \href{https://youtu.be/OaA7_wsXhk8}
-              {\includegraphics[width=0.8\textwidth]{img/evaluator_follow_line.png}}
-       \end{figure}
+			   \begin{minipage}{.50\textwidth}
+      \begin{itemize}
+          \begin{itemize}{}\itemsep5pt
+              \item \% distancia recorrida
+              \item Puente primitivas \textit{A-Frame}
+          \end{itemize}
+       \end{itemize}
+    \end{minipage}
+		\begin{minipage}{.48\textwidth}	
+	         \href{https://youtu.be/OaA7_wsXhk8}{
+            \includegraphics[scale=0.18]{img/evaluator_follow_line.png}}
+        \end{minipage}
 		\end{frame}
 		
 
 		\begin{frame}
 			\frametitle{Gato-ratón}
-       \begin{figure}
-         \href{https://youtu.be/xA9Emhdk_HQ}
-              {\includegraphics[width=0.8\textwidth]{img/evaluador_drone.png}}
-       \end{figure}
+
+		\begin{minipage}{.48\textwidth}	
+	         \href{https://youtu.be/xA9Emhdk_HQ}{
+            \includegraphics[scale=0.18]{img/evaluador_drone.png}}
+        \end{minipage}
+        \begin{minipage}{.50\textwidth}
+      \begin{itemize}
+          \begin{itemize}{}\itemsep5pt
+              \item Distancia \textit{drones} en gráfica
+              \item Módulo \textit{agents} 
+          \end{itemize}
+       \end{itemize}
+    \end{minipage}
 		\end{frame}
 
 	\section{Conclusiones}
 		\begin{frame}
 			\frametitle{Conclusiones}
 			\begin{itemize}
-				\item Soporte a \textit{drones} para \textit{WebSim}. 
-				\item Nuevos ejercicios que aprovechan las funcionalidades existentes de \textit{WebSim}.
-				\item Nuevos ejercicios competitivos que implementan nueva funcionalidad como los evaluadores automáticos. 
+				\item Soporte a \textit{drones}.
+				\item Ficheros de configuración.
+				\item Ejercicios individuales con funcionalidad existente.
+				\item Ejercicios competitivos con nueva funcionalidad. 
 			\end{itemize}
 		\end{frame}
 	
+			\begin{frame}
+			\frametitle{Líneas futuras}
+			\begin{itemize}
+				\item Nuevos modelos de \textit{robots}.
+				\item Nuevos ejercicios.
+				\item Gravedad.
+				\item \textit{WebWorkers}.
+				\item Control en posición.
+			\end{itemize}
+		\end{frame}
 	\appendix
 
 	\backupbegin
