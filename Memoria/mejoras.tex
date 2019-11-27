@@ -401,7 +401,7 @@ Siendo el bloque teleoperador la interfaz creada en \textit{HTML} (\textit{listi
 
 Como ejemplo ilustrativo, a continuación se detalla el código del evento que inicializa el robot, los eventos que genera pulsar el teclado y los botones de la interfaz gráfica.
 
-\begin{lstlisting}[language=javascript,label=list:traduccion]
+\begin{lstlisting}[language=javascript,label=list:funcionteleop]
   document.addEventListener('robot-loaded', (evt)=>{
     localRobot = evt.detail;
     console.log(localRobot);
@@ -1112,6 +1112,13 @@ evaluator.setEvaluator = (arrayRobots) => {
 No es estrictamente hablando un ejercicio competitivo directamente, con dos códigos de estudiantes sobre sendos robots en el mismo escenario simultáneamente. En este ejercicio hay dos robots, uno (el \textit{drone} gato) programado por el estudiante que hace el ejercicio y otro (el \textit{drone} ratón) programado por desarrolladores de la plataforma. 
 En este ejercicio el usuario tiene que desarrollar su solución para que el \textit{robot} no se aleje del objetivo, el \textit{drone} ratón, que está en constante movimiento\footnote{\url{https://www.youtube.com/watch?v=xA9Emhdk_HQ}}. 
 
+\begin{figure}[ht]
+\centering           
+\includegraphics[scale=0.3]{img/evaluador_drone.png}
+\caption{Evaluador y escenario con dos robots para ejercicio gato-ratón}
+\label{fig:evaluador_gato_raton}
+\end{figure}
+
 
 Para este ejercicio se ha creado un \textit{script} llamado \textit{agents-methods.js}, basado en \textit{brains}, para ejecutar el código del \textit{drone} ratón sin necesidad de escribir código. Es muy similar al método \textit{runBrain} con la diferencia de que el código viene de un fichero en lugar del editor. En este módulo se guarda el código en la variable \textit{agents.code} con el siguiente código: 
 
@@ -1169,7 +1176,8 @@ En el siguiente código se ejecuta en un \textit{robot} el código escrito en el
   
   
 Para el evaluador de este ejercicio se crea un gráfico con ayuda de una librería externa de \textit{JavaScript} (\textit{JavaScript Graphics Library}\cite{bib:jsgrafico}) que muestra la distancia entre \textit{drones} y el tiempo que lleva de ejecución. Se puede ver este evaluador en la figura \ref{fig:evaluador_gato_raton}. 
- En este caso, el método \textit{createInterface} realiza añade todo lo necesario al \textit{DOM} para que el gráfico sea completo y llama a la función \textit{setAxis()} para añadir los ejes y las etiquetas.
+ En este caso, el método \textit{createInterface} realiza añade todo lo necesario al \textit{DOM} para que el gráfico sea completo y llama a la función \textit{setAxis()} para añadir los ejes y las etiquetas. \\
+ 
  \begin{lstlisting}[language=javascript,caption=Función que establece los ejes y etiquetas de la gráfica]
  evaluator.createInterface= ()=>{
   var node = document.createElement("div");
@@ -1238,9 +1246,3 @@ evaluator.setEvaluator = (arrayRobots) => {
   }
 }
 \end{lstlisting}
-\begin{figure}[ht]
-\centering           
-\includegraphics[scale=0.3]{img/evaluador_drone.png}
-\caption{Evaluador y escenario con dos robots para ejercicio gato-ratón}
-\label{fig:evaluador_gato_raton}
-\end{figure}
