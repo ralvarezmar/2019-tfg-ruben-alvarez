@@ -13,13 +13,17 @@
 \usepackage{multirow}
 \usepackage{fancyvrb}
 \usepackage{verbatim}
-\usepackage{subcaption}
 \usepackage{wrapfig}
 \usepackage{lipsum}  
 \usepackage{listings}
 \usepackage{url}
 \usepackage{graphicx}
 \usepackage{hyperref}
+\usepackage{tikz}
+\def\checkmark{\tikz\fill[scale=0.6](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;} 
+
+\usepackage{geometry}
+\geometry{rmargin=0.2in,bmargin=0.2in}
 
 
 \usetheme{Execushares}
@@ -39,8 +43,7 @@
 \vspace{0.8cm}
 \title{Mejoras en entorno de robótica  educativa para niños}
 \subtitle{Trabajo de fin de grado}
-\author[1]{Rubén Álvarez Martín}
-
+\author{Rubén Álvarez Martín}
 \date{Noviembre, 2019}
 
 \begin{document}
@@ -73,24 +76,25 @@
 	\setcounter{showSlideNumbers}{1}
 	\section{Introducción}
 		\begin{frame}
+
 			\frametitle{Tecnologías web}
 			\begin{itemize}
 			    \begin{itemize}
     			    \item HTTP
-    			    \item Tecnologías en cliente: HTML, CSS y JavaScript. 
-    			    \item Tecnologías en servidor: Node.js, Django y Spring. 
+    			    \item Tecnologías cliente: HTML, CSS y JS. 
+    			    \item Tecnologías servidor: Node, Django y Spring. 
 			    \end{itemize}{}
 
 			\end{itemize}
 			
-			  \begin{figure}[H]
+		\begin{figure}[H]
         \centering
         \begin{subfigure}{\textwidth}
-            \includegraphics[scale=0.12]{img/amazon.png}
+            \includegraphics[width=5.5cm, height=4cm]{img/amazon.png}
         \label{fig:amazon}
         \end{subfigure}\hfill
         \begin{subfigure}{\textwidth}
-            \includegraphics[scale=0.12]{img/netflix.png}
+            \includegraphics[width=5.5cm, height=4cm]{img/netflix.png}
         \label{fig:netflix}
         \end{subfigure}\hfill
             \label{fig:appwebs}
@@ -123,11 +127,20 @@
 		\frametitle{Robótica educativa}
 		\begin{itemize}
 			\item Lenguajes de programación visual: Scratch!, LEGO, Kodu, Snap! o Blockly.
-		           \begin{figure}[H]
-                    \centering
-                    \includegraphics[scale=0.2]{img/scratch.jpg}
-                   \label{fig:scratch}
-                    \end{figure}
+	
+                    
+        \begin{figure}[H]
+        \centering
+        \begin{subfigure}{\textwidth}
+            \includegraphics[scale=0.13]{img/scratch.jpg}
+        \label{fig:scratch}
+        \end{subfigure}\hfill
+        \begin{subfigure}{\textwidth}
+            \includegraphics[scale=0.1]{img/mBotReal.jpg}
+        \label{fig:mbot}
+        \end{subfigure}\hfill
+            \label{fig:educativa}
+        \end{figure}
             \item Plataformas hardware: \textit{LEGO mindstorm}, \textit{Makeblock} o \textit{Arduino}.
 		\end{itemize}
 	\end{frame}
@@ -172,7 +185,7 @@
 	    \end{figure}
 	    \begin{itemize}
             \begin{itemize}
-    	    \item \textit{WebSim} -> simulador robótico  para enseñar conceptos básicos de tecnología, robótica y programación.
+    	    \item \textit{WebSim} -> simulador web robótico  para enseñar conceptos básicos de tecnología, robótica y programación.
 	     \end{itemize}{}
 	\end{itemize}
 \end{frame}
@@ -196,7 +209,11 @@
 
 		\begin{frame}
 		\frametitle{Soporte a drones: Drivers}
-
+		\begin{itemize}
+		    \begin{itemize}
+		    \item \textbf{HAL API}: Sensores y actuadores.
+		    \end{itemize}
+		\end{itemize}
 \begin{table}[H]
   \begin{center}
     \vspace{0.5cm}
@@ -217,11 +234,6 @@
 
     	\begin{frame}
 			\frametitle{Soporte a drones: Modelo 3D}
-        %   \begin{figure}{\textwidth}
-        %     \centering
-        %     \includegraphics[scale=0.2]{img/websimDrone.png}
-        %   \label{fig:escenarioDrone}
-        %     \end{figure}
       \begin{minipage}{.48\textwidth}
       \includegraphics[scale=0.25]{img/WebsimDrone.png}
         \end{minipage}
@@ -256,6 +268,7 @@
 		   
 		\begin{frame}
 		\frametitle{Soporte a drones: Bloques Scratch}
+		 \begin{minipage}{.45\textwidth}
 		       \begin{figure}[H]
             \centering
             \includegraphics[scale=0.5]{img/ascensionBlockly.png}
@@ -263,12 +276,12 @@
             \end{figure}
                  \begin{figure}[H]
             \centering
-            \includegraphics[scale=0.5]{img/verticalBlockly.png}
+            \includegraphics[scale=0.4]{img/verticalBlockly.png}
            \label{fig:vertica}
             \end{figure}
             \begin{figure}[H]
             \centering
-            \includegraphics[scale=0.5]{img/aterrizarBlockly.png}
+            \includegraphics[scale=0.48]{img/aterrizarBlockly.png}
            \label{fig:vertica}
             \end{figure}
                \begin{figure}[H]
@@ -276,6 +289,13 @@
             \includegraphics[scale=0.5]{img/despegarBlockly.png}
            \label{fig:vertica}
             \end{figure}
+            \end{minipage}
+            \begin{minipage}{.48\textwidth}
+            \begin{figure}
+                \centering                   \includegraphics[width=6.2cm, height=5.8cm]{img/traduccionDespegar.png}
+                \label{fig:traduccion}
+            \end{figure}
+            \end{minipage}
 		\end{frame}
 		
 		\begin{frame}
@@ -321,27 +341,26 @@
 		\section{Ejercicios individuales}
 		\begin{frame}
 			\frametitle{Ejercicios individuales}
-	  \begin{figure}[H]
+	  \begin{figure}[ht]
         \centering
-        \begin{subfigure}{\textwidth}
-            \includegraphics[width=5cm, height=3cm]{img/siguelineas_ir.JPG}
-        \label{fig:ir}
-        \end{subfigure}
-        \begin{subfigure}{\textwidth}
-            \includegraphics[width=5cm, height=3cm]{img/pibot_vision.JPG}
+          \begin{subfigure}{\textwidth}
+            \includegraphics[width=5.5cm, height=3cm]{img/pibot_vision.JPG}
         \label{fig:vision}
         \end{subfigure}\hfill
         \begin{subfigure}{\textwidth}
-            \includegraphics[width=5cm, height=3cm]{img/bump&go.png}
-        \label{fig:chocagira}
-        \end{subfigure}
-        \begin{subfigure}{\textwidth}
-            \includegraphics[width=5cm, height=3cm]{img/cuadradoDrone.png}
-        \label{fig:cuadrado}
+            \includegraphics[width=5.5cm, height=3cm]{img/siguelineas_ir.JPG}
+        \label{fig:ir}
         \end{subfigure}\hfill
+        \begin{subfigure}{\textwidth}
+            \includegraphics[width=5.5cm, height=3cm]{img/bump&go.png}
+        \label{fig:chocagira}
+        \end{subfigure}\hfill
+        \begin{subfigure}{\textwidth}
+            \includegraphics[width=5.5cm, height=3cm]{img/cuadradoDrone.png}
+        \label{fig:cuadrado}
+        \end{subfigure}
             \label{fig:ejercicios}
             \end{figure}
-
          \end{frame}
 		
 
@@ -355,7 +374,7 @@
         \label{fig:followBall}
         \end{subfigure}\hfill
         \begin{subfigure}{\textwidth}
-            \includegraphics[width=4cm, height=5cm]{img/siguepelotacodigo.png}
+            \includegraphics[width=5cm, height=5.5cm]{img/siguepelotacodigo.png}
         \label{fig:siguepelotacodigo}
         \end{subfigure}\hfill
         \label{fig:siguepelota}
@@ -371,23 +390,26 @@
               {\includegraphics[width=6cm, height=4cm]{img/atraviesabosque-indiv.png}}
        \end{subfigure}
        \begin{subfigure}      
-       \includegraphics[width=4cm, height=5cm]{img/atraviesaBosqueCodigo.png}
+       \includegraphics[width=4.5cm, height=5cm]{img/atraviesaBosqueCodigo.png}
        \end{subfigure}
        \end{figure}
+       \scriptsize{\url{https://youtu.be/z3n47wWHDFc}}
 		\end{frame}
+		
 		\section{Ejercicios competitivos}
 		\begin{frame}
 			\frametitle{Arquitectura de cómputo}
-			\begin{itemize}\itemsep5pt
-			    \item Módulo \textit{\textbf{brains}} ampliado.
-			    \item Módulo \textit{\textbf{evaluators}}:
-			    \begin{itemize}\itemsep5pt
-			        \itemtextit {runEvaluator(arrayRobots,evaluator)}
-			    \end{itemize}{}
-			    \item Módulo \textit{\textbf{agents}}:
-			    \begin{itemize}\itemsep5pt	        \textit{runAgent(idRobot, path)} 
-			    \end{itemize}
+
+			\begin{itemize}
+			    \item \large{Módulo \textit{\textbf{brains}} ampliado.}
+			    \item \large{Módulo \textit{\textbf{evaluators}}:} \normalsize{\textit{runEvaluator(arrayRobots,evaluator)}}
+	
+			    \item \large{Módulo \textit{\textbf{agents}}:} \normalsize{\textit{runAgent(idRobot, path)} }
+			   
 			\end{itemize}
+			\begin{figure}
+			    \centering			    \includegraphics[scale=0.4]{img/arquitectura.png}
+			\end{figure}
 		\end{frame}
 		
 		\begin{frame}
@@ -411,7 +433,7 @@
 		\begin{frame}
 			\frametitle{Atraviesa bosque competitivo}
 			
-			     \begin{minipage}{.48\textwidth}
+	\begin{minipage}{.48\textwidth}
       \includegraphics[scale=0.18]{img/evaluador_forest.png}
         \end{minipage}
       \begin{minipage}{.50\textwidth}
@@ -436,7 +458,8 @@
     \end{minipage}
 		\begin{minipage}{.48\textwidth}	
 	         \href{https://youtu.be/OaA7_wsXhk8}{
-            \includegraphics[scale=0.18]{img/evaluator_follow_line.png}}
+            \includegraphics[scale=0.14]{img/evaluator_follow_line.png}}
+            \scriptsize{\url{https://youtu.be/OaA7_wsXhk8}} 
         \end{minipage}
 		\end{frame}
 		
@@ -447,6 +470,7 @@
 		\begin{minipage}{.48\textwidth}	
 	         \href{https://youtu.be/xA9Emhdk_HQ}{
             \includegraphics[scale=0.18]{img/evaluador_drone.png}}
+            \scriptsize{\url{https://youtu.be/xA9Emhdk_HQ}}
         \end{minipage}
         \begin{minipage}{.50\textwidth}
       \begin{itemize}
@@ -457,32 +481,45 @@
        \end{itemize}
     \end{minipage}
 		\end{frame}
+		
+		\begin{frame}{Gato-ratón evaluador}
+		  \begin{minipage}{.4\textwidth}
+      \begin{itemize}
+      \begin{itemize}{}\itemsep5pt
+          \item Distancia
+          \item Gráfica
+          \item Cronómetro
+          \end{itemize}
+      \end{itemize}
+    \end{minipage}
+		  \begin{minipage}{.58\textwidth}
+      \includegraphics[width=6.75cm, height=4.8cm]{img/drone_evaluator.png}
+        \end{minipage}
+		\end{frame}
 
 	\section{Conclusiones}
 		\begin{frame}
 			\frametitle{Conclusiones}
 			\begin{itemize}
-				\item Soporte a \textit{drones}.
-				\item Ficheros de configuración.
-				\item Ejercicios individuales con funcionalidad existente.
-				\item Ejercicios competitivos con nueva funcionalidad. 
+				\item Soporte a \textit{drones}. \checkmark
+				\item Ficheros de configuración. \checkmark
+				\item Ejercicios individuales. \checkmark
+				\item Ejercicios competitivos: 
+				agentes y evaluadores. \checkmark
 			\end{itemize}
 		\end{frame}
 	
 			\begin{frame}
 			\frametitle{Líneas futuras}
 			\begin{itemize}
-				\item Nuevos modelos de \textit{robots}.
-				\item Nuevos ejercicios.
-				\item Gravedad.
 				\item \textit{WebWorkers}.
-				\item Control en posición.
+				\item Control en posición interrumpible.
 			\end{itemize}
 		\end{frame}
 	\appendix
-
 	\backupbegin
-	
+% 	  \begin{frame}
+% 	    \frametitle{Backup slide 1}
+% 	  \end{frame}
 	\backupend
-
 \end{document}
