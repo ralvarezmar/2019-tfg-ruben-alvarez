@@ -118,14 +118,14 @@
             \begin{itemize}
                 \begin{itemize}
                     \item \textit{robot} = \textit{hardware} + \textit{software}
-                    \item \textit{hardware} = sensores + actuadores + controladores
+                    \item \textit{hardware} = sensores + actuadores + procesadores
                 \end{itemize}            \end{itemize}{}
 		\end{frame}
 		
 	\begin{frame}
 		\frametitle{Robótica educativa}
 		\begin{itemize}
-	          \item Plataformas hardware: \textit{LEGO mindstorm}, \textit{Makeblock} o \textit{Arduino}.
+	          \item Plataformas hardware: \textit{LEGO mindstorm}, \textit{mBot} o \textit{Arduino}.
         \begin{figure}[H]
         \centering
         \begin{subfigure}{\textwidth}
@@ -138,7 +138,7 @@
         \end{subfigure}\hfill
             \label{fig:educativa}
         \end{figure}
-        	\item Lenguajes de programación visual: Scratch!, Snap! o Kodu.
+        	\item Lenguajes de programación visual: Scratch, Snap! o Kodu.
   
 		\end{itemize}
 	\end{frame}
@@ -194,7 +194,7 @@
 	\frametitle{WebSim}
 	    \begin{figure}
 	        \centering
-	        \includegraphics[width=0.9\textwidth]{img/interfaz-websim.png}
+	        \includegraphics[width=0.85\textwidth]{img/interfaz-websim.png}
 	        \label{fig:websim}
 	    \end{figure}
 	    \begin{itemize}
@@ -205,6 +205,23 @@
 \end{frame}
 		
 	\section{Mejoras a WebSim}
+
+
+    	\begin{frame}
+			\frametitle{Soporte a drones: Modelo 3D}
+      \begin{minipage}{.48\textwidth}
+      \includegraphics[scale=0.25]{img/WebsimDrone.png}
+        \end{minipage}
+      \begin{minipage}{.50\textwidth}
+      \begin{itemize}
+      \begin{itemize}{}\itemsep5pt
+          \item Formato \textit{A-Frame}
+          \item Modelo \textit{low-poly}
+          \item Animación hélices
+          \end{itemize}
+      \end{itemize}
+    \end{minipage}
+    	\end{frame}
 
 		\begin{frame}
 		\frametitle{Soporte a drones: Drivers}
@@ -231,40 +248,7 @@
 \end{table}
 \end{frame}
 
-    	\begin{frame}
-			\frametitle{Soporte a drones: Modelo 3D}
-      \begin{minipage}{.48\textwidth}
-      \includegraphics[scale=0.25]{img/WebsimDrone.png}
-        \end{minipage}
-      \begin{minipage}{.50\textwidth}
-      \begin{itemize}
-      \begin{itemize}{}\itemsep5pt
-          \item Formato \textit{A-Frame}
-          \item Modelo \textit{low-poly}
-          \item Animación hélices
-          \end{itemize}
-      \end{itemize}
-    \end{minipage}
-    	\end{frame}
-    	   \begin{frame}
-			\frametitle{Soporte a drones: Modelo 3D}
-          \begin{figure}[H]
-        \centering
-        \begin{subfigure}{\textwidth}
-         \includegraphics[width=4cm, height=3cm]{img/red_drone.png}
- \label{fig:drone_rojo}
-        \end{subfigure}
-        \begin{subfigure}{\textwidth}
-         \includegraphics[width=4cm, height=3cm]{img/black_drone.png}
-   \label{fig:drone_negro}
-        \end{subfigure}
-        \begin{subfigure}{\textwidth}
-         \includegraphics[width=4cm, height=3cm]{img/red_blackdrone.png}
-   \label{fig:drone_negrorojo}
-        \end{subfigure}
-    \end{figure}
-    	\end{frame}
-		   
+
 		\begin{frame}
 		\frametitle{Soporte a drones: Bloques Scratch}
 		 \begin{minipage}{.45\textwidth}
@@ -276,7 +260,7 @@
                  \begin{figure}[H]
             \centering
             \includegraphics[scale=0.4]{img/verticalBlockly.png}
-           \label{fig:vertica}
+           \label{fig:vertical}
             \end{figure}
             \begin{figure}[H]
             \centering
@@ -288,7 +272,7 @@
             \includegraphics[scale=0.5]{img/despegarBlockly.png}
            \label{fig:vertica}
             \end{figure}
-            \end{minipage}
+                        \end{minipage}
             \begin{minipage}{.48\textwidth}
             \begin{figure}
                 \centering                   \includegraphics[width=6.2cm, height=5.8cm]{img/traduccionDespegar.png}
@@ -324,7 +308,9 @@
              \label{fig:teleopdrone}
             \end{figure}
             	\begin{itemize}
-    			\item Posibilidad de controlar los robots sin necesidad de programarlos
+            	\begin{itemize}
+    		    	\item Permiten controlar robots sin programarlos.
+            	\end{itemize}
 		    \end{itemize}
 		\end{frame}
 		
@@ -365,7 +351,6 @@
 
 		\begin{frame}
 			\frametitle{Sigue pelota}
-
         \begin{figure}[H]
         \centering
         \begin{subfigure}{\textwidth}
@@ -379,7 +364,6 @@
         \label{fig:siguepelota}
         \end{figure}
  		\end{frame}
-
 	
 		\begin{frame}
 			\frametitle{Atraviesa bosque}
@@ -414,7 +398,7 @@
 		\begin{frame}
 			\frametitle{Arquitectura de cómputo}
 			\begin{itemize}
-			     \item Nuevos editores:
+			     \item Editores dobles:
 			\end{itemize}
 				\begin{figure}[H]
                 \centering
